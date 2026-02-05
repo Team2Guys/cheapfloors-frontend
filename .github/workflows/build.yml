@@ -1,0 +1,60 @@
+name: Build on PR
+
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - name: Set environment variables
+        run: echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }}" >> $GITHUB_ENV
+
+      - name: Clean install dependencies
+        run: |
+          rm -rf node_modules
+          npm cache clean --force
+          npm install --legacy-peer-deps
+
+      - name: Debug react-image-crop
+        run: |
+          ls -la node_modules/react-image-crop/dist || echo "react-image-crop/dist not found"
+          cat package.json | grep react-image-crop || echo "react-image-crop not in package.json"
+      - name: Build
+        run: npm run build      
+    
+      - name: Install sshpass
+        run: sudo apt-get install sshpass
+
+      - name: Deploy via SSH
+        env:
+          SSH_PASS: ${{ secrets.VPS_PASSWORD }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+        run: |
+          sshpass -p $SSH_PASS ssh -o StrictHostKeyChecking=no -p $VPS_PORT $VPS_USER@$VPS_HOST <<EOF
+          export NVM_DIR="\$HOME/.nvm"
+          [ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh" # This loads nvm
+          [ -s "\$NVM_DIR/bash_completion" ] && \. "\$NVM_DIR/bash_completion" # This loads nvm bash_completion
+          nvm use 20
+          cd /var/www/easyfloors/client
+          git pull origin dev --no-rebase
+          
+          npm install --legacy-peer-deps
+          rm -rf .next
+          npm run build
+          pm2 restart easyfloors_fe
+          exit
+          EOF
+
+
+          
