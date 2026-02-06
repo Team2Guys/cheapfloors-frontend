@@ -11,6 +11,7 @@ const AreaCalculator = ({
   accessories
 }: AreaCalculatorProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  console.log(accessories,'accessories')
   return (
     <div className="space-y-3 my-4">
       <div className="flex sm:flex-col max-sm:items-center gap-4">

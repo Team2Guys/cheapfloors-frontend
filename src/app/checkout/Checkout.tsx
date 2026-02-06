@@ -842,9 +842,9 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                               <p className="text-11 xs:text-base">
                                 <span>Delivery Cost:</span>
                                 {allItemsAreFreeSamples ? (
-                                  <strong>Free</strong>
+                                  <strong> Free</strong>
                                 ) : selectedEmirate === 'Dubai' ? (
-                                  <strong>Free</strong>
+                                  <strong> Free</strong>
                                 ) : (
                                   <>
                                     Free for orders above{' '}

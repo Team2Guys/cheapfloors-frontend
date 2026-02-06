@@ -261,7 +261,7 @@ export const featureItems = [
     buttonLink: '/free-sample'
   },
   {
-    title: 'Easy payment',
+    title: 'Easy Payment',
     description:
       'With Tabby or Tamara, split your payment into four easy installments — no hassle, no hidden fees.',
     icon: '/assets/images/Home/card.png',
@@ -523,7 +523,7 @@ export const policySections = [
       'Can I Return A Purchased Product From easyfloors.ae, If I Have A Change of Mind?',
     content: [
       'Yes, You can return any item within 7 days of receiving your order if it is unused, and in its original packing.',
-      'Begin a return simply by emailing our friendly customer service team at <a href="mailto:cs@easyfloors.ae" target="_blank" class="font-bold">cs@easyfloors.ae</a> with your order number and a 2-3 sentence explanation of why you’re returning an item.',
+      'Begin a return simply by emailing our friendly customer service team at <a href="mailto:cs@easyfloors.ae" target="_blank" class="font-normal text-primary">cs@easyfloors.ae</a> with your order number and a 2-3 sentence explanation of why you’re returning an item.',
       "We'll get back to you within 24 hours, and we'll give you a return authorisation number (RAN) that you need to include with the package when you send it back to be processed.",
       "Once we get and accept your return, we'll send you your money back. It could take a few days to show up in your account, but we'll start the return process right away."
     ]
@@ -532,7 +532,7 @@ export const policySections = [
     title: 'What Should I Do If I Receive A Defective Item?',
     content: [
       'If we send you a faulty set, please adhere to the above instructions. You need to enter in the subject line of the email “Defective – Order Number”. We shall respond to your request promptly and offer a substitute for the order.',
-      'We understand that if there is an issue with the installation of an item, it will remain unused. For this, you can write to us at <a href="mailto:cs@easyfloors.ae" class="font-bold" target="_blank">cs@easyfloors.ae</a> and we will arrange for one of our skilled representatives to visit the site.'
+      'We understand that if there is an issue with the installation of an item, it will remain unused. For this, you can write to us at <a href="mailto:cs@easyfloors.ae" class="font-normal text-primary" target="_blank">cs@easyfloors.ae</a> and we will arrange for one of our skilled representatives to visit the site.'
     ]
   },
   {
@@ -556,8 +556,8 @@ export const policySections = [
   {
     title: 'Get in Touch',
     content: [
-      'Have questions about our return and refund policy? Reach out to us at cs@easyfloors.ae. Our customer service team is here to help from 9 am to 6 pm, Monday to Saturday (except on public holidays).',
-      'Thanks for shopping with <a href="/" class="font-bold" target="_blank">easyfloors.ae</a>.'
+      'Have questions about our return and refund policy? Reach out to us at <a href="mailto:cs@easyfloors.ae" class="font-normal text-primary" target="_blank">cs@easyfloors.ae</a>. Our customer service team is here to help from 9 am to 6 pm, Monday to Saturday (except on public holidays).',
+      'Thanks for shopping with <a href="/" class="font-normal text-primary" target="_blank">easyfloors.ae</a>.'
     ]
   }
 ];

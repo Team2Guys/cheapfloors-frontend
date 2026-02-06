@@ -228,7 +228,7 @@ const Footer = () => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col space-y-3 fixed right-4 bottom-10 md:right-16  z-20">
+        <div className="flex flex-col space-y-8 fixed right-4 bottom-8 md:right-16  z-20">
           <Link
             href="tel:+971505974385"
             target="_blank"

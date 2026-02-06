@@ -662,6 +662,7 @@ export const FIND_QUICK_VIEW_PRODUCT = gql`
         discountPrice
         custom_url
         posterImageUrl
+        status
       }
     }
   }

@@ -17,7 +17,8 @@ const Shipping = () => {
         and hassle-free buying experience. You can contact us any time at{' '}
         <Link
           href="mailto:cs@easyfloors.ae"
-          className="text-black underline font-bold hover:text-primary"
+          className="font-normal text-primary"
+          target='_blank'
         >
           cs@easyfloors.ae
         </Link>{' '}
@@ -66,7 +67,7 @@ const Shipping = () => {
           Location:{' '}
           <Link
             href="https://maps.app.goo.gl/BBJjwVKgTK4PPTWR8"
-            className="font-normal underline hover:text-primary"
+            className="font-normal text-primary"
             target='_blank'
           >
             22nd 15B St - Al Quoz - Al Quoz Industrial Area 4 - Dubai - UAE

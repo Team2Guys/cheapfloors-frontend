@@ -43,11 +43,11 @@ const CartPage = ({ products }: CartPageProps) => {
   const clearanceItems = cartItems.filter((item) => item.isClearance);
   const [shipping, setShipping] = useState<
     | {
-      name: string;
-      fee: number;
-      deliveryDuration: string;
-      freeShipping?: number;
-    }
+        name: string;
+        fee: number;
+        deliveryDuration: string;
+        freeShipping?: number;
+      }
     | undefined
   >(undefined);
   const [openAccordion, setOpenAccordion] = useState<string | null>(
@@ -62,8 +62,7 @@ const CartPage = ({ products }: CartPageProps) => {
       try {
         const items = await getCart();
         const subTotalPrice = items.reduce(
-          (total, item) =>
-            total + item.totalPrice,
+          (total, item) => total + item.totalPrice,
           0
         );
 
@@ -119,8 +118,7 @@ const CartPage = ({ products }: CartPageProps) => {
 
   useEffect(() => {
     const subTotalPrice = cartItems.reduce(
-      (total, item) =>
-        total + item.totalPrice,
+      (total, item) => total + item.totalPrice,
       0
     );
 
@@ -156,25 +154,33 @@ const CartPage = ({ products }: CartPageProps) => {
 
       // 🔍 Count TOTAL SQM already in cart for THIS product
       let sqmInCart;
-      if (product.category?.toLowerCase().trim() === "accessories") {
+      if (product.category?.toLowerCase().trim() === 'accessories') {
         sqmInCart = cartItems
-          .filter(item => item.id === product.id && item.selectedColor?.color === product.selectedColor?.color)
+          .filter(
+            (item) =>
+              item.id === product.id &&
+              item.selectedColor?.color === product.selectedColor?.color
+          )
           .reduce((sum, item) => {
-            return sum + (item.requiredBoxes);
+            return sum + item.requiredBoxes;
           }, 0);
       } else {
         sqmInCart = cartItems
-          .filter(item => item.id === product.id)
+          .filter((item) => item.id === product.id)
           .reduce((sum, item) => {
-            return sum + (item.squareMeter);
+            return sum + item.squareMeter;
           }, 0);
       }
-      const sqmAlreadyInCart = sqmInCart - (product.category?.toLowerCase().trim() === "accessories" ? product.requiredBoxes : product.squareMeter);
+      const sqmAlreadyInCart =
+        sqmInCart -
+        (product.category?.toLowerCase().trim() === 'accessories'
+          ? product.requiredBoxes
+          : product.squareMeter);
 
       // 🔢 SQM requested for the NEW addition
       let newSQMRequired;
 
-      if (product.category?.toLowerCase().trim() === "accessories") {
+      if (product.category?.toLowerCase().trim() === 'accessories') {
         newSQMRequired = (item.requiredBoxes || 0) + change;
       } else {
         newSQMRequired = (item.squareMeter || 0) + change; // quantity = sqm requested
@@ -182,7 +188,10 @@ const CartPage = ({ products }: CartPageProps) => {
 
       // 📦 Total available SQM from stock
       const totalAvailableSQM =
-        product.stock * (product.category?.toLowerCase().trim() === "accessories" ? 1 : Number(product.boxCoverage) || 1);
+        product.stock *
+        (product.category?.toLowerCase().trim() === 'accessories'
+          ? 1
+          : Number(product.boxCoverage) || 1);
 
       // 📉 Remaining SQM
       const remainingSQM = totalAvailableSQM - sqmAlreadyInCart;
@@ -190,15 +199,20 @@ const CartPage = ({ products }: CartPageProps) => {
       // ❗ FINAL STOCK CHECK (SQM-based)
       if (newSQMRequired > remainingSQM) {
         showAlert({
-          title: `Cannot add more than ${product.category?.toLowerCase().trim() === "accessories" ? `${remainingSQM} Peices` : `${remainingSQM.toFixed(2)} SQM`}.`,
-          icon: "error",
+          title: `Cannot add more than ${product.category?.toLowerCase().trim() === 'accessories' ? `${remainingSQM} Peices` : `${remainingSQM.toFixed(2)} SQM`}.`,
+          icon: 'error'
         });
         return false;
       }
-      if (((product.category?.toLowerCase().trim() === "accessories" ? (item.requiredBoxes || 0) : item.squareMeter || 0) + change) > totalAvailableSQM) {
-
+      if (
+        (product.category?.toLowerCase().trim() === 'accessories'
+          ? item.requiredBoxes || 0
+          : item.squareMeter || 0) +
+          change >
+        totalAvailableSQM
+      ) {
         showAlert({
-          title: `Cannot add more than ${product.category?.toLowerCase().trim() === "accessories" ? `${remainingSQM} Peices` : `${remainingSQM.toFixed(2)} SQM`}.`,
+          title: `Cannot add more than ${product.category?.toLowerCase().trim() === 'accessories' ? `${remainingSQM} Peices` : `${remainingSQM.toFixed(2)} SQM`}.`,
           icon: 'error'
         });
         return;
@@ -211,18 +225,24 @@ const CartPage = ({ products }: CartPageProps) => {
             ? `${item.id}-installation`
             : `${item.id}`;
       const newSquareMeter = (item.squareMeter || 0) + change;
-      const newRequiredBoxes = product.category?.toLowerCase().trim() === "accessories" ? (item.requiredBoxes || 0) + change : Math.ceil(newSquareMeter / Number(item.boxCoverage));
-      if (product.category?.toLowerCase().trim() === "accessories" ? newRequiredBoxes < 1 : newSquareMeter < 1) {
+      const newRequiredBoxes =
+        product.category?.toLowerCase().trim() === 'accessories'
+          ? (item.requiredBoxes || 0) + change
+          : Math.ceil(newSquareMeter / Number(item.boxCoverage));
+      if (
+        product.category?.toLowerCase().trim() === 'accessories'
+          ? newRequiredBoxes < 1
+          : newSquareMeter < 1
+      ) {
         showAlert({
-          title: `Minimum quantity is 1  ${product.category?.toLowerCase().trim() === "accessories" ? 'Peice' : 'SQM'}.`,
+          title: `Minimum quantity is 1  ${product.category?.toLowerCase().trim() === 'accessories' ? 'Peice' : 'SQM'}.`,
           icon: 'error'
         });
         return;
       }
       if (newRequiredBoxes > item.stock) {
-
         showAlert({
-          title: `Cannot add more than ${product.category?.toLowerCase().trim() === "accessories" ? `${remainingSQM} Peices` : `${remainingSQM.toFixed(2)} SQM`}.`,
+          title: `Cannot add more than ${product.category?.toLowerCase().trim() === 'accessories' ? `${remainingSQM} Peices` : `${remainingSQM.toFixed(2)} SQM`}.`,
           icon: 'error'
         });
         return;
@@ -237,7 +257,11 @@ const CartPage = ({ products }: CartPageProps) => {
         newInstallationCost = newSquareMeter * installationRate;
       }
 
-      const newTotalPrice = (item.price || 0) * (product.category?.toLowerCase().trim() === "accessories" ? newRequiredBoxes : newSquareMeter);
+      const newTotalPrice =
+        (item.price || 0) *
+        (product.category?.toLowerCase().trim() === 'accessories'
+          ? newRequiredBoxes
+          : newSquareMeter);
 
       const updatedItem = {
         ...item,
@@ -261,15 +285,15 @@ const CartPage = ({ products }: CartPageProps) => {
       setCartItems((prevCart) =>
         prevCart.map((cartItem) =>
           cartItem.id === product.id &&
-            cartItem.selectedColor?.color === product.selectedColor?.color &&
-            cartItem.addInstallation === product.addInstallation
+          cartItem.selectedColor?.color === product.selectedColor?.color &&
+          cartItem.addInstallation === product.addInstallation
             ? {
-              ...cartItem,
-              requiredBoxes: newRequiredBoxes,
-              squareMeter: newSquareMeter,
-              totalPrice: newTotalPrice + newInstallationCost,
-              installationCost: newInstallationCost
-            }
+                ...cartItem,
+                requiredBoxes: newRequiredBoxes,
+                squareMeter: newSquareMeter,
+                totalPrice: newTotalPrice + newInstallationCost,
+                installationCost: newInstallationCost
+              }
             : cartItem
         )
       );
@@ -292,7 +316,10 @@ const CartPage = ({ products }: CartPageProps) => {
     handleShippingSelect('standard');
   }, []);
 
-  const handleQunatity = async (e: ChangeEvent<HTMLInputElement>, product: ICart) => {
+  const handleQunatity = async (
+    e: ChangeEvent<HTMLInputElement>,
+    product: ICart
+  ) => {
     try {
       e.preventDefault();
       const quantity = Number(e.target.value);
@@ -312,27 +339,38 @@ const CartPage = ({ products }: CartPageProps) => {
 
       // 🔍 Count TOTAL SQM already in cart for THIS product
       let sqmInCart;
-      if (product.category?.toLowerCase().trim() === "accessories") {
+      if (product.category?.toLowerCase().trim() === 'accessories') {
         sqmInCart = cartItems
-          .filter(item => item.id === product.id && item.selectedColor?.color === product.selectedColor?.color)
+          .filter(
+            (item) =>
+              item.id === product.id &&
+              item.selectedColor?.color === product.selectedColor?.color
+          )
           .reduce((sum, item) => {
-            return sum + (item.requiredBoxes);
+            return sum + item.requiredBoxes;
           }, 0);
       } else {
         sqmInCart = cartItems
-          .filter(item => item.id === product.id)
+          .filter((item) => item.id === product.id)
           .reduce((sum, item) => {
-            return sum + (item.squareMeter);
+            return sum + item.squareMeter;
           }, 0);
       }
-      const sqmAlreadyInCart = sqmInCart - (product.category?.toLowerCase().trim() === "accessories" ? product.requiredBoxes : product.squareMeter);
+      const sqmAlreadyInCart =
+        sqmInCart -
+        (product.category?.toLowerCase().trim() === 'accessories'
+          ? product.requiredBoxes
+          : product.squareMeter);
 
       // 🔢 SQM requested for the NEW addition
       const newSQMRequired = quantity;
 
       // 📦 Total available SQM from stock
       const totalAvailableSQM =
-        product.stock * (product.category?.toLowerCase().trim() === "accessories" ? 1 : Number(product.boxCoverage) || 1);
+        product.stock *
+        (product.category?.toLowerCase().trim() === 'accessories'
+          ? 1
+          : Number(product.boxCoverage) || 1);
 
       // 📉 Remaining SQM
       const remainingSQM = totalAvailableSQM - sqmAlreadyInCart;
@@ -340,24 +378,26 @@ const CartPage = ({ products }: CartPageProps) => {
       // ❗ FINAL STOCK CHECK (SQM-based)
       if (newSQMRequired > remainingSQM) {
         showAlert({
-          title: `Cannot add more than ${product.category?.toLowerCase().trim() === "accessories" ? `${remainingSQM} Peices` : `${remainingSQM.toFixed(2)} SQM`}.`,
-          icon: "error",
+          title: `Cannot add more than ${product.category?.toLowerCase().trim() === 'accessories' ? `${remainingSQM} Peices` : `${remainingSQM.toFixed(2)} SQM`}.`,
+          icon: 'error'
         });
         return false;
       }
       if (quantity > totalAvailableSQM) {
-
         showAlert({
-          title: `Cannot add more than ${product.category?.toLowerCase().trim() === "accessories" ? `${totalAvailableSQM} Peices` : `${totalAvailableSQM.toFixed(2)} SQM`}.`,
+          title: `Cannot add more than ${product.category?.toLowerCase().trim() === 'accessories' ? `${totalAvailableSQM} Peices` : `${totalAvailableSQM.toFixed(2)} SQM`}.`,
           icon: 'error'
         });
         return;
       }
 
-      const newRequiredBoxes = product.category?.toLowerCase().trim() === "accessories" ? quantity : Math.ceil(quantity / Number(product.boxCoverage));
+      const newRequiredBoxes =
+        product.category?.toLowerCase().trim() === 'accessories'
+          ? quantity
+          : Math.ceil(quantity / Number(product.boxCoverage));
       if (quantity < 1) {
         showAlert({
-          title: `Minimum quantity is 1  ${product.category?.toLowerCase().trim() === "accessories" ? 'Peice' : 'SQM'}.`,
+          title: `Minimum quantity is 1  ${product.category?.toLowerCase().trim() === 'accessories' ? 'Peice' : 'SQM'}.`,
           icon: 'error'
         });
         return;
@@ -365,7 +405,7 @@ const CartPage = ({ products }: CartPageProps) => {
       if (newRequiredBoxes > product.stock) {
         // const remainingSQM = product.stock * Number(product.boxCoverage);
         showAlert({
-          title: `Cannot add more than ${product.category?.toLowerCase().trim() === "accessories" ? `${totalAvailableSQM} Peices` : `${totalAvailableSQM.toFixed(2)} SQM`}.`,
+          title: `Cannot add more than ${product.category?.toLowerCase().trim() === 'accessories' ? `${totalAvailableSQM} Peices` : `${totalAvailableSQM.toFixed(2)} SQM`}.`,
           icon: 'error'
         });
         return;
@@ -402,15 +442,15 @@ const CartPage = ({ products }: CartPageProps) => {
       setCartItems((prevCart) =>
         prevCart.map((cartItem) =>
           cartItem.id === product.id &&
-            cartItem.selectedColor?.color === product.selectedColor?.color &&
-            cartItem.addInstallation === product.addInstallation
+          cartItem.selectedColor?.color === product.selectedColor?.color &&
+          cartItem.addInstallation === product.addInstallation
             ? {
-              ...cartItem,
-              requiredBoxes: newRequiredBoxes,
-              squareMeter: quantity,
-              totalPrice: newTotalPrice + newInstallationCost,
-              installationCost: newInstallationCost
-            }
+                ...cartItem,
+                requiredBoxes: newRequiredBoxes,
+                squareMeter: quantity,
+                totalPrice: newTotalPrice + newInstallationCost,
+                installationCost: newInstallationCost
+              }
             : cartItem
         )
       );
@@ -548,7 +588,7 @@ const CartPage = ({ products }: CartPageProps) => {
 
   const handleRemoveInstallation = async (product: ICart) => {
     const existingItem = cartItems.find(
-      item =>
+      (item) =>
         item.id === product.id &&
         item.selectedColor?.color === product.selectedColor?.color &&
         item.addInstallation === true
@@ -566,7 +606,7 @@ const CartPage = ({ products }: CartPageProps) => {
 
     // 🔍 FIND TARGET ITEM (NO installation) BEFORE mutation
     const targetItem = cartItems.find(
-      item =>
+      (item) =>
         item !== existingItem &&
         item.id === existingItem.id &&
         item.selectedColor?.color === existingItem.selectedColor?.color &&
@@ -604,7 +644,7 @@ const CartPage = ({ products }: CartPageProps) => {
 
       // remove duplicated item
       updatedCartItems = updatedCartItems.filter(
-        item => item !== existingItem
+        (item) => item !== existingItem
       );
     }
 
@@ -630,8 +670,6 @@ const CartPage = ({ products }: CartPageProps) => {
     });
     window.dispatchEvent(new Event('cartUpdated'));
   };
-
-
 
   return (
     <Container className="font-inter mt-10  mb-4 sm:mb-10 relative max-sm:max-w-[100%]">
@@ -677,7 +715,7 @@ const CartPage = ({ products }: CartPageProps) => {
                                   alt="cart"
                                 />
                               </div>
-                              <div className='flex flex-col gap-2'>
+                              <div className="flex flex-col gap-2">
                                 <Link
                                   href={`/${generateSlug(item.category ?? '')}/${generateSlug(item.subcategories ?? '')}/${item.custom_url}`}
                                   className="text-[12px] xsm:text-13 xl:text-sm 2xl:text-base font-medium"
@@ -704,31 +742,27 @@ const CartPage = ({ products }: CartPageProps) => {
                                     <p className="text-12 sm:text-sm 2xl:text-17">
                                       Area:{' '}
                                       {Number(
-                                        (
-                                          Number(item.squareMeter)
-                                        ).toFixed(2)
+                                        Number(item.squareMeter).toFixed(2)
                                       )}{' '}
                                       SQM
                                     </p>
                                   </>
                                 )}
 
-                                {!item.isfreeSample && (
-                                  item.isAccessory && (
-                                    <p className="text-12 sm:text-sm 2xl:text-17">
-                                      Price Per Piece:
-                                      <span className="font-bold">
-                                        <span className="font-currency font-normal 2xl:text-20">
-                                          
-                                        </span>{' '}
-                                        {item.pricePerBox &&
-                                          item.pricePerBox.toFixed(2)}
-                                      </span>
-                                    </p>
-                                  )
+                                {!item.isfreeSample && item.isAccessory && (
+                                  <p className="text-12 sm:text-sm 2xl:text-17">
+                                    Price Per Piece:
+                                    <span className="font-bold">
+                                      <span className="font-currency font-normal 2xl:text-20">
+                                        
+                                      </span>{' '}
+                                      {item.pricePerBox &&
+                                        item.pricePerBox.toFixed(2)}
+                                    </span>
+                                  </p>
                                 )}
                                 {!item.isClearance && (
-                                  <div className="flex xl:hidden gap-5 mt-2 items-center">
+                                  <div className="flex flex-wrap xl:hidden gap-2 mt-2 items-center">
                                     <div
                                       className={`flex justify-center items-center border border-[#959595] px-1 py-1 w-fit text-purple ${item.isfreeSample ? 'hidden' : 'block'}`}
                                     >
@@ -739,7 +773,14 @@ const CartPage = ({ products }: CartPageProps) => {
                                         <LuMinus />
                                       </button>
                                       <span className="text-purple text-sm px-1">
-                                        <input type="number" value={item.squareMeter} onChange={(e) => handleQunatity(e, item)} className='max-w-[50px] text-center no-spinner' />
+                                        <input
+                                          type="number"
+                                          value={item.squareMeter}
+                                          onChange={(e) =>
+                                            handleQunatity(e, item)
+                                          }
+                                          className="max-w-[50px] text-center no-spinner"
+                                        />
                                       </span>
                                       <button
                                         className="px-1 hover:text-black"
@@ -762,29 +803,32 @@ const CartPage = ({ products }: CartPageProps) => {
                               </div>
                             </div>
                           </div>
-                          {!item.isClearance && (
-                            <div className="col-span-3 mx-auto hidden xl:block">
-                              <div
-                                className={`flex justify-center items-center border border-[#959595] px-0 2xl:px-1 py-1 2xl:py-2 w-fit text-purple ${item.isfreeSample ? 'hidden' : 'block'}`}
+                          <div className="col-span-3 mx-auto hidden xl:block">
+                            <div
+                              className={`flex justify-center items-center border border-[#959595] px-0 2xl:px-1 py-1 2xl:py-2 w-fit text-purple ${item.isfreeSample ? 'hidden' : 'block'}`}
+                            >
+                              <button
+                                className="px-1 2xl:px-2 hover:text-black"
+                                onClick={() => decrement(item)}
                               >
-                                <button
-                                  className="px-1 2xl:px-2 hover:text-black"
-                                  onClick={() => decrement(item)}
-                                >
-                                  <LuMinus />
-                                </button>
-                                <span className="text-purple px-1 2xl:px-2 overflow-hidden">
-                                  <input type="number" value={item.squareMeter} onChange={(e) => handleQunatity(e, item)} className='max-w-[50px] text-center no-spinner' />
-                                </span>
-                                <button
-                                  className="px-1 2xl:px-2 hover:text-black"
-                                  onClick={() => increment(item)}
-                                >
-                                  <LuPlus />
-                                </button>
-                              </div>
+                                <LuMinus />
+                              </button>
+                              <span className="text-purple px-1 2xl:px-2 overflow-hidden">
+                                <input
+                                  type="number"
+                                  value={item.squareMeter}
+                                  onChange={(e) => handleQunatity(e, item)}
+                                  className="max-w-[50px] text-center no-spinner"
+                                />
+                              </span>
+                              <button
+                                className="px-1 2xl:px-2 hover:text-black"
+                                onClick={() => increment(item)}
+                              >
+                                <LuPlus />
+                              </button>
                             </div>
-                          )}
+                          </div>
 
                           <div className="col-span-2 text-center hidden xl:block">
                             {item.isfreeSample ? (
@@ -800,8 +844,8 @@ const CartPage = ({ products }: CartPageProps) => {
                                   {formatAED(
                                     // item.addInstallation
                                     //   ? (item.installationCost || 0) +
-                                    //   item.totalPrice : 
-                                    (item.totalPrice ?? 0)
+                                    //   item.totalPrice :
+                                    item.totalPrice ?? 0
                                   )}
                                 </span>
                               </p>
@@ -831,7 +875,7 @@ const CartPage = ({ products }: CartPageProps) => {
                         {item.addInstallation && (
                           <>
                             <div className="grid grid-cols-12">
-                              <p className='col-span-7 lg:col-span-8 py-2 text-12 sm:text-sm 2xl:text-17'>
+                              <p className="col-span-7 lg:col-span-8 py-2 text-12 sm:text-sm 2xl:text-17">
                                 Installation Charges
                               </p>
                               <div className="col-span-2 text-center py-2 text-12 sm:text-sm 2xl:text-17">
@@ -842,7 +886,7 @@ const CartPage = ({ products }: CartPageProps) => {
                                   {formatAED(item.installationCost)}
                                 </span>
                               </div>
-                              <div className="col-span-3 lg:col-span-2 text-end xl:pr-5 py-2 text-12 sm:text-sm 2xl:text-17">
+                              <div className="col-span-3 lg:col-span-1 text-end xl:pr-5 py-2 text-12 sm:text-sm 2xl:text-17">
                                 <button
                                   className="text-primary"
                                   onClick={() => handleRemoveInstallation(item)}
@@ -875,9 +919,9 @@ const CartPage = ({ products }: CartPageProps) => {
                 <div className="max-h-[590px] overflow-x-auto pr-4 mt-7">
                   <div className="hidden xl:grid grid-cols-12 text-20 font-light pb-3">
                     <div className="col-span-6">Clearance Product</div>
-                    <div className="col-span-2 text-center">Bundle</div>
+                    <div className="col-span-3 text-center">Bundle</div>
                     <div className="col-span-2 text-center">Total Price</div>
-                    <div className="col-span-2 text-end">Remove</div>
+                    <div className="col-span-1 text-end">Remove</div>
                   </div>
                   <p className="block xl:hidden text-12 font-semibold">
                     Clearance Product
@@ -931,7 +975,7 @@ const CartPage = ({ products }: CartPageProps) => {
                             </div>
                           </div>
                         </div>
-                        <div className="col-span-2 hidden xl:block text-center">
+                        <div className="col-span-3 hidden xl:block text-center">
                           <p className="text-12 sm:text-sm 2xl:text-17">
                             <span className="font-bold"></span>
                             {Number(
@@ -951,7 +995,7 @@ const CartPage = ({ products }: CartPageProps) => {
                             <span>{formatAED(item.totalPrice ?? 0)}</span>
                           </p>
                         </div>
-                        <div className="col-span-1 xl:col-span-2 text-end xl:pr-5">
+                        <div className="col-span-1 text-end xl:pr-5">
                           <button
                             className="text-primary"
                             onClick={() => handleRemoveItem(item)}
@@ -974,7 +1018,7 @@ const CartPage = ({ products }: CartPageProps) => {
                       {item.addInstallation && (
                         <>
                           <div className="grid grid-cols-12">
-                            <p className='col-span-7 lg:col-span-8 py-2 text-12 sm:text-sm 2xl:text-17'>
+                            <p className="col-span-7 lg:col-span-8 py-2 text-12 sm:text-sm 2xl:text-17">
                               Installation Charges
                             </p>
                             <div className="col-span-2 text-center py-2 text-12 sm:text-sm 2xl:text-17">
@@ -1017,9 +1061,9 @@ const CartPage = ({ products }: CartPageProps) => {
                   <>
                     <div className=" hidden xl:grid grid-cols-12 text-20 font-light pb-3">
                       <div className="col-span-6">Accessories</div>
-                      <div className="col-span-2 text-center">Qty Piece</div>
+                      <div className="col-span-3 text-center">Qty Piece</div>
                       <div className="col-span-2 text-center">Total Price</div>
-                      <div className="col-span-2 text-end">Remove</div>
+                      <div className="col-span-1 text-end">Remove</div>
                     </div>
                     <p className="block xl:hidden text-12 font-semibold">
                       Accessories
@@ -1072,7 +1116,7 @@ const CartPage = ({ products }: CartPageProps) => {
                                       ''}
                                   </span>
                                 </p>
-                                <div className="flex xl:hidden gap-5 mt-2 items-center">
+                                <div className="flex flex-wrap xl:hidden gap-2 mt-2 items-center">
                                   <div className="flex justify-center items-center border border-[#959595] px-1 py-1 w-fit text-purple ">
                                     <button
                                       className="px-1 hover:text-black"
@@ -1081,7 +1125,14 @@ const CartPage = ({ products }: CartPageProps) => {
                                       <LuMinus />
                                     </button>
                                     <span className="text-purple text-sm px-1">
-                                      <input type="number" value={item.requiredBoxes} onChange={(e) => handleQunatity(e, item)} className='max-w-[50px] text-center no-spinner' />
+                                      <input
+                                        type="number"
+                                        value={item.requiredBoxes}
+                                        onChange={(e) =>
+                                          handleQunatity(e, item)
+                                        }
+                                        className="max-w-[50px] text-center no-spinner"
+                                      />
                                     </span>
                                     <button
                                       className="px-1 hover:text-black"
@@ -1103,7 +1154,7 @@ const CartPage = ({ products }: CartPageProps) => {
                               </div>
                             </div>
                           </div>
-                          <div className="col-span-2 mx-auto hidden xl:block">
+                          <div className="col-span-3 mx-auto hidden xl:block">
                             <div className="flex justify-center items-center border border-[#959595] px-1 2xl:px-2 py-2 2xl:py-3 w-fit text-purple">
                               <button
                                 className="px-1 2xl:px-2 hover:text-black"
@@ -1112,7 +1163,12 @@ const CartPage = ({ products }: CartPageProps) => {
                                 <LuMinus />
                               </button>
                               <span className="text-purple px-1 2xl:px-2 overflow-hidden">
-                                <input type="number" value={item.requiredBoxes} onChange={(e) => handleQunatity(e, item)} className='max-w-[50px] text-center no-spinner' />
+                                <input
+                                  type="number"
+                                  value={item.requiredBoxes}
+                                  onChange={(e) => handleQunatity(e, item)}
+                                  className="max-w-[50px] text-center no-spinner"
+                                />
                               </span>
                               <button
                                 className="px-1 2xl:px-2 hover:text-black"
@@ -1130,7 +1186,7 @@ const CartPage = ({ products }: CartPageProps) => {
                               <span>{formatAED(item.totalPrice ?? 0)}</span>
                             </p>
                           </div>
-                          <div className="col-span-1 xl:col-span-2 text-end xl:pr-5">
+                          <div className="col-span-1 text-end xl:pr-5">
                             <button
                               className="text-primary"
                               onClick={() => handleRemoveItem(item)}
@@ -1200,43 +1256,45 @@ const CartPage = ({ products }: CartPageProps) => {
                 >
                   {(selectedCity === 'Dubai' ||
                     selectedCity == 'Enter Emirate') && (
-                      <div
-                        className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'express'
+                    <div
+                      className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${
+                        selectedShipping === 'express'
                           ? 'border-primary'
                           : 'border-transparent'
-                          }`}
-                        onClick={() => handleShippingSelect('express')}
-                      >
-                        <Image
-                          src={lightImg}
-                          alt="icon"
-                          className="size-12 xs:size-16"
-                        />
-                        <div className="text-11 xs:text-base">
-                          <strong className="text-15 xs:text-20">
-                            Express Service (Dubai Only)
-                          </strong>
-                          <p className="text-11 xs:text-base">
-                            Delivery:{' '}
-                            <strong>Next working day (cut-off time 1pm)</strong>
-                          </p>
-                          <p>
-                            Delivery Cost:{' '}
-                            <strong>
-                              <span className="font-currency font-normal text-18">
-                                
-                              </span>
-                              150
-                            </strong>
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                  <div
-                    className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'standard'
-                      ? 'border-primary'
-                      : 'border-transparent'
                       }`}
+                      onClick={() => handleShippingSelect('express')}
+                    >
+                      <Image
+                        src={lightImg}
+                        alt="icon"
+                        className="size-12 xs:size-16"
+                      />
+                      <div className="text-11 xs:text-base">
+                        <strong className="text-15 xs:text-20">
+                          Express Service (Dubai Only)
+                        </strong>
+                        <p className="text-11 xs:text-base">
+                          Delivery:{' '}
+                          <strong>Next working day (cut-off time 1pm)</strong>
+                        </p>
+                        <p>
+                          Delivery Cost:{' '}
+                          <strong>
+                            <span className="font-currency font-normal text-18">
+                              
+                            </span>
+                            150
+                          </strong>
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  <div
+                    className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${
+                      selectedShipping === 'standard'
+                        ? 'border-primary'
+                        : 'border-transparent'
+                    }`}
                     onClick={() => handleShippingSelect('standard')}
                   >
                     <Image
@@ -1290,10 +1348,11 @@ const CartPage = ({ products }: CartPageProps) => {
                     </div>
                   </div>
                   <div
-                    className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'self-collect'
-                      ? 'border-primary'
-                      : 'border-transparent'
-                      }`}
+                    className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${
+                      selectedShipping === 'self-collect'
+                        ? 'border-primary'
+                        : 'border-transparent'
+                    }`}
                     onClick={() => handleShippingSelect('self-collect')}
                   >
                     <Image
@@ -1306,7 +1365,8 @@ const CartPage = ({ products }: CartPageProps) => {
                         Self-Collect:
                       </strong>
                       <p className="text-11 xs:text-base">
-                        Collection: Monday to Saturday <strong>(9am-6pm)</strong>
+                        Collection: Monday to Saturday{' '}
+                        <strong>(9am-6pm)</strong>
                       </p>
                       <p className="text-11 xs:text-base">
                         <span>Location:</span>{' '}
@@ -1317,8 +1377,8 @@ const CartPage = ({ products }: CartPageProps) => {
                             rel="noopener noreferrer"
                             href="https://maps.app.goo.gl/BBJjwVKgTK4PPTWR8"
                           >
-                            Unit A11, J1 Warehouses, Jebel Ali Industrial Area-1 -
-                            Dubai
+                            Unit A11, J1 Warehouses, Jebel Ali Industrial Area-1
+                            - Dubai
                           </Link>
                         </strong>
                       </p>

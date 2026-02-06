@@ -59,7 +59,7 @@ const WishlistPage = () => {
             <ProductTable
               columns={[
                 'Product',
-                'QTY(m/m2)',
+                'Area (SQM)',
                 'Total Price',
                 'Availability',
                 'Action'
@@ -88,7 +88,7 @@ const WishlistPage = () => {
         )}
 
         {accessories.length > 0 && (
-          <div className="hidden md:block pb-6 xl:pt-6 xl:mb-10 ">
+          <div className="hidden md:block pb-6 xl:pt-6 xl:mb-10">
             <ProductTable
               columns={[
                 'Accessories',

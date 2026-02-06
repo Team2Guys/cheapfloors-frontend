@@ -28,7 +28,9 @@ const Card: React.FC<productCardProps> = ({
   categoryData,
   isAccessories,
   isSoldOut = false,
-  subCategoryFlag
+  subCategoryFlag,
+  setModalProduct,
+  setIsOpen
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showCaption, setShowCaption] = useState('');
@@ -57,8 +59,13 @@ const Card: React.FC<productCardProps> = ({
           FIND_QUICK_VIEW_PRODUCT
         );
       }
-      setModalData(productData || undefined);
-      setIsModalOpen(true);
+      if(setModalProduct && setIsOpen){
+        setModalProduct(productData || undefined);
+        setIsOpen(true);
+      }else {
+        setModalData(productData || undefined);
+        setIsModalOpen(true);
+      }      
     } catch (error) {
       showAlert({
         title: 'Error fetching single product',
@@ -214,7 +221,7 @@ const Card: React.FC<productCardProps> = ({
               <button
                 className="bg-white p-1 shadow hover:bg-primary hover:text-white transition"
                 aria-label="open quick view"
-                onClick={(e) => handleModel(e)}
+                onClick={(e) =>  handleModel(e)}
                 onMouseEnter={() => setShowCaption('Quick View')}
                 onMouseLeave={() => setShowCaption('')}
               >
@@ -326,7 +333,7 @@ const Card: React.FC<productCardProps> = ({
       </div>
 
       <div className="px-0 xsm:p-2 lg:p-4">
-        <div className="flex_between flex-col w-full gap-2 md:flex-row md:gap-4 md:items-start sm:py-2 max-sm:text-primary">
+        <div className="flex_between w-full gap-2 flex-row md:gap-4 md:items-start sm:py-2 max-sm:text-primary">
           {'price' in product && product.price && (
             <p className="text-12 w-full md:text-sm md:text-left md:w-full xl:text-base text-black">
               <span className="font-currency md:text-18 xl:text-20 font-normal">

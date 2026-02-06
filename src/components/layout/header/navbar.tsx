@@ -122,11 +122,11 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
             isLoading={isLoading}
           />
         </div>
-        <div className="w-2/12 lg:w-[32%] 2xl:w-[30%] text-end flex_between gap-2 max-lg:justify-end">
+        <div className="w-2/12 lg:w-[32%] 2xl:w-[30%] text-end flex justify-end items-center">
           <Link
             href="/measurement-appointment"
             aria-label="Book appointment"
-            className="w-fit mx-auto text-xs sm:text-sm bg-primary hover:bg-secondary text-white px-2 py-1 text-nowrap hidden lg:block "
+            className="w-fit text-xs sm:text-sm bg-primary hover:bg-secondary text-white px-2 py-1 text-nowrap hidden lg:block "
           >
             Book Your Appointment
           </Link>
