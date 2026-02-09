@@ -24,7 +24,7 @@ const Categories: React.FC<Props> = ({ card, index }) => {
           style={{ objectFit: 'cover', width: '100%', height: '100%' }}
         />
 
-        <div className="relative h-full flex items-center pt-4 xsm:pt-10 flex-col text-white">
+        <div className="relative h-full flex items-center pt-3 xsm:pt-10 flex-col text-white">
           <h3 className="md:mb-3 md:text-4xl text-2xl drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] xs:px-4">
             <span className="block">I am</span>
             <span className="block">

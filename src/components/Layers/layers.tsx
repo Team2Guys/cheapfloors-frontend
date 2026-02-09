@@ -27,7 +27,6 @@ const Layers = () => {
                 fetchPriority="low"
                 fill
                 className="object-contain"
-                sizes="(max-width: 768px) 100px, 600px"
               />
             </div>
           </div>

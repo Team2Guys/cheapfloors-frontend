@@ -103,7 +103,7 @@ const SearchBar = ({ className, productData, isLoading }: SearchBarProps) => {
             setSearchText(e.target.value);
             setIsProductListOpen(true);
           }}
-          className="w-full pl-10 pr-4 h-8 text-sm lg:text-[10px] xl:text-sm sm:h-6 2xl:h-[31px] border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 bg-gray-100"
+          className="w-full pl-10 pr-4 h-8 text-base lg:text-[10px] xl:text-sm sm:h-6 2xl:h-[31px] border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 bg-gray-100"
         />
         <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
           <HiOutlineSearch className="h-5 w-5" />
@@ -129,7 +129,7 @@ const SearchBar = ({ className, productData, isLoading }: SearchBarProps) => {
                 />
               </svg>
             </div>
-            <div className="hidden lg:block relative px-4">
+            <div className="hidden lg:block relative px-2 mb-2">
               <input
                 type="text"
                 placeholder="Search"
@@ -139,7 +139,7 @@ const SearchBar = ({ className, productData, isLoading }: SearchBarProps) => {
                   setSearchText(e.target.value);
                   setIsProductListOpen(true);
                 }}
-                className="w-full px-4 h-10 text-sm lg:text-[10px] xl:text-sm sm:h-6 2xl:h-[31px] border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 bg-gray-100"
+                className="w-full px-4 h-10 text-sm lg:text-[10px] xl:text-sm 2xl:h-[31px] border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 bg-gray-100"
               />
             </div>
 

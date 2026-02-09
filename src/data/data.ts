@@ -371,7 +371,7 @@ export const blocksData = [
       'A base layer that adds foundational stability and durability.'
     ],
     imageUrl:
-      'https://res.cloudinary.com/dmmeqgdhv/image/upload/v1742291723/layer1_11zon_dfk4er.webp'
+      '/assets/images/Home/layers_2.webp'
   },
   {
     heading: 'LVT Flooring',
@@ -384,7 +384,7 @@ export const blocksData = [
       'The click-lock system uses floating installation method. '
     ],
     imageUrl:
-      'https://res.cloudinary.com/dmmeqgdhv/image/upload/v1742291706/layers2_11zon_zatjqm.webp'
+      '/assets/images/Home/layers_1.webp'
   }
 ];
 export const FloorItemsData = [

@@ -11,7 +11,7 @@ export default async function AmCategory({
   subCategories: ISUBCATEGORY[];
 }) {
   return (
-    <Container className="font-inter md:mt-20 mt-10 category_slider">
+    <Container className="font-inter mt-4 xsm:mt-10 md:mt-20 category_slider">
       <Popup />
       <CustomSwiper subCategories={subCategories} />
       <div
@@ -23,9 +23,10 @@ export default async function AmCategory({
     xl:grid-cols-4
     gap-6
     mt-10 lg:mt-20
-
+    lg:[&>*]:col-span-4
     lg:[&>*:nth-last-child(-n+2)]:col-span-6
-    xl:[&>*:nth-last-child(-n+2)]:col-span-1
+    xl:lg:[&>*:nth-last-child(-n+2)]:col-span-1
+    xl:[&>*]:col-span-1
   "
       >
         {subCategories?.map((card: ISUBCATEGORY, index: number) => (

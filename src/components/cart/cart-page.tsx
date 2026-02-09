@@ -875,10 +875,10 @@ const CartPage = ({ products }: CartPageProps) => {
                         {item.addInstallation && (
                           <>
                             <div className="grid grid-cols-12">
-                              <p className="col-span-7 lg:col-span-8 py-2 text-12 sm:text-sm 2xl:text-17">
+                              <p className="col-span-7 lg:col-span-9 py-2 text-12 sm:text-sm 2xl:text-17">
                                 Installation Charges
                               </p>
-                              <div className="col-span-2 text-center py-2 text-12 sm:text-sm 2xl:text-17">
+                              <div className="col-span-2  text-center py-2 text-12 sm:text-sm 2xl:text-17">
                                 <span className="font-bold">
                                   <span className="font-currency font-normal 2xl:text-20">
                                     

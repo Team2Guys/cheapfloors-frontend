@@ -43,13 +43,21 @@ const CompareSlider = ({
 
   const handleTouchStart = (e: React.TouchEvent) => {
     handleDrag(e.touches[0].clientX);
-    const onTouchMove = (event: TouchEvent) =>
+
+    const onTouchMove = (event: TouchEvent) => {
+      event.preventDefault(); // 🚫 stop page scroll
       handleDrag(event.touches[0].clientX);
+    };
+
     const onTouchEnd = () => {
       document.removeEventListener('touchmove', onTouchMove);
       document.removeEventListener('touchend', onTouchEnd);
     };
-    document.addEventListener('touchmove', onTouchMove);
+
+    document.addEventListener('touchmove', onTouchMove, {
+      passive: false // 🔥 REQUIRED for iOS
+    });
+
     document.addEventListener('touchend', onTouchEnd);
   };
 
