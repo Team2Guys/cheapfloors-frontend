@@ -90,7 +90,7 @@ const ECommerce = ({
           <CardDataStats
             title="Total Sub Categories"
             total={
-              records?.totalSubCategories ? records?.totalSubCategories : ''
+              records?.totalSubCategories ? records?.totalSubCategories : '0'
             }
           >
             <BiCategory size={25} className="text-white dark:text-black" />
@@ -100,7 +100,7 @@ const ECommerce = ({
         {!CanCheckRevnue ? null : (
           <CardDataStats
             title="Total Revenue"
-            total={records?.totalRevenue ? records?.totalRevenue : ''}
+            total={records?.totalRevenue ? records?.totalRevenue : '0'}
           >
             <LiaCashRegisterSolid
               size={25}
@@ -112,7 +112,7 @@ const ECommerce = ({
         {!canViewSales ? null : (
           <CardDataStats
             title="Total Orders"
-            total={records?.Orders ? records?.Orders : ''}
+            total={records?.Orders ? records?.Orders : '0'}
           >
             <MdOutlineShoppingCartCheckout
               size={25}
@@ -123,7 +123,7 @@ const ECommerce = ({
         {!canViewSales ? null : (
           <CardDataStats
             title="Abandoned Orders"
-            total={records?.abdundantOrders ? records?.abdundantOrders : ''}
+            total={records?.abdundantOrders ? records?.abdundantOrders : '0'}
           >
             <TbCalendarCancel
               size={25}
@@ -135,7 +135,7 @@ const ECommerce = ({
         {!canVeiwTotalCategories ? null : (
           <CardDataStats
             title="Total Categories"
-            total={records?.totalCategories ? records?.totalCategories : ''}
+            total={records?.totalCategories ? records?.totalCategories : '0'}
           >
             <TbCategoryPlus size={25} className="text-white dark:text-black" />
           </CardDataStats>
@@ -144,7 +144,7 @@ const ECommerce = ({
         {!canVeiwTotalproducts ? null : (
           <CardDataStats
             title="Total Product"
-            total={records?.totalProducts ? records?.totalProducts : ''}
+            total={records?.totalProducts ? records?.totalProducts : '0'}
           >
             <BsBoxes size={25} className="text-white dark:text-black" />
           </CardDataStats>
@@ -152,7 +152,7 @@ const ECommerce = ({
         {!canViewUsers ? null : (
           <CardDataStats
             title="Total Users"
-            total={records?.totalUsers ? records?.totalUsers : ''}
+            total={records?.totalUsers ? records?.totalUsers : '0'}
           >
             <PiUsersThreeFill
               size={25}
@@ -163,7 +163,7 @@ const ECommerce = ({
         {!canViewUsers ? null : (
           <CardDataStats
             title="Accessories"
-            total={records?.totalAccessories ? records?.totalAccessories : ''}
+            total={records?.totalAccessories ? records?.totalAccessories : '0'}
           >
             <RiHomeGearLine size={25} className="fill-white dark:fill-black" />
           </CardDataStats>
@@ -171,7 +171,7 @@ const ECommerce = ({
         {!canViewUsers ? null : (
           <CardDataStats
             title="Free Samples Orders"
-            total={records?.freeSamples ? records?.freeSamples : ''}
+            total={records?.freeSamples ? records?.freeSamples : '0'}
           >
             <SiReactrouter size={25} className="fill-white dark:fill-black" />
           </CardDataStats>
@@ -183,7 +183,7 @@ const ECommerce = ({
             total={
               records?.InstallationAppointments
                 ? records?.InstallationAppointments
-                : ''
+                : '0'
             }
           >
             <FaInstalod size={25} className="fill-white dark:fill-black" />
@@ -193,7 +193,7 @@ const ECommerce = ({
           <CardDataStats
             title="Measure Appointments"
             total={
-              records?.MeasureAppointments ? records?.MeasureAppointments : ''
+              records?.MeasureAppointments ? records?.MeasureAppointments : '0'
             }
           >
             <TbRulerMeasure2 size={25} className="text-white dark:text-black" />

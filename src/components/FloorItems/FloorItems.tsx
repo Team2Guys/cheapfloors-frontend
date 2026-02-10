@@ -15,7 +15,7 @@ const FloorItems = () => {
         >
           <h3 className="lg:text-3xl text-sm md:font-bold">{item.title}</h3>
           <div
-            className="h-[100px] sm:h-full 2xl:h-auto w-full"
+            className="h-[120px] sm:h-full 2xl:h-auto w-full"
             onMouseEnter={() => serHoverImage(index)}
             onMouseLeave={() => serHoverImage(null)}
           >

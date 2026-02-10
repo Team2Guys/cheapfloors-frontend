@@ -2,7 +2,6 @@ import Breadcrumb from 'components/Reusable/breadcrumb';
 import OrderTracking from 'components/TrackOrders/Order-Tracking';
 import { fetchSingleOrder } from 'config/fetch';
 import Link from 'next/link';
-import React from 'react';
 
 interface IParams {
   id: string;

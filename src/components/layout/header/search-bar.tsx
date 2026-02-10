@@ -81,34 +81,24 @@ const SearchBar = ({ className, productData, isLoading }: SearchBarProps) => {
 
   return (
     <form
-      className={`relative w-full lg:w-fit max-w-[10rem] sm:max-w-[17rem] font-inter ${className}`}
+      className={`relative w-full max-w-[10rem] sm:max-w-[17rem] 2xl:max-w-[40rem] font-inter ${className}`}
       onSubmit={(e) => e.preventDefault()}
     >
-      <div
+      <input
+        type="text"
+        placeholder="Search"
+        value={searchText}
         onClick={() => setIsProductListOpen(true)}
-        className="hidden lg:flex items-center cursor-pointer ps-2"
-      >
-        <span className="p-1 hover:bg-primary hover:text-white">
-          <HiOutlineSearch className="h-4 min-[1150px]:h-5 w-4 min-[1150px]:w-5" />
-        </span>
-        <div className="border-l-2 border-white h-4 lg:border-[#464646] md:h-6" />
+        onChange={(e) => {
+          setSearchText(e.target.value);
+          setIsProductListOpen(true);
+        }}
+        className="w-full pl-10 pr-4 h-8 text-base lg:text-[10px] xl:text-sm sm:h-6 2xl:h-[31px] border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 bg-gray-100"
+      />
+      <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+        <HiOutlineSearch className="h-5 w-5 lg:h-3 lg:w-4 xl:h-5 xl:w-5" />
       </div>
-      <div className="flex lg:hidden">
-        <input
-          type="text"
-          placeholder="Search"
-          value={searchText}
-          onClick={() => setIsProductListOpen(true)}
-          onChange={(e) => {
-            setSearchText(e.target.value);
-            setIsProductListOpen(true);
-          }}
-          className="w-full pl-10 pr-4 h-8 text-base lg:text-[10px] xl:text-sm sm:h-6 2xl:h-[31px] border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 bg-gray-100"
-        />
-        <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-          <HiOutlineSearch className="h-5 w-5" />
-        </div>
-      </div>
+
       {isProductListOpen && (
         <>
           <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-[310px] sm:w-[350px] xl:w-[400px] 2xl:w-[500px] bg-white border border-[#afa183] border-opacity-30 rounded-2xl mt-2 sm:mt-6 z-20">
@@ -128,19 +118,6 @@ const SearchBar = ({ className, productData, isLoading }: SearchBarProps) => {
                   fill="#424542"
                 />
               </svg>
-            </div>
-            <div className="hidden lg:block relative px-2 mb-2">
-              <input
-                type="text"
-                placeholder="Search"
-                value={searchText}
-                onClick={() => setIsProductListOpen(true)}
-                onChange={(e) => {
-                  setSearchText(e.target.value);
-                  setIsProductListOpen(true);
-                }}
-                className="w-full px-4 h-10 text-sm lg:text-[10px] xl:text-sm 2xl:h-[31px] border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 bg-gray-100"
-              />
             </div>
 
             <div className="max-h-[420px] overflow-y-scroll mb-3">
@@ -172,7 +149,7 @@ const SearchBar = ({ className, productData, isLoading }: SearchBarProps) => {
                             </p>
                             <div className="flex items-center gap-1 xs:gap-4">
                               {product.discountPrice &&
-                              product.discountPrice > 0 ? (
+                                product.discountPrice > 0 ? (
                                 <>
                                   <p className="text-15 font-semibold text-[#FF0000]">
                                     <span className="font-currency text-18 font-normal">
@@ -219,7 +196,8 @@ const SearchBar = ({ className, productData, isLoading }: SearchBarProps) => {
                     <div
                       key={i}
                       className="h-28 w-full bg-gray-300 rounded mb-3"
-                    ></div>
+                    >
+                    </div>
                   ))}
                 </div>
               )}

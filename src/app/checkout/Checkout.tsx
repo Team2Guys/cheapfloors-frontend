@@ -143,7 +143,6 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
     ) {
       try {
         const parsedShipping = JSON.parse(savedShipping);
-
         if (parsedShipping?.name === 'Express Shipping') {
           setSelectedShipping('express');
           handleShippingSelect('express');
@@ -174,7 +173,11 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
       if (isFreeSample) {
         handleShippingSelect('express');
       } else {
-        handleShippingSelect('standard');
+        if (selectedShipping) {
+          handleShippingSelect(selectedShipping);
+        } else{
+          handleShippingSelect('standard');
+        }
       }
     }
   }, [subTotal]);
@@ -412,12 +415,12 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
           ? item.requiredBoxes
           : item.squareMeter;
 
-      const installationRate = item.name
-        .toLowerCase()
-        ?.includes('herringbone')
+      const installationRate = item.name.toLowerCase()?.includes('herringbone')
         ? 35
         : 25;
-      const installationCost = item.addInstallation ? item.squareMeter * installationRate : 0;
+      const installationCost = item.addInstallation
+        ? item.squareMeter * installationRate
+        : 0;
 
       return {
         ...item,
@@ -439,8 +442,9 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
     }
 
     setMergedCart(finalCart);
-
-    window.dispatchEvent(new Event('cartUpdated'));
+    setTotalProducts(finalCart.length);
+    const subTotalPrice = finalCart.reduce((total, item) => total + item.totalPrice, 0);
+    setSubTotal(subTotalPrice);
   };
 
   return (
@@ -1070,7 +1074,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                       Shipping <CiDeliveryTruck size={16} className="mt-1" />
                     </span>
                     <span className="text-black">
-                      {!selectedCity ? (
+                      { selectedEmirate === 'Enter Emirate' ? (
                         isFreeSample ? (
                           selectedFee > 0 ? (
                             <span className="font-currency font-normal text-18">
@@ -1080,7 +1084,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                             'Free'
                           )
                         ) : (
-                          'Select shipping city'
+                          'Select Shipping Emirate'
                         )
                       ) : selectedShipping === 'express' ? (
                         <span className="font-currency font-normal text-18">
@@ -1103,7 +1107,9 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                       <span className="font-currency font-normal text-20">
                         
                       </span>{' '}
-                      {selectedEmirate ? formatAED(total) : formatAED(subTotal)}
+                      {selectedEmirate !== 'Enter Emirate'
+                        ? formatAED(total)
+                        : formatAED(subTotal)}
                     </span>
                   </p>
                 </div>

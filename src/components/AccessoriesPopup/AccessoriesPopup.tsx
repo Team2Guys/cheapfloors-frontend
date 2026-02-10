@@ -25,7 +25,7 @@ const AccessoriesPopup = ({
   const PublishAccessory = products.filter(
     (product) => product.status === 'PUBLISHED'
   );
-  console.log(PublishAccessory,'PublishAccessory')
+
   const toggleSelect = (id: string | number) => {
     const idStr = String(id);
     setSelectedProducts((prev) =>

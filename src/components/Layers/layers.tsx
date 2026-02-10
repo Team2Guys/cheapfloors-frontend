@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Layers = () => {
   return (
-    <div className="grid grid-cols-2 mt-10 md:mt-16 border-b-2 mb-10 font-inter">
+    <div className="grid grid-cols-1 sm:grid-cols-2 mt-10 md:mt-16 border-b-2 mb-10 font-inter">
       {blocksData.map((block, index) => (
         <div key={index} className={`${index === 0 ? 'border-r-2 pb-4' : ''}`}>
           <h2 className="md:text-5xl text-lg font-bold mb-4 bg-secondary text-white text-center p-4">
@@ -19,7 +19,7 @@ const Layers = () => {
                 ))}
               </ul>
             </div>
-            <div className="w-full h-[100px] md:h-[300px] px-2 md:px-0 relative">
+            <div className="w-full h-[200px] sm:h-[300px] px-2 md:px-0 relative">
               <Image
                 src={block.imageUrl}
                 alt={block.heading}

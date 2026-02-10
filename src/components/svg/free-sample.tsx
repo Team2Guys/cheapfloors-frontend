@@ -1,9 +1,9 @@
 import React from 'react';
 
-const FreeSample = () => {
+const FreeSample = ({isCard}: {isCard?: boolean}) => {
   return (
     <svg
-      className="size-3.5 min-[1150px]:size-4 xl:size-5"
+      className={`${isCard ? 'size-5' : 'size-3.5 min-[1150px]:size-4 xl:size-5'}`}
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
     >

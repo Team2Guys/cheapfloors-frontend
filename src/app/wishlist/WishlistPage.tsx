@@ -22,7 +22,7 @@ const WishlistPage = () => {
   }, []);
 
   const products = items.filter(
-    (item) => item.category !== 'Accessories' && !item.isClearance
+    (item) => item.category?.toLowerCase() !== 'accessories' && !item.isClearance
   );
   const accessories = items.filter(
     (item) =>

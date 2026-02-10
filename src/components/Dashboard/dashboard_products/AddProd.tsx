@@ -98,15 +98,6 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
   const superAdminToken = Cookies.get('superAdminToken');
   const finalToken = token ? token : superAdminToken;
   const formikRef = useRef<FormikProps<IProductValues>>(null);
-  const [totalSQM, setTotalSQM] = useState<number>(
-    EditProductValue
-      ? Number(
-          (
-            EditProductValue?.stock * Number(EditProductValue.boxCoverage)
-          ).toFixed(2)
-        )
-      : 0
-  );
   const {
     isCropModalVisible,
     imageSrc,
@@ -179,13 +170,6 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
       };
 
       if (!accessoryFlag) {
-        newValues = {
-          ...newValues,
-          stock:
-            totalSQM > 0
-              ? Math.ceil(totalSQM / Number(values.boxCoverage))
-              : values.stock
-        };
         Object.assign(newValues, images);
       }
       setloading(true);
@@ -217,7 +201,6 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
       setImagesUrl([]);
       setfeatureImagesImagesUrl([]);
       setselecteMenu('Add All Products');
-      setTotalSQM(0);
       if (updateFlag) {
         setEditProduct?.(undefined);
       }
@@ -333,15 +316,6 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
         setProductInitialValue?.(() => EditProductValue);
         setfeatureImagesImagesUrl(
           EditInitialValues ? EditProductValue?.featureImages : []
-        );
-        setTotalSQM(
-          EditInitialValues && EditProductValue
-            ? Number(
-                (
-                  EditProductValue.stock * Number(EditProductValue.boxCoverage)
-                ).toFixed(2)
-              )
-            : 0
         );
       } catch (err) {
         throw err;
@@ -552,35 +526,32 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
                         placeholder="Discount Price"
                       />
                       <Input
-                        label="Stock"
+                        label={`${!accessoryFlag ? 'Stock (Boxes)' : 'Stock (Pieces)'}`}
                         name="stock"
                         type="number"
                         placeholder="Stock"
-                        className={`${!accessoryFlag ? 'hidden' : 'block'}`}
                       />
                       {!accessoryFlag && (
                         <div>
                           <label className="block mb-3 text-sm font-medium text-black dark:text-white">
                             Stock (SQM)
                           </label>
-                          <input
-                            type="number"
-                            name="stock_sqm"
-                            placeholder="Stock (SQM)"
-                            className="dashboard_input"
-                            value={totalSQM}
-                            onChange={(e) => {
-                              setTotalSQM(Number(e.target.value));
-                            }}
-                          />
+                          <div className="dashboard_input pointer-events-none bg-gray-100 focus:border-[#e5e7eb] active:border-[#e5e7eb]">
+                            {Number(
+                              (
+                                formik.values?.stock *
+                                Number(formik.values?.boxCoverage || 0)
+                              ).toFixed(2)
+                            )}
+                          </div>
                         </div>
                       )}
-
                       <Input
                         label="Sku"
                         name="sku"
                         type="string"
                         placeholder="SKU"
+                        className={`${!accessoryFlag ? 'col-span-2' : 'col-span-1'}`}
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">

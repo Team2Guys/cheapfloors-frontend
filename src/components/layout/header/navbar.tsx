@@ -37,9 +37,10 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
     });
   };
 
-  useLayoutEffect(() => {
-    if (!categories || categories.length === 0) return;
+useLayoutEffect(() => {
+  if (!categories || categories.length === 0) return;
 
+  const buildMenu = () => {
     const updatedMenu = staticMenuItems.map((staticItem) => {
       const matchedCategory = categories.find(
         (cat) => cat.custom_url === staticItem.href
@@ -61,14 +62,28 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
         submenu: subcategories.map((sub) => ({
           label: sub.name,
           href: `/${sub?.category?.RecallUrl || matchedCategory.RecallUrl}/${sub.custom_url}`,
-          image: sub.posterImageUrl?.imageUrl || '/assets/default-image.png',
-          price: sub.price
-        }))
+          image:
+            sub.posterImageUrl?.imageUrl || "/assets/default-image.png",
+          price: sub.price,
+        })),
       };
     });
 
-    setMenuItems(updatedMenu);
-  }, [categories]);
+    return window.innerWidth < 1470
+      ? window.innerWidth < 500 ? updatedMenu : updatedMenu.slice(0, -2)
+      : updatedMenu;
+  };
+
+  const handleResize = () => {
+    setMenuItems(buildMenu());
+  };
+
+  handleResize();
+  window.addEventListener("resize", handleResize);
+
+  return () => window.removeEventListener("resize", handleResize);
+}, [categories]);
+
 
   return (
     <nav
@@ -88,7 +103,7 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
           </Link>
         </div>
         <div className="w-8/12 lg:w-[62%] 2xl:w-[60%] max-lg:flex max-lg:justify-center">
-          <div className="hidden lg:flex items-end gap-0 xl:gap-1 2xl:gap-2 w-fit h-16 justify-between capitalize font-light whitespace-nowrap relative overflow-hidden">
+          <div className="hidden lg:flex items-end gap-0 xl:gap-1 min-[1700px]:gap-2 w-fit h-16 justify-between capitalize font-light whitespace-nowrap relative overflow-hidden">
             {menuItems.map((item, index) => (
               <Megamenu
                 key={index}
@@ -122,11 +137,11 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
             isLoading={isLoading}
           />
         </div>
-        <div className="w-2/12 lg:w-[32%] 2xl:w-[30%] text-end flex justify-end items-center">
+        <div className="w-2/12 lg:w-[32%] 2xl:w-[30%] text-end flex_between gap-2 max-lg:justify-end">
           <Link
             href="/measurement-appointment"
             aria-label="Book appointment"
-            className="w-fit text-xs sm:text-sm bg-primary hover:bg-secondary text-white px-2 py-1 text-nowrap hidden lg:block "
+            className="w-fit mx-auto text-xs sm:text-sm bg-primary hover:bg-secondary text-white px-2 py-1 text-nowrap hidden lg:block "
           >
             Book Your Appointment
           </Link>

@@ -165,7 +165,7 @@ const Card: React.FC<productCardProps> = ({
                   onMouseEnter={() => setShowCaption('Add to Free Sample')}
                   onMouseLeave={() => setShowCaption('')}
                 >
-                  <FreeSample />
+                  <FreeSample isCard />
                 </button>
 
                 {/* Tooltip for Free Sample */}

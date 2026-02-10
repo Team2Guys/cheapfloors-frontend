@@ -145,14 +145,22 @@ const ViewProduct: React.FC<DASHBOARD_MAIN_PRODUCT_PROPS> = ({
       title: 'Status',
       key: 'status'
     },
-
     {
-      title: 'Stock Quantity',
+      title: `${!accessoryFlag ? 'Stock (Boxes)' : 'Stock (Pieces)'}`,
       key: 'stock',
       render: (record: IProduct) => {
         return <p>{record.stock}</p>;
       }
     },
+    ...(!accessoryFlag ? [{
+      title: 'Stock (SQM)',
+      key: 'stock',
+      render: (record: IProduct) => {
+        return (
+          <p> {Number(((record?.stock || 0) * Number(record.boxCoverage || 0)).toFixed(2))}</p>
+        );
+      }
+    }] : []),
     {
       title: 'SKU',
       key: 'Sku',
@@ -239,7 +247,7 @@ const ViewProduct: React.FC<DASHBOARD_MAIN_PRODUCT_PROPS> = ({
         />
       )
     }
-  ];
+  ].filter(Boolean);
 
   return (
     <div>

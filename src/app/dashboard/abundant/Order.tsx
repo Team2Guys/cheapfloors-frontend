@@ -312,13 +312,13 @@ const Order = ({
                 onChange={(e) => handleCategoryChange(e, record.orderId)}
                 className={`dashboard_input min-w-32 ${
                   orderIdStatus === record.orderId ||
-                  record.orderStatus === 'Cancel'
+                  record.orderStatus === 'canceled'
                     ? 'cursor-not-allowed opacity-50'
                     : ''
                 }`}
                 disabled={
                   orderIdStatus === record.orderId ||
-                  record.orderStatus === 'Cancel'
+                  record.orderStatus === 'canceled'
                 }
               >
                 <option value="" disabled>
@@ -335,7 +335,7 @@ const Order = ({
                     (status === 'placed' || status === 'shipped')
                   ) {
                     isDisabled = true;
-                  } else if (record.orderStatus === 'cancel') {
+                  } else if (record.orderStatus === 'canceled') {
                     isDisabled = true;
                   }
 
