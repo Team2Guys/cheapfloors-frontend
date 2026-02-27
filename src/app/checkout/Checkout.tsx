@@ -175,7 +175,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
       } else {
         if (selectedShipping) {
           handleShippingSelect(selectedShipping);
-        } else{
+        } else {
           handleShippingSelect('standard');
         }
       }
@@ -216,7 +216,6 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
   };
 
   const handlePayment = async (orderData: FormInitialValues) => {
-    console.log(selectedFee, 'selectedFee', orderData);
     try {
       setIsLoading(true);
       if (allItemsAreFreeSamples && selectedFee === 0) {
@@ -245,7 +244,6 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
       revalidateTag('orders');
       //eslint-disable-next-line
     } catch (err: any) {
-      console.log(err, 'error');
       const errorMessage =
         err?.graphQLErrors?.[0]?.message ||
         err?.networkError?.message ||
@@ -299,7 +297,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
 
     if (isFreeSample) {
       if (type === 'express') {
-        fee = 30;
+        fee = 0;
       } else if (type === 'self-collect') {
         setSelectedEmirate('Dubai');
         localStorage.setItem('selectedEmirate', JSON.stringify('Dubai'));
@@ -318,7 +316,6 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
       localStorage.setItem('selectedEmirate', JSON.stringify('Dubai'));
       fee = 0;
     }
-
     setSelectedFee(fee);
     setTotal(subTotal + fee);
 
@@ -338,7 +335,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
     } else if (selectedShipping === 'express') {
       shippingData = {
         name: 'Express Shipping',
-        fee: isFreeSample ? 30 : 150,
+        fee: isFreeSample ? 0 : 150,
         deliveryDuration: 'Next day delivery',
         freeShipping: 1000
       };
@@ -443,7 +440,10 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
 
     setMergedCart(finalCart);
     setTotalProducts(finalCart.length);
-    const subTotalPrice = finalCart.reduce((total, item) => total + item.totalPrice, 0);
+    const subTotalPrice = finalCart.reduce(
+      (total, item) => total + item.totalPrice,
+      0
+    );
     setSubTotal(subTotalPrice);
   };
 
@@ -855,12 +855,16 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                             </p>
                             <p>
                               Delivery Cost:{' '}
-                              <strong>
-                                <span className="font-currency font-normal text-18">
-                                  
-                                </span>
-                                30
-                              </strong>
+                              {isFreeSample ? (
+                                <strong>Free</strong>
+                              ) : (
+                                <strong>
+                                  <span className="font-currency font-normal text-18">
+                                    
+                                  </span>
+                                  30
+                                </strong>
+                              )}
                             </p>
                           </div>
                         </div>
@@ -1013,8 +1017,8 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                       onToggle={() => handleToggle('Installation')}
                     >
                       <div
-                        className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${isInstallation ? 'border-primary' : 'border-transparent'}`}
-                        onClick={(e) => handleInstallation(e, !isInstallation)}
+                        className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center border-2 ${ !isFreeSample ? 'cursor-pointer' : ''} ${isInstallation ? 'border-primary' : 'border-transparent'}`}
+                        onClick={(e) => !isFreeSample && handleInstallation(e, !isInstallation)}
                       >
                         <Image
                           src={light_2Img}
@@ -1074,7 +1078,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                       Shipping <CiDeliveryTruck size={16} className="mt-1" />
                     </span>
                     <span className="text-black">
-                      { selectedEmirate === 'Enter Emirate' ? (
+                      {selectedEmirate === 'Enter Emirate' ? (
                         isFreeSample ? (
                           selectedFee > 0 ? (
                             <span className="font-currency font-normal text-18">
@@ -1086,9 +1090,12 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                         ) : (
                           'Select Shipping Emirate'
                         )
-                      ) : selectedShipping === 'express' ? (
+                      ) : selectedShipping === 'express' ? 
+                      isFreeSample ?
+                      'Free' :
+                      (
                         <span className="font-currency font-normal text-18">
-                           {formatAED(isFreeSample ? 30 : 150)}
+                           {formatAED(150)}
                         </span>
                       ) : selectedEmirate === 'Dubai' ? (
                         'Free'
