@@ -97,7 +97,7 @@ const UserIcon = ({ className }: UserIconProps) => {
     <div className={`flex items-center 2xl:space-x-1 ${className} relative`}>
       <button
         onClick={handleProfileClick}
-        className="relative flex items-center space-x-2 h-7 p-1 fill-white focus:bg-white focus:fill-black lg:fill-black lg:hover:fill-white lg:hover:bg-primary"
+        className="relative flex items-center space-x-2 h-7 p-0.5 min-[1150px]:p-1 fill-white focus:bg-white focus:fill-black lg:fill-black lg:hover:fill-white lg:hover:bg-primary"
         aria-label={session ? 'Open user profile' : 'Login'}
       >
         {session ? (
@@ -106,7 +106,7 @@ const UserIcon = ({ className }: UserIconProps) => {
             alt="User Profile"
             width={50}
             height={50}
-            className="rounded-full h-full w-5 lg:w-40 xl:w-42 xl:h-7 "
+            className="rounded-full size-3.5 min-[1150px]:size-4 w-4 min-[1150px]:w-5 lg:w-40 xl:w-42 xl:h-7 "
           />
         ) : (
           <ProfileIcon />
@@ -159,7 +159,7 @@ const UserIcon = ({ className }: UserIconProps) => {
       {/* Wishlist */}
 
       <DropdownPanel
-        icon={<LuHeart className="size-4 xl:size-5" />}
+        icon={<LuHeart className="size-3.5 min-[1150px]:size-4 xl:size-5" />}
         badgeCount={wishlistTotal?.length ?? 0}
         cartItems={wishlistTotal ?? []}
         type="wishlist"

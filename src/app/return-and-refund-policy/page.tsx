@@ -14,13 +14,13 @@ const ReturnRefundPolicy = () => {
       </h1>
       {policySections.map((section, index) => (
         <div key={index} className="mb-6">
-          <h2 className=" text-20 sm:text-28 font-semibold mb-2">
+          <h2 className="text-20 sm:text-24 font-semibold mb-2">
             {section.title}
           </h2>
           {section.content.map((paragraph, i) => (
             <p
               key={i}
-              className=" text-sm sm:text-20 sm:leading-[26px] mb-2"
+              className="text-sm sm:text-20 sm:leading-[26px] text-justify mb-2"
               dangerouslySetInnerHTML={{ __html: paragraph }}
             />
           ))}

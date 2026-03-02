@@ -1,7 +1,9 @@
-import { get_allAdmins } from 'config/fetch';
+import { fetchCategories, get_allAdmins } from 'config/fetch';
 import { findOneRedirectUrl } from 'config/general';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { Category } from './types/cat';
+import { validStaticPaths } from './data/paths';
 
 export async function proxy(req: NextRequest) {
   try {
@@ -9,6 +11,7 @@ export async function proxy(req: NextRequest) {
       req.cookies.get('admin_access_token')?.value ||
       req.cookies.get('super_admin_access_token')?.value;
     const pathname = req.nextUrl.pathname;
+    const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
 
     const redirectUrls = await findOneRedirectUrl(
       pathname.replace(/^\/+|\/+$/g, '')
@@ -18,6 +21,24 @@ export async function proxy(req: NextRequest) {
         new URL(`/${redirectUrls?.redirectedUrl}`, req.url),
         301
       );
+    }
+    
+    const segments = cleanPath.split('/').filter(Boolean);
+    // ✅ Only apply 410
+    if (segments.length === 1) {
+      const slug = segments[0];
+      if (!validStaticPaths.includes(`/${segments[0]}`)) {
+        const categories = await fetchCategories();
+        const findCategory = categories.find(
+          (cat: Category) =>
+            (cat.custom_url?.trim() ?? '') === slug &&
+            cat.status === 'PUBLISHED'
+        );
+
+        if (!findCategory) {
+          return new NextResponse(null, { status: 410 });
+        }
+      }
     }
 
     const isAuthRoute = pathname === '/dashboard/Admin-login';

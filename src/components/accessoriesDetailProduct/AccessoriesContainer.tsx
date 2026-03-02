@@ -20,6 +20,7 @@ const AccessoriesContainer = ({ productData }: { productData: IProduct }) => {
   useEffect(() => {
     setThumbnailImages(productData?.productImages || []);
     setActiveImage(productData?.productImages?.[0]);
+    setSelectedColor(productData?.featureImages?.[0]);
   }, [productData]);
   return (
     <Container className="flex flex-col lg:flex-row py-4">

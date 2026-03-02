@@ -217,7 +217,7 @@ export default function UserComponent({
   ];
 
   return (
-    <div className="grid grid-cols-1 justify-center px-2 py-5">
+    <div className="grid grid-cols-1 justify-center px-2 py-5 mt-[108px] sm:mt-[106px] lg:mt-[120px] 2xl:mt-[131px]">
       <div className="max-w-screen-sm mx-auto px-2 py-5 xs:p-5 sm:p-10 shadow-[0px_3px_6px_#00000029] rounded-md h-fit">
         {/* Use your custom Tabs component */}
         <Tabs

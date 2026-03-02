@@ -75,7 +75,7 @@ const FreeSamplePage = () => {
 
   const calculateShippingFee = (shippingType: string | null): number => {
     if (shippingType === 'express') {
-      return 30;
+      return 0;
     }
     if (shippingType === 'self-collect') {
       return 0;
@@ -133,7 +133,7 @@ const FreeSamplePage = () => {
     if (selectedShipping === 'express') {
       shippingData = {
         name: 'Express Service',
-        fee: 30,
+        fee: 0,
         deliveryDuration: 'Next working day (cut-off 1pm)'
       };
     } else if (selectedShipping === 'self-collect') {
@@ -254,10 +254,10 @@ const FreeSamplePage = () => {
                     <p>
                       Delivery Cost:{' '}
                       <strong>
-                        <span className="font-currency font-normal text-18">
+                        {/* <span className="font-currency font-normal text-18">
                           
-                        </span>
-                        30
+                        </span> */}
+                        Free
                       </strong>
                     </p>
                   </div>

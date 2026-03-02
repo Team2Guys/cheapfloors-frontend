@@ -86,7 +86,7 @@ export const handleAddToStorage = async (
     squareMeter: adjustedSquareMeter || 1,
     requiredBoxes: requiredBoxes || 1,
     unit: adjustedUnit,
-    selectedColor,
+    selectedColor: { ...selectedColor, public_id: selectedColor?.public_id || '', imageUrl: selectedColor?.imageUrl || '', colorName: selectedColor?.colorName || selectedColor?.altText || ''},
     matchedProductImages,
     isfreeSample: type === 'freeSample' || false,
     custom_url: productData.custom_url,

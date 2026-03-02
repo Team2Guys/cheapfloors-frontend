@@ -44,7 +44,7 @@ async function DashboardMain() {
     categories: weekly?.map((item: STATUS) => item.day),
     series: defaultArray
   };
-
+  console.log(records,'records')
   return (
     <DefaultLayout>
       <ECommerce

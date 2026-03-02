@@ -1,5 +1,5 @@
 'use client';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 import { ErrorMessage, Form, Formik } from 'formik';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
@@ -14,7 +14,7 @@ import locationImg from '../../../public/assets/icons/location 1 (traced).png';
 import { CiDeliveryTruck } from 'react-icons/ci';
 import { emirateCityMap, emirates } from 'data/data';
 import { ICart } from 'types/prod';
-import { getCart } from 'utils/indexedDB';
+import { getCart, openDB } from 'utils/indexedDB';
 import { paymentcard } from 'data/cart';
 import PaymentMethod from 'components/product-detail/payment';
 import { useMutation } from '@apollo/client';
@@ -60,6 +60,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
     'Shipping Options'
   );
   const [showTermsModal, setShowTermsModal] = useState(false);
+  const [isInstallation, setIsInstallation] = useState(false);
 
   const handleToggle = (label: string) => {
     setOpenAccordion((prev) => (prev === label ? null : label));
@@ -142,7 +143,6 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
     ) {
       try {
         const parsedShipping = JSON.parse(savedShipping);
-
         if (parsedShipping?.name === 'Express Shipping') {
           setSelectedShipping('express');
           handleShippingSelect('express');
@@ -173,7 +173,11 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
       if (isFreeSample) {
         handleShippingSelect('express');
       } else {
-        handleShippingSelect('standard');
+        if (selectedShipping) {
+          handleShippingSelect(selectedShipping);
+        } else {
+          handleShippingSelect('standard');
+        }
       }
     }
   }, [subTotal]);
@@ -212,7 +216,6 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
   };
 
   const handlePayment = async (orderData: FormInitialValues) => {
-    console.log(selectedFee, 'selectedFee', orderData);
     try {
       setIsLoading(true);
       if (allItemsAreFreeSamples && selectedFee === 0) {
@@ -241,7 +244,6 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
       revalidateTag('orders');
       //eslint-disable-next-line
     } catch (err: any) {
-      console.log(err, 'error');
       const errorMessage =
         err?.graphQLErrors?.[0]?.message ||
         err?.networkError?.message ||
@@ -295,7 +297,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
 
     if (isFreeSample) {
       if (type === 'express') {
-        fee = 30;
+        fee = 0;
       } else if (type === 'self-collect') {
         setSelectedEmirate('Dubai');
         localStorage.setItem('selectedEmirate', JSON.stringify('Dubai'));
@@ -314,7 +316,6 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
       localStorage.setItem('selectedEmirate', JSON.stringify('Dubai'));
       fee = 0;
     }
-
     setSelectedFee(fee);
     setTotal(subTotal + fee);
 
@@ -334,7 +335,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
     } else if (selectedShipping === 'express') {
       shippingData = {
         name: 'Express Shipping',
-        fee: isFreeSample ? 30 : 150,
+        fee: isFreeSample ? 0 : 150,
         deliveryDuration: 'Next day delivery',
         freeShipping: 1000
       };
@@ -353,6 +354,97 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
     if (typeof window !== 'undefined' && window.dataLayer) {
       window.dataLayer.push(data);
     }
+  };
+
+  const handleInstallation = async (
+    e: MouseEvent<HTMLDivElement>,
+    installation: boolean
+  ) => {
+    e.stopPropagation();
+    setIsInstallation(installation);
+
+    const db = await openDB();
+    const tx = db.transaction('cart', 'readwrite');
+    const store = tx.objectStore('cart');
+
+    const cartItems: ICart[] = await new Promise((resolve, reject) => {
+      const request = store.getAll();
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+
+    const map = new Map<string, ICart>();
+
+    for (const item of cartItems) {
+      const isAccessory = item.category?.toLowerCase().trim() === 'accessories';
+
+      // Accessories never get installation
+      const shouldHaveInstallation = isAccessory ? false : installation;
+
+      // 🔑 Build NEW composite key
+      const newKey = shouldHaveInstallation
+        ? `${item.id}-installation`
+        : String(item.id);
+
+      if (map.has(newKey)) {
+        // 🔥 Merge quantities
+        const existing = map.get(newKey)!;
+
+        existing.requiredBoxes =
+          (existing.requiredBoxes || 0) + (item.requiredBoxes || 0);
+
+        existing.squareMeter =
+          (existing.squareMeter || 0) + (item.squareMeter || 0);
+
+        map.set(newKey, existing);
+      } else {
+        map.set(newKey, {
+          ...item,
+          addInstallation: shouldHaveInstallation
+        });
+      }
+    }
+
+    // 💰 Recalculate totals
+    const finalCart = Array.from(map.values()).map((item) => {
+      const adjustedQty =
+        item.category?.toLowerCase().trim() === 'accessories'
+          ? item.requiredBoxes
+          : item.squareMeter;
+
+      const installationRate = item.name.toLowerCase()?.includes('herringbone')
+        ? 35
+        : 25;
+      const installationCost = item.addInstallation
+        ? item.squareMeter * installationRate
+        : 0;
+
+      return {
+        ...item,
+        installationCost,
+        totalPrice: item.addInstallation
+          ? Number(item.price || 0) * adjustedQty + (installationCost || 0)
+          : Number(item.price || 0) * adjustedQty
+      };
+    });
+
+    // 🔄 Replace DB content
+    await store.clear();
+    for (const item of finalCart) {
+      const key = item.addInstallation
+        ? `${item.id}-installation`
+        : String(item.id);
+
+      await store.put(item, key);
+    }
+
+    setMergedCart(finalCart);
+    setTotalProducts(finalCart.length);
+    const subTotalPrice = finalCart.reduce(
+      (total, item) => total + item.totalPrice,
+      0
+    );
+    setSubTotal(subTotalPrice);
   };
 
   return (
@@ -709,7 +801,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                           <span className="font-currency font-normal text-20">
                             
                           </span>{' '}
-                          {formatAED( item.totalPrice )}
+                          {formatAED(item.totalPrice)}
                         </p>
                       </div>
                     ))
@@ -763,12 +855,16 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                             </p>
                             <p>
                               Delivery Cost:{' '}
-                              <strong>
-                                <span className="font-currency font-normal text-18">
-                                  
-                                </span>
-                                30
-                              </strong>
+                              {isFreeSample ? (
+                                <strong>Free</strong>
+                              ) : (
+                                <strong>
+                                  <span className="font-currency font-normal text-18">
+                                    
+                                  </span>
+                                  30
+                                </strong>
+                              )}
                             </p>
                           </div>
                         </div>
@@ -842,9 +938,9 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                               <p className="text-11 xs:text-base">
                                 <span>Delivery Cost:</span>
                                 {allItemsAreFreeSamples ? (
-                                  <strong>Free</strong>
+                                  <strong> Free</strong>
                                 ) : selectedEmirate === 'Dubai' ? (
-                                  <strong>Free</strong>
+                                  <strong> Free</strong>
                                 ) : (
                                   <>
                                     Free for orders above{' '}
@@ -920,7 +1016,10 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                       isOpen={openAccordion === 'Installation'}
                       onToggle={() => handleToggle('Installation')}
                     >
-                      <div className="bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center">
+                      <div
+                        className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center border-2 ${ !isFreeSample ? 'cursor-pointer' : ''} ${isInstallation ? 'border-primary' : 'border-transparent'}`}
+                        onClick={(e) => !isFreeSample && handleInstallation(e, !isInstallation)}
+                      >
                         <Image
                           src={light_2Img}
                           alt="icon"
@@ -979,7 +1078,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                       Shipping <CiDeliveryTruck size={16} className="mt-1" />
                     </span>
                     <span className="text-black">
-                      {!selectedCity ? (
+                      {selectedEmirate === 'Enter Emirate' ? (
                         isFreeSample ? (
                           selectedFee > 0 ? (
                             <span className="font-currency font-normal text-18">
@@ -989,11 +1088,14 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                             'Free'
                           )
                         ) : (
-                          'Select shipping city'
+                          'Select Shipping Emirate'
                         )
-                      ) : selectedShipping === 'express' ? (
+                      ) : selectedShipping === 'express' ? 
+                      isFreeSample ?
+                      'Free' :
+                      (
                         <span className="font-currency font-normal text-18">
-                           {formatAED(isFreeSample ? 30 : 150)}
+                           {formatAED(150)}
                         </span>
                       ) : selectedEmirate === 'Dubai' ? (
                         'Free'
@@ -1012,7 +1114,9 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                       <span className="font-currency font-normal text-20">
                         
                       </span>{' '}
-                      {selectedEmirate ? formatAED(total) : formatAED(subTotal)}
+                      {selectedEmirate !== 'Enter Emirate'
+                        ? formatAED(total)
+                        : formatAED(subTotal)}
                     </span>
                   </p>
                 </div>

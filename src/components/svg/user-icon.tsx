@@ -5,7 +5,7 @@ const ProfileIcon = () => {
     <svg
       width="24"
       height="24"
-      className="size-4 xl:size-5"
+      className="size-3.5 min-[1150px]:size-4 xl:size-5"
       viewBox="0 0 18 20"
       xmlns="http://www.w3.org/2000/svg"
     >
