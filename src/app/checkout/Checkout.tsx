@@ -125,11 +125,11 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
         localStorage.removeItem('shipping');
       }
     } else {
-      if (isFreeSample) {
-        handleShippingSelect('express');
-      } else {
+      // if (isFreeSample) {
+      //   handleShippingSelect('express');
+      // } else {
         handleShippingSelect('standard');
-      }
+      // }
     }
   }, [subTotal]);
 
@@ -153,25 +153,25 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
           setSelectedShipping('standard');
           handleShippingSelect('standard');
         } else {
-          if (isFreeSample) {
-            handleShippingSelect('express');
-          } else {
+          // if (isFreeSample) {
+          //   handleShippingSelect('express');
+          // } else {
             handleShippingSelect('standard');
-          }
+          // }
         }
       } catch {
         handleShippingSelect('standard');
-        if (isFreeSample) {
-          localStorage.removeItem('express');
-          handleShippingSelect('express');
-        } else {
+        // if (isFreeSample) {
+        //   localStorage.removeItem('express');
+        //   handleShippingSelect('express');
+        // } else {
           localStorage.removeItem('shipping');
           handleShippingSelect('standard');
-        }
+        // }
       }
     } else {
       if (isFreeSample) {
-        handleShippingSelect('express');
+        handleShippingSelect('standard');
       } else {
         if (selectedShipping) {
           handleShippingSelect(selectedShipping);
@@ -296,7 +296,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
     let fee = 0;
 
     if (isFreeSample) {
-      if (type === 'express') {
+      if (type === 'standard') {
         fee = 0;
       } else if (type === 'self-collect') {
         setSelectedEmirate('Dubai');
@@ -832,20 +832,20 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                       {isFreeSample ? (
                         <div
                           className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${
-                            selectedShipping === 'express'
+                            selectedShipping === 'standard'
                               ? 'border-primary'
                               : 'border-transparent'
                           }`}
-                          onClick={() => handleShippingSelect('express')}
+                          onClick={() => handleShippingSelect('standard')}
                         >
                           <Image
-                            src={lightImg}
+                            src={deliveryImg}
                             alt="icon"
                             className="size-12 xs:size-16"
                           />
                           <div className="text-11 xs:text-base">
                             <strong className="text-15 xs:text-20">
-                              Express Service
+                              Standard Service
                             </strong>
                             <p className="text-11 xs:text-base">
                               Delivery:{' '}
