@@ -58,6 +58,7 @@ const DropdownUser = () => {
       console.error('Logout failed', err);
     }
   };
+  console.log(loggedInUser,'loggedInUser')
 
   return (
     <div className="relative">

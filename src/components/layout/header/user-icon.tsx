@@ -97,7 +97,7 @@ const UserIcon = ({ className }: UserIconProps) => {
     <div className={`flex items-center 2xl:space-x-1 ${className} relative`}>
       <button
         onClick={handleProfileClick}
-        className="relative flex items-center space-x-2 h-7 p-0.5 min-[1150px]:p-1 fill-white focus:bg-white focus:fill-black lg:fill-black lg:hover:fill-white lg:hover:bg-primary"
+        className={`relative flex items-center space-x-2 p-0.5 ${session ? "size-8 xl:size-10" : "hover:bg-primary lg:hover:fill-white"} min-[1150px]:p-1 fill-white focus:bg-white focus:fill-black lg:fill-black`}
         aria-label={session ? 'Open user profile' : 'Login'}
       >
         {session ? (
@@ -106,7 +106,7 @@ const UserIcon = ({ className }: UserIconProps) => {
             alt="User Profile"
             width={50}
             height={50}
-            className="rounded-full size-3.5 min-[1150px]:size-4 w-4 min-[1150px]:w-5 lg:w-40 xl:w-42 xl:h-7 "
+            className="rounded-full size-6 xl:size-7 object-cover"
           />
         ) : (
           <ProfileIcon />

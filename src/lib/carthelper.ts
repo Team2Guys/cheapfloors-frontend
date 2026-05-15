@@ -36,7 +36,7 @@ export const handleAddToStorage = async (
   if (type === 'cart') {
     if (requiredBoxes <= 0) {
       showAlert({
-        title: 'Please enter quantity to add the product to the cart.',
+        title: 'Enter a valid area to add the product to the cart.',
         icon: 'error'
       });
       return;

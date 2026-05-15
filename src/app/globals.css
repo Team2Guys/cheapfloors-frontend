@@ -75,6 +75,8 @@
   }
 }
 
+
+
 @layer components {
   .Sidebar-Link {
     @apply relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium duration-300 hover:bg-black dark:hover:bg-primary border-b-2 border-b-primary border-transparent;
@@ -297,3 +299,4 @@
     background-color: transparent !important;
   }
 }
+

@@ -13,7 +13,7 @@ const CustomPriceSlider = ({
   isArea?: boolean;
   isClearance?: boolean;
 }) => {
-  const min = isArea ? 0 : isClearance ? 20 : 49;
+  const min = isArea ? 0 : isClearance ? 20 : 55;
   const max = isArea ? 1000 : 149;
   const sliderRef = useRef<HTMLDivElement>(null);
 

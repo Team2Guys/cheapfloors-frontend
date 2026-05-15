@@ -43,11 +43,11 @@ const CartPage = ({ products }: CartPageProps) => {
   const clearanceItems = cartItems.filter((item) => item.isClearance);
   const [shipping, setShipping] = useState<
     | {
-        name: string;
-        fee: number;
-        deliveryDuration: string;
-        freeShipping?: number;
-      }
+      name: string;
+      fee: number;
+      deliveryDuration: string;
+      freeShipping?: number;
+    }
     | undefined
   >(undefined);
   const [openAccordion, setOpenAccordion] = useState<string | null>(
@@ -208,7 +208,7 @@ const CartPage = ({ products }: CartPageProps) => {
         (product.category?.toLowerCase().trim() === 'accessories'
           ? item.requiredBoxes || 0
           : item.squareMeter || 0) +
-          change >
+        change >
         totalAvailableSQM
       ) {
         showAlert({
@@ -285,15 +285,15 @@ const CartPage = ({ products }: CartPageProps) => {
       setCartItems((prevCart) =>
         prevCart.map((cartItem) =>
           cartItem.id === product.id &&
-          cartItem.selectedColor?.color === product.selectedColor?.color &&
-          cartItem.addInstallation === product.addInstallation
+            cartItem.selectedColor?.color === product.selectedColor?.color &&
+            cartItem.addInstallation === product.addInstallation
             ? {
-                ...cartItem,
-                requiredBoxes: newRequiredBoxes,
-                squareMeter: newSquareMeter,
-                totalPrice: newTotalPrice + newInstallationCost,
-                installationCost: newInstallationCost
-              }
+              ...cartItem,
+              requiredBoxes: newRequiredBoxes,
+              squareMeter: newSquareMeter,
+              totalPrice: newTotalPrice + newInstallationCost,
+              installationCost: newInstallationCost
+            }
             : cartItem
         )
       );
@@ -442,15 +442,15 @@ const CartPage = ({ products }: CartPageProps) => {
       setCartItems((prevCart) =>
         prevCart.map((cartItem) =>
           cartItem.id === product.id &&
-          cartItem.selectedColor?.color === product.selectedColor?.color &&
-          cartItem.addInstallation === product.addInstallation
+            cartItem.selectedColor?.color === product.selectedColor?.color &&
+            cartItem.addInstallation === product.addInstallation
             ? {
-                ...cartItem,
-                requiredBoxes: newRequiredBoxes,
-                squareMeter: quantity,
-                totalPrice: newTotalPrice + newInstallationCost,
-                installationCost: newInstallationCost
-              }
+              ...cartItem,
+              requiredBoxes: newRequiredBoxes,
+              squareMeter: quantity,
+              totalPrice: newTotalPrice + newInstallationCost,
+              installationCost: newInstallationCost
+            }
             : cartItem
         )
       );
@@ -705,9 +705,9 @@ const CartPage = ({ products }: CartPageProps) => {
                     {nonAccessoryItems.map((item, cartindex) => (
                       <div key={cartindex}>
                         <div className="grid grid-cols-12 text-20 font-light py-2 2xl:py-4 items-center">
-                          <div className="col-span-11 xl:col-span-6">
+                          <div className="col-span-12 xsm:col-span-11 md:col-span-12 xl:col-span-6 order-last xsm:order-1 md:order-last xl:order-1">
                             <div className="flex gap-2 xsm:gap-4">
-                              <div className="w-full max-w-[65px] md:max-w-[140px] h-[69px] md:h-[140px] 2xl:max-w-[170x] 2xl:h-[140px]">
+                              <div className="w-full max-w-[90px] md:max-w-[140px] h-[90px] md:h-[140px] 2xl:max-w-[170x] 2xl:h-[140px]">
                                 <Image
                                   fill
                                   className="!relative block"
@@ -715,10 +715,10 @@ const CartPage = ({ products }: CartPageProps) => {
                                   alt="cart"
                                 />
                               </div>
-                              <div className="flex flex-col gap-2">
+                              <div className="flex flex-col gap-1 grow">
                                 <Link
                                   href={`/${generateSlug(item.category ?? '')}/${generateSlug(item.subcategories ?? '')}/${item.custom_url}`}
-                                  className="text-[12px] xsm:text-13 xl:text-sm 2xl:text-base font-medium"
+                                  className="text-[12px] xs:text-sm 2xl:text-base font-medium"
                                 >
                                   {item.name}
                                 </Link>
@@ -734,7 +734,7 @@ const CartPage = ({ products }: CartPageProps) => {
                                         
                                       </span>{' '}
                                       <span>
-                                        {(item.price ?? 0).toFixed(2)}
+                                        {formatAED(item.price ?? 0)}
                                       </span>
                                       /m
                                       <sup>2</sup>
@@ -757,17 +757,17 @@ const CartPage = ({ products }: CartPageProps) => {
                                         
                                       </span>{' '}
                                       {item.pricePerBox &&
-                                        item.pricePerBox.toFixed(2)}
+                                        formatAED(item.pricePerBox)}
                                     </span>
                                   </p>
                                 )}
                                 {!item.isClearance && (
-                                  <div className="flex flex-wrap xl:hidden gap-2 mt-2 items-center">
+                                  <div className="flex justify-between xl:hidden gap-2 mt-2 items-center">
                                     <div
                                       className={`flex justify-center items-center border border-[#959595] px-1 py-1 w-fit text-purple ${item.isfreeSample ? 'hidden' : 'block'}`}
                                     >
                                       <button
-                                        className="px-1 hover:text-black"
+                                        className="hover:text-black text-xs"
                                         onClick={() => decrement(item)}
                                       >
                                         <LuMinus />
@@ -779,23 +779,22 @@ const CartPage = ({ products }: CartPageProps) => {
                                           onChange={(e) =>
                                             handleQunatity(e, item)
                                           }
-                                          className="max-w-[50px] text-center no-spinner"
+                                          className="max-w-[30px] text-center no-spinner"
                                         />
                                       </span>
                                       <button
-                                        className="px-1 hover:text-black"
+                                        className="hover:text-black text-xs"
                                         onClick={() => increment(item)}
                                       >
                                         <LuPlus />
                                       </button>
                                     </div>
                                     <p className="text-sm font-semibold whitespace-nowrap">
-                                      Total Price:{' '}
                                       <span className="font-currency font-normal text-18">
                                         
                                       </span>{' '}
                                       <span>
-                                        {(item.totalPrice ?? 0).toFixed(2)}
+                                        {formatAED(item.totalPrice - (item.installationCost || 0))}
                                       </span>
                                     </p>
                                   </div>
@@ -803,7 +802,7 @@ const CartPage = ({ products }: CartPageProps) => {
                               </div>
                             </div>
                           </div>
-                          <div className="col-span-3 mx-auto hidden xl:block">
+                          <div className="col-span-3 mx-auto hidden xl:block order-2">
                             <div
                               className={`flex justify-center items-center border border-[#959595] px-0 2xl:px-1 py-1 2xl:py-2 w-fit text-purple ${item.isfreeSample ? 'hidden' : 'block'}`}
                             >
@@ -830,7 +829,7 @@ const CartPage = ({ products }: CartPageProps) => {
                             </div>
                           </div>
 
-                          <div className="col-span-2 text-center hidden xl:block">
+                          <div className="col-span-2 text-center hidden xl:block order-3">
                             {item.isfreeSample ? (
                               <p className="2xl:text-20 font-semibold">
                                 <span>Free</span>
@@ -842,16 +841,15 @@ const CartPage = ({ products }: CartPageProps) => {
                                 </span>{' '}
                                 <span>
                                   {formatAED(
-                                    // item.addInstallation
-                                    //   ? (item.installationCost || 0) +
-                                    //   item.totalPrice :
-                                    item.totalPrice ?? 0
+                                    item.addInstallation ?
+                                      item.totalPrice - (item.installationCost || 0) :
+                                      item.totalPrice ?? 0
                                   )}
                                 </span>
                               </p>
                             )}
                           </div>
-                          <div className="col-span-1 text-end xl:pr-5">
+                          <div className="col-span-12 xsm:col-span-1 md:col-span-12 xl:col-span-1 text-end xl:pr-5 order-1 xsm:order-last md:order-1 xl:order-last">
                             <button
                               className="text-primary"
                               onClick={() => handleRemoveItem(item)}
@@ -874,19 +872,62 @@ const CartPage = ({ products }: CartPageProps) => {
 
                         {item.addInstallation && (
                           <>
-                            <div className="grid grid-cols-12">
-                              <p className="col-span-7 lg:col-span-9 py-2 text-12 sm:text-sm 2xl:text-17">
-                                Installation Charges
-                              </p>
-                              <div className="col-span-2  text-center py-2 text-12 sm:text-sm 2xl:text-17">
+                            <div className="grid grid-cols-12 items-center py-2">
+                              <div className="col-span-12 xsm:col-span-11 md:col-span-12 xl:col-span-9 order-last xsm:order-1 md:order-last xl:order-1">
+                                <div className="flex gap-2 items-center xsm:gap-4">
+                                  <div className="w-full max-w-[90px] md:max-w-[140px] h-[90px] md:h-[140px] lg:max-w-[150px] 2xl:max-w-[170x] 2xl:h-[140px]">
+                                    <Image
+                                      fill
+                                      className="!relative block object-cover"
+                                      src='/assets/images/cart/installations.webp'
+                                      alt="Installation"
+                                    />
+                                  </div>
+                                  <div className='flex justify-between xsm:justify-start md:justify-between xl:justify-start items-center xsm:items-start md:items-center xl:items-start xsm:flex-col md:flex-row xl:flex-col gap-1 font-light grow'>
+                                    <div className='flex flex-col gap-1'>
+                                      <span className="text-[12px] xs:text-sm 2xl:text-base font-medium">
+                                        Installation Charges
+                                      </span>
+                                      <span className='text-12 sm:text-sm 2xl:text-17'>
+                                        Per SQM:{' '}
+                                        <span>
+                                          <span className="font-currency font-normal text-16 lg:text-20 ">
+                                            
+                                          </span>{' '}
+                                          <span>
+                                            {formatAED(((item.installationCost || 1) / item.squareMeter)
+                                            )}
+                                          </span>
+                                        </span>
+                                      </span>
+                                      <span className="text-12 sm:text-sm 2xl:text-17">
+                                        Area:{' '}
+                                        {Number(
+                                          Number(item.squareMeter).toFixed(2)
+                                        )}{' '}
+                                        SQM
+                                      </span>
+                                    </div>
+                                    <p className="text-sm font-semibold whitespace-nowrap block xl:hidden">
+                                      <span className="font-currency font-normal text-18">
+                                        
+                                      </span>{' '}
+                                      <span>
+                                        {formatAED(item.installationCost || 0)}
+                                      </span>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="hidden xl:block col-span-2 text-center text-12 sm:text-sm 2xl:text-17 order-2">
                                 <span className="font-bold">
-                                  <span className="font-currency font-normal 2xl:text-20">
+                                  <span className="font-currency font-normal text-lg 2xl:text-20">
                                     
                                   </span>{' '}
                                   {formatAED(item.installationCost)}
                                 </span>
                               </div>
-                              <div className="col-span-3 lg:col-span-1 text-end xl:pr-5 py-2 text-12 sm:text-sm 2xl:text-17">
+                              <div className="col-span-12 xsm:col-span-1 md:col-span-12 xl:col-span-1 text-end xl:pr-5 text-12 sm:text-sm 2xl:text-17 order-1 xsm:order-last md:order-1 xl:order-last">
                                 <button
                                   className="text-primary"
                                   onClick={() => handleRemoveInstallation(item)}
@@ -1256,45 +1297,43 @@ const CartPage = ({ products }: CartPageProps) => {
                 >
                   {(selectedCity === 'Dubai' ||
                     selectedCity == 'Enter Emirate') && (
-                    <div
-                      className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${
-                        selectedShipping === 'express'
+                      <div
+                        className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'express'
                           ? 'border-primary'
                           : 'border-transparent'
-                      }`}
-                      onClick={() => handleShippingSelect('express')}
-                    >
-                      <Image
-                        src={lightImg}
-                        alt="icon"
-                        className="size-12 xs:size-16"
-                      />
-                      <div className="text-11 xs:text-base">
-                        <strong className="text-15 xs:text-20">
-                          Express Service (Dubai Only)
-                        </strong>
-                        <p className="text-11 xs:text-base">
-                          Delivery:{' '}
-                          <strong>Next working day (cut-off time 1pm)</strong>
-                        </p>
-                        <p>
-                          Delivery Cost:{' '}
-                          <strong>
-                            <span className="font-currency font-normal text-18">
-                              
-                            </span>
-                            150
+                          }`}
+                        onClick={() => handleShippingSelect('express')}
+                      >
+                        <Image
+                          src={lightImg}
+                          alt="icon"
+                          className="size-12 xs:size-16"
+                        />
+                        <div className="text-11 xs:text-base">
+                          <strong className="text-15 xs:text-20">
+                            Express Service (Dubai Only)
                           </strong>
-                        </p>
+                          <p className="text-11 xs:text-base">
+                            Delivery:{' '}
+                            <strong>Next working day (cut-off time 1pm)</strong>
+                          </p>
+                          <p>
+                            Delivery Cost:{' '}
+                            <strong>
+                              <span className="font-currency font-normal text-18">
+                                
+                              </span>
+                              150
+                            </strong>
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                   <div
-                    className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${
-                      selectedShipping === 'standard'
-                        ? 'border-primary'
-                        : 'border-transparent'
-                    }`}
+                    className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'standard'
+                      ? 'border-primary'
+                      : 'border-transparent'
+                      }`}
                     onClick={() => handleShippingSelect('standard')}
                   >
                     <Image
@@ -1348,11 +1387,10 @@ const CartPage = ({ products }: CartPageProps) => {
                     </div>
                   </div>
                   <div
-                    className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${
-                      selectedShipping === 'self-collect'
-                        ? 'border-primary'
-                        : 'border-transparent'
-                    }`}
+                    className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'self-collect'
+                      ? 'border-primary'
+                      : 'border-transparent'
+                      }`}
                     onClick={() => handleShippingSelect('self-collect')}
                   >
                     <Image

@@ -40,11 +40,11 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
   const [selectedShipping, setSelectedShipping] = useState<string | null>(null);
   const [shipping, setShipping] = useState<
     | {
-        name: string;
-        fee: number;
-        deliveryDuration: string;
-        freeShipping?: number;
-      }
+      name: string;
+      fee: number;
+      deliveryDuration: string;
+      freeShipping?: number;
+    }
     | undefined
   >(undefined);
   const [selectedEmirate, setSelectedEmirate] = useState('');
@@ -128,7 +128,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
       // if (isFreeSample) {
       //   handleShippingSelect('express');
       // } else {
-        handleShippingSelect('standard');
+      handleShippingSelect('standard');
       // }
     }
   }, [subTotal]);
@@ -156,7 +156,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
           // if (isFreeSample) {
           //   handleShippingSelect('express');
           // } else {
-            handleShippingSelect('standard');
+          handleShippingSelect('standard');
           // }
         }
       } catch {
@@ -165,8 +165,8 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
         //   localStorage.removeItem('express');
         //   handleShippingSelect('express');
         // } else {
-          localStorage.removeItem('shipping');
-          handleShippingSelect('standard');
+        localStorage.removeItem('shipping');
+        handleShippingSelect('standard');
         // }
       }
     } else {
@@ -649,11 +649,10 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                       className="checkbox-label flex items-center space-x-2 cursor-pointer"
                     >
                       <div
-                        className={`w-5 h-5 border-2 flex_center transition-colors duration-200 ${
-                          values.terms
+                        className={`w-5 h-5 border-2 flex_center transition-colors duration-200 ${values.terms
                             ? 'bg-primary border-primary text-white'
                             : 'border-primary'
-                        }`}
+                          }`}
                       >
                         {values.terms && (
                           <svg
@@ -734,7 +733,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                           ) : (
                             <p className="text-sm text-gray-600 text-12 xs:text-sm">
                               {item.category?.toLowerCase().trim() ===
-                              'accessories' ? (
+                                'accessories' ? (
                                 <>
                                   No. of Pieces:{' '}
                                   <span className="font-semibold">
@@ -756,7 +755,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                           ) : (
                             <p className="md:text-sm text-gray-600 text-12">
                               {item.category?.toLowerCase().trim() ===
-                              'accessories'
+                                'accessories'
                                 ? 'Piece Price'
                                 : 'Price'}
                               :{' '}
@@ -767,7 +766,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                             </p>
                           )}
                           {item.category?.toLowerCase().trim() ===
-                          'accessories' ? (
+                            'accessories' ? (
                             ''
                           ) : item.addInstallation ? (
                             <p className="md:text-sm text-gray-600 text-12">
@@ -831,11 +830,10 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                     >
                       {isFreeSample ? (
                         <div
-                          className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${
-                            selectedShipping === 'standard'
+                          className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'standard'
                               ? 'border-primary'
                               : 'border-transparent'
-                          }`}
+                            }`}
                           onClick={() => handleShippingSelect('standard')}
                         >
                           <Image
@@ -873,11 +871,10 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                           {(selectedEmirate === 'Dubai' || !selectedEmirate) &&
                             !allItemsAreFreeSamples && (
                               <div
-                                className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${
-                                  selectedShipping === 'express'
+                                className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'express'
                                     ? 'border-primary'
                                     : 'border-transparent'
-                                }`}
+                                  }`}
                                 onClick={() => handleShippingSelect('express')}
                               >
                                 <Image
@@ -908,11 +905,10 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                               </div>
                             )}
                           <div
-                            className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${
-                              selectedShipping === 'standard'
+                            className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'standard'
                                 ? 'border-primary'
                                 : 'border-transparent'
-                            }`}
+                              }`}
                             onClick={() => handleShippingSelect('standard')}
                           >
                             <Image
@@ -973,11 +969,10 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                       )}
 
                       <div
-                        className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${
-                          selectedShipping === 'self-collect'
+                        className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'self-collect'
                             ? 'border-primary'
                             : 'border-transparent'
-                        }`}
+                          }`}
                         onClick={() => handleShippingSelect('self-collect')}
                       >
                         <Image
@@ -1017,7 +1012,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                       onToggle={() => handleToggle('Installation')}
                     >
                       <div
-                        className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center border-2 ${ !isFreeSample ? 'cursor-pointer' : ''} ${isInstallation ? 'border-primary' : 'border-transparent'}`}
+                        className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center border-2 ${!isFreeSample ? 'cursor-pointer' : ''} ${isInstallation ? 'border-primary' : 'border-transparent'}`}
                         onClick={(e) => !isFreeSample && handleInstallation(e, !isInstallation)}
                       >
                         <Image
@@ -1090,22 +1085,30 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                         ) : (
                           'Select Shipping Emirate'
                         )
-                      ) : selectedShipping === 'express' ? 
-                      isFreeSample ?
-                      'Free' :
-                      (
-                        <span className="font-currency font-normal text-18">
-                           {formatAED(150)}
-                        </span>
-                      ) : selectedEmirate === 'Dubai' ? (
-                        'Free'
-                      ) : subTotal >= 2000 ? (
-                        'Free'
-                      ) : (
-                        <span className="font-currency font-normal text-18">
-                           {formatAED(200)}
-                        </span>
-                      )}
+                      ) : selectedShipping === 'express' ?
+                        isFreeSample ?
+                          'Free' :
+                          (
+                            <span className="font-currency font-normal text-18">
+                               {formatAED(150)}
+                            </span>
+                          ) : selectedEmirate === 'Dubai' ? (
+                            'Free'
+                          ) : subTotal >= 2000 ? (
+                            'Free'
+                          ) : (
+                          <span className="font-currency font-normal text-18">
+                             {formatAED(200)}
+                          </span>
+                        )}
+                    </span>
+                  </p>
+                  <p className="text-lg font-bold flex justify-between">
+                    VAT:{' '}
+                    <span>
+                      <span className="font-currency font-normal text-20">
+                        
+                      </span> {(subTotal * 0.05).toFixed(2)}
                     </span>
                   </p>
                   <p className="text-lg font-bold flex justify-between">
@@ -1124,7 +1127,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                   <button
                     type="submit"
                     onClick={
-                      allItemsAreFreeSamples ? () => {} : handlePurchaseClick
+                      allItemsAreFreeSamples ? () => { } : handlePurchaseClick
                     }
                     className={`w-full bg-primary hover:bg-secondary text-white  ${allItemsAreFreeSamples ? 'p-3' : 'p-2'} `}
                     disabled={isSubmitting || isLoading || totalProducts === 0}

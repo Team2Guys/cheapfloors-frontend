@@ -384,7 +384,7 @@ const Filters = ({
           selectedProductFilters.residentialWarranty.length > 0 ||
           selectedProductFilters.plankWidth.length > 0 ||
           (coverageArea && (coverageArea[0] > 0 || coverageArea[1] < 200)) ||
-          (isClearance ? priceValue[0] > 20 : priceValue[0] > 49) ||
+          (isClearance ? priceValue[0] > 20 : priceValue[0] > 55) ||
           priceValue[1] < 149) && (
           <div className="flex justify-center mt-4">
             <button

@@ -1,9 +1,12 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 import { Swiper } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
-import 'swiper/css';
+// 1. Import Navigation and Autoplay modules
+import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+// 2. Import required Swiper CSS
 import 'swiper/css/pagination';
+import 'swiper/css/navigation'; 
+
 import { CommonSwiperProps } from 'types/types';
 
 const SwiperSlider = ({
@@ -11,8 +14,8 @@ const SwiperSlider = ({
   enablePagination = true,
   allowTouch = true,
   spaceBetween = 20,
-  breakpoints,
-  ...rest
+  breakpoints, // This is already a prop
+  ...rest      // This will catch 'loop', 'navigation', etc., from BlogSwiper
 }: CommonSwiperProps) => {
   const swiperRef = useRef<import('swiper/react').SwiperRef>(null);
 
@@ -21,16 +24,21 @@ const SwiperSlider = ({
       swiperRef.current.swiper.update();
     }
   }, []);
+
   return (
     <Swiper
       ref={swiperRef}
-      modules={[Pagination]}
+      // 3. Add Navigation and Autoplay to the modules array
+      modules={[Pagination, Navigation, Autoplay]}
       observer
       observeParents
       spaceBetween={spaceBetween}
-      pagination={enablePagination ? { clickable: true } : false}
+      // 4. Ensure pagination uses the config passed from parent (like our custom-pagination)
+      pagination={enablePagination ? (rest.pagination || { clickable: true }) : false}
       allowTouchMove={allowTouch}
+      // 5. Explicitly pass breakpoints
       breakpoints={breakpoints}
+      // 6. Spread the rest to catch 'loop={true}' and 'navigation={...}'
       {...rest}
     >
       {children}

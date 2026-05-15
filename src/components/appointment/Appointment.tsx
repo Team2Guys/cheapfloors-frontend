@@ -96,6 +96,7 @@ export default function Appointment({
                         onChange={(value) =>
                           form.setFieldValue('phoneNumber', value)
                         }
+                        maxLength={20}
                       />
                     )}
                   </Field>
@@ -126,6 +127,7 @@ export default function Appointment({
                         onChange={(value) =>
                           form.setFieldValue('whatsappNumber', value)
                         }
+                        maxLength={20}
                       />
                     )}
                   </Field>

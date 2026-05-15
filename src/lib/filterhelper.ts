@@ -143,7 +143,7 @@ export const handleClearFilter = (
     setcoverageArea([0, 1000]);
     setPriceValue([20, 149]);
   } else {
-    setPriceValue([49, 149]);
+    setPriceValue([55, 149]);
   }
   setSelectedProductFilters({
     Colours: [],

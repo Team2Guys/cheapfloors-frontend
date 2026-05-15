@@ -150,7 +150,7 @@ const OrderSummary: React.FC<PostPaymentStatusResponse> = ({
 
           <div className="flex items-center gap-4 mt-4">
             <p className="md:text-2xl text-xl whitespace-nowrap font-bold">
-              Total Incl:
+              Total Incl VAT:
             </p>
             <span className="flex-grow border-b"></span>
             <p className="lg:text-xl text-lg font-bold whitespace-nowrap">

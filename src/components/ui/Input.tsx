@@ -1,7 +1,6 @@
 'use client';
-
-import React from 'react';
 import { Field, ErrorMessage } from 'formik';
+import { FieldProps } from 'formik';
 
 interface InputProps {
   label?: string;
@@ -34,12 +33,20 @@ const Input = ({
           className="dashboard_input min-h-[100px] resize-none"
         />
       ) : (
-        <Field
-          type={type}
-          name={name}
-          placeholder={placeholder}
-          className="dashboard_input"
-        />
+        <Field name={name}>
+  {({ field, form }: FieldProps) => (
+    <input
+      {...field}
+      type={type}
+      placeholder={placeholder}
+      className="dashboard_input"
+      onChange={(e) => {
+        const value = e.target.value;
+        form.setFieldValue(name, value);
+      }}
+    />
+  )}
+        </Field>
       )}
 
       <ErrorMessage

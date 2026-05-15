@@ -166,7 +166,11 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
         productImages: imagesUrl,
         category: +selectedCategory,
         featureImages: featureImagesimagesUrl,
-        colorCode: values.colorCode === '' ? undefined : values.colorCode
+        colorCode: values.colorCode === '' ? undefined : Number(values.colorCode),
+        stock: Number(values.stock),
+        price: Number(values.price),
+        discountPrice: Number(values.discountPrice),
+        colors: !values.colors ? [] : values.colors
       };
 
       if (!accessoryFlag) {
@@ -347,6 +351,7 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
     const selectedCat = categoriesList?.find((cat) => cat.id === categoryId);
     setSubcategories(selectedCat?.subcategories || []);
     setSelectedSubcategory('');
+    console.log(selectedCat,'selectedCat')
   };
   const removedValuesHandler = (ChangedValue: IProductValues) => {
     const modifiedProductValues = Object.fromEntries(
@@ -941,9 +946,9 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
                       placeholder="Add Thickness"
                     />
                     <Input
-                      label="Box Coverage"
+                      label="SQM Per Carton"
                       name="boxCoverage"
-                      placeholder="Box Coverage"
+                      placeholder="SQM Per Carton"
                     />
                     {accessoryFlag && (
                       <Input

@@ -101,13 +101,13 @@ export const ProductsSorting = (
           const rawPriceA =
             a?.bundle && a?.bundlePrice
               ? a.bundle *
-                (Number(a.bundlePrice) * (Number(a?.boxCoverage) || 1))
+              (Number(a.bundlePrice) * (Number(a?.boxCoverage) || 1))
               : a.price;
 
           const rawPriceB =
             b?.bundle && b?.bundlePrice
               ? b.bundle *
-                (Number(b.bundlePrice) * (Number(b?.boxCoverage) || 1))
+              (Number(b.bundlePrice) * (Number(b?.boxCoverage) || 1))
               : b.price;
 
           const priceA = Number(rawPriceA);
@@ -125,13 +125,13 @@ export const ProductsSorting = (
           const rawPriceA =
             a?.bundle && a?.bundlePrice
               ? a.bundle *
-                (Number(a.bundlePrice) * (Number(a?.boxCoverage) || 1))
+              (Number(a.bundlePrice) * (Number(a?.boxCoverage) || 1))
               : a.price;
 
           const rawPriceB =
             b?.bundle && b?.bundlePrice
               ? b.bundle *
-                (Number(b.bundlePrice) * (Number(b?.boxCoverage) || 1))
+              (Number(b.bundlePrice) * (Number(b?.boxCoverage) || 1))
               : b.price;
 
           const priceA = Number(rawPriceA);
@@ -536,9 +536,12 @@ export const filterAndSort = (
     .sort((a, b) => Number(a.price) - Number(b.price));
 
 export const formatAED = (price: number | undefined | null): string => {
-  if (!price || isNaN(price)) return '0.00';
+  if (price == null || isNaN(price)) return '0';
+
+  const isWholeNumber = price % 1 === 0;
+
   return price.toLocaleString('en-AE', {
-    minimumFractionDigits: 2,
+    minimumFractionDigits: isWholeNumber ? 0 : 2,
     maximumFractionDigits: 2
   });
 };

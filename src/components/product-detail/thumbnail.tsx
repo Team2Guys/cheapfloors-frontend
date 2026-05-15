@@ -78,7 +78,7 @@ const Thumbnail = ({
   const staticTitles = [
     'Click lock system',
     'Layers of SPC or LVT',
-    'Waterproof',
+    'water-resistant',
     'Easy to clean',
     'Scratch resistant',
     'The packaging'
@@ -301,7 +301,7 @@ const Thumbnail = ({
                         }`}
                       />
                     </div>
-                    <p className="font-semibold text-[8px] md:text-sm lg:text-xs xl:text-base">
+                    <p className="font-semibold text-[8px] md:text-sm lg:text-xs xl:text-base capitalize">
                       {getStaticTitle(index)}
                     </p>
                   </div>

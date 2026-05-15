@@ -27,11 +27,11 @@ const NeedHelp = () => {
                   className="object-contain invert"
                 />
               </div>
-              <h2 className="text-xs sm:text-base md:text-3xl font-semibold">
+              <h2 className="text-xs sm:text-base md:text-2xl lg:text-3xl font-semibold">
                 {box.title}
               </h2>
             </div>
-            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-center max-w-xl mx-auto">
+            <p className="text-xs sm:text-sm md:text-[15px] lg:text-lg text-center max-w-xl mx-auto">
               {box.description}
             </p>
             <Link

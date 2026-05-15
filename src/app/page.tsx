@@ -57,6 +57,8 @@ export default async function Home() {
       whatAmISorting.indexOf(a.name) - whatAmISorting.indexOf(b.name)
   );
 
+
+  console.log(sortedSubcategories,"sortedSubcategoriessortedSubcategories")
   return (
     <>
       <HeroMain items={heroItems} />

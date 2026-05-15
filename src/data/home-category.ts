@@ -26,5 +26,6 @@ export const whatAmISorting = [
   'Richmond SPC Prime',
   'Richmond SPC Herringbone',
   'Richmond LVT Comfort',
-  'Richmond LVT Luxury'
+  'Richmond LVT Luxury',
+  'Floor Smart SPC Eco',
 ];

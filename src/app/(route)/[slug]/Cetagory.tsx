@@ -14,7 +14,8 @@ const Category = ({
   subdescription
 }: SUBNCATEGORIES_PAGES_PROPS) => {
   const Data: ISUBCATEGORY | ICategory = categoryData;
-
+  console.log(subcategory, "subcategory")
+   console.log(categoryData, "categoryData")
   return (
     <>
       <Breadcrumb
