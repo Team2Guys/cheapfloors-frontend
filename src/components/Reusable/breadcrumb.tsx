@@ -57,10 +57,10 @@ const Breadcrumb = ({
               {/* slug name */}
               {subcategory ? (
                 <Link
-                  href={`/${slug === 'richmond' ? 'richmond-flooring' : slug === 'polar' ? 'polar-flooring' : slug?.toUpperCase()}`}
+                  href={`/${slug === 'richmond' ? 'richmond-flooring' : slug === 'polar' ? 'polar-flooring' : slug === 'floor-smart' ? 'floor-smart' : slug?.toUpperCase()}`}
                   className="hover:underline text-[9px] xs:text-11 sm:text-12 md:text-sm text-[#9F9F9F] capitalize font-medium"
                 >
-                  {slug}
+                  {slug.replace(/-/g, ' ')}
                 </Link>
               ) : (
                 <span className="text-black text-[9px] xs:text-11 sm:text-12 md:text-sm font-bold capitalize">

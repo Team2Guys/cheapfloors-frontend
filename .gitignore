@@ -15,6 +15,7 @@
 /yarn.lock
 /public/sitemap.xml
 /public/robots.txt
+/package-lock.json
 
 # testing
 /coverage

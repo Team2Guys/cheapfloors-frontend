@@ -704,11 +704,22 @@ const FormLayout = ({
                   name="whatAmiTopHeading"
                   placeholder="What Am I heading"
                 />
+                <Input
+                  label="What Am I End Point"
+                  name="whatIamEndpoint"
+                  placeholder="What Am I End Point"
+                />
                 <Input label="Name" name="name" placeholder="name" />
                 <Input
                   label="Custom Url"
                   name="custom_url"
                   placeholder="custom_url"
+                />
+
+                <Input
+                  label="Price"
+                  name="price"
+                  placeholder="Price"
                 />
 
                 <div className="rounded-sm border  bg-white  dark:bg-black">

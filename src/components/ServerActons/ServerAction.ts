@@ -2,8 +2,8 @@
 
 import { revalidateTag as revalidate } from 'next/cache';
 
-async function revalidateTag(name: string, tag: string = '') {
-  revalidate(name, tag);
+async function revalidateTag(name: string, profile: string = 'default') {
+  revalidate(name, profile);
 }
 
 export default revalidateTag;

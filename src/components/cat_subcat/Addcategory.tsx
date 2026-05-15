@@ -115,7 +115,8 @@ const FormLayout = ({
         posterImageUrl,
         whatAmiImageBanner: Banner
       };
-
+      //eslint-disable-next-line
+      const { recalledSubCats, ...rest } = newValue;
       const updateFlag = editCategoryName ? true : false;
 
       if (updateFlag) {
@@ -124,9 +125,7 @@ const FormLayout = ({
           variables: {
             input: {
               id: Number(editCategory?.id),
-              posterImageUrl,
-              whatAmiImageBanner: Banner,
-              ...values
+              ...rest
             }
           },
           refetchQueries: [{ query: FETCH_ALL_CATEGORIES }]
@@ -134,7 +133,7 @@ const FormLayout = ({
       } else {
         await client.mutate({
           mutation: CREATE_CATEGORY,
-          variables: { input: newValue },
+          variables: { input: rest },
           refetchQueries: [{ query: FETCH_ALL_CATEGORIES }]
         });
       }

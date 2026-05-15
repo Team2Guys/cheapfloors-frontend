@@ -108,32 +108,44 @@ const CategoryPage = async ({
       return notFound();
     }
 
-    const reCallFlag =
-      findCategory?.recalledSubCats && findCategory?.recalledSubCats.length > 0;
-    if (reCallFlag) {
-      let products: IProduct[] = [];
+    console.log(findCategory, "findCategoryfindCategory")
 
-      categories.forEach((cat: ICategory) => {
-        const filteredProd =
-          cat.products?.filter((prod) =>
-            findCategory?.recalledSubCats?.some(
-              (subCat: ISUBCATEGORY) =>
-                subCat.custom_url === prod.subcategory?.custom_url
-            ) && prod.status === 'PUBLISHED'
-          ) || [];
+   const isFloorSmart =
+  findCategory?.name?.trim().toLowerCase() === 'floor smart';
 
-        products = [...products, ...filteredProd];
-      });
-      findCategory.products = products;
-    } else {
-      findCategory.products = findCategory?.products?.filter(
-        (prod: IProduct) => prod.status === 'PUBLISHED'
-      );
-    }
+const reCallFlag =
+  findCategory?.recalledSubCats &&
+  findCategory?.recalledSubCats.length > 0;
+
+// 👉 Apply recall logic ONLY if NOT Floor Smart
+if (reCallFlag && !isFloorSmart) {
+  let products: IProduct[] = [];
+
+  categories.forEach((cat: ICategory) => {
+    const filteredProd =
+      cat.products?.filter(
+        (prod: IProduct) =>
+          findCategory?.recalledSubCats?.some(
+            (subCat: ISUBCATEGORY) =>
+              subCat.custom_url === prod.subcategory?.custom_url
+          ) && prod.status === 'PUBLISHED'
+      ) || [];
+
+    products = [...products, ...filteredProd];
+  });
+
+  findCategory.products = products;
+} else {
+  // 👉 Default behavior (including FLOOR SMART)
+  findCategory.products =
+    findCategory?.products?.filter(
+      (prod: IProduct) => prod.status === 'PUBLISHED'
+    ) || [];
+}
 
     const filteredCategories =
       categories
-        .filter((value: ICategory) => value?.name?.trim() !== 'ACCESSORIES')
+        .filter((value: ICategory) => value?.name?.trim() !== 'ACCESSORIES' )
         .sort((a: ICategory, b: ICategory) => {
           const indexA = staticMenuItems.findIndex(
             (item) => item.label.toLowerCase() === a.name.trim().toLowerCase()
@@ -146,6 +158,15 @@ const CategoryPage = async ({
             (indexB === -1 ? Infinity : indexB)
           );
         }) || [];
+
+    const smartFloorCategory = filteredCategories.find(
+      (cat: ICategory) =>
+        cat.name === 'FLOOR SMART'
+    );
+
+    console.log('smartFloorCategorysmartFloorCategory', smartFloorCategory);
+
+    console.log(slug,"slugslug")
     return (
       <Category
         catgories={filteredCategories}

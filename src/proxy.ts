@@ -44,7 +44,7 @@ export async function proxy(req: NextRequest) {
     const isAuthRoute = pathname === '/dashboard/Admin-login';
     const isProtectedRoute = pathname.startsWith('/dashboard') && !isAuthRoute;
 
-    console.log(isProtectedRoute, 'isAuthRoute', isAuthRoute);
+    // console.log(isProtectedRoute, 'isAuthRoute', isAuthRoute);
 
     let validToken = false;
     if (token) {

@@ -7,11 +7,6 @@ import { Session } from 'next-auth';
 import { FIND_ONE_USER } from 'graphql/queries';
 import Cookies from 'js-cookie';
 
-interface CustomUser extends User {
-  id: string;
-  name: string;
-  email: string;
-}
 
 export const authOptions = {
   providers: [
@@ -32,20 +27,27 @@ export const authOptions = {
               }
             }
           });
-          Cookies.set('user_token', data?.userLogin.token, {
-            expires: 24 * 60 * 60 * 1000
-          });
-          if (data?.userLogin) {
-            return {
-              id: data.userLogin.id,
-              name: data.userLogin.name,
-              email: data.userLogin.email,
-              image: data.userLogin.userImageUrl || null
-            } as CustomUser;
+
+          const user = data?.userLogin;
+
+          // ✅ Validate properly
+          if (!user || !user.token) {
+            return null;
           }
 
-          return null;
-        } catch {
+          // ✅ Set cookie ONLY if valid
+          Cookies.set('user_token', user.token, {
+            expires: 1 // 1 day (correct format)
+          });
+
+          return {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            image: user.userImageUrl || null
+          };
+        } catch (error) {
+          console.error('Login error:', error);
           return null;
         }
       }

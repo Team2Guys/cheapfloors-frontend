@@ -37,53 +37,49 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
     });
   };
 
-useLayoutEffect(() => {
-  if (!categories || categories.length === 0) return;
+  useLayoutEffect(() => {
+    if (!categories || categories.length === 0) return;
 
-  const buildMenu = () => {
-    const updatedMenu = staticMenuItems.map((staticItem) => {
-      const matchedCategory = categories.find(
-        (cat) => cat.custom_url === staticItem.href
-      );
+    const buildMenu = () => {
+      const updatedMenu = staticMenuItems.map((staticItem) => {
+        const matchedCategory = categories.find(
+          (cat) => cat.custom_url === staticItem.href
+        );
 
-      if (!matchedCategory) return staticItem;
+        if (!matchedCategory) return staticItem;
 
-      const reCallFlag =
-        matchedCategory.recalledSubCats &&
-        matchedCategory.recalledSubCats.length > 0;
+        const reCallFlag =
+          matchedCategory.recalledSubCats &&
+          matchedCategory.recalledSubCats.length > 0;
 
-      const subcategories: ISUBCATEGORY[] =
-        (reCallFlag
-          ? matchedCategory.recalledSubCats
-          : matchedCategory.subcategories) || [];
+        const subcategories: ISUBCATEGORY[] =
+          (reCallFlag
+            ? matchedCategory.recalledSubCats
+            : matchedCategory.subcategories) || [];
 
-      return {
-        ...staticItem,
-        submenu: subcategories.map((sub) => ({
-          label: sub.name,
-          href: `/${sub?.category?.RecallUrl || matchedCategory.RecallUrl}/${sub.custom_url}`,
-          image:
-            sub.posterImageUrl?.imageUrl || "/assets/default-image.png",
-          price: sub.price,
-        })),
-      };
-    });
+        return {
+          ...staticItem,
+          submenu: subcategories.map((sub) => ({
+            label: sub.name,
+            href: `/${sub?.category?.RecallUrl || matchedCategory.RecallUrl}/${sub.custom_url}`,
+            image: sub.posterImageUrl?.imageUrl || '/assets/default-image.png',
+            price: sub.price
+          }))
+        };
+      });
 
-    return window.innerWidth < 1470
-      ? window.innerWidth < 500 ? updatedMenu : updatedMenu.slice(0, -2)
-      : updatedMenu;
-  };
+      return updatedMenu;
+    };
 
-  const handleResize = () => {
-    setMenuItems(buildMenu());
-  };
+    const handleResize = () => {
+      setMenuItems(buildMenu());
+    };
 
-  handleResize();
-  window.addEventListener("resize", handleResize);
+    handleResize();
+    window.addEventListener('resize', handleResize);
 
-  return () => window.removeEventListener("resize", handleResize);
-}, [categories]);
-
+    return () => window.removeEventListener('resize', handleResize);
+  }, [categories]);
 
   return (
     <nav
@@ -130,6 +126,22 @@ useLayoutEffect(() => {
                 }
               />
             ))}
+            <div className="relative font-inter capitalize font-light pb-5 hidden">
+              <Link
+                className={`text-12 lg:text-10 xl:text-13 2xl:text-14 min-[1700px]:text-15 3xl:text-base capitalize ${pathname === 'about-us' ? 'bg-gray-light p-[6px] xl:p-2 rounded-xl' : 'hover:bg-gray-light p-[6px]  xl:p-2 rounded-xl '}`}
+                href="about-us"
+              >
+                About Us
+              </Link>
+            </div>
+            <div className="relative font-inter capitalize font-light pb-5 hidden">
+              <Link
+                className={`text-12 xl:text-13 2xl:text-14 min-[1700px]:text-15 3xl:text-base capitalize ${pathname === 'contact-us' ? 'bg-gray-light p-[6px] xl:p-2 rounded-xl' : 'hover:bg-gray-light p-[6px]  xl:p-2 rounded-xl '}`}
+                href="contact-us"
+              >
+                Contact Us
+              </Link>
+            </div>
           </div>
           <SearchBar
             className="block lg:hidden"
@@ -141,7 +153,7 @@ useLayoutEffect(() => {
           <Link
             href="/measurement-appointment"
             aria-label="Book appointment"
-            className="w-fit mx-auto text-xs sm:text-sm bg-primary hover:bg-secondary text-white px-2 py-1 text-nowrap hidden lg:block "
+            className="w-fit mx-auto text-xs sm:text-sm 2xl:text-[16px] bg-primary hover:bg-secondary text-white px-2 py-1 text-nowrap hidden lg:block "
           >
             Book Your Appointment
           </Link>
@@ -283,6 +295,28 @@ useLayoutEffect(() => {
                     )}
                 </div>
               ))}
+              <div className="border-b py-2 font-inter block min-[500px]:hidden">
+                <div className="flex_between gap-2 capitalize">
+                  {/* Main Category Link */}
+                  <Link
+                    href="/about-us"
+                    className={`text-sm font-semibold w-fit whitespace-nowrap ${pathname === '/about-us' ? 'bg-gray-light' : ''}`}
+                  >
+                    About Us
+                  </Link>
+                </div>
+              </div>
+              <div className="border-b py-2 font-inter block min-[500px]:hidden">
+                <div className="flex_between gap-2 capitalize">
+                  {/* Main Category Link */}
+                  <Link
+                    href="/contact-us"
+                    className={`text-sm font-semibold w-fit whitespace-nowrap ${pathname === '/contact-us' ? 'bg-gray-light' : ''}`}
+                  >
+                    Contact Us
+                  </Link>
+                </div>
+              </div>
             </Drawer>
           </div>
         </div>

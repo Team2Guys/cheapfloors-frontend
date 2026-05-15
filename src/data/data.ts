@@ -53,8 +53,8 @@ export const validationSchema = Yup.object({
   phoneNumber: Yup.string().required('Phone number is required'),
   // whatsappNumber: Yup.string().required("WhatsApp number is required"),
   email: Yup.string().email('Invalid email').required('Email is required'),
-  area: Yup.string().required('Area is required'),
-  selectRooms: Yup.string().required('Select the number of rooms'),
+  area: Yup.string().required('Location is required'),
+  selectRooms: Yup.string().required('Area is required'),
   preferredDate: Yup.string().required('Preferred date is required'),
   preferredTime: Yup.string().required('Preferred time is required')
 });
@@ -310,11 +310,12 @@ export const staticMenuItems = [
   { label: 'LVT Flooring', href: 'lvt-flooring', submenu: [] },
   { label: 'Richmond Flooring', href: 'richmond-flooring', submenu: [] },
   { label: 'Polar Flooring', href: 'polar-flooring', submenu: [] },
+  { label: 'Floor Smart', href: 'floor-smart', submenu: [] },
   { label: 'How to measure', href: 'how-to-measure-your-room' },
   { label: 'Accessories', href: 'accessories', submenu: [] },
   // { label: "Blogs", href: "blogs" },
-  { label: 'About Us', href: 'about-us' },
-  { label: 'Contact Us', href: 'contact-us' }
+  // { label: 'About Us', href: 'about-us' },
+  // { label: 'Contact Us', href: 'contact-us' }
 ];
 
 export const features: Feature[] = [
@@ -486,6 +487,17 @@ export const categoriesFeatures: CategoryFeatures[] = [
       'Wider luxury plank',
       '1220 X 228mm'
     ]
+  },
+  {
+    name: 'Floor Smart SPC Eco',
+    features: [
+      'Eco-friendly & low VOC',
+      'Antifungal & antibacterial protection',
+      ' 100% waterproof & fire resistant',
+      'Anti-slip surface for safety',
+      ' Click system for easy fitting',
+      " 1220 x 183 × 5mm"
+    ]
   }
 ];
 
@@ -609,7 +621,7 @@ export const popupCards: CardData[] = [
       'Lots of timeless styles',
       'Wood grain finishes',
       'Water-resistant',
-      "Affordable from <span class='font-currency font-normal md:text-18'></span> 49.00",
+      "Affordable from <span class='font-currency font-normal md:text-18'></span> 55.00",
       'Modern and classic'
     ]
   },
@@ -621,8 +633,8 @@ export const popupCards: CardData[] = [
       'Wood-like textured finish',
       'Durable with 0.3mm wear layer',
       '1220mm x 180mm plank size',
-      'Up to 5-year warranty',
-      '15-year warranty'
+      '5-year commercial warranty',
+      '10-year residential warranty'
     ]
   },
   {
@@ -632,7 +644,7 @@ export const popupCards: CardData[] = [
       'Integrated IXPE underlay',
       'SPC core construction',
       'Realistic Wood Grain Finish',
-      "Affordable price from <span class='font-currency font-normal md:text-18'></span> 109",
+      "Affordable price from <span class='font-currency font-normal md:text-18'></span> 87",
       'DIY-friendly installation'
     ]
   },
@@ -642,7 +654,7 @@ export const popupCards: CardData[] = [
     content: [
       'Premium designs',
       'Acoustic IXPE underlay',
-      'Longer Planks for a more authentic wood finish',
+      'Longer planks for a more authentic wood finish',
       'A wide range of natural finishes',
       'Durable & water-resistant'
     ]
@@ -689,6 +701,17 @@ export const popupCards: CardData[] = [
       'Wood-like embossed texture',
       'Multi-colour options',
       '0.3mm wear layer'
+    ]
+  },
+    {
+    id: 9,
+    heading: 'Floor Smart SPC <br />  Eco',
+    content: [
+      'Eco-friendly & low VOC',
+      'Antifungal & antibacterial protection',
+      '100% waterproof & fire resistant',
+      'Anti-slip surface for safety',
+      'Click system for easy fitting'
     ]
   }
 ];

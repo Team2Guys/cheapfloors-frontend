@@ -34,7 +34,7 @@ const HeroMain = ({ items }: HeroMainProps) => {
                   <span className="font-currency font-normal sm:text-3xl lg:text-[42px] xl:text-[55px]">
                     
                   </span>
-                  49 Per Square Metre.
+                  55 Per Square Metre.
                 </h2>
                 <p className="sm:text-sm md:text-base sm:leading-6 md:leading-7 w-full text-justify">
                   {item.description}
@@ -64,7 +64,7 @@ const HeroMain = ({ items }: HeroMainProps) => {
                     <span className="font-currency font-normal text-[16px] lg:text-[25px]">
                       
                     </span>{' '}
-                    49/m²
+                    55/m²
                   </span>
                 </div>
                 <div className="w-fit mt-1">

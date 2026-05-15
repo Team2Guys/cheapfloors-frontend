@@ -4,14 +4,23 @@ import Link from 'next/link';
 import { BiArrowBack } from 'react-icons/bi';
 import { loginData } from 'data/data';
 import { Field, Form, Formik } from 'formik';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const LoginForm = () => {
   const router = useRouter();
+  const { data: session } = useSession();
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+
+  // If already logged in, redirect to profile
+  useEffect(() => {
+    if (session?.user) {
+      router.replace('/profile');
+    }
+  }, [session, router]);
 
   const formValues = {
     email: '',
@@ -46,15 +55,36 @@ const LoginForm = () => {
             initialValues={formValues}
             onSubmit={async (values, { setSubmitting }) => {
               try {
-                await signIn('credentials', {
+                setError(''); // Clear previous errors
+                const response = await signIn('credentials', {
                   email: values.email,
                   password: values.password,
-                  redirect: false
-                });
-
-                router.replace('/profile');
-              } catch (err) {
-                return err;
+                  redirect: false,
+                  callbackUrl: '/login'
+                });                
+                if (response?.ok) {
+                  router.replace('/profile');
+                } else {
+                  // If no ok status or error exists, show error message
+                  const errorCode = response?.error || 'CredentialsSignin';
+                  
+                  switch (errorCode) {
+                    case 'CredentialsSignin':
+                      setError('Invalid email or password.');
+                      break;
+                    case 'AccessDenied':
+                      setError('Access denied. Please contact support.');
+                      break;
+                    case 'OAuthAccountNotLinked':
+                      setError('Email is already associated with another account.');
+                      break;
+                    default:
+                      setError('Invalid email or password.');
+                  }
+                }
+              } catch (error) {
+                console.error('Login error:', error); // Debug log
+                setError('An error occurred while signing in. Please try again.');
               }
               setSubmitting(false);
             }}
@@ -68,6 +98,7 @@ const LoginForm = () => {
                     name="email"
                     placeholder="Email"
                     className="p-3 shadow-none w-full focus:outline-none focus:ring-0 pl-4"
+                    required
                   />
                 </div>
 
@@ -79,6 +110,7 @@ const LoginForm = () => {
                       name="password"
                       placeholder="Password"
                       className="p-3 shadow-none w-full focus:outline-none focus:ring-0 pl-4"
+                      required
                     />
                   </div>
                   <button
@@ -97,11 +129,17 @@ const LoginForm = () => {
                     {loginData.forgotPasswordText}
                   </Link>
                 </p>
-
+                {error && (
+                  <div className="bg-red-50 border border-red-300 text-red-700 px-4 py-3 rounded mt-4">
+                    {error}
+                  </div>
+                )}
                 <button
                   type="submit"
-                  className="bg-primary p-3 text-white w-full mt-5"
-                  disabled={isSubmitting}
+                  className={`p-3 text-white w-full mt-5 ${isSubmitting ? 'bg-primary opacity-70 cursor-not-allowed' : 'bg-primary'}`}
+                  disabled={
+                    isSubmitting
+                  }
                 >
                   {isSubmitting ? 'Signing In...' : 'Sign In'}
                 </button>

@@ -78,7 +78,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-100 text-gray-700 pt-10 mt-20 px-0 mx-0 relative font-inter">
-      <Container className=" mx-auto grid sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4 2xl:gap-5 font-light">
+      <Container className=" mx-auto grid sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8 gap-4 2xl:gap-5 font-light">
         <div className="sm:mt-2">
           <Image
             src="/assets/images/logo.webp"
@@ -87,7 +87,7 @@ const Footer = () => {
             height={50}
             className="mb-4"
           />
-          <p className="mt-2 text-sm text-justify w-full sm:max-w-[150px] xl:max-w-[160px] 2xl:max-w-[172px]">
+          <p className="mt-2 text-sm w-full sm:max-w-[150px] xl:max-w-[160px] 2xl:max-w-[172px]">
             {footerData.company.description}
           </p>
         </div>
@@ -116,7 +116,7 @@ const Footer = () => {
               <div key={index} className="sm:block hidden">
                 <Link
                   href={`/${section.custom_url}`}
-                  className="lg:text-base md:text-sm font-normal 2xl:tracking-widest xl:text-nowrap"
+                  className="lg:text-base md:text-sm font-normal 2xl:tracking-widest 2xl:text-nowrap"
                 >
                   {section.name}
                 </Link>
@@ -214,7 +214,7 @@ const Footer = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-6 md:grid-cols-3 w-4/5 gap-3 mt-4 items-center">
+          <div className="grid grid-cols-6 sm:grid-cols-3 w-4/5 gap-3 mt-4 items-center">
             {footerData.paymentMethods.map((method, index) => (
               <div key={index} className="flex justify-start">
                 <Image

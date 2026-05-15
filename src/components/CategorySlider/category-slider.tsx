@@ -10,6 +10,7 @@ import SwiperSlider from 'components/common/swiper-slider/swiper-slider';
 import { categoryBreakpoint } from 'data/slider';
 
 const CategorySlider = ({ categories }: { categories: Category[] }) => {
+  
   return (
     <div className="space-y-8">
       {categories
@@ -36,6 +37,7 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
           const shouldEnablePagination =
             subcategories && subcategories.length >= 0;
           const seeAllLink = `/${category?.custom_url || category.name.toLowerCase().replace(/\s+/g, '-')}`;
+       
           return (
             <div
               key={index}
