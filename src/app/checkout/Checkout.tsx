@@ -817,7 +817,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                       <span className="font-currency text-20 font-normal">
                         
                       </span>{' '}
-                      {formatAED(subTotal)}
+                      {formatAED((subTotal) - ((subTotal * 0.05)))}
                     </span>
                   </p>
 
@@ -1108,7 +1108,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                     <span>
                       <span className="font-currency font-normal text-20">
                         
-                      </span> {(subTotal * 0.05).toFixed(2)}
+                      </span> {formatAED(subTotal * 0.05)}
                     </span>
                   </p>
                   <p className="text-lg font-bold flex justify-between">
