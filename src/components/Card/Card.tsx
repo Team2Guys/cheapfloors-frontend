@@ -59,13 +59,13 @@ const Card: React.FC<productCardProps> = ({
           FIND_QUICK_VIEW_PRODUCT
         );
       }
-      if(setModalProduct && setIsOpen){
+      if (setModalProduct && setIsOpen) {
         setModalProduct(productData || undefined);
         setIsOpen(true);
-      }else {
+      } else {
         setModalData(productData || undefined);
         setIsModalOpen(true);
-      }      
+      }
     } catch (error) {
       showAlert({
         title: 'Error fetching single product',
@@ -107,7 +107,7 @@ const Card: React.FC<productCardProps> = ({
 
   return (
     <div
-      className={` group flex flex-col font-inter p-1 xsm:p-2 ${isAccessories ? 'hover:bg-[#FFF9F5]' : ''}`}
+      className={`group flex flex-col h-full font-inter p-3 border border-gray-200 transition-shadow hover:shadow-md ${isAccessories ? 'hover:bg-[#FFF9F5]' : sldier ? 'bg-white' : 'bg-[#FAFAFA]'}`}
     >
       <div className="relative">
         <Link
@@ -128,111 +128,26 @@ const Card: React.FC<productCardProps> = ({
           />
         </Link>
         {isAccessories && isSoldOut && (
-          <div className="bg-red-500 text-white text-xs absolute px-2 py-1 right-0 top-1">
+          <div className="bg-red-500 text-white text-xs absolute px-2 py-1 right-0 top-1 z-10">
             Sold Out
           </div>
         )}
         {!sldier && (
-          <div className="flex absolute duration-300 gap-2 group-hover:opacity-100 opacity-0 right-2 top-2 transition-opacity">
-            {!isAccessories && (
-              <div className="relative card-icon-btn">
-                <button
-                  className="bg-white p-1 shadow transition free-sample-hover"
-                  aria-label="Add to free sample"
-                  onClick={() =>
-                    handleAddToStorage(
-                      product,
-                      Number(product.price) *
-                        (Number(product?.boxCoverage) || 1),
-                      Number(product.price) *
-                        (Number(product?.boxCoverage) || 1),
-                      Number(product?.boxCoverage),
-                      1,
-                      product.subcategory?.custom_url || '',
-                      'category' in product
-                        ? (product.category?.RecallUrl ?? 'Accessories')
-                        : 'Accessories',
-                      'freeSample',
-                      'productImages' in product
-                        ? (product.productImages?.[0]?.imageUrl ??
-                            product.posterImageUrl?.imageUrl)
-                        : product.posterImageUrl?.imageUrl,
-                      product?.boxCoverage,
-                      'm',
-                      selectedColor
-                    )
-                  }
-                  onMouseEnter={() => setShowCaption('Add to Free Sample')}
-                  onMouseLeave={() => setShowCaption('')}
-                >
-                  <FreeSample isCard />
-                </button>
-
-                {/* Tooltip for Free Sample */}
-                <span
-                  className={`show-caption-btn absolute left-1/2 -translate-x-1/2 -bottom-6 bg-gray-800 text-white text-xs px-2 py-1 rounded transition whitespace-nowrap z-10 ${showCaption === 'Add to Free Sample' ? 'opacity-100' : 'opacity-0'}`}
-                >
-                  Add to Free Sample
-                </span>
-              </div>
-            )}
-
-            <div className="relative">
-              <button
-                className="bg-white p-1 shadow hover:bg-primary hover:text-white transition"
-                id="AddToWishlist"
-                aria-label="Add to wishlist"
-                onClick={() => {
-                  handleAddToStorage(
-                    product,
-                    Number(product.price),
-                    Number(product.price) * (Number(product?.boxCoverage) || 1),
-                    1,
-                    1,
-                    product.subcategory?.custom_url || '',
-                    'category' in product
-                      ? (product.category?.RecallUrl ?? 'Accessories')
-                      : 'Accessories',
-                    'wishlist',
-                    'productImages' in product
-                      ? (product.productImages?.[0]?.imageUrl ??
-                          product.posterImageUrl?.imageUrl)
-                      : product.posterImageUrl?.imageUrl,
-                    product?.boxCoverage || '2.4',
-                    'm',
-                    selectedColor
-                  );
-                }}
-                onMouseEnter={() => setShowCaption('Add to Wishlist')}
-                onMouseLeave={() => setShowCaption('')}
-              >
-                <FiHeart size={20} />
-              </button>
-
-              {/* Tooltip for Wishlist */}
-              <span
-                className={`absolute left-1/2 -translate-x-1/2 -bottom-6 bg-gray-800 text-white text-xs px-2 py-1 rounded transition whitespace-nowrap z-10 ${showCaption === 'Add to Wishlist' ? 'opacity-100' : 'opacity-0'}`}
-              >
-                Add to Wishlist
-              </span>
-            </div>
-
-            <div className="relative">
-              <button
-                className="bg-white p-1 shadow hover:bg-primary hover:text-white transition"
-                aria-label="open quick view"
-                onClick={(e) =>  handleModel(e)}
-                onMouseEnter={() => setShowCaption('Quick View')}
-                onMouseLeave={() => setShowCaption('')}
-              >
-                <FiEye size={20} />
-              </button>
-              <span
-                className={`absolute left-1/2 -translate-x-1/2 -bottom-6 bg-gray-800 text-white text-[10px] p-1 rounded transition whitespace-nowrap z-10 ${showCaption === 'Quick View' ? 'opacity-100' : 'opacity-0'}`}
-              >
-                Quick View
-              </span>
-            </div>
+          <div className="absolute top-2 right-2 z-10">
+            <button
+              className="bg-white p-2 shadow-sm rounded-sm hover:text-primary transition"
+              aria-label="open quick view"
+              onClick={(e) => handleModel(e)}
+              onMouseEnter={() => setShowCaption('Quick View')}
+              onMouseLeave={() => setShowCaption('')}
+            >
+              <FiEye size={18} className="text-black" />
+            </button>
+            <span
+              className={`absolute right-10 top-1 bg-gray-800 text-white text-[10px] px-2 py-1 rounded transition whitespace-nowrap z-10 pointer-events-none ${showCaption === 'Quick View' ? 'opacity-100' : 'opacity-0'}`}
+            >
+              Quick View
+            </span>
           </div>
         )}
       </div>
@@ -268,12 +183,12 @@ const Card: React.FC<productCardProps> = ({
       )}
       {product.sizes && product.sizes.length > 0 ? (
         <div
-          className={`py-2 border-b border-gray-100 xsm:px-2 ${isAccessories ? 'py-3 justify-around' : 'justify-between'}`}
+          className={`py-3 border-b border-gray-200 ${isAccessories ? 'justify-around' : 'justify-between'}`}
         >
           {product.sizes.map((feature, index) => (
             <div
               key={index}
-              className="flex gap-1 xsm:gap-4 w-full justify-between"
+              className="flex gap-2 w-full justify-between items-center"
             >
               {[
                 { key: 'width', Icon: Leftright },
@@ -281,9 +196,9 @@ const Card: React.FC<productCardProps> = ({
                 { key: 'height', Icon: TwoArrow }
               ].map(({ key, Icon }) =>
                 feature[key as keyof typeof feature] ? (
-                  <div key={key} className="flex_between gap-1 ">
+                  <div key={key} className="flex items-center gap-1.5">
                     <Icon />
-                    <span className="text-[7px] xs:text-[9px] xsm:text-[10px] text-black md:text-[12px]">
+                    <span className="text-[8px] sm:text-xs xl:text-sm font-medium text-gray-500">
                       {feature[key as keyof typeof feature]}
                     </span>
                   </div>
@@ -294,10 +209,10 @@ const Card: React.FC<productCardProps> = ({
         </div>
       ) : (
         <div
-          className={`flex gap-4 py-2 border-b border-gray-200 px-0 xsm:px-2 ${isAccessories ? 'py-3 justify-around' : 'justify-evenly'}`}
+          className={`flex gap-4 py-3 border-b border-gray-200 ${isAccessories ? 'justify-around' : 'justify-between'}`}
         >
           {features.map((feature, index) => (
-            <div className="flex gap-1 items-center" key={index}>
+            <div className="flex gap-1.5 items-center" key={index}>
               <Image
                 src={feature.icon}
                 alt="Icon"
@@ -305,7 +220,7 @@ const Card: React.FC<productCardProps> = ({
                 height={feature.height}
                 className="text-gray-500 cursor-pointer hover:text-red-500"
               />
-              <span className="text-[7px] text-black md:text-[12px]">
+              <span className="text-[8px] sm:text-xs xl:text-sm font-medium text-gray-500">
                 {feature.label}
               </span>
             </div>
@@ -313,66 +228,119 @@ const Card: React.FC<productCardProps> = ({
         </div>
       )}
 
-      <div className="px-0 pt-2 xsm:p-2 lg:p-4">
+      <div className="pt-3 pb-1 flex-grow">
         <Link
           href={
             isAccessories
               ? `/accessories/${product.custom_url?.toLowerCase() ?? ''}`
               : handleNavigate(product as IProduct, categoryData)
           }
-          className={`md:mt-0 mt-1 text-left font-semibold min-h-10 xsm:h-auto block ${
-            isAccessories
-              ? 'text-card-text xsm:text-xl leading-5'
-              : subCategoryFlag
-                ? 'leading-5 text-card-text text-13 sm:text-base'
-                : 'text-card-text text-12 sm:text-base leading-4 xsm:leading-5'
-          }`}
+          className="block font-semibold text-black text-sm md:text-base leading-snug hover:text-primary transition line-clamp-2 min-h-[2.5rem]"
         >
-          <h2>{isAccessories ? `${product.name}` : product.name}</h2>
+          <h2 className="line-clamp-2">{isAccessories ? `${product.name}` : product.name}</h2>
         </Link>
       </div>
 
-      <div className="px-0 xsm:p-2 lg:p-4">
-        <div className="flex_between w-full gap-2 flex-row md:gap-4 md:items-start sm:py-2 max-sm:text-primary">
-          {'price' in product && product.price && (
-            <p className="text-12 w-full md:text-sm md:text-left md:w-full xl:text-base text-black">
-              <span className="font-currency md:text-18 xl:text-20 font-normal">
-                
-              </span>{' '}
-              <span>{product?.price}</span>
-              {isAccessories ? '/m' : '/m²'}
-            </p>
-          )}
+      <div className="pb-2">
+        {'price' in product && product.price && (
+          <p className="text-lg md:text-xl font-medium text-black flex items-center">
+            <span className="font-currency font-normal text-xl md:text-2xl mr-1">
+              
+            </span>
+            {product?.price}
+            <span className="text-sm md:text-base font-normal ml-1">{isAccessories ? '/m' : '/m²'}</span>
+          </p>
+        )}
+      </div>
 
-          <div className="w-full md:text-right">
-            {isSoldOut ? (
-              <button
-                disabled
-                className="bg-[#FC3D3D] border border-[#FC3D3D] text-[10px] text-white lg:text-sm md:px-1 md:text-[10px] px-3 py-1.5 transition whitespace-nowrap xl:px-3 xl:py-2"
-              >
-                Sold Out
-              </button>
-            ) : (product as IProduct).stock === 0 && !isAccessories ? (
-              <button
-                disabled
-                className="bg-black border border-black text-[10px] text-white lg:text-sm md:px-1 md:text-[10px] px-3 py-1.5 transition whitespace-nowrap xl:px-3 xl:py-2"
-              >
-                Out of Stock
-              </button>
-            ) : (
-              <Link
-                href={
-                  isAccessories
-                    ? `/accessories/${product.custom_url?.toLowerCase() ?? ''}`
-                    : handleNavigate(product as IProduct, categoryData)
-                }
-                className="flex_center gap-2 border-2 border-primary text-[10px] text-nowrap text-black hover:bg-primary hover:text-white lg:text-sm md:px-3 md:py-2 md:text-[10px] px-3 py-1.5 transition whitespace-nowrap font-semibold hover:fill-white w-fit ms-auto"
-              >
-                Shop Now
-              </Link>
-            )}
-          </div>
-        </div>
+      <div className={`mt-auto flex items-center sm:gap-4 gap-1 pt-2 ${sldier ? 'justify-start' : 'justify-between'}`}>
+        {isSoldOut || ((product as IProduct).stock === 0 && !isAccessories) ? (
+          <button
+            disabled
+            className={`${sldier ? 'px-8 w-fit' : 'flex-1'} py-2 md:py-2.5 rounded-full border border-gray-400 bg-gray-100 text-gray-500 font-semibold text-sm md:text-base cursor-not-allowed text-center`}
+          >
+            {isSoldOut ? 'Sold Out' : 'Out of Stock'}
+          </button>
+        ) : sldier ? (
+          <Link
+            href={
+              isAccessories
+                ? `/accessories/${product.custom_url?.toLowerCase() ?? ''}`
+                : handleNavigate(product as IProduct, categoryData)
+            }
+            className="px-8 block text-center py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-sm md:text-base hover:bg-primary hover:text-white transition"
+          >
+            Shop Now
+          </Link>
+        ) : !isAccessories ? (
+          <button
+            className="flex-1 py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-sm md:text-base hover:bg-primary hover:text-white transition text-center"
+            onClick={(e) => {
+              e.preventDefault();
+              handleAddToStorage(
+                product,
+                Number(product.price) * (Number(product?.boxCoverage) || 1),
+                Number(product.price) * (Number(product?.boxCoverage) || 1),
+                Number(product?.boxCoverage),
+                1,
+                product.subcategory?.custom_url || '',
+                'category' in product
+                  ? (product.category?.RecallUrl ?? 'Accessories')
+                  : 'Accessories',
+                'freeSample',
+                'productImages' in product
+                  ? (product.productImages?.[0]?.imageUrl ?? product.posterImageUrl?.imageUrl)
+                  : product.posterImageUrl?.imageUrl,
+                product?.boxCoverage,
+                'm',
+                selectedColor
+              );
+            }}
+          >
+            Free sample
+          </button>
+        ) : (
+          <Link
+            href={
+              isAccessories
+                ? `/accessories/${product.custom_url?.toLowerCase() ?? ''}`
+                : handleNavigate(product as IProduct, categoryData)
+            }
+            className="flex-1 block text-center py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-sm md:text-base hover:bg-primary hover:text-white transition"
+          >
+            Shop Now
+          </Link>
+        )}
+
+        {!sldier && (
+          <button
+            className="w-[42px] h-[42px] md:w-[46px] md:h-[46px] flex-shrink-0 flex items-center justify-center rounded-xl text-primary hover:bg-primary hover:text-white transition bg-white"
+            aria-label="Add to wishlist"
+            onClick={(e) => {
+              e.preventDefault();
+              handleAddToStorage(
+                product,
+                Number(product.price),
+                Number(product.price) * (Number(product?.boxCoverage) || 1),
+                1,
+                1,
+                product.subcategory?.custom_url || '',
+                'category' in product
+                  ? (product.category?.RecallUrl ?? 'Accessories')
+                  : 'Accessories',
+                'wishlist',
+                'productImages' in product
+                  ? (product.productImages?.[0]?.imageUrl ?? product.posterImageUrl?.imageUrl)
+                  : product.posterImageUrl?.imageUrl,
+                product?.boxCoverage || '2.4',
+                'm',
+                selectedColor
+              );
+            }}
+          >
+            <FiHeart size={24} />
+          </button>
+        )}
       </div>
     </div>
   );

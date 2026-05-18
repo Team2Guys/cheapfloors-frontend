@@ -98,13 +98,17 @@
 
 @layer components {
   .filter_accordion {
-    @apply pl-4 text-sm text-gray-600 space-y-1;
+    @apply px-2 text-sm text-black flex flex-col;
+  }
+
+  .filter_accordion li {
+    @apply py-2 border-b border-[#0000001F] last:border-0;
   }
 }
 
 @layer components {
   .filter_Link {
-    @apply cursor-pointer hover:text-primary block;
+    @apply cursor-pointer hover:text-primary block text-black;
   }
 }
 
@@ -299,4 +303,3 @@
     background-color: transparent !important;
   }
 }
-

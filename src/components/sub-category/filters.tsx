@@ -166,13 +166,13 @@ const Filters = ({
   };
 
   return (
-    <div className={`p-2 xl:p-4 w-full space-y-5 font-inter  ${className}`}>
-      <div className="border-b-2 pb-5">
-        <p className="font-medium uppercase pb-2 text-[#191C1F]">
-          Filter by Category
-        </p>
+    <div className={`p-4 w-full space-y-5 font-inter border border-[#0000003D] rounded ${className}`}>
+      <div className="mb-6">
+        <div className="bg-[#F9FAFB] py-3 mb-4 rounded-sm text-center">
+          <p className="font-medium text-base uppercase text-black">Filter by Category</p>
+        </div>
         {orderedCategories.map((category, index) => (
-          <Accordion key={index} title={category.name}>
+          <Accordion key={index} title={category.name.toLowerCase()}>
             <ul className="filter_accordion">
               {category.sortedSubcategories?.map((subCategory, i) => (
                 <li key={i}>
@@ -213,29 +213,27 @@ const Filters = ({
               catSlug === 'lvt-flooring' ||
               catSlug === 'richmond-flooring' ||
               catSlug === 'richmond') && (
-              <li>
-                <Link
-                  href={`/${
-                    catSlug === 'polar-flooring'
+                <li>
+                  <Link
+                    href={`/${catSlug === 'polar-flooring'
                       ? 'polar'
                       : catSlug === 'spc-flooring'
                         ? 'polar'
                         : 'richmond'
-                  }/spc-eco`}
-                  className="filter_Link capitalize"
-                >
-                  Eco
-                </Link>
-              </li>
-            )}
+                      }/spc-eco`}
+                    className="filter_Link capitalize"
+                  >
+                    Eco
+                  </Link>
+                </li>
+              )}
 
             <li>
               <Link
-                href={`/${
-                  catSlug === 'spc-flooring' || catSlug === 'polar-flooring'
-                    ? 'polar'
-                    : 'richmond'
-                }/spc-herringbone`}
+                href={`/${catSlug === 'spc-flooring' || catSlug === 'polar-flooring'
+                  ? 'polar'
+                  : 'richmond'
+                  }/spc-herringbone`}
                 className="filter_Link capitalize"
               >
                 Herringbone
@@ -254,24 +252,24 @@ const Filters = ({
               catSlug === 'lvt-flooring' ||
               catSlug === 'spc-flooring' ||
               catSlug === 'richmond') && (
-              <li>
-                <Link
-                  href="/richmond/spc-prime"
-                  className="filter_Link capitalize"
-                >
-                  Prime
-                </Link>
-              </li>
-            )}
+                <li>
+                  <Link
+                    href="/richmond/spc-prime"
+                    className="filter_Link capitalize"
+                  >
+                    Prime
+                  </Link>
+                </li>
+              )}
           </ul>
         </Accordion>
 
         {!isColection && (
           <Accordion title="Waterproof">
-            <ul className="pl-4 text-sm space-y-1">
+            <ul className="filter_accordion">
               <li>
                 <button
-                  className={`cursor-pointer ${isWaterProof ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}
+                  className={`cursor-pointer w-full text-left ${isWaterProof ? 'text-primary' : 'text-[#475156] hover:text-primary'}`}
                   onClick={() =>
                     setIsWaterProof(isWaterProof === true ? null : true)
                   }
@@ -281,7 +279,7 @@ const Filters = ({
               </li>
               <li>
                 <button
-                  className={`cursor-pointer ${!isWaterProof && isWaterProof !== undefined && isWaterProof !== null ? 'text-primary' : 'text-gray-600 hover:text-primary'}`}
+                  className={`cursor-pointer w-full text-left ${!isWaterProof && isWaterProof !== undefined && isWaterProof !== null ? 'text-primary' : 'text-[#475156] hover:text-primary'}`}
                   onClick={() =>
                     setIsWaterProof(isWaterProof === false ? null : false)
                   }
@@ -327,13 +325,12 @@ const Filters = ({
                   return (
                     <li key={i}>
                       <button
-                        className={`cursor-pointer ${
-                          selectedProductFilters[
-                            filterKey as keyof FilterState
-                          ]?.some((val: string) => val === item)
-                            ? 'text-primary'
-                            : 'text-gray-600 hover:text-primary'
-                        }`}
+                        className={`cursor-pointer w-full text-left flex justify-between items-center ${selectedProductFilters[
+                          filterKey as keyof FilterState
+                        ]?.some((val: string) => val === item)
+                          ? 'text-primary'
+                          : 'text-[#475156] hover:text-primary'
+                          }`}
                         onClick={() =>
                           handleFilterSelection(
                             filterKey as keyof FilterState,
@@ -358,10 +355,10 @@ const Filters = ({
         })}
       </div>
       {coverageArea && setcoverageArea && (
-        <div className="border-b-2 pb-5">
-          <p className="font-medium uppercase pb-5 text-[#191C1F]">
-            Coverage Area
-          </p>
+        <div className="mb-6">
+          <div className="bg-[#F9FAFB] py-3 mb-4 rounded-sm text-center">
+            <p className="font-semibold text-sm uppercase text-[#191C1F]">Coverage Area</p>
+          </div>
           <PriceSlider
             priceValue={coverageArea}
             setPriceValue={setcoverageArea}
@@ -370,8 +367,10 @@ const Filters = ({
         </div>
       )}
 
-      <div className="border-b-2 pb-5">
-        <p className="font-medium uppercase pb-5 text-[#191C1F]">Price Range</p>
+      <div className="mb-6">
+        <div className="bg-[#F9FAFB] py-3 mb-6 rounded-sm text-center">
+          <p className="font-semibold text-sm uppercase text-[#191C1F]">Price Range</p>
+        </div>
         <PriceSlider
           priceValue={priceValue}
           setPriceValue={setPriceValue}
@@ -386,28 +385,28 @@ const Filters = ({
           (coverageArea && (coverageArea[0] > 0 || coverageArea[1] < 200)) ||
           (isClearance ? priceValue[0] > 20 : priceValue[0] > 55) ||
           priceValue[1] < 149) && (
-          <div className="flex justify-center mt-4">
-            <button
-              className="border border-[#cc7644] text-[#cc7644] w-[106px] h-[40px] text-sm rounded-[3px] transition hover:bg-[#cc7644] hover:text-white"
-              onClick={() =>
-                handleClearFilter(
-                  setPriceValue,
-                  setSelectedProductFilters,
-                  setIsWaterProof,
-                  setcoverageArea
-                )
-              }
-            >
-              Clear Filters
-            </button>
-          </div>
-        )}
+            <div className="flex justify-center mt-4">
+              <button
+                className="bg-[#F0B323] text-black w-[120px] h-[40px] text-sm font-semibold rounded-full transition hover:bg-[#d9a020]"
+                onClick={() =>
+                  handleClearFilter(
+                    setPriceValue,
+                    setSelectedProductFilters,
+                    setIsWaterProof,
+                    setcoverageArea
+                  )
+                }
+              >
+                Clear Filters
+              </button>
+            </div>
+          )}
       </div>
       {!isClearance && (
-        <div className="border-b-2 pb-5">
-          <p className="font-medium uppercase pb-5  text-[#191C1F]">
-            popular Brands
-          </p>
+        <div className="mb-6">
+          <div className="bg-[#F9FAFB] py-3 mb-6 rounded-sm text-center">
+            <p className="font-semibold text-sm uppercase text-[#191C1F]">Popular Brands</p>
+          </div>
           <div className="flex gap-4 flex-wrap items-center">
             <ul className="space-y-3">
               {categoryState &&
@@ -436,36 +435,36 @@ const Filters = ({
         </div>
       )}
       <div className="pb-5">
-        <p className="font-medium uppercase pb-5 text-[#191C1F]">Popular Tag</p>
+        <div className="bg-[#F9FAFB] py-3 mb-6 rounded-sm text-center">
+          <p className="font-semibold text-sm uppercase text-[#191C1F]">Popular Tag</p>
+        </div>
         <div className="flex flex-wrap gap-2 items-center">
           {isSubCategory || isClearance
             ? orderedCategories.map((option, index) => (
-                <Link
-                  href={`/${option.custom_url}`}
-                  key={index}
-                  className={`py-1 px-2 transition-colors duration-300 font-inter text-sm ${
-                    path === `/${option.custom_url}`
-                      ? 'bg-[#BF69330A] border border-primary text-[#191C1F]'
-                      : 'bg-transparent text-[#475156] font-medium border border-gray-300'
+              <Link
+                href={`/${option.custom_url}`}
+                key={index}
+                className={`py-1.5 px-4 transition-colors duration-300 font-inter text-sm ${path === `/${option.custom_url}`
+                  ? 'bg-[#F0B323] border border-[#F0B323] text-black font-semibold rounded-full'
+                  : 'bg-white text-[#475156] font-medium border border-gray-300 rounded-full'
                   }`}
-                >
-                  {option.name}
-                </Link>
-              ))
+              >
+                {option.name}
+              </Link>
+            ))
             : popularTags.map((tag, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleTagClick(tag)}
-                  className={`py-1 px-2 transition-colors duration-300 font-inter text-sm border uppercase
-          ${
-            selectedTags.includes(tag)
-              ? 'bg-[#BF69330A] border-primary text-[#191C1F]'
-              : 'bg-transparent text-[#475156] font-medium border-gray-300'
-          }`}
-                >
-                  {tag}
-                </button>
-              ))}
+              <button
+                key={index}
+                onClick={() => handleTagClick(tag)}
+                className={`py-1.5 px-4 transition-colors duration-300 font-inter text-sm border uppercase
+          ${selectedTags.includes(tag)
+                    ? 'bg-[#F0B323] border-[#F0B323] text-black font-semibold rounded-full'
+                    : 'bg-white text-[#475156] font-medium border-gray-300 rounded-full'
+                  }`}
+              >
+                {tag}
+              </button>
+            ))}
         </div>
       </div>
     </div>

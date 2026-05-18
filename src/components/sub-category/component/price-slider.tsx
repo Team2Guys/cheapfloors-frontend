@@ -73,11 +73,11 @@ const CustomPriceSlider = ({
       {/* Slider track */}
       <div
         ref={sliderRef}
-        className="h-2 bg-gray-300 rounded-full w-full relative"
+        className="h-1 bg-gray-300 rounded-full w-full relative"
       >
         {/* Active range */}
         <div
-          className="absolute bg-primary h-2 rounded-full"
+          className="absolute bg-primary h-1 rounded-full"
           style={{
             left: `${getPercentage(priceValue[0])}%`,
             width: `${getPercentage(priceValue[1]) - getPercentage(priceValue[0])}%`
@@ -86,7 +86,7 @@ const CustomPriceSlider = ({
 
         {/* Min thumb */}
         <div
-          className="w-5 h-5 bg-white border-2 border-primary rounded-full cursor-pointer absolute top-1/2 transform -translate-y-1/2 z-10 touch-none"
+          className="w-3 h-3 bg-primary border-2 border-primary rounded-full cursor-pointer absolute top-1/2 transform -translate-y-1/2 z-10 touch-none"
           style={{
             left: `${getPercentage(priceValue[0])}%`,
             transform: 'translate(-50%, -50%)'
@@ -97,7 +97,7 @@ const CustomPriceSlider = ({
 
         {/* Max thumb */}
         <div
-          className="w-5 h-5 bg-white border-2 border-primary rounded-full cursor-pointer absolute top-1/2 transform -translate-y-1/2 z-10 touch-none"
+          className="w-3 h-3 bg-primary border-2 border-primary rounded-full cursor-pointer absolute top-1/2 transform -translate-y-1/2 z-10 touch-none"
           style={{
             left: `${getPercentage(priceValue[1])}%`,
             transform: 'translate(-50%, -50%)'
@@ -108,16 +108,20 @@ const CustomPriceSlider = ({
       </div>
 
       {/* Price label */}
-      <p className="text-sm xl:text-base pt-1 text-[#475156]">
-        {isArea ? 'SQM' : 'Price'}:{' '}
-        <span className="font-normal">
+      <p className="text-sm xl:text-base pt-1 text-black flex justify-between items-center w-full">
+        <span>
+          {isArea ? 'SQM' : 'Price'}:{' '}
           <span className="font-currency font-normal text-18"></span>{' '}
           {priceValue[0]}
-          {isArea ? '' : '/m²'} —{' '}
+
+        </span>
+        {/* {isArea ? '' : '/m²'} —{' '} */}
+        <span>
           <span className="font-currency font-normal text-18"></span>{' '}
           {priceValue[1]}
-          {isArea ? '' : '/m²'}
         </span>
+
+        {/* {isArea ? '' : '/m²'} */}
       </p>
     </div>
   );

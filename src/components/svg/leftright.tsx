@@ -6,7 +6,7 @@ const Leftright = () => {
       width="35"
       height="6"
       viewBox="0 0 35 6"
-      className=" w-6 xsm:w-9 h-2 xsm:h-6"
+      className=" w-3 xsm:w-5 xl:w-9 h-2 xsm:h-6"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

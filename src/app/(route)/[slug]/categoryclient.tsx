@@ -15,6 +15,7 @@ const SubCategory = dynamic(
 import dynamic from 'next/dynamic';
 import Filter from 'components/svg/filter';
 import { productFilter } from 'utils/helperFunctions';
+import CategoryFaqs from 'components/Faqs/CategoryFaqs';
 const Filters = dynamic(() => import('components/sub-category/filters'), {
   ssr: false,
   loading: () => (
@@ -89,99 +90,102 @@ const CategoryClient = ({
   }, [catgories]);
 
   return (
-    <Container className="flex flex-wrap lg:flex-nowrap lg:gap-4 xl:gap-8 mt-4 lg:mt-10">
-      <div className="lg:w-[20%] hidden lg:block">
-        <Filters
-          catgories={publishedCategories}
-          category={Data}
-          isWaterProof={isWaterProof}
-          setIsWaterProof={setIsWaterProof}
-          selectedProductFilters={selectedProductFilters}
-          setSelectedProductFilters={setSelectedProductFilters}
-          priceValue={priceValue}
-          setPriceValue={setPriceValue}
-          catSlug={slug}
-          setSelectedTags={setSelectedTags}
-          selectedTags={selectedTags}
-          isSubCategory={isSubCategory}
-          subcategory={subcategory}
-        />
-      </div>
-
-      <div className="lg:w-[80%] font-inter">
-        <div className="space-y-4">
-          <h1 className="text-34 font-bold">
-            {isSubCategory
-              ? subdescription?.[0]?.name || ''
-              : Data?.Heading || Data?.name}
-          </h1>
-          <p
-            className="text-sm md:text-base 2xl:text-lg lg:leading-[26px]"
-            dangerouslySetInnerHTML={{
-              __html: isSubCategory
-                ? subdescription?.[0]?.description || ''
-                : Data?.description || ''
-            }}
-          >
-          </p>
-          <div className="flex_between lg:justify-end">
-            <div className="block lg:hidden">
-              <button
-                onClick={() => setModalOpen(true)}
-                className=" h-9 w-24 shadow text-black rounded-md flex_center gap-2"
-              >
-                Filter
-                <span>
-                  <Filter />
-                </span>
-              </button>
-              <Drawer isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
-                <Filters
-                  catgories={publishedCategories}
-                  category={Data}
-                  isWaterProof={isWaterProof}
-                  setIsWaterProof={setIsWaterProof}
-                  selectedProductFilters={selectedProductFilters}
-                  setSelectedProductFilters={setSelectedProductFilters}
-                  priceValue={priceValue}
-                  setPriceValue={setPriceValue}
-                  catSlug={slug}
-                  setSelectedTags={setSelectedTags}
-                  selectedTags={selectedTags}
-                  isSubCategory={isSubCategory}
-                  subcategory={subcategory}
-                />
-              </Drawer>
-            </div>
-            <div className="flex items-center justify-end gap-2 lg:pt-4">
-              <span className="text-[#191C1F] text-sm hidden lg:block">
-                Sort by:
-              </span>
-              <Select
-                options={[
-                  'Default',
-                  'A to Z',
-                  'Z to A',
-                  'Low to High',
-                  'High to Low'
-                ]}
-                onChange={setSortOption}
-                sortOption={sortOption}
-              />
-            </div>
-          </div>
+    <>
+      <Container className="flex flex-wrap lg:flex-nowrap lg:gap-4 xl:gap-8 mt-4 lg:mt-10">
+        <div className="lg:w-[20%] hidden lg:block">
+          <Filters
+            catgories={publishedCategories}
+            category={Data}
+            isWaterProof={isWaterProof}
+            setIsWaterProof={setIsWaterProof}
+            selectedProductFilters={selectedProductFilters}
+            setSelectedProductFilters={setSelectedProductFilters}
+            priceValue={priceValue}
+            setPriceValue={setPriceValue}
+            catSlug={slug}
+            setSelectedTags={setSelectedTags}
+            selectedTags={selectedTags}
+            isSubCategory={isSubCategory}
+            subcategory={subcategory}
+          />
         </div>
 
-        <SubCategory
-          filteredProducts={filtered}
-          selectedFilters={appliedFilters}
-          setIsWaterProof={setIsWaterProof}
-          setSelectedProductFilters={setSelectedProductFilters}
-          categoryData={Data}
-          setSelectedTags={setSelectedTags}
-        />
-      </div>
-    </Container>
+        <div className="lg:w-[80%] font-inter">
+          <div className="space-y-4">
+            <h1 className="text-34 font-bold">
+              {isSubCategory
+                ? subdescription?.[0]?.name || ''
+                : Data?.Heading || Data?.name}
+            </h1>
+            <p
+              className="text-sm md:text-base 2xl:text-lg lg:leading-[26px]"
+              dangerouslySetInnerHTML={{
+                __html: isSubCategory
+                  ? subdescription?.[0]?.description || ''
+                  : Data?.description || ''
+              }}
+            >
+            </p>
+            <div className="flex_between lg:justify-end">
+              <div className="block lg:hidden">
+                <button
+                  onClick={() => setModalOpen(true)}
+                  className="h-9 w-24 bg-[#FAFAFA] text-black rounded-md flex_center gap-2"
+                >
+                  Filter
+                  <span>
+                    <Filter />
+                  </span>
+                </button>
+                <Drawer isOpen={isModalOpen} onClose={() => setModalOpen(false)}>
+                  <Filters
+                    catgories={publishedCategories}
+                    category={Data}
+                    isWaterProof={isWaterProof}
+                    setIsWaterProof={setIsWaterProof}
+                    selectedProductFilters={selectedProductFilters}
+                    setSelectedProductFilters={setSelectedProductFilters}
+                    priceValue={priceValue}
+                    setPriceValue={setPriceValue}
+                    catSlug={slug}
+                    setSelectedTags={setSelectedTags}
+                    selectedTags={selectedTags}
+                    isSubCategory={isSubCategory}
+                    subcategory={subcategory}
+                  />
+                </Drawer>
+              </div>
+              <div className="flex items-center justify-end gap-2 lg:pt-4">
+                <span className="text-[#191C1F] text-sm hidden lg:block">
+                  Sort by:
+                </span>
+                <Select
+                  options={[
+                    'Default',
+                    'A to Z',
+                    'Z to A',
+                    'Low to High',
+                    'High to Low'
+                  ]}
+                  onChange={setSortOption}
+                  sortOption={sortOption}
+                />
+              </div>
+            </div>
+          </div>
+
+          <SubCategory
+            filteredProducts={filtered}
+            selectedFilters={appliedFilters}
+            setIsWaterProof={setIsWaterProof}
+            setSelectedProductFilters={setSelectedProductFilters}
+            categoryData={Data}
+            setSelectedTags={setSelectedTags}
+          />
+        </div>
+      </Container>
+      <CategoryFaqs />
+    </>
   );
 };
 

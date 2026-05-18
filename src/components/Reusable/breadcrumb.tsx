@@ -115,7 +115,7 @@ const Breadcrumb = ({
         </Container>
       </div>
       {image && (
-        <div className="relative h-[110px] sm:h-[200px] xl:h-[332px]">
+        <div className="relative aspect-[1440/477]">
           <Image
             className={`object-fill w-full ${imageClass}`}
             fill
