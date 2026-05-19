@@ -128,7 +128,7 @@ const Breadcrumb = ({
           {!isImagetext && (
             <div className="absolute inset-0 flex_center text-white text-center">
               {useHeadingTag ? (
-                <h1 className="text-25 md:text-[42.6px] font-bold">{title}</h1>
+                <h1 className="text-25 md:text-[42.6px] font-bold"></h1>
               ) : (
                 <p className="text-25 md:text-[42.6px] font-bold">{title}</p>
               )}

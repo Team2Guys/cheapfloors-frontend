@@ -793,7 +793,7 @@ export const faqspage: FAQ[] = [
 export const alternatingData: TAboutUs[] = [
   {
     id: 1,
-    image: '/assets/images/aboutus/about2.webp',
+    image: '/assets/images/aboutus/about1.webp',
     alt: 'First Image',
     heading: 'Your Trusted Online Flooring Store',
     paragraph:
@@ -801,7 +801,7 @@ export const alternatingData: TAboutUs[] = [
   },
   {
     id: 2,
-    image: '/assets/images/aboutus/about3.webp',
+    image: '/assets/images/aboutus/about2.webp',
     alt: 'Second Image',
     heading: 'For Homes And Businesses In The UAE',
     paragraph:
@@ -809,7 +809,7 @@ export const alternatingData: TAboutUs[] = [
   },
   {
     id: 3,
-    image: '/assets/images/aboutus/third.webp',
+    image: '/assets/images/aboutus/about3.webp',
     alt: 'Third Image',
     heading: 'Why Choose Easy Floors',
     paragraph:

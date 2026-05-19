@@ -229,7 +229,7 @@ export default function Appointment({
                   as="textarea"
                   name="comment"
                   placeholder="Enter Your Query"
-                  className="w-full pt-3 p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-xs placeholder:font-medium placeholder:text-[#9FA3B2] h-52"
+                  className="w-full pt-3 p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-xs placeholder:font-medium placeholder:text-[#0000003D] h-52 rounded-lg"
                 />
               </div>
 
@@ -248,7 +248,7 @@ function SubmitButton({ isSubmitting }: { isSubmitting: boolean }) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-fit bg-primary text-white p-2 lg:py-3 px-4 sm:px-10 text-15"
+        className="w-fit  border border-primary p-2 lg:py-3 px-4 sm:px-10 text-15 rounded-md"
       >
         {isSubmitting ? 'Submitting...' : ' BOOK AN APPOINTMENT'}
       </button>

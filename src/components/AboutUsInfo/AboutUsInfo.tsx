@@ -10,21 +10,22 @@ const AboutUsInfo: React.FC<TAboutUsProps> = ({ sections }) => {
         <div
           key={section.id}
           className={`flex flex-col md:flex-row items-center md:gap-16 gap-5 ${
-            index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+            index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'
           }`}
         >
-          <div className="relative w-full h-[150px] lg:h-[200px] xl:h-[280px] 2xl:h-[350px] md:w-1/2">
+           <div className="relative w-full aspect-[16/11] md:w-1/2 overflow-hidden shadow-sm">
             <Image
               src={section.image}
-              alt={section.alt}
+              alt={section.alt || section.heading}
               fill
               priority
-              fetchPriority="high"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover object-center" // This is the fix for stretching
             />
-          </div>
+           </div>
           <div className="w-full md:w-1/2 text-center md:text-left space-y-4">
-            <h2 className="md:text-3xl text-xl font-bold">{section.heading}</h2>
-            <p className="text-sm md:text-base font-normal">
+            <h2 className="md:text-3xl text-xl font-bold text-primary">{section.heading}</h2>
+            <p className="text-sm md:text-base font-normal text-left">
               {section.paragraph}
             </p>
           </div>

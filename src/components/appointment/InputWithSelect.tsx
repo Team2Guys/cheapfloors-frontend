@@ -54,11 +54,11 @@ const InputWithUnit = ({
       <label htmlFor={name} className="text-13 font-medium font-inter mb-1">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
-      <div className="flex w-full border border-gray-300 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary relative">
+      <div className="flex w-full border border-gray-300 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary relative rounded-lg">
         <input
           type="number"
           placeholder={placeholder}
-          className="p-2 h-[42px] w-full placeholder:text-xs placeholder:font-medium placeholder:text-[#9FA3B2] outline-none"
+          className="p-2 h-[42px] w-full placeholder:text-xs placeholder:font-medium placeholder:text-[#0000003D] outline-none"
           min={0}
           value={inputValue}
           onChange={handleInputChange}

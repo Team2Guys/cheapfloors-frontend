@@ -73,7 +73,7 @@ const Input: React.FC<TextInputProps> = ({
           id={name}
           name={name}
           placeholder={placeholder}
-          className={`p-2 border border-gray-300 h-11 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary w-full placeholder:text-xs placeholder:font-medium placeholder:text-[#9FA3B2] ${
+          className={`p-2 rounded-lg border border-gray-300 h-11 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary w-full placeholder:text-xs placeholder:font-medium placeholder:text-[#0000003D] ${
             type === 'number' ? ' pl-10 md:pl-14' : ''
           }`}
           value={value}

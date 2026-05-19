@@ -9,7 +9,7 @@ export const metadata = createMetadata(
 const ReturnRefundPolicy = () => {
   return (
     <Container className="pt-10 md:pt-20 font-inter">
-      <h1 className="text-center text-36 sm:text-[47px] font-semibold mb-4">
+      <h1 className="text-center text-24 sm:text-36 font-semibold mb-4">
         Return and Refund Policy
       </h1>
       {policySections.map((section, index) => (

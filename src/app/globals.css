@@ -284,6 +284,7 @@
   height: 44px;
   border: 1px solid #d1d5db;
   padding: 8px;
+  border-radius: 0.5rem;
 }
 
 .PhoneInputInput {
@@ -302,4 +303,23 @@
   .category_slider .swiper-pagination {
     background-color: transparent !important;
   }
+}
+
+.PhoneInputCountryIcon {
+  width: 24px;   
+  height: 24px;  
+  border-radius: 50%; 
+  overflow: hidden; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 2px rgba(0,0,0,0.1); 
+}
+
+
+.PhoneInputCountryIconImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
 }
