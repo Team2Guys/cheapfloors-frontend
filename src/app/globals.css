@@ -303,3 +303,25 @@
     background-color: transparent !important;
   }
 }
+
+/* Features Swiper Pagination */
+.features-pagination .swiper-pagination-bullet {
+  width: 24px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: transparent;
+  border: 1px solid #594F55;
+  opacity: 1;
+  transition: all 0.3s ease;
+  margin: 0 4px !important;
+}
+
+.features-pagination .swiper-pagination-bullet-active {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  width: 32px;
+}
+
+.features-swiper .swiper-wrapper {
+  align-items: stretch;
+}

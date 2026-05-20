@@ -26,22 +26,23 @@ const Categories: React.FC<Props> = ({ card, index }) => {
 
         <div className="relative h-full flex items-center pt-3 xsm:pt-10 flex-col text-white">
           <div className="absolute inset-0 flex flex-col items-center justify-end pb-3 md:pb-9 text-white text-center">
-          <h3 className="md:mb-3 md:text-4xl text-2xl drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] xs:px-4">
-            <span className="block">I AM</span>
-            <span className="block">
-              {card.name.split(' ')[0]}
-            </span>
-            <span className="block">
-              {card.name.split(' ').slice(1).join(' ')}
-            </span>
-          </h3>
+            <h3 className="md:mb-3 text-2xl drop-shadow-[0_0_10px_rgba(0,0,0,0.8)] xs:px-4">
+              <span className="block">I AM</span>
+              <span className="block">{card.name}</span>
+              {/* <span className="block">
+                {card.name.split(' ')[0]}
+              </span>
+              <span className="block">
+                {card.name.split(' ').slice(1).join(' ')}
+              </span> */}
+            </h3>
 
-          <Link
-            href={`what-am-i?flooring=${card.whatIamEndpoint}`}
-            className="md:text-base text-[16px] font-medium hover:bg-primary transition duration-300 underline underline-offset-4 decoration- hover:no-underline hover:text-black p-2 rounded-full"
-          >
-            Click Me
-          </Link>
+            <Link
+              href={`what-am-i?flooring=${card.whatIamEndpoint}`}
+              className="text-base font-normal hover:bg-primary transition duration-300 underline underline-offset-8 decoration- hover:no-underline hover:text-black p-2 rounded-full"
+            >
+              Click Me
+            </Link>
           </div>
           {featureObj && (
             <div className="absolute bg-[#FEB907] text-black sm:top-3 sm:right-3 block right-1 top-1 md:text-sm md:p-4 p-2 m-2 sm:m-0 rounded-xl opacity-100 xsm:opacity-0 transition-opacity duration-300 group-hover:opacity-100 w-fit whitespace-nowrap">

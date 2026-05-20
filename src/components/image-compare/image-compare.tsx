@@ -123,12 +123,12 @@ const CompareSlider = ({
 
         {/* Labels */}
         {position > 5 && (
-          <div className="absolute bottom-4 left-4 bg-white/90 text-black text-sm font-medium px-3 py-1 rounded shadow z-20">
+          <div className="absolute bottom-4 left-4 bg-primary text-black text-base font-medium px-6 py-2 rounded-full shadow z-20">
             Before
           </div>
         )}
         {position < 95 && (
-          <div className="absolute bottom-4 right-4 bg-white/90 text-black text-sm font-medium px-3 py-1 rounded shadow z-20">
+          <div className="absolute bottom-4 right-4 bg-primary text-black text-base font-medium px-6 py-2 rounded-full shadow z-20">
             After
           </div>
         )}

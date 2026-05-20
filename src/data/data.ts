@@ -256,7 +256,7 @@ export const featureItems = [
     title: 'Free Samples',
     description:
       'Order up to 5 free samples delivered anywhere in the UAE so you can see and feel the quality before you buy.',
-    icon: '/assets/images/Home/freee.png',
+    icon: '/assets/images/Home/free-icon.png',
     buttonText: 'Learn More',
     buttonLink: '/free-sample'
   },
@@ -264,7 +264,7 @@ export const featureItems = [
     title: 'Easy Payment',
     description:
       'With Tabby or Tamara, split your payment into four easy installments — no hassle, no hidden fees.',
-    icon: '/assets/images/Home/card.png',
+    icon: '/assets/images/Home/payment-icon.png',
     buttonText: 'Learn More',
     buttonLink: '/easy-payment'
   },
@@ -272,7 +272,7 @@ export const featureItems = [
     title: 'Delivery',
     description:
       'Choose Express for a small fee for next-day delivery, or enjoy standard delivery in just 2-3 days anywhere in the UAE.',
-    icon: '/assets/images/Home/truck.png',
+    icon: '/assets/images/Home/truck-icon.png',
     buttonText: 'Learn More',
     buttonLink: '/shipping-policy'
   },
@@ -280,7 +280,7 @@ export const featureItems = [
     title: 'Factory Prices',
     description:
       'No middlemen, just high-quality flooring at factory - direct prices. Best value without compromise.',
-    icon: '/assets/images/Home/factory.png'
+    icon: '/assets/images/Home/factory-icon.png'
   }
 ];
 
@@ -362,7 +362,7 @@ export const footerData = {
 };
 export const blocksData = [
   {
-    heading: 'SPC Flooring',
+    heading: 'SPC',
     points: [
       'UV layer that protects against fading and surface wear.',
       'Wear layer that is transparent and highly resistant to damage.',
@@ -375,7 +375,7 @@ export const blocksData = [
       '/assets/images/Home/layers_2.webp'
   },
   {
-    heading: 'LVT Flooring',
+    heading: 'LVT',
     points: [
       'Protective UV coating that prevents discolouration and wear.',
       'Durable wear layer that provides scratch and scuff resistance.',
@@ -392,20 +392,20 @@ export const FloorItemsData = [
   {
     id: 1,
     title: 'Herringbone Floor',
-    imageUrl: '/assets/images/Home/Herringbone.webp',
-    hoverImage: '/assets/images/Home/HerringboneHover.webp'
+    imageUrl: '/assets/images/Home/herring-new.webp',
+    hoverImage: '/assets/images/Home/herring-new.webp'
   },
   {
     id: 2,
     title: 'Eco Floor',
-    imageUrl: '/assets/images/Home/Eco.webp',
-    hoverImage: '/assets/images/Home/EcoHover.webp'
+    imageUrl: '/assets/images/Home/Eco-new.webp',
+    hoverImage: '/assets/images/Home/Eco-new.webp'
   },
   {
     id: 3,
     title: 'Prime Floor',
-    imageUrl: '/assets/images/Home/Prime.webp',
-    hoverImage: '/assets/images/Home/PrimeHover.webp'
+    imageUrl: '/assets/images/Home/Prime-new.webp',
+    hoverImage: '/assets/images/Home/Prime-new.webp'
   }
 ];
 
@@ -504,7 +504,7 @@ export const categoriesFeatures: CategoryFeatures[] = [
 export const categoryData: TCategoryData = {
   title: 'What Am I?',
   subtitle: '(Compare us)',
-  backgroundImage: '/assets/category/campare-us.png'
+  backgroundImage: '/assets/category/compare-us.webp'
 };
 export const HomeUserInfo = [
   {
@@ -703,7 +703,7 @@ export const popupCards: CardData[] = [
       '0.3mm wear layer'
     ]
   },
-    {
+  {
     id: 9,
     heading: 'Floor Smart SPC <br />  Eco',
     content: [

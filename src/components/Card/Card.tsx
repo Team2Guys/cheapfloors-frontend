@@ -14,7 +14,6 @@ import Leftright from 'components/svg/leftright';
 import TwoArrow from 'components/svg/twoarrow';
 import { handleNavigate } from 'utils/helperFunctions';
 import { showAlert } from 'utils/Alert';
-const FreeSample = lazy(() => import('components/svg/free-sample'));
 const ProductContainer = dynamic(
   () => import('components/ProdutDetailContainer/ProductContainer')
 );
@@ -28,7 +27,7 @@ const Card: React.FC<productCardProps> = ({
   categoryData,
   isAccessories,
   isSoldOut = false,
-  subCategoryFlag,
+  // subCategoryFlag,
   setModalProduct,
   setIsOpen
 }) => {
@@ -107,7 +106,7 @@ const Card: React.FC<productCardProps> = ({
 
   return (
     <div
-      className={`group flex flex-col h-full font-inter p-3 border border-gray-200 transition-shadow hover:shadow-md ${isAccessories ? 'hover:bg-[#FFF9F5]' : sldier ? 'bg-white' : 'bg-[#FAFAFA]'}`}
+      className={`group flex flex-col h-full font-inter p-3 transition-shadow hover:shadow-md ${isAccessories ? 'hover:bg-[#FFF9F5] border border-gray-200' : sldier ? 'bg-white' : 'bg-[#FAFAFA] border border-gray-200'}`}
     >
       <div className="relative">
         <Link
@@ -268,7 +267,7 @@ const Card: React.FC<productCardProps> = ({
                 ? `/accessories/${product.custom_url?.toLowerCase() ?? ''}`
                 : handleNavigate(product as IProduct, categoryData)
             }
-            className="px-8 block text-center py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-sm md:text-base hover:bg-primary hover:text-white transition"
+            className="px-8 block text-center py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-sm md:text-base hover:bg-primary hover:text-white transition w-full xsm:w-fit"
           >
             Shop Now
           </Link>
