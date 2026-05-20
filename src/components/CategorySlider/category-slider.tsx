@@ -62,7 +62,7 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
           const arrowHiddenClass = getArrowHiddenClasses(subcategories?.length || 0);
 
           return (
-            <div className='bg-[#CDCDCD14]'>
+            <div className='bg-[#CDCDCD14]' key={index}>
               <div key={index} className='relative overflow-hidden px-4 sm:px-6 lg:px-10 2xl:px-0 max-w-[1440px] w-full mx-auto py-6'>
                 {/* Desktop Arrows */}
                 <div className={`hidden lg:flex justify-end gap-3 mb-4 ${arrowHiddenClass}`}>
@@ -71,23 +71,20 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
                 </div>
                 <div className="flex flex-col lg:flex-row w-full gap-4 lg:gap-8 relative">
                   {/* Category Info Box */}
-                  <div className={`w-full  lg:w-[300px] shrink-0 border border-primary rounded-xl p-6 sm:p-8 flex flex-col items-center justify-center text-center ${isYellowBg ? 'bg-primary border-none' : 'bg-white'}`}>
+                  <div className='w-full lg:w-[300px] shrink-0 border border-primary rounded-xl p-6 sm:p-8 flex flex-col items-center justify-center text-center bg-white hover:bg-primary hover:border-primary group'>
                     <h2 className="text-2xl md:text-[28px] font-semibold text-black mb-4 capitalize">
                       {category.name.toLowerCase()}
                     </h2>
-                    <p className="text-black mb-8 font-light text-sm md:text-base flex items-center gap-1">
+                    <p className="text-black mb-8 text-sm md:text-base lg:text-lg flex items-center gap-1">
                       Price Starting From:{' '}
-                      <span className={`font-currency font-normal text-lg ml-1 ${isYellowBg ? 'text-black' : 'text-primary'}`}></span>
-                      <span className={`font-medium ${isYellowBg ? 'text-black' : 'text-primary'}`}>
+                      <span className={`font-currency font-normal text-lg ml-1 ${isYellowBg ? 'text-black' : 'text-black'}`}></span>
+                      <span className={`font-medium ${isYellowBg ? 'text-black' : 'text-black'}`}>
                         {price ? `${price}/m²` : ''}
                       </span>
                     </p>
                     <Link
                       href={seeAllLink}
-                      className={`px-6 py-2.5 rounded-full font-semibold transition flex items-center justify-center gap-2 text-sm md:text-base ${isYellowBg
-                        ? 'bg-white text-black hover:bg-gray-100'
-                        : 'bg-primary text-black hover:bg-primary/90'
-                        }`}
+                      className='px-6 py-2.5 bg-primary text-black group-hover:bg-white rounded-full font-semibold transition flex items-center justify-center gap-2 text-sm md:text-base'
                     >
                       See All <BsArrowRight className="w-4 h-4" />
                     </Link>

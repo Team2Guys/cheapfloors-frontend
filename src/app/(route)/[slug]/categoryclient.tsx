@@ -16,6 +16,7 @@ import dynamic from 'next/dynamic';
 import Filter from 'components/svg/filter';
 import { productFilter } from 'utils/helperFunctions';
 import CategoryFaqs from 'components/Faqs/CategoryFaqs';
+import { categoryFaqsData, subCategoryFaqsData } from 'data/data';
 const Filters = dynamic(() => import('components/sub-category/filters'), {
   ssr: false,
   loading: () => (
@@ -184,7 +185,13 @@ const CategoryClient = ({
           />
         </div>
       </Container>
-      <CategoryFaqs />
+      <CategoryFaqs
+        faqs={
+          isSubCategory
+            ? (subCategoryFaqsData[`${slug?.trim().toLowerCase()}-${subcategory?.trim().toLowerCase()}`] ?? [])
+            : (categoryFaqsData[slug?.trim().toLowerCase()] ?? [])
+        }
+      />
     </>
   );
 };

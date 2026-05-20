@@ -14,6 +14,8 @@ import AmCategory from 'components/Categories/AmCategory';
 import SampleBanner from 'components/Reusable/SampleBanner';
 import UserInfo from 'components/Reusable/user-info';
 import Faqs from 'components/Faqs/Faqs';
+import Testimonial from '@/components/Testimonial/testimonial';
+import JobsDone from '@/components/JobsDone/JobsDone';
 
 export default async function Home() {
   const [categories, subCategories] = await Promise.all([
@@ -58,7 +60,6 @@ export default async function Home() {
   );
 
 
-  console.log(sortedSubcategories,"sortedSubcategoriessortedSubcategories")
   return (
     <>
       <HeroMain items={heroItems} />
@@ -78,6 +79,13 @@ export default async function Home() {
       />
       <UserInfo />
       <Faqs data={faqs} />
+      <Testimonial
+        backgroundImage={{
+          src: "/assets/showroom.webp",
+          alt: "showroom",
+        }}
+      />
+      <JobsDone />
     </>
   );
 }

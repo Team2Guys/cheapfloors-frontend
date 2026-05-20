@@ -44,7 +44,7 @@ const Features = () => {
       >
         {featureItems.map((item, index) => {
           return (
-            <SwiperSlide key={index} className="h-auto !flex pb-2">
+            <SwiperSlide key={index} className="!h-auto !flex pb-2">
               <div
                 className={`flex flex-col items-center text-center p-4 sm:px-8 py-4 h-full rounded-xl w-full drop-shadow-md ${index % 2 !== 0
                   ? 'bg-primary'

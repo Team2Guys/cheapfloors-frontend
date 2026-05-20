@@ -17,44 +17,35 @@ const Faqs: React.FC<FaqsProps> = ({ data, className }) => {
   };
 
   return (
-    <Container className={`bg-white py-10 md:mt-10 ${className}`}>
-      <h2 className="text-2xl font-semibold font-inter text-[#1B1139] lg:text-3x text-center md:mb-10 mb-6">
-        FAQ’S
+    <Container className={`bg-white py-10 md:mt-10 ${className || ''}`}>
+      <h2 className="text-3xl md:text-[40px] font-bold font-inter text-black text-center md:mb-12 mb-8 uppercase">
+        FAQ'S
       </h2>
 
-      <div className="border font-inter font-semibold">
+      <div className="flex flex-col gap-[2px] md:gap-1 font-inter">
         {data.map((faq, index) => (
-          <div key={faq.id}>
+          <div key={faq.id || index} className="flex flex-col">
             <button
               onClick={() => toggleFAQ(index)}
-              className="w-full flex_between text-left  focus:outline-none p-4"
+              className="w-full flex items-center justify-between bg-[#FAFAFA] hover:bg-gray-100 transition-colors duration-200 text-left focus:outline-none p-4 md:px-6 md:py-5"
             >
-              <h3 className="md:text-xl text-gray-700 ">
-                <div className="flex md:items-center gap-3">
-                  <div>
-                    {openIndex === index ? (
-                      <HiMinus
-                        size={30}
-                        className="md:w-[25px] w-[20px] font-light text-primary"
-                      />
-                    ) : (
-                      <HiPlus
-                        size={30}
-                        className="md:w-[25px] w-[20px] font-normal text-gray-700"
-                      />
-                    )}
-                  </div>
-                  {faq.question}
-                </div>
+              <h3 className="text-sm md:text-base text-black font-normal pr-4">
+                {faq.question}
               </h3>
+              <div className="flex-shrink-0 flex items-center justify-center w-[22px] h-[22px] md:w-[26px] md:h-[26px] rounded-full bg-primary text-white">
+                {openIndex === index ? (
+                  <HiMinus size={16} />
+                ) : (
+                  <HiPlus size={16} />
+                )}
+              </div>
             </button>
             {openIndex === index && (
               <div
-                className="pt-5 pb-4 flex gap-4 lg:pl-14 pl-5 text-gray-700  border-t font-normal md:text-lg text-sm"
+                className="p-4 md:px-6 md:py-5 bg-[#F0F0F0] text-gray-800 font-normal text-sm md:text-[15px] leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: faq.answer }}
               />
             )}
-            <hr className="border-gray-200 " />
           </div>
         ))}
       </div>
