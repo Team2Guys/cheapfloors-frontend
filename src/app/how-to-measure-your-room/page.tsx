@@ -12,8 +12,8 @@ const MeasureRoom = () => {
     <>
       <Breadcrumb
         imageClass="h-[180px]"
-        title=" How to Measure Your Room?"
-        image="/assets/images/how-to-measure-your-room/Measure-Your-Room.webp"
+        title=""
+        image="/assets/images/how-to-measure-your-room/measure.webp"
       />
       <RoomMeasurement />
       <Features />

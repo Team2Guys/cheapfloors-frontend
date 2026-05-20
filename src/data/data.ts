@@ -256,7 +256,7 @@ export const featureItems = [
     title: 'Free Samples',
     description:
       'Order up to 5 free samples delivered anywhere in the UAE so you can see and feel the quality before you buy.',
-    icon: '/assets/images/Home/freee.png',
+    icon: '/assets/images/Home/sample.png',
     buttonText: 'Learn More',
     buttonLink: '/free-sample'
   },
@@ -272,7 +272,7 @@ export const featureItems = [
     title: 'Delivery',
     description:
       'Choose Express for a small fee for next-day delivery, or enjoy standard delivery in just 2-3 days anywhere in the UAE.',
-    icon: '/assets/images/Home/truck.png',
+    icon: '/assets/images/Home/car.png',
     buttonText: 'Learn More',
     buttonLink: '/shipping-policy'
   },
@@ -601,7 +601,7 @@ export const boxData: BoxData[] = [
     buttonText: 'Book Your Appointment',
     icon: '/assets/images/Home/measure1.png',
     link: '/measurement-appointment',
-    bgImage: '/assets/images/Home/measure.webp'
+    bgImage: '/assets/images/aboutus/about5.webp'
   },
   {
     title: 'Need help with installation?',
@@ -609,7 +609,7 @@ export const boxData: BoxData[] = [
     buttonText: 'Book Your Appointment',
     icon: '/assets/images/Home/Vectorrg.png',
     link: '/help-with-installations',
-    bgImage: '/assets/images/Home/install.webp'
+    bgImage: '/assets/images/aboutus/about6.webp'
   }
 ];
 
@@ -849,10 +849,14 @@ export const measurementData: MeasurementSection[] = [
     image: ''
   },
   {
-    title: 'General Guidelines for Measuring Your Room ',
+    title: 'General Guidelines for Measuring Your Room',
     description: `When calculating the width and length of a rectangular or square area, add 5-10% for waste and cutting errors. If you are planning to construct staircases, mantels, or closets in your room, allocate over 10% of your budget to them. 
-      If you would like professional assistance, we can arrange a measuring service for you with a refundable charge of <span class='font-currency font-normal text-18'></span> 150 (refunded if you place an order with us). If you wish to measure the area yourself, you will only need a measuring tape, a pencil, and paper. Make sure you measure in metres if you will be buying flooring materials that are usually marketed in metres.
-      `,
+      If you would like professional assistance, we can arrange a measuring service for you with a refundable charge of <span class='font-currency font-normal text-18 text-black'></span> 150 (refunded if you place an order with us). If you wish to measure the area yourself, you will only need a measuring tape, a pencil, and paper. Make sure you measure in metres if you will be buying flooring materials that are usually marketed in metres.`,
+    steps: [],
+    image: ''
+  },
+  {
+    title: 'Measuring a Square or Rectangular Room',
     stepsHeading: 'Measuring a Square or Rectangular Room',
     steps: [
       {
@@ -864,33 +868,28 @@ export const measurementData: MeasurementSection[] = [
         content: "Determine the room's width, such as five metres"
       },
       {
-        title: 'Measure the total area',
-        content:
-          'To get the floor size in square metres, multiply the length by the width.'
+        title: 'Measure the total area:',
+        content: 'To get the floor size in square metres, multiply the length by the width.'
       }
     ],
-    image: '/assets/images/how-to-measure-your-room/measure1.png'
+    image: '/assets/images/how-to-measure-your-room/measure1.webp'
   },
   {
     title: 'Measuring an L-shaped or Irregular Room',
-    description:
-      'When dealing with uneven areas, divide the area into smaller, more manageable rectangles and measure each one independently. Then, make a rough sketch and draw the room plan.',
-
+    stepsHeading: 'Measuring an L-shaped or Irregular Room',
+    description: 'When dealing with uneven areas, divide the area into smaller, more manageable rectangles and measure each one independently. Then, make a rough sketch and draw the room plan.',
     steps: [
       {
-        title: 'Measure Every Section',
-        content:
-          "Take separate measurements of each section's length and width."
+        title: 'Measure Every Section:',
+        content: "Take separate measurements of each section's length and width."
       },
       {
-        title: 'Determine the total area.',
-        content:
-          'The length of every part should be multiplied by its width before adding them all together to get the total size of the space.'
+        title: 'Determine the total area:',
+        content: 'The length of every part should be multiplied by its width before adding them all together to get the total size of the space.'
       }
     ],
-    image: '/assets/images/how-to-measure-your-room/mearuse2.png'
+    image: '/assets/images/how-to-measure-your-room/measure2.webp'
   },
-
   {
     title: 'Factoring in 10% Waste Allowance',
     description:
@@ -898,7 +897,6 @@ export const measurementData: MeasurementSection[] = [
     steps: [],
     image: ''
   },
-
   {
     title: 'Get Expert Guidance from Easy Floors',
     description:
@@ -907,7 +905,6 @@ export const measurementData: MeasurementSection[] = [
     image: ''
   }
 ];
-
 export const loginData: AuthData = {
   title: 'WELCOME TO <br> EASY FLOORS',
   subtitle: 'Sign In',

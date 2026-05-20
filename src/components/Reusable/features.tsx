@@ -11,7 +11,7 @@ import Container from 'components/common/container/Container';
 import { featureItems } from 'data/data';
 
 const Features = () => {
-  const swiperRef = useRef<import('swiper/react').SwiperRef>(null);
+    const swiperRef = useRef<import('swiper/react').SwiperRef>(null);
   useEffect(() => {
     if (swiperRef.current?.swiper) {
       swiperRef.current.swiper.update();
@@ -19,79 +19,87 @@ const Features = () => {
   }, []);
 
   return (
-    <Container className="relative bg-white w-full px-3 my-7 sm:mb-10 xl:mb-14 xl:mt-7 overflow-hidden">
+    <Container className="relative bg-white w-full px-2 my-10 overflow-hidden">
       <Swiper
         ref={swiperRef}
         modules={[Navigation]}
-        observer
-        observeParents
-        loop={featureItems.length > 4}
         speed={500}
-        slidesPerView={2}
-        slidesPerGroup={1}
-        spaceBetween={6}
+        // Base setting for mobile: 2 slides
+        slidesPerView={2} 
+        spaceBetween={10}
         breakpoints={{
-          1280: { slidesPerView: 4 },
-          1024: { slidesPerView: 3 },
-          640: { slidesPerView: 3 }
+          // Tablet/Desktop settings
+          768: { slidesPerView: 3, spaceBetween: 20 },
+          1280: { slidesPerView: 4, spaceBetween: 24 },
         }}
-        className="w-full p-2"
+        className="w-full !pb-4 !pt-4"
       >
         {featureItems.map((item, index) => {
-          const isLastItem = index === featureItems.length - 1;
+          const isYellowCard = index % 2 !== 0;
 
           return (
-            <SwiperSlide
-              key={index}
-              className="!flex flex-nowrap sm:px-1 lg:px-2"
-            >
-              <div className="flex flex-col md:flex-row mx-1 items-center md:items-start text-center border border-[#0000001F] xl:border-none xl:border-l-0 xl:border-t-0 xl:border-b-0 p-2 md:p-4 h-[156px] xs:h-[140px] sm:h-[200px] md:h-[170px] xl:h-[200px] md:gap-3 xl:pr-4 2xl:pr-5">
-                <Image
-                  src={item.icon}
-                  alt={item.title}
-                  width={100}
-                  height={100}
-                  loading="lazy"
-                  className="h-7 w-6 sm:h-8 sm:w-8 xl:w-[64px] xl:h-[64px] object-contain"
-                />
-                <div className="flex flex-col md:justify-start md:items-start font-inter">
-                  <h3 className="text-sm lg:text-lg font-semibold md:font-bold mt-1">
+            <SwiperSlide key={index} className="!h-auto flex">
+              <div
+                className={`
+                  flex flex-col items-center text-center p-3 sm:p-6 rounded-xl shadow-lg transition-all duration-300 w-full h-[320px] xs:h-[300px] md:h-[330px] lg:h-[290px]
+                  ${isYellowCard ? 'bg-[#feb907] text-black' : 'bg-white text-black border border-gray-100'}
+                `}
+              >
+                {/* Icon Circle */}
+                <div 
+                  className={`
+                    w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-3 sm:mb-6 shadow-md shrink-0
+                    ${isYellowCard ? 'bg-white' : 'bg-[#feb907]'}
+                  `}
+                >
+                  <Image
+                    src={item.icon}
+                    alt={item.title}
+                    width={35}
+                    height={35}
+                    className="object-contain w-6 h-6 sm:w-8 sm:h-8" 
+                  />
+                </div>
+
+                {/* Text Content */}
+                <div className="flex flex-col flex-grow font-inter">
+                  <h3 className="text-base sm:text-xl font-bold sm:mb-3 leading-tight mb-3">
                     {item.title}
                   </h3>
-                  <p className="text-xs lg:text-sm 2xl:text-base font-light text-card-text sm:block mt-1 leading-3 text-justify">
-                    {item.description}{' '}
-                    {index < 3 && item.buttonLink && item.buttonText && (
-                      <Link
-                        className="text-primary font-semibold"
-                        href={item.buttonLink}
-                      >
-                        {item.buttonText}
-                      </Link>
+                 <p className="text-sm sm:text-base font-medium leading-relaxed opacity-90">
+                {item.description}{' '}
+
+                {item.buttonLink && (
+                  <Link
+                    href={item.buttonLink}
+                    className="mt-auto pt-2 sm:pt-4 text-[10px] text-sm sm:text-base font-bold underline"
+                  >
+                    Learn more...
+                  </Link>
                     )}
-                  </p>
+                 </p>
                 </div>
               </div>
-              {!isLastItem && (
-                <div className="border-r border-black h-24 hidden xl:block" />
-              )}
             </SwiperSlide>
           );
         })}
       </Swiper>
-      <button
-        onClick={() => swiperRef.current?.swiper?.slidePrev()}
-        className="absolute -left-1 top-1/2 -translate-y-1/2 z-20 xl:hidden"
-        aria-label="Previous slide"
-      >
-        <MdKeyboardArrowLeft className="h-6 w-6 sm:h-5 sm:w-5" />
-      </button>
-      <button
-        onClick={() => swiperRef.current?.swiper?.slideNext()}
-        className="absolute -right-1 top-1/2 -translate-y-1/2 z-20 xl:hidden"
-        aria-label="Next slide"
-      >
-        <MdKeyboardArrowRight className="h-6 w-6 sm:h-5 sm:w-5" />
-      </button>
+
+      {/* Navigation Arrows: Visible ONLY on small screens (hidden on xl and above) */}
+      <div className="xl:hidden flex justify-between absolute top-1/2 -translate-y-1/2 w-full left-0 px-1 pointer-events-none z-30">
+        <button
+          onClick={() => swiperRef.current?.swiper?.slidePrev()}
+          className="pointer-events-auto bg-white/80 backdrop-blur-sm shadow-md rounded-full p-1 border border-gray-200"
+        >
+          <MdKeyboardArrowLeft size={24} className="text-black" />
+        </button>
+        <button
+          onClick={() => swiperRef.current?.swiper?.slideNext()}
+          className="pointer-events-auto bg-white/80 backdrop-blur-sm shadow-md rounded-full p-1 border border-gray-200"
+        >
+          <MdKeyboardArrowRight size={24} className="text-black" />
+        </button>
+      </div>
     </Container>
   );
 };
