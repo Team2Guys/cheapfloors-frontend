@@ -25,10 +25,10 @@ const CollectionCard = ({ subcategory }: { subcategory: ISUBCATEGORY }) => {
   };
 
   return (
-    <div className="bg-white border border-[#E5E7EB] rounded-2xl p-3 flex flex-col justify-between font-inter h-full hover:shadow-md transition duration-300">
+    <div className="bg-white border border-[#E5E7EB] rounded-lg p-1 xsm:p-3 flex flex-col justify-between font-inter h-full hover:shadow-md transition duration-300 group">
       <div>
         {/* Image section with Eye Icon button in top-right */}
-        <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden mb-3">
+        <div className="relative w-full aspect-[4/3] overflow-hidden mb-3">
           <Link href={subcategoryUrl} className="block w-full h-full relative">
             <Image
               src={subcategory.posterImageUrl?.imageUrl || '/default-image.jpg'}
@@ -40,10 +40,10 @@ const CollectionCard = ({ subcategory }: { subcategory: ISUBCATEGORY }) => {
           </Link>
           <Link
             href={subcategoryUrl}
-            className="absolute top-2.5 right-2.5 z-10 w-9 h-9 bg-white rounded-md flex items-center justify-center border border-[#E5E7EB] shadow-sm hover:text-primary transition"
+            className="absolute top-2 right-2 xsm:-right-40 xsm:group-hover:right-2 z-10 size-6 xsm:size-9 bg-white rounded-md flex items-center justify-center border border-[#E5E7EB] shadow-sm hover:text-primary transition"
             aria-label="View collection details"
           >
-            <FiEye size={20} className="text-black" />
+            <FiEye className="text-black text-base xsm:text-xl" />
           </Link>
         </div>
 
@@ -51,25 +51,25 @@ const CollectionCard = ({ subcategory }: { subcategory: ISUBCATEGORY }) => {
         {(height || width || thickness) && (
           <div className="border-y border-[#E5E7EB] py-3.5 mb-4 flex items-center justify-around gap-2 text-gray-500">
             {height && (
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-0.5">
                 <Leftright />
-                <span className="text-[#8A96A3] font-medium text-xs sm:text-sm">
+                <span className="text-[#8A96A3] font-medium text-[8px] xs:text-[9px] xsm:text-xs sm:text-sm">
                   {formatDim(height)}
                 </span>
               </div>
             )}
             {width && (
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-0.5">
                 <Collapsearrow />
-                <span className="text-[#8A96A3] font-medium text-xs sm:text-sm">
+                <span className="text-[#8A96A3] font-medium text-[8px] xs:text-[9px] xsm:text-xs sm:text-sm">
                   {formatDim(width)}
                 </span>
               </div>
             )}
             {thickness && (
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-0.5">
                 <TwoArrow />
-                <span className="text-[#8A96A3] font-medium text-xs sm:text-sm">
+                <span className="text-[#8A96A3] font-medium text-[8px] xs:text-[9px] xsm:text-xs sm:text-sm">
                   {formatDim(thickness)}
                 </span>
               </div>
@@ -80,13 +80,13 @@ const CollectionCard = ({ subcategory }: { subcategory: ISUBCATEGORY }) => {
         {/* Title */}
         <Link
           href={subcategoryUrl}
-          className="block font-semibold text-[#191C1F] text-base md:text-lg hover:text-primary transition line-clamp-2 mb-2 leading-tight"
+          className="block font-semibold text-[#191C1F] text-sm xsm:text-base md:text-lg hover:text-primary transition line-clamp-2 mb-2 leading-tight"
         >
           {subcategory.name}
         </Link>
 
         {/* Item count */}
-        <p className="text-base md:text-lg font-semibold text-[#562506] mb-4">
+        <p className="text-sm xsm:text-base md:text-lg text-[#562506] mb-4">
           {subcategory.products?.length || 0}{' '}
           {subcategory.products?.length === 1 ? 'Item' : 'Items'}
         </p>
@@ -95,7 +95,7 @@ const CollectionCard = ({ subcategory }: { subcategory: ISUBCATEGORY }) => {
       {/* Button */}
       <Link
         href={subcategoryUrl}
-        className="w-full py-3 rounded-full border border-[#FEB907] text-[#191C1F] font-semibold text-center hover:bg-[#FEB907] hover:text-white transition duration-300 block text-sm md:text-base font-inter"
+        className="w-full py-2 rounded-full border border-[#FEB907] text-[#191C1F] font-semibold text-center hover:bg-[#FEB907] hover:text-white transition duration-300 block text-sm md:text-base font-inter"
       >
         View All
       </Link>
