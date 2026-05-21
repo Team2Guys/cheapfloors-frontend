@@ -200,6 +200,7 @@ export interface ProductFilterParams {
   subcategory?: string;
   subcategories?: ISUBCATEGORY[];
   isClearance?: boolean;
+  selectedTags?: string[];
 }
 
 export interface IAppointment {

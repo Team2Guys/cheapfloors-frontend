@@ -483,13 +483,14 @@ export const productFilter = ({
 export const collectionFilter = ({
   products,
   priceValue,
-  selectedProductFilters
+  selectedProductFilters,
+  isWaterProof,
+  selectedTags
 }: ProductFilterParams): {
   filtered: ISUBCATEGORY[];
   appliedFilters: SelectedFilter[];
 } => {
-  let filtered = products ?? [];
-
+  let filtered = (products as unknown as ISUBCATEGORY[]) ?? [];
   const appliedFilters: SelectedFilter[] = [];
 
   // Filter by price
@@ -498,18 +499,89 @@ export const collectionFilter = ({
     return price >= priceValue[0] && price <= priceValue[1];
   });
 
+  // Filter by waterproof
+  if (isWaterProof === true || isWaterProof === false) {
+    filtered = filtered.filter((subcat) => {
+      return subcat.products?.some((prod) => prod.waterproof === isWaterProof);
+    });
+    appliedFilters.push({ name: 'isWaterProof', value: isWaterProof });
+  }
+
+  // Filter by tags
+  if (selectedTags && selectedTags.length > 0) {
+    filtered = filtered.filter((subcat) => {
+      const subcatName = subcat.name?.toLowerCase() || '';
+      return selectedTags.some((tag) => {
+        const normalizedTag = tag.toLowerCase();
+        return subcatName.includes(normalizedTag) || subcat.products?.some((prod) => prod.name?.toLowerCase().includes(normalizedTag));
+      });
+    });
+    selectedTags.forEach((tag) => {
+      appliedFilters.push({ name: 'Tag', value: tag });
+    });
+  }
+
+  // Filter by selected product filters (Colours, thicknesses, commercialWarranty, residentialWarranty, plankWidth, plankLength)
   const filterMapping: { key: keyof FilterState; productKey: string }[] = [
+    { key: 'Colours', productKey: 'colors' },
     { key: 'thicknesses', productKey: 'thickness' },
-    { key: 'plankWidth', productKey: 'width' },
-    { key: 'plankLength', productKey: 'height' }
+    { key: 'commercialWarranty', productKey: 'CommmericallWarranty' },
+    { key: 'residentialWarranty', productKey: 'ResidentialWarranty' },
+    { key: 'plankWidth', productKey: 'plankWidth' },
+    { key: 'plankLength', productKey: 'plankLength' }
+  ];
+
+  const normalizeKeys: (keyof FilterState)[] = [
+    'thicknesses',
+    'plankWidth',
+    'plankLength'
   ];
 
   filterMapping.forEach(({ key, productKey }) => {
     const selectedValues = selectedProductFilters[key];
     if (Array.isArray(selectedValues) && selectedValues.length > 0) {
-      filtered = filtered.filter((product) => {
-        const filterValue = product?.sizes?.[0]?.[productKey] ?? '';
-        return selectedValues.includes(filterValue);
+      filtered = filtered.filter((subcat) => {
+        // A subcat matches if its sizes match, OR if any of its products match
+        const subcatValue = subcat.sizes?.[0]?.[
+          productKey === 'thickness'
+            ? 'thickness'
+            : productKey === 'plankWidth'
+              ? 'width'
+              : productKey === 'plankLength'
+                ? 'height'
+                : ('' as any)
+        ];
+
+        const normalizedSubcatValue = typeof subcatValue === 'string'
+          ? (normalizeKeys.includes(key) ? subcatValue.replace(/\s+/g, '').trim() : subcatValue.trim())
+          : '';
+
+        if (normalizedSubcatValue && selectedValues.includes(normalizedSubcatValue)) {
+          return true;
+        }
+
+        // Otherwise check its products
+        return subcat.products?.some((product) => {
+          let productValue = product[productKey as keyof typeof product];
+
+          if (key === 'plankLength') {
+            productValue = product.sizes?.[0]?.height;
+          }
+
+          if (typeof productValue === 'string') {
+            productValue = normalizeKeys.includes(key)
+              ? productValue.replace(/\s+/g, '').trim()
+              : productValue.trim();
+          }
+
+          if (Array.isArray(productValue)) {
+            return productValue.some((val: any) =>
+              selectedValues.includes(val?.name?.trim() || val?.trim() || '')
+            );
+          }
+
+          return selectedValues.includes((productValue as string) || '');
+        });
       });
 
       selectedValues.forEach((value) => {

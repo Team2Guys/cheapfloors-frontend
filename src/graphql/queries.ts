@@ -483,6 +483,14 @@ export const FETCHSUBCAT = gql`
       products {
         id
         name
+        status
+        thickness
+        CommmericallWarranty
+        ResidentialWarranty
+        plankWidth
+        sizes
+        colors
+        waterproof
       }
       category {
         id
