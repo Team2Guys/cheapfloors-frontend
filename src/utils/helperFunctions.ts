@@ -542,15 +542,19 @@ export const collectionFilter = ({
     if (Array.isArray(selectedValues) && selectedValues.length > 0) {
       filtered = filtered.filter((subcat) => {
         // A subcat matches if its sizes match, OR if any of its products match
-        const subcatValue = subcat.sizes?.[0]?.[
+        type SizeKey = 'thickness' | 'width' | 'height';
+
+        const sizeKey: SizeKey | undefined =
           productKey === 'thickness'
             ? 'thickness'
             : productKey === 'plankWidth'
               ? 'width'
               : productKey === 'plankLength'
                 ? 'height'
-                : ('' as any)
-        ];
+                : undefined;
+
+        const subcatValue =
+          sizeKey ? subcat.sizes?.[0]?.[sizeKey] : undefined;
 
         const normalizedSubcatValue = typeof subcatValue === 'string'
           ? (normalizeKeys.includes(key) ? subcatValue.replace(/\s+/g, '').trim() : subcatValue.trim())
@@ -575,6 +579,8 @@ export const collectionFilter = ({
           }
 
           if (Array.isArray(productValue)) {
+
+            //eslint-disable-next-line
             return productValue.some((val: any) =>
               selectedValues.includes(val?.name?.trim() || val?.trim() || '')
             );

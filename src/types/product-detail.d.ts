@@ -21,6 +21,7 @@ export interface AdditionalInfoProps {
   description: string;
   AdditionalInformation?: { name: string; detail: string }[];
   subcategory: string;
+  name: string;
 }
 
 export interface AreaCalculatorProps {
@@ -36,6 +37,7 @@ export interface PaymentMethodProps {
   showheading?: boolean;
   installments: number;
   isClearance?: boolean;
+  compact?: boolean;
 }
 
 export interface detailprops {

@@ -106,7 +106,7 @@ const Card: React.FC<productCardProps> = ({
 
   return (
     <div
-      className={`group flex flex-col h-full font-inter p-1 xsm:p-3 group transition-shadow hover:shadow-md overflow-hidden ${isAccessories ? 'hover:bg-[#FFF9F5] border border-gray-200' : sldier ? 'bg-white' : 'bg-[#FAFAFA] border border-gray-200'}`}
+      className={`group flex flex-col h-full font-inter p-1 xsm:p-3 group transition-shadow hover:shadow-md overflow-hidden ${isAccessories ? 'bg-[#FAFAFA] border border-gray-200' : sldier ? 'bg-white' : 'bg-[#FAFAFA] border border-gray-200'}`}
     >
       <div className="relative">
         <Link

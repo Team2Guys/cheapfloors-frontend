@@ -232,6 +232,9 @@
   border-radius: 0px;
   height: 5px;
 }
+.related_slider .swiper-wrapper{
+  padding-bottom: 16px;
+}
 
 .related_slider .swiper-pagination-bullet-active {
   background: var(--primary) !important;
@@ -241,7 +244,7 @@
   width: 14px !important;
   height: 14px !important;
   opacity: 1;
-  background: #000000;
+  background: #0000003D;
 }
 
 
