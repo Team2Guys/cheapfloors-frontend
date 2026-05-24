@@ -24,11 +24,12 @@ const AccessoriesDetail = ({
       <AccessoriesContainer productData={productData as IProduct} />
       <Container className="mb-10 lg:px-20">
         <AdditionalInfo
+          name={productData.name || ''}
           description={productData.description || ''}
           AdditionalInformation={productData.AdditionalInformation}
           subcategory={productData.subcategory?.name || ''}
         />
-        <FaqDetail FAQS={productData.FAQS} />
+        <FaqDetail faqs={productData.FAQS} />
       </Container>
       <Features />
       <RelatedSlider products={ProductInfo?.slice(0, 5) || []} isAccessories />

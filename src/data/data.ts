@@ -1610,23 +1610,23 @@ export const richmondLvtLuxuryFaqs: FAQItem[] = [
 export const floorSmartSpcEcoFaqs: FAQItem[] = [
   {
     id: 1,
-    question: "What makes FLOOR SMART SPC flooring in Dubai a good choice?",
-    answer: "Floor Smart SPC flooring in Dubai is fully waterproof, termite-resistant, and highly durable. It is designed to handle moisture, heavy foot traffic, and daily wear, making it ideal for homes and commercial spaces in Dubai."
+    question: "Does it include an underlay?",
+    answer: "Yes, it comes with an integrated IXPE underlay that enhances comfort underfoot while reducing noise levels. This feature is especially useful in apartments and offices, creating a quieter and more comfortable indoor environment."
   },
   {
     id: 2,
-    question: "Is Floor Smart SPC installation complicated?",
-    answer: "No, Floor Smart SPC flooring uses a Unilin click-lock system, allowing quick and easy installation without adhesives. It is suitable for both professionals and DIY installation."
+    question: "Is it durable for long-term use?",
+    answer: "Yes, it is built with a strong SPC core and protective wear layer, ensuring long-lasting performance. It can handle daily wear, heavy furniture, and high foot traffic without losing its appearance."
   },
   {
     id: 3,
-    question: "How does Floor Smart SPC flooring compare to other flooring options?",
-    answer: "Floor Smart SPC flooring offers better water resistance, durability, and lower maintenance compared to hardwood and laminate flooring, making it a practical long-term investment."
+    question: "Does it reduce noise?",
+    answer: "Yes, the built-in IXPE underlay helps absorb sound and reduce noise levels. This makes it ideal for multi-level buildings, apartments, and offices where noise reduction and comfort are important."
   },
   {
     id: 4,
-    question: "Are SPC flooring prices in Dubai affordable?",
-    answer: "Yes, Floor Smart offers competitive SPC flooring prices in Dubai, providing a premium wood-look finish at a much more economical cost than natural wood."
+    question: "How many planks come in a box, and what's the coverage area?",
+    answer: "Each box includes 12 planks, covering approximately 2.664 square meters. It can cover small areas efficiently, while larger rooms will require multiple boxes for complete flooring installation."
   }
 ];
 

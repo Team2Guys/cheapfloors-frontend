@@ -39,7 +39,7 @@ const RelatedSlider = ({
             breakpoints={{
               1280: { slidesPerView: 4, slidesPerGroup: 2 },
               1024: { slidesPerView: 2.5, slidesPerGroup: 2 },
-              320: { slidesPerView: 2, slidesPerGroup: 2 }
+              320: { slidesPerView: 1.2, slidesPerGroup: 1 }
             }}
             className="related_slider"
           >

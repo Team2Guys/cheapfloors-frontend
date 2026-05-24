@@ -43,10 +43,10 @@ const Checkbox = ({
         disabled={disabled}
       />
       <div
-        className={`w-5 h-5 border-2 flex_center transition-colors duration-200 ${
+        className={`size-6 shrink-0 border-2 flex_center transition-colors duration-200 rounded-[2px] ${
           isChecked
             ? 'bg-primary border-primary text-white'
-            : 'border-primary'
+            : 'bg-white border-primary'
         }`}
       >
         {isChecked && (

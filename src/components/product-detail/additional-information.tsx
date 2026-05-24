@@ -4,30 +4,38 @@ import { AdditionalInfoProps } from 'types/product-detail';
 const AdditionalInfo = ({
   description,
   AdditionalInformation,
-  subcategory
+  subcategory,
+  name
 }: AdditionalInfoProps) => {
   const tabItems = [
     {
       label: 'Description',
       value: 'description',
       content: (
-        <p className="text-xs sm:text-sm 2xl:text-base text-justify" dangerouslySetInnerHTML={{ __html: description }}></p>
+        <div>
+          <h2 className="text-lg sm:text-2xl font-bold mb-4">{name}</h2>
+
+          <p
+            className="text-sm sm:text-base leading-relaxed prose prose-sm max-w-none [&_p]:mb-3 [&_strong]:font-bold"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
+        </div>
       )
     },
     {
-      label: 'Dimensions',
-      value: 'dimensions',
+      label: 'Additional Information',
+      value: 'additional-info',
       content: (
-        <table className="w-full sm:max-w-[80%] mx-auto text-left border-collapse  rounded-md text-sm">
+        <table className="w-full sm:max-w-[80%] text-left border-collapse rounded-md text-sm">
           <tbody className="rounded-md">
             <tr className="bg-primary text-white rounded-t-md">
-              <th className="py-2 px-4 rounded-tl-md ">ITEM</th>
+              <th className="py-2 px-4 rounded-tl-md">ITEM</th>
               <th className="py-2 px-4 rounded-tr-md">{subcategory || ''}</th>
             </tr>
             {AdditionalInformation &&
               AdditionalInformation.map((spec, index) => (
                 <tr key={index}>
-                  <td className="py-2 px-4 border ">{spec.name}</td>
+                  <td className="py-2 px-4 border">{spec.name}</td>
                   <td className="py-2 px-4 border">{spec.detail}</td>
                 </tr>
               ))}
@@ -36,7 +44,7 @@ const AdditionalInfo = ({
       )
     }
   ];
-  return <Tabs tabs={tabItems} />;
+  return <Tabs tabs={tabItems} variant="product-detail" />;
 };
 
 export default AdditionalInfo;

@@ -106,7 +106,7 @@ const Card: React.FC<productCardProps> = ({
 
   return (
     <div
-      className={`group flex flex-col h-full font-inter p-3 transition-shadow hover:shadow-md ${isAccessories ? 'hover:bg-[#FFF9F5] border border-gray-200' : sldier ? 'bg-white' : 'bg-[#FAFAFA] border border-gray-200'}`}
+      className={`group flex flex-col h-full font-inter p-1 xsm:p-3 group transition-shadow hover:shadow-md overflow-hidden ${isAccessories ? 'bg-[#FAFAFA] border border-gray-200' : sldier ? 'bg-white' : 'bg-[#FAFAFA] border border-gray-200'}`}
     >
       <div className="relative">
         <Link
@@ -132,15 +132,15 @@ const Card: React.FC<productCardProps> = ({
           </div>
         )}
         {!sldier && (
-          <div className="absolute top-2 right-2 z-10">
+          <div className="absolute top-2 right-2 xsm:-right-40 xsm:group-hover:right-2 z-10">
             <button
-              className="bg-white p-2 shadow-sm rounded-sm hover:text-primary transition"
+              className="bg-white p-1 xsm:p-2 shadow-sm rounded-sm hover:text-primary transition"
               aria-label="open quick view"
               onClick={(e) => handleModel(e)}
               onMouseEnter={() => setShowCaption('Quick View')}
               onMouseLeave={() => setShowCaption('')}
             >
-              <FiEye size={18} className="text-black" />
+              <FiEye className="text-black text-base xsm:text-lg" />
             </button>
             <span
               className={`absolute right-10 top-1 bg-gray-800 text-white text-[10px] px-2 py-1 rounded transition whitespace-nowrap z-10 pointer-events-none ${showCaption === 'Quick View' ? 'opacity-100' : 'opacity-0'}`}
@@ -195,7 +195,7 @@ const Card: React.FC<productCardProps> = ({
                 { key: 'height', Icon: TwoArrow }
               ].map(({ key, Icon }) =>
                 feature[key as keyof typeof feature] ? (
-                  <div key={key} className="flex items-center gap-1.5">
+                  <div key={key} className="flex items-center gap-0.5">
                     <Icon />
                     <span className="text-[8px] sm:text-xs xl:text-sm font-medium text-gray-500">
                       {feature[key as keyof typeof feature]}
@@ -211,7 +211,7 @@ const Card: React.FC<productCardProps> = ({
           className={`flex gap-4 py-3 border-b border-gray-200 ${isAccessories ? 'justify-around' : 'justify-between'}`}
         >
           {features.map((feature, index) => (
-            <div className="flex gap-1.5 items-center" key={index}>
+            <div className="flex gap-0.5 items-center" key={index}>
               <Image
                 src={feature.icon}
                 alt="Icon"
@@ -242,8 +242,8 @@ const Card: React.FC<productCardProps> = ({
 
       <div className="pb-2">
         {'price' in product && product.price && (
-          <p className="text-lg md:text-xl font-medium text-black flex items-center">
-            <span className="font-currency font-normal text-xl md:text-2xl mr-1">
+          <p className="text-base font-medium text-black flex items-center">
+            <span className="font-currency font-normal text-xl mr-1 mb-0.5">
               
             </span>
             {product?.price}
@@ -256,7 +256,7 @@ const Card: React.FC<productCardProps> = ({
         {isSoldOut || ((product as IProduct).stock === 0 && !isAccessories) ? (
           <button
             disabled
-            className={`${sldier ? 'px-8 w-fit' : 'flex-1'} py-2 md:py-2.5 rounded-full border border-gray-400 bg-gray-100 text-gray-500 font-semibold text-sm md:text-base cursor-not-allowed text-center`}
+            className={`${sldier ? 'px-8 w-fit' : 'flex-1'} py-2 md:py-2.5 rounded-full border border-gray-400 bg-gray-100 text-gray-500 font-semibold text-xs xs:text-sm md:text-base cursor-not-allowed text-center`}
           >
             {isSoldOut ? 'Sold Out' : 'Out of Stock'}
           </button>
@@ -273,7 +273,7 @@ const Card: React.FC<productCardProps> = ({
           </Link>
         ) : !isAccessories ? (
           <button
-            className="flex-1 py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-sm md:text-base hover:bg-primary hover:text-white transition text-center"
+            className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-xs xs:text-sm md:text-base hover:bg-primary hover:text-white transition text-center"
             onClick={(e) => {
               e.preventDefault();
               handleAddToStorage(

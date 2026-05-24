@@ -264,32 +264,30 @@ const Filters = ({
           </ul>
         </Accordion>
 
-        {!isColection && (
-          <Accordion title="Waterproof">
-            <ul className="filter_accordion">
-              <li>
-                <button
-                  className={`cursor-pointer w-full text-left ${isWaterProof ? 'text-primary' : 'text-[#475156] hover:text-primary'}`}
-                  onClick={() =>
-                    setIsWaterProof(isWaterProof === true ? null : true)
-                  }
-                >
-                  Yes
-                </button>
-              </li>
-              <li>
-                <button
-                  className={`cursor-pointer w-full text-left ${!isWaterProof && isWaterProof !== undefined && isWaterProof !== null ? 'text-primary' : 'text-[#475156] hover:text-primary'}`}
-                  onClick={() =>
-                    setIsWaterProof(isWaterProof === false ? null : false)
-                  }
-                >
-                  No
-                </button>
-              </li>
-            </ul>
-          </Accordion>
-        )}
+        <Accordion title="Waterproof">
+          <ul className="filter_accordion">
+            <li>
+              <button
+                className={`cursor-pointer w-full text-left ${isWaterProof ? 'text-primary' : 'text-[#475156] hover:text-primary'}`}
+                onClick={() =>
+                  setIsWaterProof(isWaterProof === true ? null : true)
+                }
+              >
+                Yes
+              </button>
+            </li>
+            <li>
+              <button
+                className={`cursor-pointer w-full text-left ${!isWaterProof && isWaterProof !== undefined && isWaterProof !== null ? 'text-primary' : 'text-[#475156] hover:text-primary'}`}
+                onClick={() =>
+                  setIsWaterProof(isWaterProof === false ? null : false)
+                }
+              >
+                No
+              </button>
+            </li>
+          </ul>
+        </Accordion>
 
         {Object.entries(uniqueFilters).map(([filterKey, filterValues]) => {
           if (filterValues.length === 0) return null;
@@ -307,6 +305,7 @@ const Filters = ({
                     length = getColorCount(
                       item,
                       category,
+                      isColection,
                       subcategory,
                       products
                     );
