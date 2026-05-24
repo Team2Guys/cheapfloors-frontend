@@ -43,6 +43,7 @@ export interface TextInputProps {
 export interface FAQ {
   question: string;
   answer: string;
+  category?: string; 
 }
 
 export interface FAQsListProps {
