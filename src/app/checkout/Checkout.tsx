@@ -6,16 +6,16 @@ import 'react-phone-number-input/style.css';
 import Image from 'next/image';
 import Container from 'components/common/container/Container';
 import Link from 'next/link';
-import secureImg from '../../../public/assets/icons/safe-icon-1.png';
-import lightImg from '../../../public/assets/icons/light1(traced).png';
+// import secureImg from '../../../public/assets/icons/safe-icon-1.png';
+import lightImg from '../../../public/assets/icons/light.png';
 import light_2Img from '../../../public/assets/icons/light-02-(traced).png';
-import deliveryImg from '../../../public/assets/icons/delivery-truck 2 (traced).png';
-import locationImg from '../../../public/assets/icons/location 1 (traced).png';
-import { CiDeliveryTruck } from 'react-icons/ci';
+import deliveryImg from '../../../public/assets/icons/truck.png';
+import locationImg from '../../../public/assets/icons/installation.png';
+// import { CiDeliveryTruck } from 'react-icons/ci';
 import { emirateCityMap, emirates } from 'data/data';
 import { ICart } from 'types/prod';
 import { getCart, openDB } from 'utils/indexedDB';
-import { paymentcard } from 'data/cart';
+// import { paymentcard } from 'data/cart';
 import PaymentMethod from 'components/product-detail/payment';
 import { useMutation } from '@apollo/client';
 import { INITIATE_FREE_SAMPLE, INITIATE_PAYMENT } from 'graphql/mutations';
@@ -29,8 +29,18 @@ import { formatAED, getShippingData } from 'utils/helperFunctions';
 import Accordion from 'components/ui/accordion';
 import { showAlert } from 'utils/Alert';
 import { termsConditionsData } from 'data/terms-condition';
+import TrustBadges from '@/components/product-detail/trust-badges';
 
-const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
+
+interface ProductExtrasProps {
+  installments?: number;
+  isFreeSample?: boolean;
+}
+
+const Checkout = ({
+  installments,
+  isFreeSample = false,
+}: ProductExtrasProps) => {
   const [totalProducts, setTotalProducts] = useState(0);
   const [subTotal, setSubTotal] = useState(0);
   const [total, setTotal] = useState(0);
@@ -447,11 +457,13 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
     setSubTotal(subTotalPrice);
   };
 
+  
+
   return (
     <Container>
-      <h1 className="text-4xl text-center my-2">Checkout</h1>
-      <div className="flex items-center gap-2 sm:gap-4 mb-4">
-        <span className="sm:text-20">Shipping Information</span>
+      <h1 className="text-24 sm:text-4xl my-2 sm:my-7 text-left font-semibold font-rubik">Checkout</h1>
+      <div className="flex items-center gap-2 sm:gap-4 mb-7">
+        <span className="text-20 font-medium">Shipping Information</span>
         <svg
           width="7"
           height="12"
@@ -461,7 +473,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
         >
           <path d="M6.51562 6.53125L2.26562 10.7812C1.95312 11.0938 1.48438 11.0938 1.20312 10.7812L0.484375 10.0938C0.203125 9.78125 0.203125 9.3125 0.484375 9.03125L3.51562 6.03125L0.484375 3C0.203125 2.71875 0.203125 2.25 0.484375 1.9375L1.20312 1.21875C1.48438 0.9375 1.95312 0.9375 2.26562 1.21875L6.51562 5.46875C6.79688 5.78125 6.79688 6.25 6.51562 6.53125Z" />
         </svg>
-        <span className="text-13 sm:text-slate-500">Payment</span>
+        <span className="text-14 lg:text-20 text-primary">Payment</span>
       </div>
       <Formik
         initialValues={{
@@ -501,8 +513,8 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
         }}
       >
         {({ values, handleChange, setFieldValue, isSubmitting }) => (
-          <Form className="grid grid-cols-1 2md:grid-cols-2 gap-5 lg:gap-10 min-h-screen mb-20">
-            <div className="bg-white pb-4 px-2 sm:px-0 sm:pb-8 shadow-lg rounded-lg sm:shadow-none">
+          <Form className="flex flex-col lg:flex-row 2md:grid-cols-2 gap-5 lg:gap-10 min-h-screen mb-20">
+            <div className="bg-white pb-4 px-2 sm:px-0 sm:pb-8 shadow-lg rounded-lg sm:shadow-none w-full lg:w-[50%] xl:w-[55%]">
               <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Input
@@ -518,13 +530,13 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                   <div className="flex flex-col mb-1">
                     <label
                       htmlFor="Last Name"
-                      className="text-13 font-medium font-inter mb-1"
+                      className="text-20 font-medium font-inter mb-1"
                     >
                       Last Name
                     </label>
                     <input
                       type="text"
-                      className="p-2 border border-gray-300 h-11 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary w-full placeholder:text-13 placeholder:font-light placeholder:text-[#828282]"
+                      className="p-2 border border-gray-300 h-11 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary w-full placeholder:text-base placeholder:font-light placeholder:text-[#828282]"
                       name="lastName"
                       placeholder="Enter Last name"
                       value={values.lastName}
@@ -546,7 +558,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                 <div className="custom-input-phone-wrapper">
                   <label
                     htmlFor="phone"
-                    className="text-13 font-medium font-inter"
+                    className="text-20 font-medium font-inter"
                   >
                     Phone No <span className="text-red-500">*</span>
                   </label>
@@ -556,7 +568,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                     name="phone"
                     placeholder="Type Your Phone No"
                     value={values.phone}
-                    className="ring-0 !outline-none"
+                    className="ring-0 !outline-none text-base"
                     onChange={(value) => setFieldValue('phone', value)}
                   />
                   <ErrorMessage
@@ -646,10 +658,10 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
 
                     <label
                       htmlFor="terms-checkbox"
-                      className="checkbox-label flex items-center space-x-2 cursor-pointer"
+                      className="checkbox-label flex justify-start items-start sm:items-center space-x-2 cursor-pointer"
                     >
                       <div
-                        className={`w-5 h-5 border-2 flex_center transition-colors duration-200 ${values.terms
+                        className={`w-5 h-5 border-2 flex_center transition-colors rounded-sm duration-200 mt-1 ${values.terms
                             ? 'bg-primary border-primary text-white'
                             : 'border-primary'
                           }`}
@@ -671,7 +683,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                           </svg>
                         )}
                       </div>
-                      <span>
+                      <span className="text-14 sm:text-16 ">
                         I have read and agree to the{' '}
                         <button
                           className="text-primary hover:underline"
@@ -686,19 +698,19 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                     <ErrorMessage
                       name="terms"
                       component="div"
-                      className="text-red-500 text-sm mt-1"
+                      className="text-red-500 font-medium text-sm mt-1"
                     />
                   </div>
                 </div>
-              </div>
+              </div>  
             </div>
-            <div className="bg-[#FFF9F5] w-full">
+            <div className="bg-[#FAFAFA] w-full lg:w-[50%] xl:w-[45%]">
               <div className="p-2 xs:p-4 sm:p-8">
-                <div className="flex items-center gap-4 pb-4 border-b">
-                  <h2 className="text-xl xs:text-2xl">Order Summary</h2>
+                <div className="flex justify-between gap-4 pb-4 border-b">
+                  <h2 className="text-2xl font-medium">Order Summary</h2>
                   <span>
                     (
-                    <span className="text-red-600 pt-1">
+                    <span className="text-red-500 pt-1">
                       *Total {`${totalProducts}`}{' '}
                       {totalProducts > 1 ? 'Items' : 'Item'}
                     </span>
@@ -710,9 +722,9 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                     mergedCart.map((item, index) => (
                       <div
                         key={index}
-                        className="flex items-center border-b pb-4"
+                        className="flex border-b border-t py-4"
                       >
-                        <div className="p-1 bg-white border rounded-md">
+                        <div className="p-1 bg-white border items-center flex">
                           <Image
                             src={
                               item.image ||
@@ -720,12 +732,13 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                               ''
                             }
                             alt={item.name}
-                            width={80}
-                            height={80}
+                            height={100}
+                            width={100}
+                            className="object-cover"
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="font-bold text-13 xs:text-base">
+                          <p className="font-semibold text-13 xs:text-base ">
                             {item.name}
                           </p>
                           {item.isfreeSample ? (
@@ -809,9 +822,9 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                   )}
                 </div>
               </div>
-              <div className="px-2 xs:px-4 sm:px-8 pb-10 border-t-2">
-                <div className="space-y-2 py-4">
-                  <p className="text-gray-600 flex justify-between">
+              <div className="px-2 xs:px-4 sm:px-8 pb-10">
+                <div className="space-y-2 pb-4">
+                  <p className="text-base font-semibold flex justify-between border-b pb-2">
                     Subtotal{' '}
                     <span className="text-black">
                       <span className="font-currency text-20 font-normal">
@@ -820,8 +833,80 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                       {formatAED((subTotal) - (subTotal - (subTotal / 1.05)))}
                     </span>
                   </p>
+                  <p className=" flex justify-between">
+                    <span className="flex items-center gap-2 font-semibold">
+                      Shipping 
+                      {/* <CiDeliveryTruck size={16} className="mt-1" /> */}
+                    </span>
+                    <span className="text-black">
+                      {selectedEmirate === 'Enter Emirate' ? (
+                        isFreeSample ? (
+                          selectedFee > 0 ? (
+                            <span className="font-currency font-normal text-18">
+                               {formatAED(selectedFee)}
+                            </span>
+                          ) : (
+                            'Free'
+                          )
+                        ) : (
+                          'Select Shipping Emirate'
+                        )
+                      ) : selectedShipping === 'express' ?
+                        isFreeSample ?
+                          'Free' :
+                          (
+                            <span className="font-currency font-normal text-18">
+                               {formatAED(150)}
+                            </span>
+                          ) : selectedEmirate === 'Dubai' ? (
+                            'Free'
+                          ) : subTotal >= 2000 ? (
+                            'Free'
+                          ) : (
+                          <span className="font-currency font-normal text-18">
+                             {formatAED(200)}
+                          </span>
+                        )}
+                    </span>
+                  </p>
+                  {/* <p className="text-lg font-bold flex justify-between">
+                    VAT{' '}
+                    <span>
+                      <span className="font-currency font-normal text-20">
+                        
+                      </span> {formatAED(subTotal - (subTotal / 1.05))}
+                    </span>
+                  </p> */}
+                  <p className="text-xl font-bold flex justify-between border p-2">
+                    Total Incl. VAT{' '}
+                    <span>
+                      <span className="font-currency font-normal text-22">
+                        
+                      </span>{' '}
+                      {selectedEmirate !== 'Enter Emirate'
+                        ? formatAED(total)
+                        : formatAED(subTotal)}
+                    </span>
+                  </p>
 
-                  <div className="border-b">
+                   <div className="py-3">
+                  <button
+                    type="submit"
+                    onClick={
+                      allItemsAreFreeSamples ? () => { } : handlePurchaseClick
+                    }
+                    className={`w-full bg-primary hover:bg-secondary text-white rounded-md  ${allItemsAreFreeSamples ? 'p-3' : 'p-2'} `}
+                    disabled={isSubmitting || isLoading || totalProducts === 0}
+                  >
+                    {isSubmitting || isLoading
+                      ? 'Processing...'
+                      : allItemsAreFreeSamples
+                        ? 'Place Order'
+                        : 'Pay Now'}
+                  </button>
+                   </div>
+
+                  <div className="">
                     <Accordion
                       isCheckout
                       label="Shipping Options"
@@ -882,20 +967,20 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                                   alt="icon"
                                   className="size-12 xs:size-16"
                                 />
-                                <div className="text-11 xs:text-base">
-                                  <strong className="text-15 xs:text-20">
+                                <div className="">
+                                  <strong className="text-primary test-16 font-semibold">
                                     Express Service (Dubai Only)
                                   </strong>
-                                  <p className="text-11 xs:text-base">
+                                  <p className="text-14">
                                     Delivery:{' '}
                                     <strong>
                                       Next working day (cut-off time 1pm)
                                     </strong>
                                   </p>
-                                  <p>
+                                  <p className="text-14">
                                     Delivery Cost:{' '}
                                     <strong>
-                                      <span className="font-currency font-normal text-18">
+                                      <span className="font-currency font-normal text-16">
                                         
                                       </span>
                                       150
@@ -917,21 +1002,21 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                               className="size-12 xs:size-16"
                             />
                             <div>
-                              <strong className="text-15 xs:text-20">
+                              <strong className="text-16 font-semibold text-primary">
                                 Standard Service{' '}
                                 {!allItemsAreFreeSamples &&
                                   (selectedEmirate === 'Dubai'
                                     ? ' (Dubai)'
                                     : ' (All Other Emirates)')}
                               </strong>
-                              <p className="text-11 xs:text-base">
+                              <p className="text-14">
                                 Delivery:{' '}
                                 <strong>
                                   2{selectedCity === 'Dubai' ? '' : '-3'}{' '}
                                   working days
                                 </strong>
                               </p>
-                              <p className="text-11 xs:text-base">
+                              <p className="text-14">
                                 <span>Delivery Cost:</span>
                                 {allItemsAreFreeSamples ? (
                                   <strong> Free</strong>
@@ -941,21 +1026,21 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                                   <>
                                     Free for orders above{' '}
                                     <strong>
-                                      <span className="font-currency font-normal text-18">
+                                      <span className="font-currency font-normal text-16">
                                         
                                       </span>
                                       2,000
                                     </strong>
                                     .{' '}
                                     <strong>
-                                      <span className="font-currency font-normal text-18">
+                                      <span className="font-currency font-normal text-16">
                                         
                                       </span>
                                       200
                                     </strong>{' '}
                                     delivery charge applies for orders below{' '}
                                     <strong>
-                                      <span className="font-currency font-normal text-18">
+                                      <span className="font-currency font-normal text-16">
                                         
                                       </span>
                                       1,999
@@ -981,14 +1066,14 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                           className="size-12 xs:size-16"
                         />
                         <div>
-                          <strong className="text-15 xs:text-20">
+                          <strong className="text-16 font-semibold text-primary">
                             Self-Collect:
                           </strong>
-                          <p className="text-11 xs:text-base">
+                          <p className="text-14">
                             Collection Monday-Saturday{' '}
                             <strong>(9am-6pm)</strong>
                           </p>
-                          <p className="text-11 xs:text-base">
+                          <p className="text-14">
                             <span>Location:</span>{' '}
                             <strong>
                               <Link
@@ -1021,12 +1106,12 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                           className="size-12 xs:size-16"
                         />
                         <div>
-                          <strong className="text-15 xs:text-20">
+                          <div className="text-16 text-primary font-semibold">
                             Installation Information:
-                          </strong>
-                          <p className="text-11 xs:text-base">
+                          </div>
+                          <p className="text-14">
                             Installation charge for straight planks is{' '}
-                            <span className="font-currency text-18 font-normal">
+                            <span className="font-currency text-16 font-normal">
                               
                             </span>{' '}
                             25 per metre square, and for herringbone is{' '}
@@ -1040,7 +1125,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                           <Link
                             target="_blank"
                             rel="noopener noreferrer"
-                            className=" hover:text-primary underline text-primary font-bold"
+                            className=" hover:text-primary underline text-primary text-14 font-semibold"
                             href="/help-with-installations"
                           >
                             Book Installation Appointment
@@ -1054,7 +1139,7 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                       isOpen={openAccordion === 'Return Policy'}
                       onToggle={() => handleToggle('Return Policy')}
                     >
-                      <p className="text-gray-500">
+                      <p className="text-14 bg-white px-4">
                         We offer 7-day hassle-free returns on all unused, sealed
                         items in their original packaging. If you change your
                         mind or receive a defective product, we’re here to help.{' '}
@@ -1068,78 +1153,10 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                     </Accordion>
                   </div>
 
-                  <p className="text-gray-600 flex justify-between">
-                    <span className="flex items-center gap-2">
-                      Shipping <CiDeliveryTruck size={16} className="mt-1" />
-                    </span>
-                    <span className="text-black">
-                      {selectedEmirate === 'Enter Emirate' ? (
-                        isFreeSample ? (
-                          selectedFee > 0 ? (
-                            <span className="font-currency font-normal text-18">
-                               {formatAED(selectedFee)}
-                            </span>
-                          ) : (
-                            'Free'
-                          )
-                        ) : (
-                          'Select Shipping Emirate'
-                        )
-                      ) : selectedShipping === 'express' ?
-                        isFreeSample ?
-                          'Free' :
-                          (
-                            <span className="font-currency font-normal text-18">
-                               {formatAED(150)}
-                            </span>
-                          ) : selectedEmirate === 'Dubai' ? (
-                            'Free'
-                          ) : subTotal >= 2000 ? (
-                            'Free'
-                          ) : (
-                          <span className="font-currency font-normal text-18">
-                             {formatAED(200)}
-                          </span>
-                        )}
-                    </span>
-                  </p>
-                  <p className="text-lg font-bold flex justify-between">
-                    VAT:{' '}
-                    <span>
-                      <span className="font-currency font-normal text-20">
-                        
-                      </span> {formatAED(subTotal - (subTotal / 1.05))}
-                    </span>
-                  </p>
-                  <p className="text-lg font-bold flex justify-between">
-                    Total Incl. VAT:{' '}
-                    <span>
-                      <span className="font-currency font-normal text-20">
-                        
-                      </span>{' '}
-                      {selectedEmirate !== 'Enter Emirate'
-                        ? formatAED(total)
-                        : formatAED(subTotal)}
-                    </span>
-                  </p>
+                  
                 </div>
-                <div className="pb-10 border-t-2 pt-4">
-                  <button
-                    type="submit"
-                    onClick={
-                      allItemsAreFreeSamples ? () => { } : handlePurchaseClick
-                    }
-                    className={`w-full bg-primary hover:bg-secondary text-white  ${allItemsAreFreeSamples ? 'p-3' : 'p-2'} `}
-                    disabled={isSubmitting || isLoading || totalProducts === 0}
-                  >
-                    {isSubmitting || isLoading
-                      ? 'Processing...'
-                      : allItemsAreFreeSamples
-                        ? 'Place Order'
-                        : 'Pay Now'}
-                  </button>
-                </div>
-                <div className="flex_center gap-2 mt-4">
+               
+                {/* <div className="flex_center gap-2 mt-4">
                   <Image
                     src={secureImg}
                     alt="secure img"
@@ -1148,9 +1165,9 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                   <p className="text-13 xs:text-15 sm:text-17">
                     Secure shopping with SSL data encryption
                   </p>
-                </div>
+                </div> */}
 
-                {subTotal > 0 && (
+                {/* {subTotal > 0 && (
                   <div className="mt-4">
                     <h3 className="text-20 xs:text-24 font-medium text-center">
                       Buy Now, Pay Later
@@ -1178,7 +1195,12 @@ const Checkout = ({ isFreeSample = false }: { isFreeSample?: boolean }) => {
                       />
                     ))}
                   </div>
-                </div>
+                </div> */}
+
+                 <div className="space-y-2.5">
+                <PaymentMethod installments={installments ?? 0} compact />
+                <TrustBadges />
+                 </div>
               </div>
             </div>
           </Form>

@@ -531,7 +531,7 @@ const ProductContainer = ({
                 Add to Wishlist
               </button>
               <div className="space-y-2.5">
-                <PaymentMethod installments={installments} compact />
+                <PaymentMethod installments={installments} />
                 <TrustBadges />
               </div>
             </>

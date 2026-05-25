@@ -33,10 +33,10 @@ const FAQsList: React.FC<FAQsListProps> = ({ faqspage }) => {
 
   return (
     <div className="font-inter">
-      <h1 className="text-2xl md:text-3xl font-bold mb-6">Frequently Ask Questions</h1>
+      <h1 className="text-2xl md:text-3xl font-bold mb-6 sm:text-center">Frequently Ask Questions</h1>
 
       {/* 3. Category Tabs/Navigation */}
-      <div className="flex flex-wrap gap-2 mb-10">
+      <div className="flex flex-wrap gap-2 mb-10 sm:justify-center">
         {categories.map((cat) => (
           <button
             key={cat}

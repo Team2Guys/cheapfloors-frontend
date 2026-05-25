@@ -13,13 +13,13 @@ const Accordion = ({
 }: AccordionProps) => {
   return (
     <div
-      className={`py-2 ${showPlusMinus ? '' : detailpage ? 'border px-2' : 'border-b'}`}
+      className={`py-2 ${showPlusMinus ? '' : detailpage ? 'border px-2' : ''}`}
     >
       <div className="flex_between">
         <h3
           onClick={onToggle}
           className={` flex items-center w-full text-left gap-2 cursor-pointer select-none
-          ${showPlusMinus ? 'border-b pb-2' : ''} ${isCheckout ? 'text-gray-500' : 'text-sm lg:text-base font-semibold'}`}
+          ${showPlusMinus ? 'border-b pb-2' : ''} ${isCheckout ? 'font-semibold text-base' : 'text-sm lg:text-base font-semibold'}`}
         >
           {!isCheckout &&
             (isOpen ? (

@@ -16,7 +16,7 @@ const Breadcrumb = ({
 }: BreadcrumbProps) => {
   return (
     <div className="w-full pt-3 font-inter">
-      <div className="z-30 w-full py-3 bg-white border-b">
+      <div className="z-30 w-full py-3 bg-[#F9FAFB] border-b">
         <Container className="text-lg flex items-center gap-2 sm:gap-4">
           {/* Home Link */}
           <Link
