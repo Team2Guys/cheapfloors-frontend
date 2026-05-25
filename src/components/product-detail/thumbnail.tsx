@@ -129,7 +129,7 @@ const Thumbnail = ({
                         priority
                         src={product.imageUrl}
                         className={`w-full aspect-square object-cover ${
-                          imageheight ? 'border border-black' : 'border'
+                          imageheight ? 'border-0' : 'border-0'
                         }`}
                         alt={product.altText || 'Thumbnail'}
                       />

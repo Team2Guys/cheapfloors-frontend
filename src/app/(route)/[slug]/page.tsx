@@ -10,6 +10,7 @@ import { defaultOrder } from 'data/accessory';
 import { FIND_ONE_Accessory } from 'graphql/queries';
 import Breadcrumb from 'components/Reusable/breadcrumb';
 import AccessoriesComp from 'components/Accessories/Accessories';
+import CategoryFaqs from '@/components/Faqs/CategoryFaqs';
 
 export async function generateMetadata({
   params
@@ -95,6 +96,7 @@ const CategoryPage = async ({
           product={sortedAccessories || []}
           category={category}
         />
+        <CategoryFaqs />
       </>
     );
   } else {

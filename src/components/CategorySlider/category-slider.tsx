@@ -10,6 +10,7 @@ import SwiperSlider from 'components/common/swiper-slider/swiper-slider';
 import { categoryBreakpoint } from 'data/slider';
 import SliderArrow from 'components/common/slider-arrow/slider-arrow';
 import { BsArrowRight } from 'react-icons/bs';
+import Container from '../common/container/Container';
 
 const getPrice = (cat: Category) => {
   if (cat.price) return cat.price;
@@ -63,7 +64,7 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
 
           return (
             <div className='bg-[#CDCDCD14]' key={index}>
-              <div key={index} className='relative overflow-hidden px-4 sm:px-6 lg:px-10 2xl:px-0 max-w-[1440px] w-full mx-auto py-6'>
+              <Container key={index} className='relative overflow-hidden py-6'>
                 {/* Desktop Arrows */}
                 <div className={`hidden lg:flex justify-end gap-3 mb-4 ${arrowHiddenClass}`}>
                   <SliderArrow direction="left" className={`cat-prev-${index}`} />
@@ -126,7 +127,7 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Container>
             </div>
           );
         })}
