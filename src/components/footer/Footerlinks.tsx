@@ -35,7 +35,7 @@ const Footerlinks: React.FC<FooterlinksProps> = ({ categories }) => {
               >
                 <Link
                   href={`/${section.custom_url}`}
-                  className="font-normal tracking-widest md:text-base text-sm"
+                  className="font-normal tracking-widest md:text-base text-sm text-black"
                 >
                   {section.name}
                 </Link>

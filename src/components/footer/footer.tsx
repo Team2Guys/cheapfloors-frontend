@@ -78,7 +78,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-100 text-gray-700 pt-10 mt-20 px-0 mx-0 relative font-inter">
-      <Container className=" mx-auto grid sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8 gap-4 2xl:gap-5 font-light">
+      <Container className=" mx-auto grid sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8 gap-4 2xl:gap-6 font-light">
         <div className="sm:mt-2">
           <Image
             src="/assets/images/logo.webp"
@@ -112,40 +112,76 @@ const Footer = () => {
                 return (Number(a.price) || 0) - (Number(b.price) || 0);
               }
             });
+            if(section.name === 'FLOOR SMART') return;
             return (
               <div key={index} className="sm:block hidden">
                 <Link
                   href={`/${section.custom_url}`}
-                  className="lg:text-base md:text-sm font-normal 2xl:tracking-widest 2xl:text-nowrap"
+                  className="lg:text-base md:text-sm font-medium 2xl:tracking-widest text-wrap text-black"
                 >
                   {section.name}
                 </Link>
-
-                <ul className="mt-4 space-y-2">
-                  {section.name === 'ACCESSORIES'
-                    ? (section.accessories ?? [])
-                      .sort(customSort)
-                      .map((item, i) => (
-                        <li key={i} className="footer_li">
+                {section.name === 'POLAR FLOORING' ?
+                  (
+                    <div className="mt-4 space-y-4">
+                      <ul className="space-y-2">
+                        {(subcategories ?? []).map((item, i) => (
+                          <li key={i} className="footer_li">
+                            <Link
+                              href={`/${item?.category?.RecallUrl || section.RecallUrl}/${item.custom_url}`}
+                              className="filter_Link"
+                            >
+                              {item.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                      <Link
+                        href='/floor-smart'
+                        className="lg:text-base md:text-sm flex font-medium 2xl:tracking-widest text-wrap text-black"
+                      >
+                        FLOOR SMART
+                      </Link>
+                      <ul className="mt-4 space-y-2">
+                        <li className="footer_li">
                           <Link
-                            href={`/accessories/${item.custom_url}`}
+                            href='/floor-smart/spc-eco'
                             className="filter_Link"
                           >
-                            {item.name}
+                            Floor Smart SPC Eco
                           </Link>
                         </li>
-                      ))
-                    : (subcategories ?? []).map((item, i) => (
-                      <li key={i} className="footer_li">
-                        <Link
-                          href={`/${item?.category?.RecallUrl || section.RecallUrl}/${item.custom_url}`}
-                          className="filter_Link"
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                </ul>
+                      </ul>
+                    </div>
+
+                  ) : (
+                    <ul className="mt-4 space-y-2">
+                      {section.name === 'ACCESSORIES'
+                        ? (section.accessories ?? [])
+                          .sort(customSort)
+                          .map((item, i) => (
+                            <li key={i} className="footer_li">
+                              <Link
+                                href={`/accessories/${item.custom_url}`}
+                                className="filter_Link"
+                              >
+                                {item.name}
+                              </Link>
+                            </li>
+                          ))
+                        : (subcategories ?? []).map((item, i) => (
+                          <li key={i} className="footer_li">
+                            <Link
+                              href={`/${item?.category?.RecallUrl || section.RecallUrl}/${item.custom_url}`}
+                              className="filter_Link"
+                            >
+                              {item.name}
+                            </Link>
+                          </li>
+                        ))}
+                    </ul>
+                  )}
+
               </div>
             );
           })
@@ -165,7 +201,7 @@ const Footer = () => {
           </>
         )}
 
-        <div className="sm:block ">
+        <div className="sm:block xl:col-span-2">
           <p className=" font-normal 2xl:tracking-widest">CONTACT US</p>
 
           <div className="text-sm mt-4 flex items-center gap-2 group">
@@ -214,7 +250,7 @@ const Footer = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-6 sm:grid-cols-3 w-4/5 gap-3 mt-4 items-center">
+          <div className="grid grid-cols-6 sm:grid-cols-3 xl:w-1/2 gap-3 mt-4 items-center">
             {footerData.paymentMethods.map((method, index) => (
               <div key={index} className="flex justify-start">
                 <Image
@@ -256,11 +292,11 @@ const Footer = () => {
             </div>
           </div>
           <div className="text-center hidden sm:block">
-            <p className="text-12 sm:text-13 text-white font-medium xs:font-semibold ">
+            <p className="text-12 sm:text-13 text-black font-medium xs:font-semibold ">
               Easyfloors.ae ©{new Date().getFullYear()}
             </p>
           </div>
-          <div className="text-white  flex flex-wrap lg:flex-nowrap  lg:justify-end  w-full">
+          <div className="text-black  flex flex-wrap lg:flex-nowrap  lg:justify-end  w-full">
             <div className="flex_between xs:justify-center text-12 sm:text-13 font-light flex-nowrap xl:whitespace-nowrap gap-2 sm:gap-0 w-full sm:space-x-4">
               {' '}
               <Link
@@ -300,7 +336,7 @@ const Footer = () => {
               <div className="flex space-x-2  absolute top-0 left-0">
                 <SocialIcon />
               </div>
-              <p className="text-12 sm:text-13 text-white font-medium ml-14 xs:ml-8 sm:font-semibold">
+              <p className="text-12 sm:text-13 text-black font-medium ml-14 xs:ml-8 sm:font-semibold">
                 Easyfloors.ae ©{new Date().getFullYear()}
               </p>
 
