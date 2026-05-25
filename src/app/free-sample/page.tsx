@@ -8,7 +8,7 @@ export const metadata = createMetadata(pageMetadataData.free_sample);
 const FreeSampleDetail = () => {
   return (
     <Container className="space-y-2 sm:space-y-4 my-10 font-inter">
-      <h1 className="text-center text-36 sm:text-[47px] font-semibold mb-4 font-inter">
+      <h1 className="text-center text-24 sm:text-36 font-semibold mb-4 font-inter">
         Free Samples
       </h1>
       <p className="text-sm sm:text-20 sm:leading-[26px] text-justify">

@@ -7,21 +7,22 @@ import { PiPhoneCallFill } from 'react-icons/pi';
 const ContactInfo = () => {
   return (
     <div className="p-2 sm:p-6">
-      <h1 className="text-24 sm:text-28 font-inter font-semibold leading-8 text-white">
+      <h1 className="text-24 sm:text-28 font-inter font-semibold leading-8">
         Contact Information
       </h1>
+
       <div className="mt-5 sm:mt-8 lg:mt-10 space-y-3 lg:space-y-6">
-        <div className="flex gap-6 items-center text-white">
+        <div className="flex gap-6 items-center">
           <PiPhoneCallFill size={20} />
           <Link target="_blank" href="tel:+971 50 597 4385">
             +971 50 597 4385
           </Link>
         </div>
-        <div className="flex gap-6 items-center text-white">
+        <div className="flex gap-6 items-center">
           <IoMailSharp size={20} />
           <Link href="mailto:Info@easyfloors.ae">Info@easyfloors.ae</Link>
         </div>
-        <div className="flex gap-4 md:gap-6 text-white">
+        <div className="flex gap-4 md:gap-6">
           <FaLocationDot size={22} />
           <Link
             target="_blank"

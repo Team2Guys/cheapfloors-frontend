@@ -8,7 +8,7 @@ export const metadata = createMetadata(pageMetadataData.shipping_policy);
 const Shipping = () => {
   return (
     <Container className="pt-5 md:pt-20 pb-20 space-y-4 font-inter">
-      <h1 className="text-center text-36 sm:text-[47px] font-semibold mb-4">
+      <h1 className="text-center text-24 sm:text-36 font-semibold mb-4">
         Shipping Policy
       </h1>
       <p className="text-sm sm:text-20 sm:leading-[26px] text-justify">

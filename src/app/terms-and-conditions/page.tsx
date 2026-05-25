@@ -56,7 +56,7 @@ const TermsAndConditions = () => {
       <h1 className="text-2xl sm:text-4xl font-bold text-center">
         Terms & Conditions
       </h1>
-      <ol className="pl-4 sm:pl-6 space-y-6">
+      <ol className="space-y-6">
         {termsConditionsData.map((item, index) => (
           <li key={index} className={item.title}>
             {item.title && (

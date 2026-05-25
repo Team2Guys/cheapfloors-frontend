@@ -305,7 +305,7 @@ const Card: React.FC<productCardProps> = ({
                 ? `/accessories/${product.custom_url?.toLowerCase() ?? ''}`
                 : handleNavigate(product as IProduct, categoryData)
             }
-            className="flex-1 block text-center py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-sm md:text-base hover:bg-primary hover:text-white transition"
+            className="flex-1 block px-1 text-center py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-sm md:text-base hover:bg-primary hover:text-white transition"
           >
             Shop Now
           </Link>

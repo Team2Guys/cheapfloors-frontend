@@ -96,7 +96,7 @@ const Select = ({
       <div ref={dropdownRef} className="relative w-full mt-1">
         <div
           onClick={handleSelectClick}
-          className="flex_between w-full px-3 h-11 border border-gray-300 bg-white text-12 font-medium cursor-pointer"
+          className="flex_between w-full px-3 h-11 border border-gray-300 bg-white text-12 font-medium cursor-pointer rounded-lg"
         >
           {isOpen ? (
             <input

@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { FiPlus, FiMinus } from 'react-icons/fi';
-import Container from '../common/container/Container';
+
 
 interface FAQItem {
   id: string | number;
@@ -46,7 +46,7 @@ const CategoryFaqs: React.FC<CategoryFaqsProps> = ({ faqs = DUMMY_FAQS, classNam
   };
 
   return (
-    <div className={`mb-10 font-inter max-w-[1100px] mx-auto px-2 xs:px-4 ${className}`}>
+    <div className={`mb-10 font-inter max-w-[1100px] mx-auto px-2 xs:px-4 mt-10 ${className}`}>
       <h2 className="text-xl md:text-2xl font-bold text-center mb-8">
         FAQ'S
       </h2>
