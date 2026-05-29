@@ -29,7 +29,9 @@ const AccessoriesDetail = ({
           AdditionalInformation={productData.AdditionalInformation}
           subcategory={productData.subcategory?.name || ''}
         />
-        <FaqDetail faqs={productData.FAQS} />
+        <div className="mt-10">
+          <FaqDetail faqs={productData.FAQS} />
+        </div>
       </Container>
       <Features />
       <RelatedSlider products={ProductInfo?.slice(0, 5) || []} isAccessories />

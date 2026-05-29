@@ -84,22 +84,23 @@ const Thumbnail = ({
 
   return (
     <div className="relative">
-      {stickyside && ThumnailImage.length > 5 && (
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            thumbSwiperRef.current?.slidePrev();
-          }}
-          className="absolute !-top-1 2xl:left-16 xl:left-11 lg:left-10 md:left-8 sm:left-8 left-4 z-30 p-1 max-w-max"
-        >
-          <FaAngleUp className="text-gray-600 bg-white" size={20} />
-        </button>
-      )}
+
 
       <div className="slider-container flex gap-2 sm:gap-3 overflow-hidden">
         <div className="w-[18%] sm:w-[15%] shrink-0">
           {stickyside && ThumnailImage.length > 5 ? (
             <div className="relative h-full max-h-[280px] sm:max-h-[520px] xl:max-h-[700px] 2xl:max-h-[800px]">
+              {stickyside && ThumnailImage.length > 5 && (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    thumbSwiperRef.current?.slidePrev();
+                  }}
+                  className="absolute top-0 left-1/2 -translate-x-1/2 z-30 p-1 max-w-max shadow-lg border bg-white"
+                >
+                  <FaAngleUp className="text-gray-600 " size={20} />
+                </button>
+              )}
               <Swiper
                 direction="vertical"
                 slidesPerView={5}
@@ -117,20 +118,18 @@ const Thumbnail = ({
                     onClick={() => handleThumbnailClick(index)}
                   >
                     <div
-                      className={`cursor-pointer border-2 ${
-                        index === currentSlide
+                      className={`cursor-pointer border-2 ${index === currentSlide
                           ? 'border-primary'
                           : 'border-transparent'
-                      }`}
+                        }`}
                     >
                       <Image
                         width={150}
                         height={150}
                         priority
                         src={product.imageUrl}
-                        className={`w-full aspect-square object-cover ${
-                          imageheight ? 'border border-black' : 'border'
-                        }`}
+                        className={`w-full aspect-square object-cover ${imageheight ? 'border-0' : 'border-0'
+                          }`}
                         alt={product.altText || 'Thumbnail'}
                       />
                     </div>
@@ -142,9 +141,9 @@ const Thumbnail = ({
                   e.preventDefault();
                   thumbSwiperRef.current?.slideNext();
                 }}
-                className="absolute bottom-1 left-1/2 -translate-x-1/2 z-30 p-1"
+                className="absolute bottom-4 xl:bottom-2 left-1/2 -translate-x-1/2 z-30 p-1 shadow-lg border bg-white"
               >
-                <FaAngleDown className="text-gray-600 bg-white" size={20} />
+                <FaAngleDown className="text-gray-600" size={20} />
               </button>
             </div>
           ) : (
@@ -153,11 +152,10 @@ const Thumbnail = ({
                 <div
                   key={index}
                   onClick={() => handleThumbnailClick(index)}
-                  className={`cursor-pointer border-2 ${
-                    index === currentSlide
+                  className={`cursor-pointer border-2 ${index === currentSlide
                       ? 'border-primary'
                       : 'border-transparent'
-                  }`}
+                    }`}
                 >
                   <Image
                     width={150}
@@ -195,9 +193,8 @@ const Thumbnail = ({
             {ThumnailImage.map((product, index) => (
               <SwiperSlide key={index}>
                 <div
-                  className={`relative aspect-square ${
-                    product.plankWidth ? 'py-2 sm:py-0' : ''
-                  }`}
+                  className={`relative aspect-square ${product.plankWidth ? 'py-2 sm:py-0' : ''
+                    }`}
                 >
                   <Image
                     fill

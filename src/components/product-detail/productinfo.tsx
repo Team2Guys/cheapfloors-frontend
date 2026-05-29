@@ -3,11 +3,12 @@
 import { SetStateAction, useEffect, useState } from 'react';
 import Image from 'next/image';
 import PaymentMethod from 'components/product-detail/payment';
-import { paymentcard } from 'data/cart';
 import { IProduct, IProductAccessories, ProductImage } from 'types/prod';
 import { handleAddToStorage } from 'lib/carthelper';
 import { LuHeart } from 'react-icons/lu';
 import { formatAED } from 'utils/helperFunctions';
+import { FaRegCircleCheck } from 'react-icons/fa6';
+import TrustBadges from './trust-badges';
 
 const SkirtingProductDetail = ({
   productData,
@@ -87,12 +88,8 @@ const SkirtingProductDetail = ({
     setSelectedColor(color);
   };
   return (
-    <div className="p-1 lg:px-4 font-inter">
-      <div className="space-y-3 mt-5 lg:mt-0">
-        <h1 className="text-lg lg:text-[33.6px] font-semibold">
-          {productData.name}
-        </h1>
-        <div className="flex border-b-[1px] border-gray-300"></div>
+    <div className="p-1 lg:px-4 font-inter lg:mt-12">
+      <div className="space-y-4 mt-5 lg:mt-0">
         <p className="text-sm xl:text-[23.6px] font-semibold">
           Price Per Piece:{' '}
           <span className="text-primary">
@@ -102,25 +99,38 @@ const SkirtingProductDetail = ({
             {productData.price}
           </span>
         </p>
-        <p className="text-15 xl:text-[19.6px] font-normal">
-          <span className="text-green">In Stock</span>
-        </p>
-        <div className="flex border-b-[1px] border-gray-300"></div>
+        <div>
+          <div className="flex items-center gap-1.5">
+            {productData?.stock && productData?.stock > 0 ? (
+              <>
+                <FaRegCircleCheck className="text-[#008000] text-xl" />
+                <span className="text-xl font-bold text-[#008000]">
+                  In Stock
+                </span>
+              </>
+            ) : (
+              <span className="text-xl font-bold text-red-500">
+                Out of Stock
+              </span>
+            )}
+          </div>
+          <div className="border-b border-[#D9D9D9] pt-1" />
+        </div>
       </div>
 
       {uniqueFeatureImages && uniqueFeatureImages.length > 0 && (
-        <div className="w-full mt-1 h-216 border border-black px-3 pb-1">
-          <p className="font-semibold xl:text-xl ">
+        <div className="w-full h-full min-h-216 border border-[#D9D9D9] p-3 rounded-lg mt-6">
+          <p className="font-semibold xl:text-xl">
             Colour:{' '}
-            <span className="font-light text-sm xl:text-19">
+            <span className="font-medium text-base">
               {selectedColor?.colorName || selectedColor?.altText}
             </span>
           </p>
-          <div className="grid grid-cols-8 gap-2 lg:gap-2 mt-1">
+          <div className="flex flex-wrap gap-4 mt-2">
             {uniqueFeatureImages.map((col, index) => (
               <div
                 key={index}
-                className={`text-center border-4 cursor-pointer w-full lg:w-12 ${selectedColor?.color === col.color ? 'border-primary' : 'border-transparent'}`}
+                className={`text-center border-4 cursor-pointer w-12 ${selectedColor?.color === col.color ? 'border-primary' : 'border-transparent'}`}
                 onClick={() => handleColorClick(col)}
               >
                 <Image
@@ -129,7 +139,7 @@ const SkirtingProductDetail = ({
                   height={100}
                   width={100}
                   quality={70}
-                  className="h-auto w-full lg:h-12"
+                  className="h-auto w-full lg:h-11"
                 />
                 <p className="text-[8px] sm:text-10  font-normal text-nowrap">
                   {col.color}
@@ -140,36 +150,36 @@ const SkirtingProductDetail = ({
         </div>
       )}
       {matchingColor && matchingColor.length > 0 && (
-        <div className="mt-3 p-3 border border-black">
-          <p className="font-semibold text-15 xl:text-[23.6px] ">
+        <div className="mt-6 p-3 border border-[#D9D9D9] rounded-lg">
+          <p className="font-semibold text-base xl:text-xl">
             Matching with:
           </p>
           {matchingColor.map((item, index) => (
-            <p className=" font-light text-sm xl:text-base" key={index}>
+            <p className="text-sm xl:text-base font-medium" key={index}>
               {item.name}
             </p>
           ))}
         </div>
       )}
       {/* Length Input */}
-      <div className="border border-black mt-2 p-3">
+      <div className="mt-6 p-3 border border-[#D9D9D9] rounded-lg">
         <div className="flex items-center gap-2 ">
-          <p className="font-semibold xl:text-[23.6px]">Pieces:</p>
+          <p className="font-semibold xl:text-xl">Pieces:</p>
           <input
             type="number"
             value={length}
             onChange={handleLengthChange}
             placeholder="No. of Required Pieces"
             min="0"
-            className="border px-2 py-1 font-light text-black w-full max-w-[190px] mt-1 border-primary text-xs xl:text-sm"
+            className="border px-2 py-1.5 bg-[#ECECEC] text-black placeholder:text-black w-full max-w-[190px] mt-1 border-primary text-xs xl:text-sm"
           />
         </div>
-        <div className="mt-2 font-semibold lg:text-lg">
+        <div className="mt-3 font-semibold lg:text-lg">
           <p>
             {productData.lengthPrice ? (
               <>
                 Length Per Piece:{' '}
-                <span className="font-light text-sm xl:text-lg">
+                <span className="font-medium text-base text-primary">
                   {productData.lengthPrice}
                 </span>
               </>
@@ -179,34 +189,34 @@ const SkirtingProductDetail = ({
               </span>
             )}
           </p>
-          <p>
-            Height: <span className="font-light text-sm xl:text-lg">10 cm</span>
+          <p className="mt-2">
+            Height: <span className="font-medium text-base text-primary">10 cm</span>
           </p>
-          <p>
-            Depth: <span className="font-light text-sm xl:text-lg">1.6 cm</span>
+          <p className="mt-2">
+            Depth: <span className="font-medium text-base text-primary">1.6 cm</span>
           </p>
         </div>
       </div>
-      <div className="mt-2 px-3 border border-black xl:text-lg font-semibold">
+      <div className="mt-6 p-3 border border-[#D9D9D9] rounded-lg xl:text-lg font-semibold">
         <p>
           No. of Pieces:{' '}
-          <span className="text-sm xl:text-17 font-light">
+          <span className="font-medium text-base text-primary">
             {requiredBoxes} Pieces
           </span>
         </p>
         <p>
           Price Per Piece:{' '}
-          <span className="text-sm xl:text-17 font-light">
-            <span className="font-currency font-normal text-lg xl:text-20">
+          <span className="font-medium text-base text-primary">
+            <span className="font-currency font-normal text-xl">
               
             </span>{' '}
             {productData.price}
           </span>
         </p>
-        <p className="text-sm xl:text-2xl">
+        <p>
           Total Amount:{' '}
-          <span className="font-light">
-            <span className="font-currency font-normal text-lg xl:text-28">
+          <span className="font-medium text-base text-primary">
+            <span className="font-currency font-normal text-xl">
               
             </span>{' '}
             {formatAED(totalPrice)} (
@@ -214,7 +224,7 @@ const SkirtingProductDetail = ({
               ? `${requiredBoxes} Piece`
               : `${requiredBoxes} Pieces`}{' '}
             *{' '}
-            <span className="font-currency text-lg xl:text-28 font-normal">
+            <span className="font-currency text-xl font-normal">
               
             </span>{' '}
             {productData.price})
@@ -222,7 +232,7 @@ const SkirtingProductDetail = ({
         </p>
       </div>
 
-      <div className="my-3 flex w-full gap-1 items-center sm:gap-3">
+      <div className="my-6 flex w-full gap-1 items-center sm:gap-3">
         <button
           onClick={() =>
             handleAddToStorage(
@@ -240,7 +250,7 @@ const SkirtingProductDetail = ({
               selectedColor
             )
           }
-          className="flex_center bg-black text-11 xs:text-12 text-white w-6/12 2xl:text-22 gap-2 max-sm:h-[40px] px-2 py-2 sm:py-3 sm:text-base"
+          className="flex_center bg-black text-11 xs:text-12 text-white w-6/12 2xl:text-22 gap-2 h-[64px] px-2 py-2 sm:py-3 sm:text-base"
           id="AddToCart"
         >
           <Image
@@ -254,7 +264,7 @@ const SkirtingProductDetail = ({
         </button>
         <button
           id="AddToWishlist"
-          className="flex_center bg-black text-11 xs:text-12 text-white w-6/12 2xl:text-22 gap-2 max-sm:h-[40px] px-2 py-2 sm:py-3 sm:text-base"
+          className="flex_center bg-primary text-11 xs:text-12 text-white w-6/12 2xl:text-22 gap-2 h-[64px] px-2 py-2 sm:py-3 sm:text-base"
           onClick={() =>
             handleAddToStorage(
               productData,
@@ -277,12 +287,12 @@ const SkirtingProductDetail = ({
         </button>
       </div>
 
-      <p className="text-lg xl:text-22 font-semibold text-center">
+      {/* <p className="text-lg xl:text-22 font-semibold text-center">
         Buy Now, Pay Later
-      </p>
-      <PaymentMethod installments={totalPrice / 4} />
+      </p> */}
+      <PaymentMethod installments={totalPrice / 4} compact />
       <div className="mt-2 space-y-2 text-center">
-        <p className="text-center mt-4 font-medium text-lg lg:text-[20.6px]">
+        {/* <p className="text-center mt-4 font-medium text-lg lg:text-[20.6px]">
           Guaranteed Safe Checkout
         </p>
         <div className="flex_between lg:justify-center gap-2 lg:gap-10">
@@ -296,7 +306,8 @@ const SkirtingProductDetail = ({
               alt="payment-card"
             />
           ))}
-        </div>
+        </div> */}
+        <TrustBadges />
       </div>
     </div>
   );

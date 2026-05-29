@@ -108,7 +108,7 @@
 
 @layer components {
   .filter_Link {
-    @apply cursor-pointer hover:text-primary block text-black;
+    @apply cursor-pointer hover:text-primary block text-[#00000099];
   }
 }
 

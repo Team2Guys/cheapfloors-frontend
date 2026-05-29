@@ -17,7 +17,7 @@ const Faqs: React.FC<CategoryFaqsProps> = ({ faqs = [], className = '' }) => {
 
   return (
     <div className={`mb-10 font-inter max-w-[1100px] mx-auto px-2 xs:px-4 ${className}`}>
-      <h2 className="text-xl md:text-2xl font-bold text-center mb-8">
+      <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-center mb-8">
         FAQ&apos;S
       </h2>
 

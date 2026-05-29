@@ -138,7 +138,7 @@ const ProductContainer = ({
       >
         <div className='w-full lg:w-[50%]'>
           {productData?.name && (
-            <h1 className="text-xl sm:text-2xl lg:text-[28px] 2xl:text-[32px] font-bold xsm:text-center text-primary mb-4">
+            <h1 className="text-xl sm:text-2xl lg:text-[28px] 2xl:text-[32px] font-bold ps-0 lg:ps-[17%] text-primary mb-4">
               {productData.name}
             </h1>
           )}
@@ -150,7 +150,7 @@ const ProductContainer = ({
           )}
         </div>
         <div
-          className='w-full lg:w-[50%] mb-2 space-y-3 sm:space-y-4 mt-12'
+          className='w-full lg:w-[50%] mb-2 space-y-3 sm:space-y-4 lg:mt-12'
         >
           {/* {productData?.name && isQuickView && (
             <h1 className="text-lg sm:text-25 2xl:text-[32px] font-bold text-primary">

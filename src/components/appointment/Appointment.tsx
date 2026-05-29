@@ -112,7 +112,7 @@ export default function Appointment({
                     htmlFor="whatsappNumber"
                     className="text-13 font-medium"
                   >
-                   WhatsApp No. If Different
+                    WhatsApp No. If Different
                   </label>
                   <Field name="whatsappNumber">
                     {({ form }: FieldProps) => (
@@ -156,15 +156,15 @@ export default function Appointment({
                   options={Appointmentlocation}
                 />
 
-               <InputWithUnit
-  label="Select Rooms"
-  name="selectRooms"
-  placeholder="How Many Rooms?"
-  required
-  value={values.selectRooms}
-  // Removed selectOptions prop
-  setFieldValue={setFieldValue}
-               />
+                <InputWithUnit
+                  label="Select Rooms"
+                  name="selectRooms"
+                  placeholder="How Many Rooms?"
+                  required
+                  value={values.selectRooms}
+                  // Removed selectOptions prop
+                  setFieldValue={setFieldValue}
+                />
 
                 <Input
                   type="date"
@@ -183,9 +183,9 @@ export default function Appointment({
                   placeholder="Am/Pm"
                   required
                   options={[
-                  { value: 'am', label: 'Am' },
-                  { value: 'pm', label: 'Pm' }
-                ]}
+                    { value: 'am', label: 'Am' },
+                    { value: 'pm', label: 'Pm' }
+                  ]}
                 />
 
                 <Select
