@@ -1340,23 +1340,28 @@ export const lvtFaqs: FAQItem[] = [
 export const accessoriesFaqs: FAQItem[] = [
   {
     id: 1,
-    question: "Why is accessory flooring in Dubai popular for modern interiors?",
-    answer: "LVT flooring in Dubai is stylish, durable, and water-resistant. It mimics natural materials while being easier to maintain, making it ideal for both residential and commercial spaces."
+    question: "Why are flooring accessories important for floor installation?",
+    answer: "Flooring accessories enhance both the appearance and functionality of your flooring. Products like skirting and reducers protect edges, cover expansion gaps, reduce wear and tear, and give your flooring project a polished final look."
   },
   {
     id: 2,
-    question: "How is LVT flooring installation done — can it go over existing floors?",
-    answer: "Yes! LVT flooring installation uses a floating click-lock method that works over most existing surfaces, including tiles and concrete. No adhesive is required, saving time and reducing labour costs significantly across Dubai homes and offices."
+    question: "What is the purpose of a stair nose in flooring?",
+    answer: "A stair nose is designed to protect the edges of stairs from damage while improving safety and appearance. It provides a smooth transition on stair edges and helps prevent slipping and premature wear."
   },
   {
     id: 3,
-    question: "Is LVT flooring installation suitable for all spaces?",
-    answer: "Yes, LVT flooring installation works in homes, offices, and retail areas. Its multiple installation methods make it adaptable to different subfloors and design requirements."
+    question: "Which skirting sizes are available at Easy Floors?",
+    answer: "Easy Floors offers skirting in several heights, including 8cm, 10cm, and 12cm, as well as L-shaped skirting in 12cm and 15cm, allowing customers to choose the perfect style for their interiors."
   },
   {
     id: 4,
-    question: "Can LVT vinyl flooring be used in commercial shops?",
-    answer: "Yes, luxury vinyl flooring is incredibly hard-wearing. It is designed to withstand heavy foot traffic and frequent cleaning, making it a top choice for retail environments in Dubai."
+    question: "Are Easy Floors accessories suitable for both residential and commercial spaces?",
+    answer: "Yes, Easy Floors flooring accessories are designed for both residential and commercial applications. They are made with high-quality materials to ensure durability, long-lasting performance, and a stylish finish in any environment."
+  },
+   {
+    id: 5,
+    question: "Can DIY users easily install Easy Floors accessories?",
+    answer: "Absolutely. Easy Floors accessories are suitable for both professional installers and DIY enthusiasts. Their practical designs make installation straightforward while ensuring a clean and attractive flooring finish."
   }
 ];
 

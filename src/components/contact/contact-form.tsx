@@ -136,7 +136,7 @@ const ContactForm: React.FC = () => {
               </label>
               <Field
                 type="text"
-                name="LastName"
+                name="LastName*"
                 className="contact_input"
                 required
               />

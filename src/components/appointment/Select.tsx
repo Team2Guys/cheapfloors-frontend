@@ -88,7 +88,7 @@ const Select = ({
   return (
     <div className="flex flex-col mb-1">
       {label && (
-        <label htmlFor={name} className="text-13 font-medium font-inter">
+        <label htmlFor={name} className="text-20 font-medium font-inter">
           {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}
@@ -104,12 +104,12 @@ const Select = ({
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder={displayLabel}
-              className="w-full flex-1 focus:outline-none placeholder:text-sm"
+              className="w-full flex-1 focus:outline-none placeholder:text-base"
               onClick={(e) => e.stopPropagation()}
             />
           ) : (
             <span
-              className={`truncate flex-1 text-left  ${!values[name] && 'text-gray-400'}`}
+              className={`truncate flex-1 text-left text-base ${!values[name] && 'text-gray-400'}`}
             >
               {displayLabel}
             </span>
@@ -140,7 +140,7 @@ const Select = ({
                 <li
                   key={opt.value}
                   onClick={() => handleOptionSelect(opt)}
-                  className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-white text-12 lg:text-sm"
+                  className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-white text-base lg:text-sm"
                 >
                   {opt.label}
                 </li>
