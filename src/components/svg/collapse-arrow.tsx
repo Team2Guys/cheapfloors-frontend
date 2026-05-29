@@ -5,7 +5,7 @@ const Collapsearrow = () => {
     <svg
       width="14"
       height="25"
-      className=" w-3 xsm:w-4 h-4 xsm:h-6"
+      className=" w-2 xsm:w-3 xl:w-4 h-2 xsm:h-6"
       viewBox="0 0 14 25"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

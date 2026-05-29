@@ -126,6 +126,12 @@ export const termsConditionsData = [
     ]
   },
   {
+    title: 'Modifications to the service and prices',
+    subItems: [
+      'Prices for our products are updated regularly. Please refer to the latest price before placing your order. The price you have paid will be the price for the order, which will be delivered to you. All prices are listed in UAE Dirhams (AED) and are inclusive of VAT unless otherwise specified.'
+    ]
+  },
+  {
     title: 'Contact Us',
     content: [
       'Please contact us with any queries, order support, or warranty questions:'

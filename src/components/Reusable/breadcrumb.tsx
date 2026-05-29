@@ -16,7 +16,7 @@ const Breadcrumb = ({
 }: BreadcrumbProps) => {
   return (
     <div className="w-full pt-3 font-inter">
-      <div className="z-30 w-full py-3 bg-white border-b">
+      <div className="z-30 w-full py-3 bg-[#F9FAFB]">
         <Container className="text-lg flex items-center gap-2 sm:gap-4">
           {/* Home Link */}
           <Link
@@ -115,7 +115,7 @@ const Breadcrumb = ({
         </Container>
       </div>
       {image && (
-        <div className="relative h-[110px] sm:h-[200px] xl:h-[332px]">
+        <div className="relative aspect-[1440/477]">
           <Image
             className={`object-fill w-full ${imageClass}`}
             fill
@@ -128,7 +128,7 @@ const Breadcrumb = ({
           {!isImagetext && (
             <div className="absolute inset-0 flex_center text-white text-center">
               {useHeadingTag ? (
-                <h1 className="text-25 md:text-[42.6px] font-bold">{title}</h1>
+                <h1 className="text-25 md:text-[42.6px] font-bold"></h1>
               ) : (
                 <p className="text-25 md:text-[42.6px] font-bold">{title}</p>
               )}

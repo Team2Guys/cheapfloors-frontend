@@ -68,6 +68,33 @@ export const extractUniqueAttributes = (
           thicknessSet.add(
             subcat.sizes[0].thickness.replace(/\s+/g, '').trim()
           );
+
+        if (subcat.products?.length) {
+          subcat.products.forEach((product) => {
+            if (product.thickness)
+              thicknessSet.add(product.thickness.replace(/\s+/g, '').trim());
+
+            if (product.CommmericallWarranty)
+              commercialWarrantySet.add(product.CommmericallWarranty.trim());
+
+            if (product.ResidentialWarranty)
+              residentialWarrantySet.add(product.ResidentialWarranty.trim());
+
+            if (product.plankWidth)
+              plankWidthSet.add(product.plankWidth.replace(/\s+/g, '').trim());
+
+            if (product.sizes?.[0]?.height)
+              plankLengthSet.add(product.sizes[0].height.replace(/\s+/g, '').trim());
+
+            if (product.colors?.length) {
+              product.colors.forEach((color: AdditionalInformation) => {
+                if (color?.name) {
+                  colorSet.add(color.name.trim());
+                }
+              });
+            }
+          });
+        }
       });
   }
 
@@ -84,9 +111,24 @@ export const extractUniqueAttributes = (
 export const getColorCount = (
   targetColor: string,
   category: Category,
+  isCollection?: boolean,
   subcategory?: string,
   productsData?: IProduct[]
 ): number => {
+  // When on collection page, count colors across all sorted subcategories
+  if (isCollection) {
+    // Assume sorted subcategories are passed via category.sortedSubcategories? Not available here.
+    // We'll instead rely on productsData when collection: caller should provide all products from subcategories.
+    const allProducts = productsData || [];
+    return (
+      allProducts.filter((product: IProduct) =>
+        product.colors?.some(
+          (color) => color.name.trim().toLowerCase() === targetColor.toLowerCase()
+        )
+      ).length || 0
+    );
+  }
+
   const products = productsData
     ? productsData
     : subcategory

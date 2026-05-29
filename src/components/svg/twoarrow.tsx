@@ -5,7 +5,7 @@ const TwoArrow = () => {
     <svg
       width="7"
       height="25"
-      className=" w-1 xsm:w-4 h-3 xsm:h-6"
+      className=" w-1 xsm:w-3 xl:w-4 h-2 xsm:h-6"
       viewBox="0 0 7 25"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

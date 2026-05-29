@@ -256,15 +256,15 @@ export const featureItems = [
     title: 'Free Samples',
     description:
       'Order up to 5 free samples delivered anywhere in the UAE so you can see and feel the quality before you buy.',
-    icon: '/assets/images/Home/freee.png',
+    icon: '/assets/images/Home/sample.png',
     buttonText: 'Learn More',
     buttonLink: '/free-sample'
   },
   {
     title: 'Easy Payment',
     description:
-      'With Tabby or Tamara, split your payment into four easy installments — no hassle, no hidden fees.',
-    icon: '/assets/images/Home/card.png',
+      'With Tabby or Tamara, split your payment into four easy installments — no hassle, no hidden fees, Shariah compliant. Get premium flooring today while managing your budget comfortably.',
+    icon: '/assets/images/Home/payment-icon.png',
     buttonText: 'Learn More',
     buttonLink: '/easy-payment'
   },
@@ -272,15 +272,15 @@ export const featureItems = [
     title: 'Delivery',
     description:
       'Choose Express for a small fee for next-day delivery, or enjoy standard delivery in just 2-3 days anywhere in the UAE.',
-    icon: '/assets/images/Home/truck.png',
+    icon: '/assets/images/Home/car.png',
     buttonText: 'Learn More',
     buttonLink: '/shipping-policy'
   },
   {
     title: 'Factory Prices',
     description:
-      'No middlemen, just high-quality flooring at factory - direct prices. Best value without compromise.',
-    icon: '/assets/images/Home/factory.png'
+      'No middlemen, just high-quality flooring at factory-direct prices. Easy Floors is among the most trusted flooring companies in Dubai, offering the best value without compromise.',
+    icon: '/assets/images/Home/factory-icon.png'
   }
 ];
 
@@ -362,27 +362,29 @@ export const footerData = {
 };
 export const blocksData = [
   {
-    heading: 'SPC Flooring',
+    heading: 'SPC',
     points: [
-      'UV layer that protects against fading and surface wear.',
-      'Wear layer that is transparent and highly resistant to damage.',
-      'A click-lock system is integrated into its installation structure.',
-      'Decorative layer with high-resolution wood or stone designs.',
-      'The core layer is made from rigid stone polymer composite material.',
-      'A base layer that adds foundational stability and durability.'
+      'Protective UV top coating helps guard against fading, stains, and everyday surface wear.',
+      'A rigid support core provides excellent stability and long-lasting durability.',
+      'Durable transparent wear layer resists scratches, scuffs, and daily foot traffic.',
+      'Click-lock installation system allows quick, secure, and hassle-free fitting.',
+      'Available in 38 stylish wood-inspired colours and finishes to match modern interiors.',
+      'High-definition decorative layer replicates the beauty of natural wood and stone.',
+      'SPC ranges available: Polar Eco & Herringbone, Richmond Eco, Prime & Herringbone.',
     ],
     imageUrl:
       '/assets/images/Home/layers_2.webp'
   },
   {
-    heading: 'LVT Flooring',
+    heading: 'LVT',
     points: [
-      'Protective UV coating that prevents discolouration and wear.',
-      'Durable wear layer that provides scratch and scuff resistance.',
-      'Authentic printed decor layer that mimics natural textures.',
-      'Middle stability layer that provides flexibility and structure.',
-      'Bottom vinyl layer that enhances resilience and overall strength.',
-      'The click-lock system uses floating installation method. '
+      '36+ elegant wood-effect colour options designed to complement contemporary spaces.',
+      'UV-resistant surface layer helps protect colour and maintain the floor’s appearance.',
+      'Strong wear layer built to withstand scratches, scuffs, and daily use.',
+      'Realistic printed décor layer recreates the texture and detail of natural materials.',
+      'Flexible stabilising core ensures strength while maintaining comfort underfoot.',
+      'Durable vinyl backing layer enhances stability and impact resistance.',
+      'LVT ranges available: Polar LVT Comfort, Richmond LVT Comfort, and Luxury.',
     ],
     imageUrl:
       '/assets/images/Home/layers_1.webp'
@@ -392,20 +394,20 @@ export const FloorItemsData = [
   {
     id: 1,
     title: 'Herringbone Floor',
-    imageUrl: '/assets/images/Home/Herringbone.webp',
-    hoverImage: '/assets/images/Home/HerringboneHover.webp'
+    imageUrl: '/assets/images/Home/herring-new.webp',
+    hoverImage: '/assets/images/Home/herring-new.webp'
   },
   {
     id: 2,
     title: 'Eco Floor',
-    imageUrl: '/assets/images/Home/Eco.webp',
-    hoverImage: '/assets/images/Home/EcoHover.webp'
+    imageUrl: '/assets/images/Home/Eco-new.webp',
+    hoverImage: '/assets/images/Home/Eco-new.webp'
   },
   {
     id: 3,
     title: 'Prime Floor',
-    imageUrl: '/assets/images/Home/Prime.webp',
-    hoverImage: '/assets/images/Home/PrimeHover.webp'
+    imageUrl: '/assets/images/Home/Prime-new.webp',
+    hoverImage: '/assets/images/Home/Prime-new.webp'
   }
 ];
 
@@ -504,7 +506,7 @@ export const categoriesFeatures: CategoryFeatures[] = [
 export const categoryData: TCategoryData = {
   title: 'What Am I?',
   subtitle: '(Compare us)',
-  backgroundImage: '/assets/category/campare-us.png'
+  backgroundImage: '/assets/category/compare-us.webp'
 };
 export const HomeUserInfo = [
   {
@@ -577,20 +579,40 @@ export const policySections = [
 export const faqs: FAQItem[] = [
   {
     id: 1,
-    question: 'Do I need underlay for click-lock flooring?',
+    question: 'What types of flooring does Easy Floors offer?',
     answer:
-      "The underlay is built into our Richmond flooring, and we will provide it free of charge for our Polar range to add comfort and reduce sound. An underlay can help improve a floor's sound insulation and give it a smoother look and feel."
+      "Easy Floors offers a wide range of modern flooring solutions, including SPC, LVT, and stylish herringbone designs. These durable options are perfect for homes and businesses looking for high-quality flooring solutions in Dubai."
   },
   {
     id: 2,
-    question: "What are the best types of flooring for Dubai's climate?",
+    question: "Can I order flooring samples before making a purchase?",
     answer:
-      'High temperatures and humidity in Dubai make SPC and LVT flooring ideal. These types of flooring are water-resistant, durable, and won’t warp or expand due to temperature changes.'
+      "Yes, Easy Floors allows customers to order up to five free flooring samples delivered anywhere in the UAE. This helps you evaluate colour, texture, and quality before choosing the perfect flooring."
   },
   {
     id: 3,
-    question: 'How do I know which flooring material is best for my space?',
-    answer: `<p>The right flooring material depends on the room’s use, foot traffic, and moisture levels. SPC is durable, LVT is comfortable and stylish, and Herringbone patterns add a decorative touch. If unsure, talk to our experts at the click of a button by <a href='https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER?.replace('+', '').replace(/\s+/g, '')}' target='_blank' class='font-semibold text-primary hover:underline'>WhatsApp</a>.</p>`
+    question: 'Do you provide flooring installation services in Dubai?',
+    answer: 'We are a supply only service but if you require installation services, we’d be happy to help arrange that for you as well.'
+  },
+  {
+    id: 4,
+    question: 'How long does delivery take across the UAE?',
+    answer: 'Easy Floors provides fast delivery across the UAE. Standard delivery typically takes two to three working days, while next-day express delivery is available in Dubai for urgent flooring orders.'
+  },
+  {
+    id: 3,
+    question: 'Are Easy Floors products suitable for homes and commercial spaces?',
+    answer: 'Yes, our flooring products are designed for both residential and commercial environments. Many businesses choose Easy Floors when searching for reliable flooring companies in UAE offering durable and stylish flooring.'
+  },
+  {
+    id: 3,
+    question: 'Do Easy Floors products come with a warranty?',
+    answer: 'Yes, Easy Floors flooring collections come with reliable warranties, including up to 15 years for residential use and around 5 years for commercial applications, ensuring long-term performance and peace of mind.'
+  },
+  {
+    id: 3,
+    question: 'How can I get help choosing the right flooring?',
+    answer: 'Our team is always ready to assist you through phone, email, or WhatsApp. As one of the trusted flooring companies in Dubai, we help customers choose the best flooring style for their space and budget.'
   }
 ];
 
@@ -601,7 +623,7 @@ export const boxData: BoxData[] = [
     buttonText: 'Book Your Appointment',
     icon: '/assets/images/Home/measure1.png',
     link: '/measurement-appointment',
-    bgImage: '/assets/images/Home/measure.webp'
+    bgImage: '/assets/images/aboutus/about5.webp'
   },
   {
     title: 'Need help with installation?',
@@ -609,7 +631,7 @@ export const boxData: BoxData[] = [
     buttonText: 'Book Your Appointment',
     icon: '/assets/images/Home/Vectorrg.png',
     link: '/help-with-installations',
-    bgImage: '/assets/images/Home/install.webp'
+    bgImage: '/assets/images/aboutus/about6.webp'
   }
 ];
 
@@ -703,7 +725,7 @@ export const popupCards: CardData[] = [
       '0.3mm wear layer'
     ]
   },
-    {
+  {
     id: 9,
     heading: 'Floor Smart SPC <br />  Eco',
     content: [
@@ -718,82 +740,166 @@ export const popupCards: CardData[] = [
 
 export const faqspage: FAQ[] = [
   {
-    question: 'Can you put SPC flooring on concrete?',
+    question: 'When can you walk on LVT flooring after the installation process?',
     answer:
-      'We often receive this question from our customers. The answer is definitely yes. Stone polymer composite (SPC) looks great on concrete subfloors. By creating a solid foundation, it reduces the possibility of warping or buckling over time. So we have to use a completely flat surface for installation.'
-  },
-  {
-    question:
-      'When can you walk on LVT flooring after the installation process?',
-    answer:
-      'Our planks have a four-side click lock system for easy installation, and you can walk on them right away after the installation process. However, you should wait 48 hours before walking on glue-down LVT flooring textures, although some manufacturers recommend waiting longer.'
+      'Our planks have a four-sided click-lock system for easy installation, and you can walk on them right away after the installation process. However, you should wait 48 hours before walking on glue-down LVT flooring textures, although some manufacturers recommend waiting longer.',
+      category: 'General'
   },
   {
     question: 'Is SPC flooring slippery?',
     answer:
-      'SPC flooring features a nonslip surface material. Since SPC flooring has a low heat transfer coefficient, it provides excellent anti-skid properties. A few drops of water on SPC flooring will make it feel less slippery than ordinary tile and stone.'
-  },
-  {
-    question: 'Can heavy furniture be placed on oak SPC flooring?',
-    answer:
-      "Yes. The strong and resilient core layer of oak SPC flooring allows it to support heavy furniture. Compared to thinner choices (3 mm), a thicker SPC core (5 mm or more) is better able to resist dents and warping. Because of its stability, the flooring won't buckle or move even when heavy furniture is placed on it. Further, SPC flooring is more durable and impact-resistant than laminate flooring, making it a better option for spaces with heavy furniture. "
+      'SPC flooring features a nonslip surface material. Since SPC flooring has a low heat transfer coefficient, it provides excellent anti-skid properties. A few drops of water on SPC flooring will make it feel less slippery than ordinary tile and stone.',
+      category: 'General'
   },
   {
     question: 'Is SPC flooring fireproof?',
     answer:
-      'Fire-retardant SPC flooring is capable of withstanding flames and delaying the spread of fire. In some ways, this flooring type has stood the test of time over other types since it has proven to be more resistant to extreme temperatures. '
+      'Fire-retardant SPC flooring is capable of withstanding flames and delaying the spread of fire. In some ways, this flooring type has stood the test of time over other types since it has proven to be more resistant to extreme temperatures.',
+      category: 'General'
   },
   {
     question: 'What are the advantages of SPC flooring?',
     answer:
-      'The dark or light tone wood grain finish of SPC flooring offers a classic and bold look. SPC floor coverings contain a pre-attached IXPE or EVA foam underlay for sound insulation and a soft underfoot feel. These are used in different residential and commercial buildings. It significantly reduces the need for frequent repairs and replacements as well as guarantees the safety of children.'
-  },
-  {
-    question: 'Can I request samples?',
-    answer:
-      'Yes! We offer free flooring samples across our full range. Simply add the samples to your basket and checkout. Order up to 5 free samples delivered anywhere in the UAE so you can see and feel the quality before you buy.'
-  },
-  {
-    question: 'Is there a warranty on your products?',
-    answer:
-      "A luxury vinyl plank flooring manufacturer's warranty varies from product to product and is included with all of our flooring. Our polar products have a two-year commercial warranty and a five-year residential warranty, while our Richmond SPC and LVT floorings have a ten-year domestic warranty and a five-year commercial warranty. "
-  },
-  {
-    question: 'Is oak SPC flooring pet-friendly?',
-    answer:
-      'All of our durable floors are designed to withstand the rigours of kids and pets. Our flooring is completely free of formaldehyde, ensuring a safe and healthy indoor environment. We also have antibacterial coating on floors that provides excellent antibacterial properties, keeping your space clean and hygienic.'
-  },
-  {
-    question: 'Does Polar LVT flooring fade under sunlight?',
-    answer:
-      "Our Polar LVT Flooring UAE does not fade under sunlight. We can use them for locations that receive direct sunlight, such as sunrooms or rooms with wide windows. The reason is that it contains UV protection, which prevents fading and discolouration caused by exposure to sunshine. The floors' deep antique tones remained after years of exposure to direct sunlight, giving the spaces an energetic and appealing look."
-  },
-  {
-    question: 'Can I install SPC flooring myself?',
-    answer:
-      "Yes. SPC flooring is an excellent option for do-it-yourself installation because of its simple 4-side click-lock mechanism. Before beginning, just make sure your subfloor is dry, clean, and level. With basic equipment like a rubber mallet, tape measure, and utility knife, the planks may be easily snapped together without the need for glue or nails. However, if you have any concerns or want a flawless finish, it's always a good idea to contact an expert."
+      'The dark or light tone wood grain finish of SPC flooring offers a classic and bold look. SPC floor coverings contain a pre-attached IXPE or EVA foam underlay for sound insulation and a soft underfoot feel. These are used in different residential and commercial buildings. It significantly reduces the need for frequent repairs and replacements, as well as guarantees the safety of children.',
+      category: 'General'
   },
   {
     question: 'Does SPC flooring feel cold?',
     answer:
-      "There's nothing better than SPC flooring underfoot, no matter what the weather is like. It is made of stone polymer composite with wear layers, which maintains a neutral temperature in summer and a slight warmth in winter to retain heat. The warmth of this flooring makes stepping out of bed in a bedroom more comfortable than stepping on cold tiles. In homes with kids or older adults who may be sensitive to extreme temperatures, this feature is really handy."
+      `There's nothing better than SPC flooring underfoot, no matter what the weather is like. It is made of a stone polymer composite with wear layers, which maintains a neutral temperature in summer and a slight warmth in winter to retain heat. The warmth of this flooring makes stepping out of bed in a bedroom more comfortable than stepping on cold tiles. In homes with kids or older adults who may be sensitive to extreme temperatures, this feature is really handy.`,
+      category: 'General'
   },
   {
+    question: 'Is SPC or LVT flooring suitable for the UAE climate?',
+    answer:
+      `Yes. The UAE's humid and hot atmosphere is something that our Richmond SPC or LVT flooring is made to resist. It is a dependable option for both residential and commercial applications because of its heat- and water-resistant qualities. SPC and LVT provide long-term durability since they do not expand or contract in response to temperature variations like regular wood flooring does.`,
+      category: 'General'
+  },
+  
+  {
+    question:
+      'How do I measure my room for flooring?',
+    answer:
+      'To measure your room, use a tape to record the length and width in metres. Multiply these two figures to calculate the total floor area in square metres. This helps you estimate how much flooring material you will need accurately.',
+       category: 'Measuring'
+  },
+  {
+    question:
+      'How much extra flooring should I order?',
+    answer:
+      'It’s recommended to add an extra 5–10% to your total flooring requirement. This allowance covers cutting, fitting adjustments, and material waste during installation, helping you avoid shortages and delays in completing your project.',
+       category: 'Measuring'
+  },
+  {
+    question:
+      'How do I measure an irregular or L-shaped room?',
+    answer:
+      'For irregular or L-shaped rooms, divide the space into smaller rectangular sections. Measure each section’s length and width separately, calculate their areas, and then add them together to get the total flooring area required.',
+       category: 'Measuring'
+  },
+  {
+    question:
+      'What tools do I need to measure my room?',
+    answer:
+      'You only need basic tools such as a measuring tape, a pencil, and paper to measure your room. These simple tools allow you to record accurate dimensions and calculate the required flooring area without needing professional equipment.',
+       category: 'Measuring'
+  },
+
+   {
+    question:
+      ' Do you offer a professional measuring service?',
+    answer:
+      'Yes, we offer a professional measuring service for a refundable fee of AED 150. This amount is deducted when you place an order with us, ensuring accurate measurements and helping you choose the right flooring quantity for your space.',
+       category: 'Measuring'
+  },
+
+  {
+    question: 'Can heavy furniture be placed on oak SPC flooring?',
+    answer:
+      `Yes. The strong and resilient core layer of oak SPC flooring allows it to support heavy furniture. Compared to thinner choices (3 mm), a thicker SPC core (5 mm or more) is better able to resist dents and warping. Because of its stability, the flooring won't buckle or move even when heavy furniture is placed on it. Further, SPC flooring is more durable and impact-resistant than laminate flooring, making it a better option for spaces with heavy furniture.`,
+      category: 'Product'
+  },
+  
+  {
+    question: 'Is oak SPC flooring pet-friendly?',
+    answer:
+      `All of our durable floors are designed to withstand the rigours of kids and pets. Our flooring is completely free of formaldehyde, ensuring a safe and healthy indoor environment. We also have antibacterial coating on floors that provides excellent antibacterial properties, keeping your space clean and hygienic.`,
+      category: 'Product'
+  },
+
+    {
+    question: 'Does Polar LVT flooring fade under sunlight?',
+    answer:
+      `Our Polar LVT Flooring UAE does not fade under sunlight. We can use them for locations that receive direct sunlight, such as sunrooms or rooms with wide windows. The reason is that it contains UV protection, which prevents fading and discolouration caused by exposure to sunshine. The floors' deep antique tones remained after years of exposure to direct sunlight, giving the spaces an energetic and appealing look.`,
+      category: 'Product'
+  },
+
+   {
     question: 'Can I use SPC flooring in the bathroom?',
     answer:
-      "Of course. Because SPC flooring is water-resistant, it's a great option for bathrooms. It is resistant to warping, swelling, and moisture damage, unlike laminate or conventional wood. Even in regions with high humidity, its strong core and protective outer shell offer exceptional longevity. Selecting textured SPC planks will increase safety by preventing slippage in damp areas."
+      `Of course. Because SPC flooring is water-resistant, it's a great option for bathrooms. It is resistant to warping, swelling, and moisture damage, unlike laminate or conventional wood. Even in regions with high humidity, its strong core and protective outer shell offer exceptional longevity. Selecting textured SPC planks will increase safety by preventing slippage in damp areas.`,
+      category: 'Product'
   },
   {
-    question: 'Is SPC or LVT flooring suitable for UAE climates?',
+    question: 'Can you put SPC flooring on concrete?',
     answer:
-      "Yes. The UAE's humid and hot atmosphere is something that our Richmond SPC or LVT flooring is made to resist. It is a dependable option for both residential and commercial applications because of its heat- and water-resistant qualities. SPC and LVT provide long-term durability since they do not expand or contract in response to temperature variations like regular wood flooring does. "
-  }
+      "We often receive this question from our customers. The answer is definitely yes. Stone polymer composite (SPC) looks great on concrete subfloors. Creating a solid foundation, it reduces the possibility of warping or buckling over time. So we have to use a completely flat surface for installation.",
+       category: 'Service'
+  },
+  {
+    question: 'Can I install SPC flooring myself?',
+    answer:
+      "Yes. SPC flooring is an excellent option for do-it-yourself installation because of its simple 4-side click-lock mechanism. Before beginning, just make sure your subfloor is dry, clean, and level. With basic equipment like a rubber mallet, tape measure, and utility knife, the planks may be easily snapped together without the need for glue or nails. However, if you have any concerns or want a flawless finish, it's always a good idea to contact an expert.",
+       category: 'Service'
+  },
+  {
+    question: 'Can I request samples?',
+    answer:
+      "Yes! We offer free flooring samples across our full range. Simply add the samples to your basket and checkout. Order up to 5 free samples delivered anywhere in the UAE so you can see and feel the quality before you buy.",
+       category: 'Service'
+  },
+   {
+    question: 'Is there a warranty on your products?',
+    answer:
+      "A luxury vinyl plank flooring manufacturer's warranty varies from product to product and is included with all of our flooring. Our polar products have a two-year commercial warranty and a five-year residential warranty, while our Richmond SPC and LVT floorings have a ten-year domestic warranty and a five-year commercial warranty.",
+       category: 'Service'
+  },
+  {
+    question: 'How long does delivery take in the UAE?',
+    answer:
+      'We aim to deliver all orders across the mainland UAE within 2 to 3 working days. Delivery timelines may vary slightly depending on your location, but we strive to ensure a smooth and hassle-free experience from order placement to final delivery.',
+       category: 'Delivery'
+  },
+  {
+    question: 'Do you offer express delivery in Dubai?',
+    answer:
+      'Yes, we offer express delivery within Dubai. Orders placed before the 1pm cut-off time are delivered on the next working day. This service is available for a fee of AED 150, ensuring fast and convenient delivery when you need it urgently.',
+       category: 'Delivery'
+  },
+  {
+    question: 'Is delivery free for flooring orders?',
+    answer:
+      'Standard delivery is free within Dubai and for all other Emirates on orders above AED 2,000. For orders below AED 1,999 outside Dubai, a delivery fee of AED 200 applies, ensuring flexible and cost-effective shipping options.',
+       category: 'Delivery'
+  },
+  {
+    question: 'Can I collect my order myself?',
+    answer:
+      'Yes, you can choose to self-collect your order from our warehouse. Collection is available Monday to Saturday between 9am and 6pm at our Al Quoz Industrial Area 4 location in Dubai, offering a convenient alternative to delivery.',
+       category: 'Delivery'
+  },
+   {
+    question: 'Who can I contact for delivery questions?',
+    answer:
+      'If you have any questions or need clarification about your delivery, you can contact our team at cs@easyfloors.ae. We are always ready to assist you and ensure your order reaches you on time without any complications.',
+       category: 'Delivery'
+  },
 ];
 
 export const alternatingData: TAboutUs[] = [
   {
     id: 1,
-    image: '/assets/images/aboutus/about2.webp',
+    image: '/assets/images/aboutus/about1.webp',
     alt: 'First Image',
     heading: 'Your Trusted Online Flooring Store',
     paragraph:
@@ -801,7 +907,7 @@ export const alternatingData: TAboutUs[] = [
   },
   {
     id: 2,
-    image: '/assets/images/aboutus/about3.webp',
+    image: '/assets/images/aboutus/about2.webp',
     alt: 'Second Image',
     heading: 'For Homes And Businesses In The UAE',
     paragraph:
@@ -809,7 +915,7 @@ export const alternatingData: TAboutUs[] = [
   },
   {
     id: 3,
-    image: '/assets/images/aboutus/third.webp',
+    image: '/assets/images/aboutus/about3.webp',
     alt: 'Third Image',
     heading: 'Why Choose Easy Floors',
     paragraph:
@@ -849,10 +955,14 @@ export const measurementData: MeasurementSection[] = [
     image: ''
   },
   {
-    title: 'General Guidelines for Measuring Your Room ',
+    title: 'General Guidelines for Measuring Your Room',
     description: `When calculating the width and length of a rectangular or square area, add 5-10% for waste and cutting errors. If you are planning to construct staircases, mantels, or closets in your room, allocate over 10% of your budget to them. 
-      If you would like professional assistance, we can arrange a measuring service for you with a refundable charge of <span class='font-currency font-normal text-18'></span> 150 (refunded if you place an order with us). If you wish to measure the area yourself, you will only need a measuring tape, a pencil, and paper. Make sure you measure in metres if you will be buying flooring materials that are usually marketed in metres.
-      `,
+      If you would like professional assistance, we can arrange a measuring service for you with a refundable charge of <span class='font-currency font-normal text-18 text-black'></span> 150 (refunded if you place an order with us). If you wish to measure the area yourself, you will only need a measuring tape, a pencil, and paper. Make sure you measure in metres if you will be buying flooring materials that are usually marketed in metres.`,
+    steps: [],
+    image: ''
+  },
+  {
+    title: 'Measuring a Square or Rectangular Room',
     stepsHeading: 'Measuring a Square or Rectangular Room',
     steps: [
       {
@@ -864,33 +974,28 @@ export const measurementData: MeasurementSection[] = [
         content: "Determine the room's width, such as five metres"
       },
       {
-        title: 'Measure the total area',
-        content:
-          'To get the floor size in square metres, multiply the length by the width.'
+        title: 'Measure the total area:',
+        content: 'To get the floor size in square metres, multiply the length by the width.'
       }
     ],
-    image: '/assets/images/how-to-measure-your-room/measure1.png'
+    image: '/assets/images/how-to-measure-your-room/measure1.webp'
   },
   {
     title: 'Measuring an L-shaped or Irregular Room',
-    description:
-      'When dealing with uneven areas, divide the area into smaller, more manageable rectangles and measure each one independently. Then, make a rough sketch and draw the room plan.',
-
+    stepsHeading: 'Measuring an L-shaped or Irregular Room',
+    description: 'When dealing with uneven areas, divide the area into smaller, more manageable rectangles and measure each one independently. Then, make a rough sketch and draw the room plan.',
     steps: [
       {
-        title: 'Measure Every Section',
-        content:
-          "Take separate measurements of each section's length and width."
+        title: 'Measure Every Section:',
+        content: "Take separate measurements of each section's length and width."
       },
       {
-        title: 'Determine the total area.',
-        content:
-          'The length of every part should be multiplied by its width before adding them all together to get the total size of the space.'
+        title: 'Determine the total area:',
+        content: 'The length of every part should be multiplied by its width before adding them all together to get the total size of the space.'
       }
     ],
-    image: '/assets/images/how-to-measure-your-room/mearuse2.png'
+    image: '/assets/images/how-to-measure-your-room/measure2.webp'
   },
-
   {
     title: 'Factoring in 10% Waste Allowance',
     description:
@@ -898,7 +1003,6 @@ export const measurementData: MeasurementSection[] = [
     steps: [],
     image: ''
   },
-
   {
     title: 'Get Expert Guidance from Easy Floors',
     description:
@@ -907,7 +1011,6 @@ export const measurementData: MeasurementSection[] = [
     image: ''
   }
 ];
-
 export const loginData: AuthData = {
   title: 'WELCOME TO <br> EASY FLOORS',
   subtitle: 'Sign In',
@@ -1129,4 +1232,412 @@ export const emirateCityMap: Record<
     { value: 'Al Badiyah', label: 'Al Badiyah' },
     { value: 'Dadna', label: 'Dadna' }
   ]
+};
+
+export const Testmonialimages = [
+  {
+    src: "/assets/white.webp",
+    alt: "White Image",
+  },
+  {
+    src: "/assets/showroom.webp",
+    alt: "Test Image",
+  },
+];
+
+export const floorSmartFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: "What makes FLOOR SMART SPC flooring in Dubai a good choice?",
+    answer: "Floor Smart SPC flooring in Dubai is fully waterproof, termite-resistant, and highly durable. It is designed to handle moisture, heavy foot traffic, and daily wear, making it ideal for homes and commercial spaces in Dubai."
+  },
+  {
+    id: 2,
+    question: "Is Floor Smart SPC installation complicated?",
+    answer: "No, Floor Smart SPC flooring uses a Unilin click-lock system, allowing quick and easy installation without adhesives. It is suitable for both professionals and DIY installation."
+  },
+  {
+    id: 3,
+    question: "How does Floor Smart SPC flooring compare to other flooring options?",
+    answer: "Floor Smart SPC flooring offers better water resistance, durability, and lower maintenance compared to hardwood and laminate flooring, making it a practical long-term investment."
+  },
+  {
+    id: 4,
+    question: "Are SPC flooring prices in Dubai affordable?",
+    answer: "Yes, Floor Smart offers competitive SPC flooring prices in Dubai, providing a premium wood-look finish at a much more economical cost than natural wood."
+  }
+];
+
+export const polarFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: "Why should I buy Polar flooring for my home?",
+    answer: "Buy Polar flooring for its durability, affordability, and stylish designs in Dubai. It is water-resistant and easy to maintain, making it perfect for busy households."
+  },
+  {
+    id: 2,
+    question: "What makes Polar SPC flooring Dubai a reliable option?",
+    answer: "Polar SPC flooring in Dubai is highly durable, water-resistant, and scratch-resistant, making it ideal for high-traffic areas and long-term use."
+  },
+  {
+    id: 3,
+    question: "Is Polar vinyl flooring suitable for commercial spaces in Dubai?",
+    answer: "Yes, Polar vinyl flooring Dubai is designed for heavy use, offering durability and easy maintenance, making it perfect for offices, retail, and hospitality spaces."
+  },
+  {
+    id: 4,
+    question: "Can I use polar LVT flooring in my bathroom?",
+    answer: "Definitely. All polar flooring products are water-resistant and slip-resistant, making them a safe and stylish choice for wet areas like bathrooms and laundry rooms in Dubai."
+  }
+];
+
+export const richmondFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: "Where can I buy Richmond flooring in Dubai for my project?",
+    answer: "You can buy Richmond flooring in Dubai from trusted suppliers offering a wide range of designs. For premium options and reliable service, consider purchasing from a trusted supplier like easyfloors.ae, known for delivering high-quality flooring solutions."
+  },
+  {
+    id: 2,
+    question: "Is Richmond LVT flooring suitable for commercial use?",
+    answer: "Yes, Richmond LVT flooring is durable and designed for high-traffic areas like offices, hotels, and retail spaces, ensuring long-lasting performance and style in Dubai. We’re so confident in the quality of our products that we offer a 5-year warranty against manufacturing defects for commercial use and a 10-year warranty for residential use in Dubai."
+  },
+  {
+    id: 3,
+    question: "What are the benefits of Richmond SPC flooring in Dubai?",
+    answer: "Richmond SPC flooring Dubai offers water-resistant protection, scratch resistance, and strong core stability, making it ideal for both residential and commercial spaces."
+  },
+  {
+    id: 4,
+    question: "How easy is Richmond vinyl flooring installation?",
+    answer: "Richmond vinyl flooring features a click-lock system, enabling fast, adhesive-free installation in Dubai, saving time and reducing labor costs."
+  }
+];
+
+export const lvtFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: "Why is LVT flooring in Dubai popular for modern interiors?",
+    answer: "LVT flooring in Dubai is stylish, durable, and water-resistant. It mimics natural materials while being easier to maintain, making it ideal for both residential and commercial spaces."
+  },
+  {
+    id: 2,
+    question: "How is LVT flooring installation done — can it go over existing floors?",
+    answer: "Yes! LVT flooring installation uses a floating click-lock method that works over most existing surfaces, including tiles and concrete. No adhesive is required, saving time and reducing labour costs significantly across Dubai homes and offices."
+  },
+  {
+    id: 3,
+    question: "Is LVT flooring installation suitable for all spaces?",
+    answer: "Yes, LVT flooring installation works in homes, offices, and retail areas. Its multiple installation methods make it adaptable to different subfloors and design requirements."
+  },
+  {
+    id: 4,
+    question: "Can LVT vinyl flooring be used in commercial shops?",
+    answer: "Yes, luxury vinyl flooring is incredibly hard-wearing. It is designed to withstand heavy foot traffic and frequent cleaning, making it a top choice for retail environments in Dubai."
+  }
+];
+
+export const accessoriesFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: "Why is accessory flooring in Dubai popular for modern interiors?",
+    answer: "LVT flooring in Dubai is stylish, durable, and water-resistant. It mimics natural materials while being easier to maintain, making it ideal for both residential and commercial spaces."
+  },
+  {
+    id: 2,
+    question: "How is LVT flooring installation done — can it go over existing floors?",
+    answer: "Yes! LVT flooring installation uses a floating click-lock method that works over most existing surfaces, including tiles and concrete. No adhesive is required, saving time and reducing labour costs significantly across Dubai homes and offices."
+  },
+  {
+    id: 3,
+    question: "Is LVT flooring installation suitable for all spaces?",
+    answer: "Yes, LVT flooring installation works in homes, offices, and retail areas. Its multiple installation methods make it adaptable to different subfloors and design requirements."
+  },
+  {
+    id: 4,
+    question: "Can LVT vinyl flooring be used in commercial shops?",
+    answer: "Yes, luxury vinyl flooring is incredibly hard-wearing. It is designed to withstand heavy foot traffic and frequent cleaning, making it a top choice for retail environments in Dubai."
+  }
+];
+
+export const spcFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: "What makes SPC flooring in Dubai a good choice for homes?",
+    answer: "SPC flooring Dubai is water and scratch-resistant, and durable, making it perfect for homes with kids or pets. It handles moisture well and offers long-lasting performance with minimal maintenance needs."
+  },
+  {
+    id: 2,
+    question: "Is SPC flooring installation complicated?",
+    answer: "No, SPC flooring installation uses a click-lock system, making it simple and fast. Professional installers or even DIY users can easily fit it without adhesives or specialised tools."
+  },
+  {
+    id: 3,
+    question: "How does SPC laminate flooring differ from regular laminate or hardwood?",
+    answer: "Unlike regular laminate, SPC laminate flooring has a rigid stone polymer core that is water-resistant and more durable. It outperforms hardwood in moisture-prone areas and requires far less maintenance, making it a smart long-term investment."
+  },
+  {
+    id: 4,
+    question: "How do SPC flooring prices compare to natural wood?",
+    answer: "Our SPC flooring is far more economical than real wood while offering superior durability and moisture resistance, giving you a premium look for a much lower investment."
+  }
+];
+
+export const categoryFaqsData: Record<string, FAQItem[]> = {
+  'floor-smart': floorSmartFaqs,
+  'polar-flooring': polarFaqs,
+  'richmond-flooring': richmondFaqs,
+  'lvt-flooring': lvtFaqs,
+  'spc-flooring': spcFaqs,
+  'accessories': accessoriesFaqs
+};
+
+// ─── Subcategory FAQs ────────────────────────────────────────────────────────
+
+export const polarSpcEcoFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: 'Is Polar SPC Eco flooring suitable for high-traffic areas?',
+    answer:
+      'Yes, Polar SPC Eco flooring is built for durability, making it ideal for busy areas like living rooms, offices, and retail spaces. Its ceramic bead finish helps resist scratches, dents, and daily wear.'
+  },
+  {
+    id: 2,
+    question: 'Do I need to wax or seal SPC Eco flooring regularly?',
+    answer:
+      'No, SPC Eco flooring is low-maintenance and does not need waxing or sealing. Regular sweeping and occasional mopping are enough to maintain its clean look and long-lasting surface quality.'
+  },
+  {
+    id: 3,
+    question: 'Can Polar SPC Eco flooring handle moisture and spills?',
+    answer:
+      'Yes, its stone plastic composite core provides excellent moisture resistance. It can easily handle spills and humidity, making it suitable for kitchens, bathrooms, and other damp environments.'
+  },
+  {
+    id: 4,
+    question: 'Is the installation process complicated?',
+    answer:
+      'No, installation is simple and quick thanks to the click-lock system. The planks fit together easily without glue or nails, making it a hassle-free option for both professionals and DIY users.'
+  }
+];
+
+export const polarSpcHerringboneFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: 'How durable is Polar SPC Herringbone flooring?',
+    answer:
+      'With a strong 6.0mm thickness and durable wear layer, it is designed to handle heavy foot traffic. It performs well in homes, offices, and schools while maintaining its structure and appearance.'
+  },
+  {
+    id: 2,
+    question: 'Is this flooring resistant to stains and scratches?',
+    answer:
+      'Yes, it is engineered to resist scratches, stains, and everyday wear. This makes it a reliable option for busy areas where maintaining a clean and polished appearance is important.'
+  },
+  {
+    id: 3,
+    question: 'How much maintenance does SPC Herringbone flooring require?',
+    answer:
+      'It requires very little maintenance. Regular sweeping and occasional damp mopping will keep the surface clean, helping preserve its look and durability over time without extra effort.'
+  }
+];
+
+export const richmondSpcEcoFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: 'Does Richmond SPC Eco flooring look like real wood?',
+    answer:
+      'Yes, it features 3D Natural Embossing and realistic textures that closely replicate natural wood. It offers the aesthetic appeal of timber while delivering the durability of SPC flooring.'
+  },
+  {
+    id: 2,
+    question: 'What kind of warranty comes with Richmond SPC Eco flooring?',
+    answer:
+      'Richmond SPC Eco includes a 10-year residential warranty and a 5-year commercial warranty, providing long-term confidence in its durability, quality, and overall performance.'
+  },
+  {
+    id: 3,
+    question: 'Is this flooring protected against fading?',
+    answer:
+      'Yes, it includes UV protection that helps prevent fading and discoloration. This ensures the flooring maintains its original color and finish even with regular exposure to sunlight.'
+  },
+  {
+    id: 4,
+    question: 'Is Richmond SPC Eco easy to install?',
+    answer:
+      'Yes, it features a click-lock system that allows for quick and easy installation. No glue or nails are required, making it suitable for efficient installation in both residential and commercial spaces.'
+  }
+];
+
+export const richmondSpcPrimeFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: 'Is Richmond SPC Prime flooring suitable for commercial spaces?',
+    answer:
+      'Yes, it is designed for durability and can handle heavy foot traffic. This makes it a great choice for commercial settings like offices, schools, and retail environments.'
+  },
+  {
+    id: 2,
+    question: 'How long does Richmond SPC Prime flooring last?',
+    answer:
+      'With proper care and maintenance, it can last up to 10 years or more. Its durable construction ensures it maintains its appearance even in high-use areas.'
+  },
+  {
+    id: 3,
+    question: 'Does this flooring resist water and spills?',
+    answer:
+      'Yes, it is fully water-resistant and resistant to spills and moisture. This makes it suitable for areas prone to humidity or accidental water exposure.'
+  },
+  {
+    id: 4,
+    question: 'Is installation time-consuming?',
+    answer:
+      'No, installation is quick and efficient due to the click-lock system. The planks fit together easily, reducing labor time and eliminating the need for adhesives.'
+  }
+];
+
+export const richmondSpcHerringboneFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question:
+      'What makes Richmond SPC Herringbone different from standard SPC flooring?',
+    answer:
+      'It features a stylish herringbone pattern with smaller planks, offering a premium look. This design enhances visual appeal while maintaining the strength and durability of SPC flooring.'
+  },
+  {
+    id: 2,
+    question: 'Is this flooring resistant to daily wear and tear?',
+    answer:
+      'Yes, it is built to resist scratches, stains, and heavy usage. This makes it suitable for both residential and commercial environments with frequent foot traffic.'
+  },
+  {
+    id: 3,
+    question: 'Does Richmond SPC Herringbone come with a warranty?',
+    answer:
+      'Yes, it is backed by a 10-year residential warranty and a 5-year commercial warranty, ensuring long-term reliability and performance.'
+  },
+  {
+    id: 4,
+    question: 'Is this flooring a cost-effective option?',
+    answer:
+      'Yes, it combines durability, style, and low maintenance. Its long lifespan reduces replacement costs, making it a smart and cost-effective flooring investment.'
+  }
+];
+
+export const polarLvtComfortFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question:
+      'Can Polar LVT Comfort flooring be used in kitchens and bathrooms?',
+    answer:
+      'Yes, it is water-resistant and suitable for moisture-prone areas. It performs well in kitchens and bathrooms without warping or damage from humidity.'
+  },
+  {
+    id: 2,
+    question: 'How durable is LVT Comfort flooring for daily use?',
+    answer:
+      'It is designed to handle scratches, wear, and regular foot traffic. This makes it ideal for busy households that need reliable and long-lasting flooring.'
+  },
+  {
+    id: 3,
+    question: 'Is installation easy for Polar LVT Comfort flooring?',
+    answer:
+      'Yes, the click-lock system allows for quick and easy installation. It does not require professional tools, making it suitable for DIY installation.'
+  },
+  {
+    id: 4,
+    question: 'How do I maintain LVT Comfort flooring?',
+    answer:
+      'Maintenance is simple. Regular sweeping and occasional mopping are enough to keep the floor clean and maintain its fresh appearance over time.'
+  }
+];
+
+export const richmondLvtComfortFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question:
+      'What makes Richmond LVT Comfort suitable for high-traffic areas?',
+    answer:
+      'Its 0.55mm wear layer provides strong resistance against scratches and wear. This ensures long-lasting performance even in busy residential or commercial spaces.'
+  },
+  {
+    id: 2,
+    question: 'Does this flooring enhance the look of a room?',
+    answer:
+      'Yes, its matte finish and 3D embossing create a modern and spacious feel. It adds visual depth and style to any interior setting.'
+  },
+  {
+    id: 3,
+    question: 'Is adhesive required during installation?',
+    answer:
+      'No, it uses a 4-side click-lock system that allows for glue-free installation. This makes the process faster and cleaner. For heavy foot traffic areas such as retail stores, you can use glue to add additional strength.'
+  },
+  {
+    id: 4,
+    question: 'What warranty is included with Richmond LVT Comfort flooring?',
+    answer:
+      'It includes a 10-year residential warranty and a 5-year commercial warranty, offering assurance of durability and long-term quality.'
+  }
+];
+
+export const richmondLvtLuxuryFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: 'Does Richmond LVT Luxury flooring look like real hardwood?',
+    answer:
+      'Yes, it features wider planks and natural textures that replicate hardwood flooring. It delivers an elegant look without the maintenance challenges of real wood.'
+  },
+  {
+    id: 2,
+    question: 'Can this flooring handle humidity and spills?',
+    answer:
+      'Yes, it is designed to resist moisture, spills, and humidity. This makes it suitable for both residential and commercial environments.'
+  },
+  {
+    id: 3,
+    question: 'What happens if a plank gets damaged?',
+    answer:
+      'Individual planks can be easily replaced due to the click-lock system. Usually, there is no need to remove the entire floor, saving time and effort.'
+  },
+  {
+    id: 4,
+    question: 'Is Richmond LVT Luxury an eco-friendly option?',
+    answer:
+      'Yes, it is manufactured using environmentally responsible materials. It offers durability and performance while supporting sustainable flooring solutions.'
+  }
+];
+
+export const floorSmartSpcEcoFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: "Does it include an underlay?",
+    answer: "Yes, it comes with an integrated IXPE underlay that enhances comfort underfoot while reducing noise levels. This feature is especially useful in apartments and offices, creating a quieter and more comfortable indoor environment."
+  },
+  {
+    id: 2,
+    question: "Is it durable for long-term use?",
+    answer: "Yes, it is built with a strong SPC core and protective wear layer, ensuring long-lasting performance. It can handle daily wear, heavy furniture, and high foot traffic without losing its appearance."
+  },
+  {
+    id: 3,
+    question: "Does it reduce noise?",
+    answer: "Yes, the built-in IXPE underlay helps absorb sound and reduce noise levels. This makes it ideal for multi-level buildings, apartments, and offices where noise reduction and comfort are important."
+  },
+  {
+    id: 4,
+    question: "How many planks come in a box, and what's the coverage area?",
+    answer: "Each box includes 12 planks, covering approximately 2.664 square meters. It can cover small areas efficiently, while larger rooms will require multiple boxes for complete flooring installation."
+  }
+];
+
+export const subCategoryFaqsData: Record<string, FAQItem[]> = {
+  'polar-spc-eco': polarSpcEcoFaqs,
+  'polar-spc-herringbone': polarSpcHerringboneFaqs,
+  'richmond-spc-eco': richmondSpcEcoFaqs,
+  'richmond-spc-prime': richmondSpcPrimeFaqs,
+  'richmond-spc-herringbone': richmondSpcHerringboneFaqs,
+  'polar-lvt-comfort': polarLvtComfortFaqs,
+  'richmond-lvt-comfort': richmondLvtComfortFaqs,
+  'floor-smart-spc-eco': floorSmartSpcEcoFaqs,
+  'richmond-lvt-luxury': richmondLvtLuxuryFaqs,
 };

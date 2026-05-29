@@ -1,28 +1,25 @@
-import Link from 'next/link';
-import { TiArrowRight } from 'react-icons/ti';
 import { HeroMainProps } from 'types/type';
-import SaleTimer from './SaleTimer';
 import Image from 'next/image';
 
 const HeroMain = ({ items }: HeroMainProps) => {
   return (
-    <div className="relative flex flex-col w-full h-[230px] xsm:h-[320px] sm:h-[600px] xl:h-[800px] font-inter">
-      {items.map((item, index) => (
+    <div className="relative aspect-[1440/784] w-full">
+      {/* {items.map((item, index) => (
         <div
           key={index}
           className="relative w-full h-[230px] xsm:h-[320px] sm:h-[600px] xl:h-[800px]"
-        >
-          <Image
-            src="https://res.cloudinary.com/dmmeqgdhv/image/upload/v1754289893/hero-min_hek1qt.avif "
-            alt="hero"
-            fill
-            priority
-            fetchPriority="high"
-            quality={80}
-            sizes="(max-width: 640px) 160px, 600px"
-          />
+        > */}
+      <Image
+        // src="https://res.cloudinary.com/dmmeqgdhv/image/upload/v1754289893/hero-min_hek1qt.avif"
+        src="/assets/images/Home/hero.webp"
+        alt="hero"
+        fill
+        priority
+        fetchPriority="high"
+        sizes="100vw"
+      />
 
-          <div className="hidden sm:block">
+      {/* <div className="hidden sm:block">
             <div className="absolute top-[6%] sm:top-[20%] lg:top-[14%] bg-background left-4 sm:left-0 opacity-90 xs:opacity-95 p-2 sm:p-6 md:p-8 w-[65%] xs:w-[58%] sm:w-[270px] md:w-[300px] lg:w-[400px] xl:w-[500px] shadow-md">
               <div className="flex flex-col justify-start items-start font-light space-y-1 sm:space-y-3 lg:space-y-4 sm:pl-4 md:pl-5 lg:pl-12 xl:pl-16">
                 <div className="flex_between w-full sm:text-sm">
@@ -72,9 +69,9 @@ const HeroMain = ({ items }: HeroMainProps) => {
                 </div>
               </div>
             </Link>
-          </div>
-        </div>
-      ))}
+          </div> */}
+      {/* </div>
+      ))} */}
     </div>
   );
 };

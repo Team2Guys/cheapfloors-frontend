@@ -98,13 +98,17 @@
 
 @layer components {
   .filter_accordion {
-    @apply pl-4 text-sm text-gray-600 space-y-1;
+    @apply px-2 text-sm text-black flex flex-col;
+  }
+
+  .filter_accordion li {
+    @apply py-2 border-b border-[#0000001F] last:border-0;
   }
 }
 
 @layer components {
   .filter_Link {
-    @apply cursor-pointer hover:text-primary block;
+    @apply cursor-pointer hover:text-primary block text-[#00000099];
   }
 }
 
@@ -228,6 +232,9 @@
   border-radius: 0px;
   height: 5px;
 }
+.related_slider .swiper-wrapper{
+  padding-bottom: 16px;
+}
 
 .related_slider .swiper-pagination-bullet-active {
   background: var(--primary) !important;
@@ -237,7 +244,7 @@
   width: 14px !important;
   height: 14px !important;
   opacity: 1;
-  background: #000000;
+  background: #0000003D;
 }
 
 
@@ -280,6 +287,7 @@
   height: 44px;
   border: 1px solid #d1d5db;
   padding: 8px;
+  border-radius: 0.5rem;
 }
 
 .PhoneInputInput {
@@ -300,3 +308,43 @@
   }
 }
 
+/* Features Swiper Pagination */
+.features-pagination .swiper-pagination-bullet {
+  width: 24px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: transparent;
+  border: 1px solid #594F55;
+  opacity: 1;
+  transition: all 0.3s ease;
+  margin: 0 4px !important;
+}
+
+.features-pagination .swiper-pagination-bullet-active {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  width: 32px;
+}
+
+.features-swiper .swiper-wrapper {
+  align-items: stretch;
+}
+
+.PhoneInputCountryIcon {
+  width: 24px;   
+  height: 24px;  
+  border-radius: 50%; 
+  overflow: hidden; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 2px rgba(0,0,0,0.1); 
+}
+
+
+.PhoneInputCountryIconImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}

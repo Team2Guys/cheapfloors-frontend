@@ -232,7 +232,7 @@ const ContactForm: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmitting || loading || !isVerified}
-              className="w-[200px] sm:w-[300px] h-[50px] sm:h-[83px] border border-primary text-black hover:text-white font-medium font-inter hover:bg-primary hover:bg-primary-dark duration-300 ease-in-out text-16 sm:text-20 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-[200px] h-[50px] border border-primary text-black hover:text-white font-medium font-inter hover:bg-primary hover:bg-primary-dark duration-300 ease-in-out text-16 sm:text-20 disabled:opacity-50 disabled:cursor-not-allowed rounded-md"
             >
               {isSubmitting || loading ? 'Sending...' : 'Send Message'}
             </button>

@@ -36,7 +36,8 @@ const Collections = ({
     priceValue,
     selectedProductFilters,
     sortOption: '',
-    isWaterProof: null
+    isWaterProof: isWaterProof,
+    selectedTags: selectedTags
   });
 
   const handleRemoveFilter = (

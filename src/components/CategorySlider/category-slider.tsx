@@ -8,11 +8,24 @@ import { getSubcategoryOrder } from 'data/home-category';
 import dynamic from 'next/dynamic';
 import SwiperSlider from 'components/common/swiper-slider/swiper-slider';
 import { categoryBreakpoint } from 'data/slider';
+import SliderArrow from 'components/common/slider-arrow/slider-arrow';
+import { BsArrowRight } from 'react-icons/bs';
+import Container from '../common/container/Container';
+
+const getPrice = (cat: Category) => {
+  if (cat.price) return cat.price;
+  switch (cat.name.toUpperCase()) {
+    case 'SPC FLOORING': return '150';
+    case 'LVT FLOORING': return '180';
+    case 'POLAR FLOORING': return '200';
+    case 'RICHMOND FLOORING': return '220';
+    default: return '';
+  }
+};
 
 const CategorySlider = ({ categories }: { categories: Category[] }) => {
-  
   return (
-    <div className="space-y-8">
+    <div className="flex flex-col w-full gap-8 md:gap-14 my-10">
       {categories
         ?.filter((category) => category.name !== 'ACCESSORIES')
         .map((category: Category, index: number) => {
@@ -37,83 +50,84 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
           const shouldEnablePagination =
             subcategories && subcategories.length >= 0;
           const seeAllLink = `/${category?.custom_url || category.name.toLowerCase().replace(/\s+/g, '-')}`;
-       
+
+          const isYellowBg = category.name.toUpperCase() === 'LVT FLOORING';
+          const price = getPrice(category);
+
+          const getArrowHiddenClasses = (length: number) => {
+            if (length <= 1) return '!hidden';
+            if (length === 2) return 'sm:!hidden';
+            if (length === 3 || length === 4) return 'xl:!hidden';
+            return '';
+          };
+          const arrowHiddenClass = getArrowHiddenClasses(subcategories?.length || 0);
+
           return (
-            <div
-              key={index}
-              className="md:flex block items-center md:text-black text-white w-full overflow-hidden md:bg-background bg-primary category_slider py-4"
-            >
-              <div className="p-4 text-center md:text-start w-full md:w-1/4 font-inter sm:pl-10 md:pl-6 lg:pl-10 xl:pl-24 space-y-3">
-                <h2 className="text-lg lg:text-4xl font-semibold">
-                  {category.name}
-                </h2>
-                <p className="md:text-black md:w-fit font-light">
-                  Price Starting From:{' '}
-                  <span className="font-currency font-normal text-22"></span>{' '}
-                  {category.price + '/m²' ||
-                    (category.name === 'SPC FLOORING' ? (
-                      <p>
-                        <span className="font-currency font-normal text-18">
-                          
-                        </span>{' '}
-                        150m²
-                      </p>
-                    ) : category.name === 'LVT FLOORING' ? (
-                      <p>
-                        <span className="font-currency font-normal text-18">
-                          
-                        </span>{' '}
-                        180m²
-                      </p>
-                    ) : category.name === 'POLAR FLOORING' ? (
-                      <p>
-                        <span className="font-currency font-normal text-18">
-                          
-                        </span>{' '}
-                        200m²
-                      </p>
-                    ) : category.name === 'RICHMOND FLOORING' ? (
-                      <p>
-                        <span className="font-currency font-normal text-18">
-                          
-                        </span>{' '}
-                        220m²
-                      </p>
-                    ) : (
-                      ''
-                    ))}
-                </p>
-                <div className="w-full md:w-60">
-                  <Link
-                    href={seeAllLink}
-                    className="transition text-center md:text-black font-semibold text-white px-4 py-1 border md:border-primary border-white font-inter hover:text-white hover:bg-primary"
-                  >
-                    See All
-                  </Link>
+            <div className='bg-[#CDCDCD14]' key={index}>
+              <Container key={index} className='relative overflow-hidden py-6'>
+                {/* Desktop Arrows */}
+                <div className={`hidden lg:flex justify-end gap-3 mb-4 ${arrowHiddenClass}`}>
+                  <SliderArrow direction="left" className={`cat-prev-${index}`} />
+                  <SliderArrow direction="right" className={`cat-next-${index}`} />
                 </div>
-              </div>
-              <div className="md:w-3/4 w-full md:pr-10">
-                <SwiperSlider
-                  enablePagination={shouldEnablePagination}
-                  allowTouch={shouldEnablePagination}
-                  breakpoints={categoryBreakpoint}
-                  className='bg-white'
-                >
-                  {subcategories?.map(
-                    (product: EDIT_CATEGORY, index: number) => (
-                      <SwiperSlide key={index} className="pb-7">
-                        <Card
-                          product={product}
-                          categoryData={category}
-                          features={features}
-                          sldier
-                          subCategoryFlag
-                        />
-                      </SwiperSlide>
-                    )
-                  )}
-                </SwiperSlider>
-              </div>
+                <div className="flex flex-col lg:flex-row w-full gap-4 lg:gap-8 relative">
+                  {/* Category Info Box */}
+                  <div className='w-full lg:w-[300px] shrink-0 border border-primary rounded-xl p-6 sm:p-8 flex flex-col items-center justify-center text-center bg-white hover:bg-primary hover:border-primary group'>
+                    <h2 className="text-2xl md:text-[28px] font-semibold text-black mb-4 capitalize">
+                      {category.name.toLowerCase()}
+                    </h2>
+                    <p className="text-black mb-8 text-sm md:text-base lg:text-lg flex items-center gap-1">
+                      Price Starting From:{' '}
+                      <span className={`font-currency font-normal text-lg ml-1 ${isYellowBg ? 'text-black' : 'text-black'}`}></span>
+                      <span className={`font-medium ${isYellowBg ? 'text-black' : 'text-black'}`}>
+                        {price ? `${price}/m²` : ''}
+                      </span>
+                    </p>
+                    <Link
+                      href={seeAllLink}
+                      className='px-6 py-2.5 bg-primary text-black group-hover:bg-white rounded-full font-semibold transition flex items-center justify-center gap-2 text-sm md:text-base'
+                    >
+                      See All <BsArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+
+                  {/* Slider Section */}
+                  <div className="w-full lg:w-3/4 relative flex flex-col justify-center">
+                    {/* Mobile Arrows */}
+                    <div className={`flex lg:hidden justify-between gap-3 mb-4 mt-2 ${arrowHiddenClass}`}>
+                      <SliderArrow direction="left" className={`cat-prev-${index}`} />
+                      <SliderArrow direction="right" className={`cat-next-${index}`} />
+                    </div>
+
+                    <div className="w-full">
+                      <SwiperSlider
+                        enablePagination={false}
+                        navigation={{
+                          prevEl: `.cat-prev-${index}`,
+                          nextEl: `.cat-next-${index}`,
+                        }}
+                        allowTouch={shouldEnablePagination}
+                        breakpoints={categoryBreakpoint}
+                        className="w-full"
+                      >
+                        {subcategories?.map(
+                          (product: EDIT_CATEGORY, idx: number) => (
+                            <SwiperSlide key={idx} className="pb-2 lg:px-1">
+                              <Card
+                                product={product}
+                                categoryData={category}
+                                features={features}
+                                sldier
+                                subCategoryFlag
+                              />
+                            </SwiperSlide>
+                          )
+                        )}
+                      </SwiperSlider>
+                    </div>
+                  </div>
+                </div>
+              </Container>
             </div>
           );
         })}

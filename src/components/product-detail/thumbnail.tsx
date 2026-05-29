@@ -2,14 +2,12 @@
 import Image from 'next/image';
 import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Thumbs, FreeMode } from 'swiper/modules';
+import { Navigation, FreeMode } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
 import 'swiper/css/free-mode';
 import { ExtendedThumbnailProps } from 'types/product-detail';
-import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
-import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
+import { FaAngleDown, FaAngleUp, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import type { Swiper as SwiperType } from 'swiper';
 
 const Thumbnail = ({
@@ -25,10 +23,8 @@ const Thumbnail = ({
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const mainSwiperRef = useRef<SwiperType | null>(null);
   const thumbSwiperRef = useRef<SwiperType | null>(null);
-  const combinedImages = useMemo(() => {
-    if (hideThumnailBottom) return ThumnailImage;
-    return [...ThumnailImage, ...(ThumnailBottom || [])];
-  }, [ThumnailImage, ThumnailBottom, hideThumnailBottom]);
+  const featureSwiperRef = useRef<SwiperType | null>(null);
+
   useEffect(() => {
     if (selectedColor) {
       let idx: number = -1;
@@ -78,7 +74,7 @@ const Thumbnail = ({
   const staticTitles = [
     'Click lock system',
     'Layers of SPC or LVT',
-    'water-resistant',
+    'Waterproof',
     'Easy to clean',
     'Scratch resistant',
     'The packaging'
@@ -88,41 +84,33 @@ const Thumbnail = ({
 
   return (
     <div className="relative">
-      {stickyside && ThumnailImage.length > 5 && (
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            thumbSwiperRef.current?.slidePrev();
-          }}
-          className="absolute !-top-1 2xl:left-16 xl:left-11 lg:left-10 md:left-8 sm:left-8 left-4 z-30 p-1 max-w-max"
-        >
-          <MdKeyboardArrowUp className="block md:hidden bg-white" size={20} />
-          <MdKeyboardArrowUp
-            className="hidden md:block font-normal text-gray-600 bg-white"
-            size={30}
-          />
-        </button>
-      )}
 
-      <div className="slider-container flex gap-2 sm:gap-4 overflow-hidden">
-        <div className="w-2/12">
+
+      <div className="slider-container flex gap-2 sm:gap-3 overflow-hidden">
+        <div className="w-[18%] sm:w-[15%] shrink-0">
           {stickyside && ThumnailImage.length > 5 ? (
             <div className="relative h-full max-h-[280px] sm:max-h-[520px] xl:max-h-[700px] 2xl:max-h-[800px]">
+              {stickyside && ThumnailImage.length > 5 && (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    thumbSwiperRef.current?.slidePrev();
+                  }}
+                  className="absolute top-0 left-1/2 -translate-x-1/2 z-30 p-1 max-w-max shadow-lg border bg-white"
+                >
+                  <FaAngleUp className="text-gray-600 " size={20} />
+                </button>
+              )}
               <Swiper
                 direction="vertical"
-                slidesPerView={6}
-                spaceBetween={8}
+                slidesPerView={5}
+                spaceBetween={6}
                 freeMode
                 watchSlidesProgress
                 slideToClickedSlide
                 onSwiper={(swiper) => (thumbSwiperRef.current = swiper)}
                 modules={[FreeMode]}
                 className="h-full"
-                breakpoints={{
-                  320: { slidesPerView: 5, spaceBetween: 6 },
-                  1024: { slidesPerView: 5, spaceBetween: 6 }, // use whole numbers here
-                  1600: { slidesPerView: 6, spaceBetween: 6 }
-                }}
               >
                 {ThumnailImage.map((product, index) => (
                   <SwiperSlide
@@ -130,68 +118,50 @@ const Thumbnail = ({
                     onClick={() => handleThumbnailClick(index)}
                   >
                     <div
-                      className={`cursor-pointer p-[2px] border-2 ${
-                        index === currentSlide
+                      className={`cursor-pointer border-2 ${index === currentSlide
                           ? 'border-primary'
                           : 'border-transparent'
-                      }`}
+                        }`}
                     >
                       <Image
                         width={150}
                         height={150}
                         priority
                         src={product.imageUrl}
-                        className={`w-full ${
-                          imageheight
-                            ? 'h-[44px] sm:h-[90px] lg:h-[93px] xl:h-[126px] border border-black'
-                            : 'border'
-                        }`}
+                        className={`w-full aspect-square object-cover ${imageheight ? 'border-0' : 'border-0'
+                          }`}
                         alt={product.altText || 'Thumbnail'}
                       />
                     </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
-              {stickyside && ThumnailImage.length > 5 && (
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    thumbSwiperRef.current?.slideNext();
-                  }}
-                  className="absolute bottom-1 left-1/2 -translate-x-1/2 z-30 p-1 "
-                >
-                  <MdKeyboardArrowDown
-                    className="block md:hidden bg-white"
-                    size={20}
-                  />
-                  <MdKeyboardArrowDown
-                    className="hidden md:block font-normal text-gray-600 bg-white"
-                    size={30}
-                  />
-                </button>
-              )}
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  thumbSwiperRef.current?.slideNext();
+                }}
+                className="absolute bottom-4 xl:bottom-2 left-1/2 -translate-x-1/2 z-30 p-1 shadow-lg border bg-white"
+              >
+                <FaAngleDown className="text-gray-600" size={20} />
+              </button>
             </div>
           ) : (
-            <div className="flex flex-col gap-1 sm:gap-2">
+            <div className="flex flex-col gap-1.5 sm:gap-2">
               {ThumnailImage.map((product, index) => (
                 <div
                   key={index}
                   onClick={() => handleThumbnailClick(index)}
-                  className={`cursor-pointer p-[2px] border-2 ${
-                    index === currentSlide
+                  className={`cursor-pointer border-2 ${index === currentSlide
                       ? 'border-primary'
                       : 'border-transparent'
-                  }`}
+                    }`}
                 >
                   <Image
                     width={150}
                     height={150}
                     src={product.imageUrl}
-                    className={`w-full ${
-                      imageheight
-                        ? 'h-[44px] sm:h-[90px] lg:h-[93px] xl:h-[126px] 2xl:h-[150px]'
-                        : 'h-auto 2xl:h-[140px]'
-                    }`}
+                    className="w-full aspect-square object-cover"
                     alt={product.altText || 'Thumbnail'}
                   />
                 </div>
@@ -199,13 +169,13 @@ const Thumbnail = ({
             </div>
           )}
         </div>
-        <div className="w-10/12">
+        <div className="w-[82%] sm:w-[85%] flex-1">
           <Swiper
             onSwiper={(swiper) => (mainSwiperRef.current = swiper)}
             onSlideChange={(swiper) => {
               setCurrentSlide(swiper.activeIndex);
-              onImageChange?.(combinedImages[swiper.activeIndex]);
-              const product = combinedImages[swiper.activeIndex];
+              onImageChange?.(ThumnailImage[swiper.activeIndex]);
+              const product = ThumnailImage[swiper.activeIndex];
               setSelectedColor?.({
                 color: product.color || product.colorCode,
                 colorCode: product.colorCode,
@@ -218,25 +188,22 @@ const Thumbnail = ({
               }
             }}
             slidesPerView={1}
-            modules={[Navigation, Thumbs]}
+            modules={[Navigation]}
           >
-            {combinedImages.map((product, index) => (
+            {ThumnailImage.map((product, index) => (
               <SwiperSlide key={index}>
                 <div
-                  className={`relative ${
-                    imageheight
-                      ? 'h-[273px] sm:h-[520px] lg:h-[535px] xl:h-[700px] 2xl:h-[810px]'
-                      : 'h-[273px] sm:h-[520px] md:h-[530px] lg:h-[435px] xl:h-[530px] 2xl:h-[740px]'
-                  } ${product.plankWidth && 'py-2 sm:py-0'}`}
+                  className={`relative aspect-square ${product.plankWidth ? 'py-2 sm:py-0' : ''
+                    }`}
                 >
                   <Image
                     fill
-                    priority
-                    fetchPriority="high"
+                    priority={index === 0}
+                    fetchPriority={index === 0 ? 'high' : 'auto'}
                     src={product.imageUrl}
-                    className={`w-full px-1 ${selectedColor ? 'object-cover' : ''}`}
-                    alt={product.altText || 'Thumbnail'}
-                    sizes="30vw"
+                    className={`object-cover ${selectedColor ? 'object-cover' : ''}`}
+                    alt={product.altText || 'Product image'}
+                    sizes="(max-width: 768px) 80vw, 40vw"
                   />
                   {product.plankHeight && (
                     <div className="absolute h-full top-0 flex flex-col justify-between py-4 sm:py-10 left-1/2 -translate-x-28 sm:-translate-x-36">
@@ -269,44 +236,55 @@ const Thumbnail = ({
                       </span>
                     </div>
                   )}
-                  {!stickyside && index === 5 && (
-                    <div className="absolute bottom-14 sm:bottom-36 2xl:bottom-56 left-2 flex flex-col gap-1 font-inter max-w-60 w-full text-12 md:text-base xl:text-20 font-semibold">
-                      <p>Base layer</p>
-                      <p>Backside detail</p>
-                    </div>
-                  )}
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-          {!hideThumnailBottom && ThumnailBottom && (
-            <div className="grid grid-cols-6 gap-1 sm:gap-3 pt-2 sm:pt-6">
-              {ThumnailBottom.map((array, index) => {
-                const globalIndex = ThumnailImage.length + index;
-                return (
-                  <div
-                    key={index}
-                    className="text-center cursor-pointer"
-                    onClick={() => handleThumbnailClick(globalIndex)}
-                  >
-                    <div className="w-full h-[39px] sm:h-20 md:h-28 lg:h-24 2xl:h-32 relative">
-                      <Image
-                        fill
-                        src={array.imageUrl}
-                        alt={array.altText}
-                        className={`p-[2px] object-cover border-2 ${
-                          globalIndex === currentSlide
-                            ? 'border-primary'
-                            : 'border-transparent'
-                        }`}
-                      />
+
+          {!hideThumnailBottom && ThumnailBottom && ThumnailBottom.length > 0 && (
+            <div className="relative mt-3 sm:mt-4">
+              <button
+                type="button"
+                onClick={() => featureSwiperRef.current?.slidePrev()}
+                className="absolute left-1 top-[42%] -translate-y-1/2 z-20 flex size-6 items-center justify-center bg-[#FFFFFF33] backdrop-blur-sm shadow-sm"
+                aria-label="Previous feature"
+              >
+                <FaChevronLeft className="text-black text-xl" />
+              </button>
+              <button
+                type="button"
+                onClick={() => featureSwiperRef.current?.slideNext()}
+                className="absolute right-3 top-[42%] -translate-y-1/2 z-20 flex size-6 items-center justify-center bg-[#FFFFFF33] backdrop-blur-sm shadow-sm"
+                aria-label="Next feature"
+              >
+                <FaChevronRight className="text-black text-xl" />
+              </button>
+              <Swiper
+                onSwiper={(swiper) => (featureSwiperRef.current = swiper)}
+                slidesPerView={4.8}
+                spaceBetween={4}
+                freeMode
+                modules={[FreeMode, Navigation]}
+                className="feature-carousel"
+              >
+                {ThumnailBottom.map((array, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="text-center px-0.5">
+                      <div className="w-full aspect-square relative border border-[#E0E0E0] bg-white">
+                        <Image
+                          fill
+                          src={array.imageUrl}
+                          alt={array.altText || getStaticTitle(index)}
+                          className="object-cover"
+                        />
+                      </div>
+                      <p className="mt-1 text-[10px] sm:text-[11px] font-medium text-black text-center leading-snug">
+                        {getStaticTitle(index)}
+                      </p>
                     </div>
-                    <p className="font-semibold text-[8px] md:text-sm lg:text-xs xl:text-base capitalize">
-                      {getStaticTitle(index)}
-                    </p>
-                  </div>
-                );
-              })}
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           )}
         </div>

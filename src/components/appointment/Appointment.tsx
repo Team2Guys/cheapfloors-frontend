@@ -24,8 +24,8 @@ export default function Appointment({
   const [createAppointment] = useMutation(CREATE_APPOINTMENT);
 
   return (
-    <div className="pt-10 font-inter">
-      <div className="sm:max-w-[95%] mx-auto p-2 sm:p-4 2xl:p-6 shadow-2xl rounded-2xl">
+    <div className="pt-5 md:pt-10 font-inter">
+      <div className="mx-auto p-2 sm:p-4 2xl:p-6 shadow-2xl rounded-2xl">
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -112,7 +112,7 @@ export default function Appointment({
                     htmlFor="whatsappNumber"
                     className="text-13 font-medium"
                   >
-                    WhatsApp No
+                    WhatsApp No. If Different
                   </label>
                   <Field name="whatsappNumber">
                     {({ form }: FieldProps) => (
@@ -157,12 +157,12 @@ export default function Appointment({
                 />
 
                 <InputWithUnit
-                  label="Approximate Area"
+                  label="Select Rooms"
                   name="selectRooms"
+                  placeholder="How Many Rooms?"
                   required
-                  placeholder="Enter Area"
                   value={values.selectRooms}
-                  selectOptions={['sqm', 'sqft']}
+                  // Removed selectOptions prop
                   setFieldValue={setFieldValue}
                 />
 
@@ -180,13 +180,11 @@ export default function Appointment({
                 <Select
                   label="Preferred Time"
                   name="preferredTime"
-                  placeholder="Select a Time Slot"
+                  placeholder="Am/Pm"
                   required
                   options={[
-                    { value: '9am-11am', label: '9am-11am' },
-                    { value: '11am-1pm', label: '11am-1pm' },
-                    { value: '1pm-3pm', label: '1pm-3pm' },
-                    { value: '3pm-6pm', label: '3pm-6pm' }
+                    { value: 'am', label: 'Am' },
+                    { value: 'pm', label: 'Pm' }
                   ]}
                 />
 
@@ -211,7 +209,7 @@ export default function Appointment({
                   <Field
                     name="contactMethod.telephone"
                     component={Checkbox}
-                    label="Call"
+                    label="Telephone"
                   />
                   <Field
                     name="contactMethod.email"
@@ -229,7 +227,7 @@ export default function Appointment({
                   as="textarea"
                   name="comment"
                   placeholder="Enter Your Query"
-                  className="w-full pt-3 p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-xs placeholder:font-medium placeholder:text-[#9FA3B2] h-52"
+                  className="w-full pt-3 p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary placeholder:text-xs placeholder:font-medium placeholder:text-[#0000003D] h-52 rounded-lg"
                 />
               </div>
 
@@ -248,7 +246,7 @@ function SubmitButton({ isSubmitting }: { isSubmitting: boolean }) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-fit bg-primary text-white p-2 lg:py-3 px-4 sm:px-10 text-15"
+        className="w-fit  border border-primary p-2 lg:py-3 px-4 sm:px-10 text-15 rounded-md"
       >
         {isSubmitting ? 'Submitting...' : ' BOOK AN APPOINTMENT'}
       </button>

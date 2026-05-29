@@ -11,8 +11,8 @@ const Filter = () => {
     >
       <path
         d="M14.6693 1H1.33594L6.66927 7.30667V11.6667L9.33594 13V10.1533V7.30667L14.6693 1Z"
-        stroke="#232327"
-        strokeWidth="2"
+        stroke="black"
+        strokeWidth="1"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

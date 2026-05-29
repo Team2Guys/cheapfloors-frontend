@@ -1,30 +1,30 @@
 export const whatamiBreakpoint = {
   // 1.2 shows one full slide and a "peek" of the next one
-  0: { 
-    slidesPerView: 1.2, 
-    spaceBetween: 12 
+  0: {
+    slidesPerView: 1.2,
+    spaceBetween: 10
   },
   // 1.5 shows one full and half of the next
-  480: { 
-    slidesPerView: 1.5, 
-    spaceBetween: 15 
+  480: {
+    slidesPerView: 1.5,
+    spaceBetween: 10
   },
-  768: { 
-    slidesPerView: 2, 
-    spaceBetween: 20 
+  768: {
+    slidesPerView: 2,
+    spaceBetween: 10
   },
-  1024: { 
-    slidesPerView: 3, 
-    spaceBetween: 25 
+  1024: {
+    slidesPerView: 3,
+    spaceBetween: 10
   },
-  1280: { 
-    slidesPerView: 4, 
-    spaceBetween: 25 
+  1280: {
+    slidesPerView: 4,
+    spaceBetween: 10
   }
 };
 export const categoryBreakpoint = {
-  0: { slidesPerView: 2, spaceBetween: 10 },
-  480: { slidesPerView: 2, spaceBetween: 15 },
+  0: { slidesPerView: 1.2, spaceBetween: 10 },
+  480: { slidesPerView: 1.2, spaceBetween: 15 },
   640: { slidesPerView: 2, spaceBetween: 15 },
   768: { slidesPerView: 2, spaceBetween: 20 },
   1024: { slidesPerView: 2.7, spaceBetween: 2 },

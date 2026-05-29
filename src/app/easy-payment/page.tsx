@@ -9,7 +9,7 @@ export const metadata = createMetadata(pageMetadataData.easyPayment);
 const EasyPayment = () => {
   return (
     <Container className="space-y-2 sm:space-y-4 my-10 font-inter">
-      <h1 className="text-center text-36 sm:text-[47px] font-semibold mb-4">
+      <h1 className="text-center text-24 sm:text-36 font-semibold mb-4">
         Easy Payment
       </h1>
       <ul className="list-disc px-4 space-y-3">

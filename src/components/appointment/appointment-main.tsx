@@ -14,7 +14,7 @@ const AppointmentMain = ({
         {title}
       </h1>
       <p
-        className=" text-sm md:text-base text-justify leading-8"
+        className=" text-sm md:text-base text-justify lg:leading-6"
         dangerouslySetInnerHTML={{ __html: description || '' }}
       />
       <Appointment AppointsType={AppointsType} />

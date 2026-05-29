@@ -34,21 +34,20 @@ const Select = ({
     <div ref={dropdownRef} className="relative w-28 lg:w-40 z-20">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex_between w-full px-3 py-2 max-lg:shadow lg:border lg:border-gray-300 rounded-md bg-white hover:border-primary transition text-12 lg:text-sm font-medium"
+        className="flex_between w-full px-3 py-2 bg-[#F9FAFB] text-12 lg:text-sm font-medium"
       >
         {selected}
         <span className="block lg:hidden">
-          <svg
-            width="12"
-            height="16"
-            viewBox="0 0 12 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M9.32255 12.0478V6.38313H7.66021V12.0478H5.1667L8.49138 15.272L11.8161 12.0478H9.32255ZM3.50436 0.726562L0.179688 3.9508H2.67319V9.61545H4.33553V3.9508H6.82904L3.50436 0.726562ZM9.32255 12.0478V6.38313H7.66021V12.0478H5.1667L8.49138 15.272L11.8161 12.0478H9.32255ZM3.50436 0.726562L0.179688 3.9508H2.67319V9.61545H4.33553V3.9508H6.82904L3.50436 0.726562Z"
-              fill="#232327"
-            />
+          <svg width="20" height="20" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+              {/* <!-- Left downward zig --> */}
+              <path d="M22 10 L4 30" />
+              <path d="M22 10 L22 54" />
+
+              {/* <!-- Right upward zig --> */}
+              <path d="M42 54 L60 30" />
+              <path d="M42 10 L42 54" />
+            </g>
           </svg>
         </span>
 

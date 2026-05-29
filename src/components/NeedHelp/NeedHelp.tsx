@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const NeedHelp = () => {
   return (
-    <div className="container mx-auto px-2 sm:px-4 grid grid-cols-1 md:grid-cols-2 gap-2 lg:gap-10">
+    <div className="container mx-auto px-2 sm:px-4 grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-14">
       {boxData.map((box, index) => (
         <div
           className="border-2 border-[#CCCCCC] font-inter relative min-h-[250px] md:min-h-[410px]"
@@ -37,7 +37,7 @@ const NeedHelp = () => {
             <Link
               href={box.link}
               aria-label="Book appointment"
-              className="w-full max-w-xl mx-auto block text-xs sm:text-sm md:text-base bg-primary hover:bg-secondary text-white sm:ont-medium px-4 py-2"
+              className="w-full max-w-xl mx-auto block text-xs sm:text-sm md:text-base bg-primary hover:bg-secondary text-black sm:ont-medium px-4 py-2 rounded-full"
             >
               {box.buttonText}
             </Link>

@@ -15,19 +15,20 @@ const Category = ({
 }: SUBNCATEGORIES_PAGES_PROPS) => {
   const Data: ISUBCATEGORY | ICategory = categoryData;
   console.log(subcategory, "subcategory")
-   console.log(categoryData, "categoryData")
+  console.log(categoryData, "categoryData")
   return (
     <>
       <Breadcrumb
-        image={
-          isSubCategory
-            ? subdescription?.[0]?.BannerImage?.imageUrl
-            : Data.whatAmiImageBanner?.imageUrl
-              ? Data.whatAmiImageBanner?.imageUrl
-              : Data.BannerImage?.imageUrl
-                ? Data.BannerImage?.imageUrl
-                : '/assets/images/category/category-breadcrumb.webp'
-        }
+        // image={
+        //   isSubCategory
+        //     ? subdescription?.[0]?.BannerImage?.imageUrl
+        //     : Data.whatAmiImageBanner?.imageUrl
+        //       ? Data.whatAmiImageBanner?.imageUrl
+        //       : Data.BannerImage?.imageUrl
+        //         ? Data.BannerImage?.imageUrl
+        //         : '/assets/images/category/category-breadcrumb.webp'
+        // }
+        image="/assets/images/category/category-banner.png"
         altText={Data.whatAmiImageBanner?.altText || Data.BannerImage?.altText}
         slug={slug}
         subcategory={subcategory}

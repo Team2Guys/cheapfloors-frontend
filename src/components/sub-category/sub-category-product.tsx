@@ -106,47 +106,51 @@ const SubCategory = ({
   return (
     <div className="pt-5 lg:mb-20">
       <div
-        className={`flex ${selectedFilters.length > 0 ? 'justify-between items-center' : 'justify-end items-center'} bg-[#F2F4F5] p-2 md:p-3 rounded-md w-full min-h-14`}
+        className={`flex flex-col md:flex-row ${selectedFilters.length > 0 ? 'md:justify-between md:items-center items-start gap-3 md:gap-0' : 'justify-end items-center'} bg-[#F9FAFB] mb-4 p-3 rounded-md w-full min-h-14`}
       >
         {selectedFilters.length > 0 && (
-          <div className="flex items-center md:gap-3">
-            <span className="text-[#191C1F] text-12 md:text-13 text-nowrap">
-              Active Filters:
-            </span>
-            <div className="flex items-center flex-wrap gap-x-2 gap-y-1 px-3 py-1 text-[#191C1F] text-10 md:text-sm">
+          <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 w-full md:w-auto">
+            <div className="flex items-center flex-wrap gap-x-3 gap-y-2 text-black text-base">
+              <span className="text-black text-base font-semibold text-nowrap">
+                Active Filters:
+              </span>
               {selectedFilters.map((item, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-1 flex-nowrap capitalize"
+                  className="flex items-center flex-nowrap capitalize"
                 >
-                  <span>
+                  <span className="mr-2">
                     {item.value === true
                       ? 'Yes'
                       : item.value === false
                         ? 'No'
                         : item.value}
                   </span>
-                  <FiX
-                    className="text-gray-500 cursor-pointer hover:text-red-500"
+                  <div
+                    className="border border-[#00000033] p-0.5 cursor-pointer hover:border-red-500 group transition-colors"
                     onClick={() => handleRemoveFilter(item)}
-                  />
+                  >
+                    <FiX
+                      className="text-black text-lg group-hover:text-red-500 transition-colors"
+                    />
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         )}
 
-        <p className="text-[#191C1F] text-12 md:text-sm">
+        <p className="text-[#191C1F] text-sm self-end md:self-auto">
           {filteredProducts.length}{' '}
-          <span className="text-[#5F6C72]">
-            {filteredProducts.length === 1 ? 'Result' : 'Results'} found
+          <span className="text-[#191C1F]">
+            {filteredProducts.length === 1 ? 'Result' : 'Results'} found.
           </span>
         </p>
       </div>
 
       {/* Products Grid - Key optimization area */}
       <div
-        className={`grid grid-cols-2 sm:grid-cols-3 mb-4 ${isClearence ? 'gap-2 sm:gap-4 2xl:grid-cols-4' : 'sm:gap-4'}`}
+        className={`grid grid-cols-2 sm:grid-cols-3 mb-4 ${isClearence ? 'gap-2 sm:gap-4 2xl:grid-cols-4' : 'gap-2 sm:gap-4'}`}
       >
         {filteredProducts.length > 0 ? (
           isClearence ? (

@@ -4,12 +4,13 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { IProduct } from 'types/prod';
-import { staticMenuItems } from 'data/data';
+import { categoryFaqsData, staticMenuItems } from 'data/data';
 import Category from './Cetagory';
 import { defaultOrder } from 'data/accessory';
 import { FIND_ONE_Accessory } from 'graphql/queries';
 import Breadcrumb from 'components/Reusable/breadcrumb';
 import AccessoriesComp from 'components/Accessories/Accessories';
+import CategoryFaqs from '@/components/Faqs/CategoryFaqs';
 
 export async function generateMetadata({
   params
@@ -94,6 +95,10 @@ const CategoryPage = async ({
         <AccessoriesComp
           product={sortedAccessories || []}
           category={category}
+        />
+        <CategoryFaqs
+        faqs={(categoryFaqsData[slug?.trim().toLowerCase()] ?? [])
+        }
         />
       </>
     );

@@ -43,6 +43,7 @@ export interface TextInputProps {
 export interface FAQ {
   question: string;
   answer: string;
+  category?: string; 
 }
 
 export interface FAQsListProps {
@@ -143,7 +144,7 @@ export interface Step {
 
 export interface MeasurementSection {
   title: string;
-  description: string;
+  description?: string;
   steps: Step[];
   image: string;
   stepsHeading?: string;
@@ -200,6 +201,7 @@ export interface ProductFilterParams {
   subcategory?: string;
   subcategories?: ISUBCATEGORY[];
   isClearance?: boolean;
+  selectedTags?: string[];
 }
 
 export interface IAppointment {
@@ -279,7 +281,7 @@ export interface InputWithUnitProps {
   required?: boolean;
   placeholder?: string;
   value: string;
-  selectOptions: string[];
+  selectOptions?: string[]; 
   setFieldValue: (_field: string, _value: string) => void;
 }
 
