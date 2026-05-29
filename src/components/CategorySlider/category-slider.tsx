@@ -25,7 +25,7 @@ const getPrice = (cat: Category) => {
 
 const CategorySlider = ({ categories }: { categories: Category[] }) => {
   return (
-    <div className="flex flex-col w-full gap-8 md:gap-14 my-10">
+    <div className="flex flex-col w-full gap-3 md:gap-14 my-10">
       {categories
         ?.filter((category) => category.name !== 'ACCESSORIES')
         .map((category: Category, index: number) => {
@@ -72,11 +72,11 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
                 </div>
                 <div className="flex flex-col lg:flex-row w-full gap-4 lg:gap-8 relative">
                   {/* Category Info Box */}
-                  <div className='w-full lg:w-[300px] shrink-0 border border-primary rounded-xl p-6 sm:p-8 flex flex-col items-center justify-center text-center bg-white hover:bg-primary hover:border-primary group'>
-                    <h2 className="text-2xl md:text-[28px] font-semibold text-black mb-4 capitalize">
+                  <div className='w-full lg:w-[300px] shrink-0 border border-primary rounded-xl p-2 sm:p-8 flex flex-col items-center justify-center text-center bg-white hover:bg-primary hover:border-primary group'>
+                    <h2 className="text-2xl md:text-[28px] font-semibold text-black mb-1 sm:mb-4 capitalize">
                       {category.name.toLowerCase()}
                     </h2>
-                    <p className="text-black mb-8 text-sm md:text-base lg:text-lg flex items-center gap-1">
+                    <p className="text-black mb-3 sm:mb-8 text-sm md:text-base lg:text-lg flex items-center gap-1">
                       Price Starting From:{' '}
                       <span className={`font-currency font-normal text-lg ml-1 ${isYellowBg ? 'text-black' : 'text-black'}`}></span>
                       <span className={`font-medium ${isYellowBg ? 'text-black' : 'text-black'}`}>
