@@ -160,7 +160,7 @@ const Card: React.FC<productCardProps> = ({
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              className="bg-gray-100 rounded-full text-4xl text-gray-700 -right-1 -top-1 absolute font-bold hover:text-red-500 px-2 py-0"
+              className="bg-gray-100 rounded-sm text-2xl sm:text-4xl m-2 xs:m-4 text-gray-700 -right-1 -top-1 absolute  hover:text-red-500 px-2 py-0"
               onClick={() => setIsModalOpen(false)}
             >
               &times;
@@ -273,7 +273,7 @@ const Card: React.FC<productCardProps> = ({
           </Link>
         ) : !isAccessories ? (
           <button
-            className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-xs xs:text-sm md:text-base hover:bg-primary hover:text-white transition text-center"
+            className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-xs xs:text-sm md:text-base hover:bg-primary transition text-center"
             onClick={(e) => {
               e.preventDefault();
               handleAddToStorage(

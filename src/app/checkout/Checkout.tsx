@@ -530,13 +530,13 @@ const Checkout = ({
                   <div className="flex flex-col mb-1">
                     <label
                       htmlFor="Last Name"
-                      className="text-20 font-medium font-inter mb-1"
+                      className="text-14 font-medium font-inter mb-1"
                     >
                       Last Name
                     </label>
                     <input
                       type="text"
-                      className="p-2 border border-gray-300 h-11 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary w-full placeholder:text-base placeholder:font-light placeholder:text-[#828282]"
+                      className="p-2 rounded-lg border border-gray-300 h-11 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary w-full placeholder:text-14 placeholder:font-medium placeholder:text-[#0000003D] "
                       name="lastName"
                       placeholder="Enter Last name"
                       value={values.lastName}
@@ -558,7 +558,7 @@ const Checkout = ({
                 <div className="custom-input-phone-wrapper">
                   <label
                     htmlFor="phone"
-                    className="text-20 font-medium font-inter"
+                    className="text-14 font-medium font-inter"
                   >
                     Phone No <span className="text-red-500">*</span>
                   </label>
@@ -568,7 +568,7 @@ const Checkout = ({
                     name="phone"
                     placeholder="Type Your Phone No"
                     value={values.phone}
-                    className="ring-0 !outline-none text-base"
+                    className="ring-0 !outline-none text-14"
                     onChange={(value) => setFieldValue('phone', value)}
                   />
                   <ErrorMessage

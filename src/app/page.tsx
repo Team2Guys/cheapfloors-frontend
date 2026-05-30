@@ -16,6 +16,7 @@ import UserInfo from 'components/Reusable/user-info';
 import Faqs from 'components/Faqs/Faqs';
 import Testimonial from '@/components/Testimonial/testimonial';
 import JobsDone from '@/components/JobsDone/JobsDone';
+import Container from '@/components/common/container/Container';
 
 export default async function Home() {
   const [categories, subCategories] = await Promise.all([
@@ -71,7 +72,9 @@ export default async function Home() {
       <Layers />
       <FloorItems />
       <AmCategory subCategories={sortedSubcategories} />
-      <SampleBanner />
+      <Container>
+        <SampleBanner />
+      </Container>
       <CompareSlider
         beforeSrc="https://res.cloudinary.com/dmmeqgdhv/image/upload/v1744190575/Before_fnh2q3.webp"
         afterSrc="https://res.cloudinary.com/dmmeqgdhv/image/upload/v1744179716/after_d38owr.webp"

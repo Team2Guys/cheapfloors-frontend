@@ -6,7 +6,6 @@ const mobilesample = '/assets/images/Home/mobilesample.webp';
 
 const SampleBanner = () => {
   return (
-      <Container>
      <div className="w-full mt-7 xl:mt-14">
         <Link
           href="/collections"
@@ -53,7 +52,6 @@ const SampleBanner = () => {
           </div>
         </div> */}
      </div>
-      </Container>
   );
 };
 

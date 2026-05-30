@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const DiscoverFloor = () => {
   return (
-    <section className="bg-primary w-full overflow-hidden mb-7">
+    <section className="bg-primary w-full overflow-hidden my-7">
       <div className="grid grid-cols-1 md:grid-cols-2 items-stretch w-full">
         
         {/* Left Side: Content */}
