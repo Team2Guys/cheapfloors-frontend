@@ -72,7 +72,7 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
                 </div>
                 <div className="flex flex-col lg:flex-row w-full gap-4 lg:gap-8 relative">
                   {/* Category Info Box */}
-                  <div className='w-full lg:w-[300px] 2xl:w-[400px] shrink-0 border border-primary rounded-xl p-2 sm:p-8 flex flex-col items-center justify-center text-center bg-white hover:bg-primary hover:border-primary group'>
+                  <div className='w-full lg:w-[300px] 2xl:w-[355px] 3xl:w-[420px] shrink-0 border border-primary rounded-xl p-2 sm:p-8 flex flex-col items-center justify-center text-center bg-white hover:bg-primary hover:border-primary group'>
                     <h2 className="text-2xl md:text-[28px] font-semibold text-black mb-1 sm:mb-4 capitalize">
                       {category.name.toLowerCase()}
                     </h2>
