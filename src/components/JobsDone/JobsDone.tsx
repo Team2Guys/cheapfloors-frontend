@@ -14,33 +14,51 @@ import Container from "../common/container/Container";
 const dummyJobsData = [
     {
         id: 1,
-        title: "SPC Flooring",
-        location: "Location",
-        image: "/assets/showroom.webp", // Placeholder, use your actual images
+        title: "Richmond SPC Herringbone - Oak",
+        location: "Dubai Marina",
+        image: "/assets/images/jobs/1.webp", // Placeholder, use your actual images
     },
     {
         id: 2,
-        title: "LVT Flooring",
-        location: "Location",
-        image: "https://res.cloudinary.com/dmmeqgdhv/image/upload/v1744179716/after_d38owr.webp",
+        title: "Polar SPC Herringbone - Classic Oak",
+        location: "Abu Dhabi",
+        image: "/assets/images/jobs/2.webp",
     },
     {
         id: 3,
-        title: "Richmond Flooring",
-        location: "Location",
-        image: "https://res.cloudinary.com/dmmeqgdhv/image/upload/v1744190575/Before_fnh2q3.webp",
+        title: "Richmond SPC Herringbone - Cappuccino",
+        location: "Sharjah",
+        image: "/assets/images/jobs/3.webp",
     },
     {
         id: 4,
-        title: "Polar Flooring",
-        location: "Location",
-        image: "https://res.cloudinary.com/dmmeqgdhv/image/upload/v1744179716/after_d38owr.webp",
+        title: "Polar SPC Eco - Antique",
+        location: "Palm Jumeirah",
+        image: "/assets/images/jobs/4.webp",
     },
     {
         id: 5,
-        title: "Laminate Flooring",
-        location: "Location",
-        image: "/assets/showroom.webp",
+        title: "Polar SPC Eco - Chestnut",
+        location: "Downtown",
+        image: "/assets/images/jobs/5.webp",
+    },
+    {
+        id: 6,
+        title: "Polar SPC Herringbone - Chestnut",
+        location: "JVC",
+        image: "/assets/images/jobs/6.webp",
+    },
+    {
+        id: 7,
+        title: "Polar LVT Comfort - Prairie",
+        location: "Dubai Marina",
+        image: "/assets/images/jobs/7.webp",
+    },
+    {
+        id: 8,
+        title: "Richmond LVT Comfort - Forest",
+        location: "Downtown",
+        image: "/assets/images/jobs/8.webp",
     },
 ];
 

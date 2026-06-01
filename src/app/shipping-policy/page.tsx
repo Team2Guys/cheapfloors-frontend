@@ -70,7 +70,7 @@ const Shipping = () => {
             className="font-normal text-primary"
             target='_blank'
           >
-            22nd 15B St - Al Quoz - Al Quoz Industrial Area 4 - Dubai - UAE
+            24, 22nd street - Al Quoz Industrial Area 4 - Dubai - UAE
           </Link>
         </li>
       </ul>

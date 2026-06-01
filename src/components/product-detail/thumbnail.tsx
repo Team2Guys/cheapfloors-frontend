@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import React, { useState, useRef, useMemo, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, FreeMode } from 'swiper/modules';
 import 'swiper/css';
