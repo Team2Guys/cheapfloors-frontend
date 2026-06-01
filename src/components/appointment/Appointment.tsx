@@ -80,7 +80,7 @@ export default function Appointment({
                 />
 
                 <div className="custom-input-phone-wrapper">
-                  <label htmlFor="phoneNumber" className="text-13 font-medium">
+                  <label htmlFor="phoneNumber" className="text-14 font-medium">
                     Phone No <span className="text-red-500">*</span>
                   </label>
                   <Field name="phoneNumber">
@@ -110,7 +110,7 @@ export default function Appointment({
                 <div className="custom-input-phone-wrapper">
                   <label
                     htmlFor="whatsappNumber"
-                    className="text-13 font-medium"
+                    className="text-14 font-medium"
                   >
                     WhatsApp No. If Different
                   </label>

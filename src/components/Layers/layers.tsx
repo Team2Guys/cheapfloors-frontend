@@ -6,7 +6,7 @@ const Layers = () => {
   return (
     <Container className="grid grid-cols-1 sm:grid-cols-2 mt-10 md:mt-16 border-b-2 mb-10 font-inter">
       {blocksData.map((block, index) => (
-        <div key={index} className={`${index === 0 ? 'border-r-2' : ''}`}>
+        <div key={index} className={`${index === 0 ? 'sm:border-[#36454F] sm:border-r-2' : ''}`}>
           <h2 className="md:text-5xl text-lg font-bold bg-primary text-black text-center p-4">
             {block.heading}
           </h2>

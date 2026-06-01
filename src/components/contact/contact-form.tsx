@@ -168,7 +168,7 @@ const ContactForm: React.FC = () => {
             <div>
               <label
                 htmlFor="phoneNumber"
-                className="text-sm md:text-20 font-medium"
+                className="text-14 font-medium"
               >
                 Phone Number{' '}
                 <span className="text-red-500 text-sm align-super">*</span>

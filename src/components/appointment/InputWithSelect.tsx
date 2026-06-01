@@ -57,7 +57,7 @@ const InputWithUnit = ({
 
   return (
     <div className="flex flex-col mb-1 w-full">
-      <label htmlFor={name} className="text-13 font-medium font-inter mb-1">
+      <label htmlFor={name} className="text-14 font-medium font-inter mb-1">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
       <div className="flex w-full border border-gray-300 focus-within:ring-2 focus-within:ring-primary focus-within:border-primary relative rounded-lg overflow-hidden">

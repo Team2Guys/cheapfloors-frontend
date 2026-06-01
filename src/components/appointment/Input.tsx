@@ -15,7 +15,7 @@ const Input: React.FC<TextInputProps> = ({
 }) => {
   return (
     <div className="flex flex-col mb-1">
-      <label htmlFor={name} className="text-20 font-medium font-inter">
+      <label htmlFor={name} className="text-14 font-medium font-inter">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
 
@@ -73,7 +73,7 @@ const Input: React.FC<TextInputProps> = ({
           id={name}
           name={name}
           placeholder={placeholder}
-          className={`p-2 rounded-lg border border-gray-300 h-11 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary w-full placeholder:text-base placeholder:font-medium placeholder:text-[#0000003D] ${
+          className={`p-2 rounded-lg border border-gray-300 h-11 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary w-full placeholder:text-14 placeholder:font-medium placeholder:text-[#0000003D] ${
             type === 'number' ? ' pl-10 md:pl-14' : ''
           }`}
           value={value}
