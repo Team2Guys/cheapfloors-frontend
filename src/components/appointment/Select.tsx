@@ -90,7 +90,7 @@ const Select = ({
   return (
     <div className="flex flex-col mb-1">
       {label && (
-        <label htmlFor={name} className="text-20 font-medium font-inter">
+        <label htmlFor={name} className="text-14 font-medium font-inter">
           {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}
@@ -98,7 +98,7 @@ const Select = ({
       <div ref={dropdownRef} className="relative w-full mt-1">
         <div
           onClick={handleSelectClick}
-          className={`${className ?  `${className} border-2 flex_between` : ' flex_between w-full px-3 h-11 border border-gray-300 bg-white text-12 font-medium cursor-pointer rounded-lg'}`}
+          className={`${className ?  `${className} border-2 flex_between` : ' flex_between w-full px-3 h-11 border border-gray-300 bg-white text-14 font-medium cursor-pointer rounded-lg'}`}
         >
           {isOpen ? (
             <input
@@ -111,7 +111,7 @@ const Select = ({
             />
           ) : (
             <span
-              className={`truncate flex-1 text-left text-base ${!values[name] && 'text-gray-400'}`}
+              className={`truncate flex-1 text-left text-14 ${!values[name] && 'text-gray-400'}`}
             >
               {displayLabel}
             </span>

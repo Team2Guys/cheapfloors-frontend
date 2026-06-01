@@ -22,12 +22,12 @@ const AboutUs = () => {
         <div className="py-12">
           <AboutUsInfo sections={alternatingData} />
         </div>
-        <div>
+      
           <VideoComponent videoUrl="https://bncmain.s3.eu-north-1.amazonaws.com/1747803062851-s3" />
           <SampleBanner />
           {/* <SampleGrid sections={sampleGridData} /> */}
           <DiscoverFloor />
-        </div>
+        
       </Container>
     </>
   );

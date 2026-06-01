@@ -131,7 +131,7 @@ const ProductContainer = ({
 
   return (
     <Container
-      className={`w-full mt-6 sm:mt-10 border-b pb-5 font-inter ${className}`}
+      className={`w-full mt-6 sm:mt-10 border-b pb-5 font-inter 3xl:!max-w-[95%] ${className}`}
     >
       <div
         className={`flex flex-wrap lg:flex-nowrap gap-5 w-full ${isQuickView ? '2xl:gap-10' : '2xl:gap-16 lg:gap-10'}`}
@@ -531,7 +531,7 @@ const ProductContainer = ({
                 Add to Wishlist
               </button>
               <div className="space-y-2.5">
-                <PaymentMethod installments={installments} />
+                <PaymentMethod installments={installments ?? 0} compact />
                 <TrustBadges />
               </div>
             </>

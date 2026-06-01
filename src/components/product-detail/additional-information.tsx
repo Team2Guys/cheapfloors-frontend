@@ -26,7 +26,7 @@ const AdditionalInfo = ({
       label: 'Additional Information',
       value: 'additional-info',
       content: (
-        <table className="w-full sm:max-w-[80%] text-left border-collapse rounded-md text-sm">
+        <table className="w-full text-left border-collapse rounded-md text-sm">
           <tbody className="rounded-md">
             <tr className="bg-primary text-white rounded-t-md">
               <th className="py-2 px-4 rounded-tl-md">ITEM</th>

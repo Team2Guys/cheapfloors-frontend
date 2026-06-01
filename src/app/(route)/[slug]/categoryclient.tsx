@@ -113,7 +113,7 @@ const CategoryClient = ({
 
         <div className="lg:w-[80%] font-inter">
           <div className="space-y-4">
-            <h1 className="text-34 font-bold">
+            <h1 className="text-24 sm:text-34 font-bold">
               {isSubCategory
                 ? subdescription?.[0]?.name || ''
                 : Data?.Heading || Data?.name}
@@ -131,7 +131,7 @@ const CategoryClient = ({
               <div className="block lg:hidden">
                 <button
                   onClick={() => setModalOpen(true)}
-                  className="h-9 w-24 bg-[#FAFAFA] text-black rounded-md flex_center gap-2"
+                  className="h-9 w-24 bg-[#FAFAFA] text-black rounded-md text-base flex_center gap-2"
                 >
                   Filter
                   <span>

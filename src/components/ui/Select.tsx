@@ -34,12 +34,12 @@ const Select = ({
     <div ref={dropdownRef} className="relative w-28 lg:w-40 z-20">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex_between w-full px-3 py-2 bg-[#F9FAFB] text-12 lg:text-sm font-medium"
+        className="flex_between w-full px-3 py-2 bg-[#F9FAFB] text-16 lg:text-sm font-medium"
       >
         {selected}
         <span className="block lg:hidden">
           <svg width="20" height="20" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-            <g fill="none" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+            <g fill="none" stroke="black" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round">
               {/* <!-- Left downward zig --> */}
               <path d="M22 10 L4 30" />
               <path d="M22 10 L22 54" />
