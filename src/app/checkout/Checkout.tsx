@@ -869,14 +869,14 @@ const Checkout = ({
                         )}
                     </span>
                   </p>
-                  {/* <p className="text-lg font-bold flex justify-between">
+                  <p className="text-base font-semibold flex justify-between">
                     VAT{' '}
                     <span>
                       <span className="font-currency font-normal text-20">
                         
                       </span> {formatAED(subTotal - (subTotal / 1.05))}
                     </span>
-                  </p> */}
+                  </p>
                   <p className="text-xl font-bold flex justify-between border p-2">
                     Total Incl. VAT{' '}
                     <span>

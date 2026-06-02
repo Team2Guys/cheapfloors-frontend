@@ -27,21 +27,16 @@ const FreeSampleThank = ({ orderId }: { orderId?: string }) => {
   }, [orderId]);
 
   return (
-    <div className="max-w-4xl mx-auto md:p-0 p-2 my-10">
-      <h1 className="md:text-6xl text-3xl font-bold text-center font-inter">
+    <div className="max-w-3xl mx-auto px-4 py-6 sm:py-8 font-inter">
+      <h1 className="text-[32px] sm:text-[40px] font-bold text-center text-black tracking-wide">
         THANK YOU!
       </h1>
-      <p className="text-center mt-2 md:text-xl md:px-0 px-4">
+      <p className="text-center mt-3 text-[14px] sm:text-[15px] text-black max-w-2xl mx-auto leading-relaxed">
         An order confirmation email has been sent to your inbox with all the
-        details.
+        details. We&apos;ll process your sample shortly, and you&apos;ll receive
+        a notification once it&apos;s on the way.
       </p>
-      <p className="text-center mt-2 md:text-xl md:px-0 px-4">
-        We’ll process your sample shortly, and you’ll receive a notification
-        once it’s on the way. If you have any questions, feel free to reach out
-        to our support team.
-      </p>
-
-      <Shipping orderid={orderId} />
+      <Shipping />
     </div>
   );
 };
