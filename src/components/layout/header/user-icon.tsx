@@ -175,7 +175,7 @@ const UserIcon = ({ className }: UserIconProps) => {
         badgeCount={freeSampleTotal?.length ?? 0}
         cartItems={freeSampleTotal ?? []}
         type="freeSample"
-        viewLink="/freesample"
+        viewLink="/freesample-checkout"
         emptyMessage="free sample is empty"
       />
       <div className="border-l-2 border-white h-4 lg:border-[#464646] md:h-6" />

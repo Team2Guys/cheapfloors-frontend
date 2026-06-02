@@ -273,7 +273,7 @@ export const getShippingData = (
       fee,
       deliveryDuration: 'Monday to Saturday, 9am – 6pm',
       location:
-        '22nd 15B St - Al Quoz - Al Quoz Industrial Area 4 - Dubai - UAE'
+        '24, 22nd street - Al Quoz Industrial Area 4 - Dubai - UAE'
     };
   }
 };

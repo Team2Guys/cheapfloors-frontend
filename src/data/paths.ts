@@ -11,7 +11,7 @@ export const validStaticPaths = [
   '/faqs',
   '/forgot-password',
   '/free-sample',
-  '/freesample',
+  // '/freesample',
   '/freesample-checkout',
   '/help-with-installations',
   '/how-to-measure-your-room',

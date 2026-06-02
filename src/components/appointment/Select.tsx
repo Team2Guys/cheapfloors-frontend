@@ -16,6 +16,7 @@ interface SelectProps {
   initialValue?: string;
   onChange?: (_value: string) => void;
   allowOther?: boolean;
+  className?: string;
 }
 
 const Select = ({
@@ -26,7 +27,8 @@ const Select = ({
   placeholder = 'Select Location',
   initialValue,
   onChange,
-  allowOther = false
+  allowOther = false,
+  className
 }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -96,7 +98,7 @@ const Select = ({
       <div ref={dropdownRef} className="relative w-full mt-1">
         <div
           onClick={handleSelectClick}
-          className="flex_between w-full px-3 h-11 border border-gray-300 bg-white text-14 font-medium cursor-pointer rounded-lg"
+          className={`${className ?  `${className} border-2 flex_between` : ' flex_between w-full px-3 h-11 border border-gray-300 bg-white text-14 font-medium cursor-pointer rounded-lg'}`}
         >
           {isOpen ? (
             <input

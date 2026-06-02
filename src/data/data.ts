@@ -347,7 +347,7 @@ export const footerData = {
   },
   contact: {
     address:
-      'Easy Floors - Floorings · 22nd 15B St - Al Quoz - Al Quoz Industrial Area 4 - Dubai',
+      'Easy Floors - Floorings · 24, 22nd street - Al Quoz Industrial Area 4 - Dubai - UAE',
     phone: '+971 50 597 4385',
     email: 'cs@easyfloors.ae'
   },

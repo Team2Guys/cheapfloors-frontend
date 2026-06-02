@@ -283,6 +283,26 @@
   /* You can use a custom icon here or leave it as is */
 }
 
+.free-sample-checkout .custom-input-phone-wrapper .PhoneInput {
+  height: 44px;
+  border-radius: 5px;
+  border: 1px solid #E0E0E0;
+  background: transparent;
+  padding-left: 12px;
+}
+.free-sample-checkout .custom-input-phone-wrapper .PhoneInputInput {
+  border: none;
+  background: transparent;
+  outline: none !important;
+}
+
+.free-sample-checkout .relative > .flex_between {
+  height: 44px;
+  border-radius: 5px;
+  border-color: #E0E0E0;
+  font-size: 14px;
+}
+
 .custom-input-phone-wrapper .PhoneInput {
   height: 44px;
   border: 1px solid #d1d5db;
@@ -331,9 +351,9 @@
 }
 
 .PhoneInputCountryIcon {
-  width: 24px;   
-  height: 24px;  
-  border-radius: 50%; 
+  /* width: 20px !important;   
+  height: 20px !important;  
+  border-radius: 50%;  */
   overflow: hidden; 
   display: flex;
   align-items: center;
