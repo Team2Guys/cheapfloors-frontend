@@ -8,163 +8,180 @@ const OrderSummary: React.FC<PostPaymentStatusResponse> = ({
   trackingOrer
 }) => {
   const productlength = data?.postpaymentStatus?.products?.length || 0;
+  const productsSubtotal = (data?.postpaymentStatus?.products ?? []).reduce(
+    (sum, item) => sum + (item.totalPrice || 0),
+    0
+  );
+  const subtotal =
+    trackingOrer
+      ? data?.postpaymentStatus.totalPrice - data?.postpaymentStatus.shipmentFee
+      : productsSubtotal;
 
   const ExpectedDeliveryDAte = getExpectedDeliveryDate(
     data?.postpaymentStatus?.shippingMethod.name,
     new Date(data?.postpaymentStatus?.transactionDate)
   );
 
+  const getProductDetailLine = (item: ORDERS_PROD) => {
+    const isAccessory =
+      item?.category?.trim()?.toLowerCase() === 'accessories';
+
+    if (data?.postpaymentStatus.isfreesample) {
+      return 'Sample Piece';
+    }
+
+    if (isAccessory) {
+      return `No. of Pieces: ${item.requiredBoxes}`;
+    }
+
+    if (item.isClearance) {
+      return `Area: ${Number(item.squareMeter).toFixed(3)} SQM`;
+    }
+
+    return `Area: ${Number(item.squareMeter).toFixed(3)} SQM`;
+  };
+
   return (
-    <div className="bg-[#FFF9F5] ">
-      <div className="border-b md:p-7 p-3 ">
-        <h2 className="md:text-3xl text-xl">
+    <div className="bg-[#FAFAFA] p-2 xs:p-6 xsm:p-10">
+      <div className="py-4 border-b border-[#E0E0E0]">
+        <h2 className="text-[18px] sm:text-[20px] font-medium text-black">
           Order Summary{' '}
-          <sup className="md:text-sm md:ml-3 text-10 text-red-500">
-            *Total {`${productlength}`} {productlength > 1 ? 'Items' : 'Item'}
-          </sup>{' '}
+          <span className="text-red-500 ml-1">
+            (*Total {productlength} {productlength > 1 ? 'Items' : 'Item'})
+          </span>
         </h2>
       </div>
-      <div className="md:p-10 p-2">
-        <div className="max-h-72 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
+
+      <div className="py-4 sm:py-5">
+        <div className="max-h-72 overflow-y-auto thin-scrollbar">
           {data?.postpaymentStatus?.products?.map(
             (item: ORDERS_PROD, index: number) => {
               const accessoryflag =
-                item?.category?.trim()?.toLowerCase() == 'accessories';
+                item?.category?.trim()?.toLowerCase() === 'accessories';
               const colorFlag =
                 accessoryflag && item.selectedColor && item.selectedColor.color;
+
               return (
-                <div key={index} className="md:pr-6">
-                  <div className="flex_between border-b gap-5 pb-4 mb-4">
-                    <div className="flex items-center md:gap-5 gap-2">
-                      <Image
-                        src={item?.image || ''}
-                        width={100}
-                        height={100}
-                        alt={item.name}
-                        className="md:w-20 md:h-20 w-16 h-16 object-cover border p-1"
-                      />
-                      <div>
-                        <p className="font-bold md:text-base text-sm">
-                          {item?.name}
-                        </p>
-                        {data?.postpaymentStatus.isfreesample ? (
-                          <p className="md:text-sm text-12">Sample Piece</p>
-                        ) : (
-                          <>
-                            <p className="md:text-sm text-12">
-                              {accessoryflag
-                                ? 'No. of Pieces'
-                                : item.isClearance
-                                  ? 'Bundle'
-                                  : 'Area'}
-                              :{' '}
-                              {accessoryflag
-                                ? item.requiredBoxes
-                                : ` ${Number(item.squareMeter).toFixed(2)}  SQM`}
-                            </p>
-                            <p className="md:text-sm text-12">
-                              {accessoryflag ? 'Piece Price' : 'Price'}:{' '}
-                              <span className="font-currency text-15 font-normal">
-                                
-                              </span>
-                              {accessoryflag ? item.pricePerBox : item.price}
-                            </p>
-                            {accessoryflag ? (
-                              ''
-                            ) : item.addInstallation ? (
-                              <p className="md:text-sm text-12">
-                                Installation Cost:{' '}
-                                <span className="font-semibold">
-                                  <span className="font-currency text-15 font-normal">
-                                    
-                                  </span>{' '}
-                                  {formatAED(item.installationCost)}
-                                </span>
-                              </p>
-                            ) : (
-                              <p className="md:text-sm text-12">
-                                Installation:{' '}
-                                <span className="font-semibold">
-                                  Not Included
-                                </span>
-                              </p>
-                            )}
-                            {colorFlag && (
-                              <p className="md:text-sm text-12">
-                                {' '}
-                                Color :{' '}
-                                {`${item?.selectedColor?.colorName} (${item?.selectedColor?.color})`}
-                              </p>
-                            )}
-                          </>
-                        )}
-                      </div>
-                    </div>
-                    <p className="md:text-lg font-semibold">
-                      {item.totalPrice === 0 ? (
-                        'Free'
-                      ) : (
+                <div
+                  key={index}
+                  className="flex items-start justify-between gap-4 border-b  px-2 border-[#E0E0E0] pb-4 mb-4 last:mb-0"
+                >
+                  <div className="flex items-start gap-3 sm:gap-4 min-w-0">
+                    <Image
+                      src={item?.image || ''}
+                      width={80}
+                      height={80}
+                      alt={item.name}
+                      className="w-16 h-16 sm:w-20 sm:h-20 object-cover border border-[#E0E0E0] shrink-0"
+                    />
+                    <div className="min-w-0">
+                      <p className="text-sm xsm:text-base font-semibold text-black leading-snug">
+                        {item?.name}
+                      </p>
+
+                      {trackingOrer ? (
                         <>
-                          <span className="font-currency text-18 font-normal">
-                            
-                          </span>{' '}
-                          {formatAED(item.totalPrice)}
+                          <p className="text-xs font-semibold text-black mt-1">
+                            {getProductDetailLine(item)}
+                          </p>
+                          {!data?.postpaymentStatus.isfreesample && (
+                            <>
+                              <p className="text-xs font-semibold text-black mt-0.5">
+                                {accessoryflag ? 'Piece Price' : 'Price'}:{' '}
+                                <span className="font-currency font-normal">
+                                  
+                                </span>
+                                {accessoryflag ? item.pricePerBox : item.price}
+                              </p>
+                              {!accessoryflag &&
+                                (item.addInstallation ? (
+                                  <p className="text-xs font-semibold text-black mt-0.5">
+                                    Installation Cost:{' '}
+                                    <span className="font-semibold">
+                                      <span className="font-currency font-normal">
+                                        
+                                      </span>{' '}
+                                      {formatAED(item.installationCost)}
+                                    </span>
+                                  </p>
+                                ) : (
+                                  <p className="text-xs font-semibold text-black mt-0.5">
+                                    Installation:{' '}
+                                    <span className="font-semibold">
+                                      Not Included
+                                    </span>
+                                  </p>
+                                ))}
+                              {colorFlag && (
+                                <p className="text-xs font-semibold text-black mt-0.5">
+                                  Color :{' '}
+                                  {`${item?.selectedColor?.colorName} (${item?.selectedColor?.color})`}
+                                </p>
+                              )}
+                            </>
+                          )}
                         </>
+                      ) : (
+                        <p className="text-xs font-semibold text-black mt-1">
+                          {getProductDetailLine(item)}
+                        </p>
                       )}
-                    </p>
+                    </div>
                   </div>
+
+                  <p className="text-base font-semibold text-black whitespace-nowrap shrink-0">
+                    {item.totalPrice === 0 ? (
+                      'Free'
+                    ) : (
+                      <>
+                        <span className="font-currency font-normal"></span>{' '}
+                        {formatAED(item.totalPrice)}
+                      </>
+                    )}
+                  </p>
                 </div>
               );
             }
           )}
         </div>
 
-        <div className="mt-6 text-right">
-          {trackingOrer && (
-            <div className="flex justify-between">
-              <p className=" whitespace-nowrap text-20 text-[#818EA1] ">
-                Subtotal
-              </p>
-              <p className=" whitespace-nowrap text-20 font-normal">
-                <span className="font-currency text-18 font-normal"></span>{' '}
-                {data?.postpaymentStatus.totalPrice - data?.postpaymentStatus.shipmentFee}
-              </p>
-            </div>
-          )}
+        <div className="mt-5 space-y-3">
+          <div className="flex justify-between items-center text-base font-semibold p-3 text-black">
+            <span>Subtotal</span>
+            <span>
+              <span className="font-currency font-normal"></span>{' '}
+              {formatAED(subtotal)}
+            </span>
+          </div>
 
-          <div className="flex justify-between mt-5">
-            <p className=" whitespace-nowrap text-20 text-[#818EA1] ">
-              Shipping
-            </p>
-            <p className=" whitespace-nowrap text-20 font-normal">
-              {data.postpaymentStatus.shipmentFee == 0 ? (
+          <div className="flex justify-between items-center text-base font-semibold p-3 text-black">
+            <span>Shipping</span>
+            <span>
+              {data.postpaymentStatus.shipmentFee === 0 ? (
                 'Free'
               ) : (
                 <>
-                  <span className="font-currency text-18 font-normal"></span>{' '}
-                  {data.postpaymentStatus.shipmentFee}
+                  <span className="font-currency font-normal"></span>{' '}
+                  {formatAED(data.postpaymentStatus.shipmentFee)}
                 </>
               )}
-            </p>
+            </span>
           </div>
 
-          <div className="flex items-center gap-4 mt-4">
-            <p className="md:text-2xl text-xl whitespace-nowrap font-bold">
+          <div className="flex justify-between items-center border border-[#E0E0E0] p-3">
+            <span className="text-[16px] sm:text-[18px] font-bold text-black">
               Total Incl VAT:
-            </p>
-            <span className="flex-grow border-b"></span>
-            <p className="lg:text-xl text-lg font-bold whitespace-nowrap">
-              <span className="font-currency text-18 font-normal"></span>{' '}
-              {data?.postpaymentStatus?.totalPrice}
-            </p>
+            </span>
+            <span className="text-[16px] sm:text-[18px] font-bold text-black">
+              <span className="font-currency font-normal"></span>{' '}
+              {formatAED(data?.postpaymentStatus?.totalPrice)}
+            </span>
           </div>
 
           {!trackingOrer && (
-            <div className="border-t md:mt-12 mt-3  ">
-              <p className="text-left mt-2 md:text-xl">
-                {ExpectedDeliveryDAte}
-              </p>
-            </div>
+            <p className="text-[13px] sm:text-[14px] text-black pt-2 leading-relaxed">
+              {ExpectedDeliveryDAte}
+            </p>
           )}
         </div>
       </div>

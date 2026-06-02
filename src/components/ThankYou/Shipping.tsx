@@ -1,22 +1,24 @@
 import Link from 'next/link';
 import React from 'react';
-import { IoIosArrowRoundBack } from 'react-icons/io';
+import { FaArrowLeftLong } from 'react-icons/fa6';
 
-export default function Shipping({ orderid }: { orderid?: string }) {
+export default function Shipping() {
   return (
-    <div className="flex_center flex-col gap-4 md:my-16 my-6 font-inter">
+    <div className="flex flex-col items-center gap-4 my-8 sm:my-10 font-inter">
       <Link
         href="/collections"
-        className="bg-primary text-white max-w-fit md:px-28 px-8 md:py-4 py-2 flex items-center md:text-lg text-sm font-light md:gap-3 gap-1"
+        className="inline-flex items-center gap-3 bg-primary text-black font-bold text-[15px] sm:text-[16px] px-6 sm:px-10 py-3 rounded-md hover:opacity-95 transition-opacity"
       >
-        {' '}
-        <IoIosArrowRoundBack className="text-32" /> Back to Shopping
+        <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0">
+          <FaArrowLeftLong className="text-black text-sm" />
+        </span>
+        Continue Shopping
       </Link>
       <Link
-        href={`/track-order/${orderid}`}
-        className=" max-w-fit text-black border-black text-lg md:mt-4 border-b"
+        href="/return-and-refund-policy"
+        className="text-[14px] sm:text-[15px] text-black underline underline-offset-2"
       >
-        View Your Order
+        Read about our return policy.
       </Link>
     </div>
   );
