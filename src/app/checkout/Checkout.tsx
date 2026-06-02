@@ -457,7 +457,7 @@ const Checkout = ({
     setSubTotal(subTotalPrice);
   };
 
-  
+
 
   return (
     <Container>
@@ -662,8 +662,8 @@ const Checkout = ({
                     >
                       <div
                         className={`w-5 h-5 border-2 flex_center transition-colors rounded-sm duration-200 mt-1 ${values.terms
-                            ? 'bg-primary border-primary text-white'
-                            : 'border-primary'
+                          ? 'bg-primary border-primary text-white'
+                          : 'border-primary'
                           }`}
                       >
                         {values.terms && (
@@ -702,7 +702,7 @@ const Checkout = ({
                     />
                   </div>
                 </div>
-              </div>  
+              </div>
             </div>
             <div className="bg-[#FAFAFA] w-full lg:w-[50%] xl:w-[45%]">
               <div className="p-2 xs:p-4 sm:p-8">
@@ -835,7 +835,7 @@ const Checkout = ({
                   </p>
                   <p className=" flex justify-between">
                     <span className="flex items-center gap-2 font-semibold">
-                      Shipping 
+                      Shipping
                       {/* <CiDeliveryTruck size={16} className="mt-1" /> */}
                     </span>
                     <span className="text-black">
@@ -889,22 +889,22 @@ const Checkout = ({
                     </span>
                   </p>
 
-                   <div className="py-3">
-                  <button
-                    type="submit"
-                    onClick={
-                      allItemsAreFreeSamples ? () => { } : handlePurchaseClick
-                    }
-                    className={`w-full bg-primary hover:bg-secondary text-white rounded-md  ${allItemsAreFreeSamples ? 'p-3' : 'p-2'} `}
-                    disabled={isSubmitting || isLoading || totalProducts === 0}
-                  >
-                    {isSubmitting || isLoading
-                      ? 'Processing...'
-                      : allItemsAreFreeSamples
-                        ? 'Place Order'
-                        : 'Pay Now'}
-                  </button>
-                   </div>
+                  <div className="py-3">
+                    <button
+                      type="submit"
+                      onClick={
+                        allItemsAreFreeSamples ? () => { } : handlePurchaseClick
+                      }
+                      className={`w-full bg-primary hover:bg-secondary text-white rounded-md  ${allItemsAreFreeSamples ? 'p-3' : 'p-2'} `}
+                      disabled={isSubmitting || isLoading || totalProducts === 0}
+                    >
+                      {isSubmitting || isLoading
+                        ? 'Processing...'
+                        : allItemsAreFreeSamples
+                          ? 'Place Order'
+                          : 'Pay Now'}
+                    </button>
+                  </div>
 
                   <div className="">
                     <Accordion
@@ -916,8 +916,8 @@ const Checkout = ({
                       {isFreeSample ? (
                         <div
                           className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'standard'
-                              ? 'border-primary'
-                              : 'border-transparent'
+                            ? 'border-primary'
+                            : 'border-transparent'
                             }`}
                           onClick={() => handleShippingSelect('standard')}
                         >
@@ -957,8 +957,8 @@ const Checkout = ({
                             !allItemsAreFreeSamples && (
                               <div
                                 className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'express'
-                                    ? 'border-primary'
-                                    : 'border-transparent'
+                                  ? 'border-primary'
+                                  : 'border-transparent'
                                   }`}
                                 onClick={() => handleShippingSelect('express')}
                               >
@@ -991,8 +991,8 @@ const Checkout = ({
                             )}
                           <div
                             className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'standard'
-                                ? 'border-primary'
-                                : 'border-transparent'
+                              ? 'border-primary'
+                              : 'border-transparent'
                               }`}
                             onClick={() => handleShippingSelect('standard')}
                           >
@@ -1055,8 +1055,8 @@ const Checkout = ({
 
                       <div
                         className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'self-collect'
-                            ? 'border-primary'
-                            : 'border-transparent'
+                          ? 'border-primary'
+                          : 'border-transparent'
                           }`}
                         onClick={() => handleShippingSelect('self-collect')}
                       >
@@ -1082,8 +1082,7 @@ const Checkout = ({
                                 rel="noopener noreferrer"
                                 href="https://maps.app.goo.gl/BBJjwVKgTK4PPTWR8"
                               >
-                                Unit A11, J1 Warehouses, Jebel Ali Industrial
-                                Area-1 - Dubai
+                                24, 22nd street - Al Quoz Industrial Area 4 - Dubai - UAE
                               </Link>
                             </strong>
                           </p>
@@ -1153,9 +1152,9 @@ const Checkout = ({
                     </Accordion>
                   </div>
 
-                  
+
                 </div>
-               
+
                 {/* <div className="flex_center gap-2 mt-4">
                   <Image
                     src={secureImg}
@@ -1197,10 +1196,10 @@ const Checkout = ({
                   </div>
                 </div> */}
 
-                 <div className="space-y-2.5">
-                <PaymentMethod installments={installments ?? 0} compact />
-                <TrustBadges />
-                 </div>
+                <div className="space-y-2.5">
+                  <PaymentMethod installments={installments ?? 0} compact />
+                  <TrustBadges />
+                </div>
               </div>
             </div>
           </Form>
