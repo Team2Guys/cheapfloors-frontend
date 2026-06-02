@@ -18,6 +18,7 @@ import { emirates, generateSlug } from 'data/data';
 import Accordion from 'components/ui/accordion';
 import { showAlert } from 'utils/Alert';
 import { formatAED } from 'utils/helperFunctions';
+import TrustBadges from '../product-detail/trust-badges';
 interface CartPageProps {
   products: IProduct[];
 }
@@ -1275,13 +1276,13 @@ const CartPage = ({ products }: CartPageProps) => {
               {/* accessory end */}
               <Link
                 href="/collections"
-                className="bg-black text-white px-4 py-2 gap-2 justify-center items-center w-fit mt-5 hidden lg:flex"
+                className="text-black px-4 py-2 gap-2 justify-center items-center w-fit mt-5 hidden lg:flex mx-auto text-lg"
               >
-                <FaArrowLeftLong /> Continue shopping
+                <FaArrowLeftLong className='text-primary' size={25} /> Continue shopping
               </Link>
             </div>
-            <div className="w-full md:w-[45%] xl:w-[30%] 2xl:w-[35%] bg-background p-3 sm:p-5 space-y-5 h-fit">
-              <div className="flex gap-2 md:gap-5 items-center max-sm:justify-between">
+            <div className="w-full md:w-[45%] xl:w-[30%] 2xl:w-[35%] bg-[#FAFAFA] p-3 sm:p-5 space-y-5 h-fit">
+              <div className="flex gap-2 md:gap-5 items-center justify-between">
                 <h2 className=" text-18 md:text-20 2xl:text-28">
                   Order Summary
                 </h2>
@@ -1435,8 +1436,7 @@ const CartPage = ({ products }: CartPageProps) => {
                             rel="noopener noreferrer"
                             href="https://maps.app.goo.gl/BBJjwVKgTK4PPTWR8"
                           >
-                            Unit A11, J1 Warehouses, Jebel Ali Industrial Area-1
-                            - Dubai
+                            24, 22nd street - Al Quoz Industrial Area 4 - Dubai - UAE
                           </Link>
                         </strong>
                       </p>
@@ -1452,7 +1452,7 @@ const CartPage = ({ products }: CartPageProps) => {
                 </div> */}
               <div className="border border-b border-[#DEDEDE]" />
               <div className="flex_between lg:text-20">
-                <p>Subtotal Incl. VAT</p>
+                <p className='font-semibold text-2xl'>Subtotal Incl. VAT</p>
                 <p>
                   <span className="font-currency font-normal text-20 lg:text-25">
                     
@@ -1460,16 +1460,6 @@ const CartPage = ({ products }: CartPageProps) => {
                   {total > 0 ? formatAED(total) : formatAED(subTotal)}
                 </p>
               </div>
-              <Link
-                href="/checkout"
-                className="bg-primary hover:bg-secondary text-white px-4 py-3 w-full text-sm md:text-20 block text-center "
-              >
-                Proceed to Checkout
-              </Link>
-
-              <p className="text-18 xl:text-22 font-semibold text-center">
-                Buy Now, Pay Later
-              </p>
               {total > 0 && (
                 <PaymentMethod
                   installments={
@@ -1477,20 +1467,18 @@ const CartPage = ({ products }: CartPageProps) => {
                       ? parseFloat(total.toFixed(2)) / 4
                       : parseFloat(subTotal.toFixed(2)) / 4
                   }
+                  compact
                 />
               )}
-              <div className="flex justify-between gap-2">
-                {paymentcard.map((array, index) => (
-                  <Image
-                    className=" w-16 h-11 md:w-14 md:h-12 2xl:w-[90px] 2xl:h-[60px]"
-                    key={index}
-                    width={90}
-                    height={60}
-                    src={array.image}
-                    alt="payment-card"
-                  />
-                ))}
-              </div>
+
+              <Link
+                href="/checkout"
+                className="bg-primary hover:bg-secondary text-white px-4 py-4 rounded-lg w-full text-sm md:text-20 block text-center "
+              >
+                Proceed to Checkout
+              </Link>
+              <TrustBadges />
+
             </div>
           </div>
           <RelatedSlider products={products.slice(0, 5)} />
