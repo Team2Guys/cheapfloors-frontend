@@ -2,10 +2,11 @@ import React from 'react';
 import { boxData } from 'data/data';
 import Link from 'next/link';
 import Image from 'next/image';
+import Container from '../common/container/Container';
 
 const NeedHelp = () => {
   return (
-    <div className="container mx-auto px-2 sm:px-4 grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-14">
+    <Container className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-14">
       {boxData.map((box, index) => (
         <div
           className="border-2 border-[#CCCCCC] font-inter relative min-h-[250px] md:min-h-[410px]"
@@ -44,7 +45,7 @@ const NeedHelp = () => {
           </div>
         </div>
       ))}
-    </div>
+    </Container>
   );
 };
 
