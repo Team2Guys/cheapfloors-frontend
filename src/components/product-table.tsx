@@ -82,7 +82,7 @@ const ProductTable: React.FC<ProductTableProps> = ({
                       </Link>
                       {!isSamplePage ? (
                         product.category?.toLowerCase().trim() ===
-                        'accessories' ? (
+                          'accessories' ? (
                           <>
                             <p className="max-sm:text-xs">
                               Price Per Piece:{' '}
@@ -108,18 +108,50 @@ const ProductTable: React.FC<ProductTableProps> = ({
                               </p>
                             )}
                           </>
-                        ) : product.addInstallation ? (
-                          <p className="text-[14px]">
-                            Installation Cost:{' '}
-                            <span className="font-semibold">
-                              {product.installationCost.toFixed(2)}
-                            </span>
-                          </p>
                         ) : (
-                          <p className="text-[14px]">
-                            Installation:{' '}
-                            <span className="font-semibold">Not Included</span>
-                          </p>
+                          <div className="border border-[#ffb81c] rounded-md flex items-center justify-between p-2 max-w-[400px] mt-3">
+                            <div className="flex items-center gap-3">
+                              <input
+                                type="checkbox"
+                                checked={product.addInstallation || false}
+                                onChange={(e) => {
+                                  setItems?.((prevItems) =>
+                                    prevItems.map((item) => {
+                                      if (
+                                        item.id === product.id &&
+                                        item.selectedColor?.colorCode === product.selectedColor?.colorCode
+                                      ) {
+                                        const isAdding = e.target.checked;
+                                        const installationRate = item?.name?.toLowerCase()?.includes('herringbone') ? 35 : 25;
+                                        const instCost = item.squareMeter * installationRate;
+
+                                        const areaInSqm = item.unit === 'sqft' ? item.squareMeter / 10.764 : item.squareMeter;
+                                        const totalPrice = areaInSqm * (item.price || 0) + (isAdding ? instCost : 0);
+
+                                        return {
+                                          ...item,
+                                          addInstallation: isAdding,
+                                          installationCost: isAdding ? instCost : 0,
+                                          totalPrice
+                                        };
+                                      }
+                                      return item;
+                                    })
+                                  );
+                                }}
+                                className="w-[18px] h-[18px] accent-[#ffb81c] cursor-pointer"
+                              />
+                              <span className="font-medium text-[13px] xl:text-[14px] text-black">Installation Charges</span>
+                            </div>
+                            <div className="bg-[#ffb81c] text-black font-bold rounded-full px-3 py-1 text-[13px] xl:text-[14px] flex items-center gap-1">
+                              <span className="font-currency font-normal text-[16px]"></span>
+                              <span>
+                                {(product.addInstallation && product.installationCost
+                                  ? product.installationCost
+                                  : product.squareMeter * (product?.name?.toLowerCase()?.includes('herringbone') ? 35 : 25)).toFixed(2)}
+                              </span>
+                            </div>
+                          </div>
                         )
                       ) : (
                         <p className="text-xs xl:text-16">Free Sample</p>
@@ -131,20 +163,20 @@ const ProductTable: React.FC<ProductTableProps> = ({
                     pathname !== '/freesample' && (
                       <td className="p-3">
                         <div className="flex flex-col">
-                          <div className="flex_center text-xs xl:text-20 bg-gray-200 px-3 py-2 w-fit">
+                          <div className="flex justify-between items-center bg-[#ffc341] rounded-full px-1 py-1 w-fit font-semibold shadow-sm">
                             <button
                               onClick={() =>
                                 setItems?.((prevItems) =>
                                   updateQuantity(product, -1, prevItems)
                                 )
                               }
-                              className="px-2 text-gray-700"
+                              className="bg-white rounded-full w-6 h-6 flex items-center justify-center hover:opacity-80 transition"
                             >
-                              <FiMinus />
+                              <FiMinus className="text-black" />
                             </button>
-                            <span className="px-2 text-black font-semibold">
+                            <span className="text-black px-4 text-sm min-w-[30px] text-center">
                               {product.category?.toLowerCase().trim() ===
-                              'accessories'
+                                'accessories'
                                 ? product.requiredBoxes
                                 : product.squareMeter === 0
                                   ? '0.00'
@@ -156,9 +188,9 @@ const ProductTable: React.FC<ProductTableProps> = ({
                                   updateQuantity(product, 1, prevItems)
                                 )
                               }
-                              className="px-2 text-gray-700"
+                              className="bg-white rounded-full w-6 h-6 flex items-center justify-center hover:opacity-80 transition"
                             >
-                              <GoPlus />
+                              <GoPlus className="text-black" />
                             </button>
                           </div>
                         </div>
@@ -191,9 +223,9 @@ const ProductTable: React.FC<ProductTableProps> = ({
                         <button
                           id="AddToCart"
                           onClick={() =>
-                            handleAddToCart(product, setItems ?? (() => {}))
+                            handleAddToCart(product, setItems ?? (() => { }))
                           }
-                          className="bg-black text-white text-10 xl:text-20 2xl:text-24 flex gap-2 items-center whitespace-nowrap px-4 py-2"
+                          className="bg-[#ffc341] text-black font-semibold rounded-full text-10 xl:text-sm 2xl:text-base flex gap-2 items-center whitespace-nowrap px-4 py-2 hover:opacity-80 transition"
                         >
                           Add to Cart
                         </button>
@@ -202,18 +234,24 @@ const ProductTable: React.FC<ProductTableProps> = ({
                         onClick={() =>
                           handleRemoveItem(
                             product,
-                            setItems ?? (() => {}),
+                            setItems ?? (() => { }),
                             isSamplePage
                           )
                         }
-                        className={`${isSamplePage ? 'h-5 w-5 lg:h-6 lg:w-6 xl:w-7 xl:h-7' : 'h-5 w-5 lg:h-7 lg:w-7 xl:h-10 xl:w-10'}`}
+                        className="bg-[#f5f5f5] rounded-full p-2 hover:bg-gray-200 transition"
                       >
-                        <Image
-                          src="/assets/images/Wishlist/close.svg"
-                          alt="Remove"
-                          height={100}
-                          width={100}
-                        />
+                        <svg
+                          className="w-5 h-5"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="#777"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
                       </button>
                     </div>
                   </td>

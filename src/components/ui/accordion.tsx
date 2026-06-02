@@ -25,7 +25,7 @@ const Accordion = ({
             (isOpen ? (
               <AiOutlineMinus className="w-5 h-5 text-primary" />
             ) : (
-              <AiOutlinePlus className="w-5 h-5" />
+              <AiOutlinePlus className="w-5 h-5 " />
             ))}
           {label}
         </h3>
@@ -33,7 +33,7 @@ const Accordion = ({
           <div onClick={onToggle} className="cursor-pointer">
             {' '}
             {isOpen ? (
-              <AiOutlineMinus className="w-5 h-5 text-primary" />
+              <AiOutlineMinus className="w-5 h-5 text-black" />
             ) : (
               <AiOutlinePlus className="w-5 h-5" />
             )}
