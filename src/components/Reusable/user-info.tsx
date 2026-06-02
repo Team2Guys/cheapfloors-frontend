@@ -32,7 +32,7 @@ const UserInfo = () => {
           <Image
             width={848}
             height={501}
-            src="/assets/images/Home/SMART-SAVINGS.webp"
+            src="/assets/images/Home/smartsaving.webp"
             loading="lazy"
             alt="Smart Savings On Flooring"
             className="w-full h-auto object-cover"
