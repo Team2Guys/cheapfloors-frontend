@@ -6,10 +6,10 @@ import Container from '../common/container/Container';
 
 const NeedHelp = () => {
   return (
-    <Container className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-14">
+    <Container className=" grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-14">
       {boxData.map((box, index) => (
         <div
-          className="border-2 border-[#CCCCCC] font-inter relative min-h-[250px] md:min-h-[410px]"
+          className="border-2 border-[#CCCCCC] font-inter relative min-h-[250px] md:min-h-[410px] lg:min-h-[450px]"
           key={index}
         >
           <Image
