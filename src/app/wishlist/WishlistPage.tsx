@@ -17,7 +17,7 @@ const Top = dynamic(() => import('components/top'));
 
 const WishlistPage = () => {
   const [items, setItems] = useState<ICart[]>([]);
-  
+
   useEffect(() => {
     fetchItems(false, setItems);
   }, []);
@@ -99,20 +99,23 @@ const WishlistPage = () => {
       <Breadcrumb title="Wishlist" />
       <Container>
         <Top heading="Wishlist" Icon={CiHeart} />
-        
+
         <div className="flex flex-col xl:flex-row gap-5 xl:gap-8 pb-6 xl:pt-6 xl:mb-10 w-full">
           <div className="w-full bg-white">
-            
+
             {/* Main Products */}
             {products.length > 0 && (
               <div className="pr-1 md:pr-4">
+                <div className="block xl:hidden text-lg font-semibold text-black border-b border-[#DEDEDE] pb-2 mb-4 w-full">
+                  Product
+                </div>
                 <div className="hidden xl:flex gap-4 items-center text-16 font-semibold py-3 px-4 bg-[#F8F9FA] rounded-lg mb-4 text-black border border-[#EDEDED]">
                   <div className="w-[150px] shrink-0">Product</div>
                   <div className="flex-grow">
                     <div className="grid grid-cols-12 w-full gap-4">
                       <div className="col-span-5"></div>
                       <div className="col-span-3 text-center">Quantity</div>
-                      <div className="col-span-2 text-center">Unit price</div>
+                      <div className="col-span-2 text-center">Total Price</div>
                       <div className="col-span-2 text-end">Action</div>
                     </div>
                   </div>
@@ -161,6 +164,9 @@ const WishlistPage = () => {
                               >
                                 {item.name}
                               </Link>
+                              <div className="text-[#000000] text-sm mt-1">Price:{' '}
+                                <span className="font-currency text-lg font-normal"></span> {formatAED(item.price ?? 0)}/m<sup>2</sup>
+                              </div>
 
                               {/* Mobile Quantity and Price */}
                               <div className="flex justify-between items-center mt-3 xl:hidden pr-2">
@@ -188,7 +194,7 @@ const WishlistPage = () => {
                                 </div>
                                 <p className="text-[16px] font-bold text-black flex items-center gap-1">
                                   <span className="font-currency font-normal text-[20px]"></span>
-                                  <span>{formatAED(item.price ?? 0)}</span>
+                                  <span>{formatAED((item.price ?? 0) * (item.squareMeter ?? 1))}</span>
                                 </p>
                               </div>
                             </div>
@@ -223,7 +229,7 @@ const WishlistPage = () => {
                             <div className="col-span-2 text-center hidden xl:block">
                               <p className="text-[16px] font-bold text-black flex items-center justify-center gap-1">
                                 <span className="font-currency font-normal text-[20px]"></span>
-                                <span>{formatAED(item.price ?? 0)}</span>
+                                <span>{formatAED((item.price ?? 0) * (item.squareMeter ?? 1))}</span>
                               </p>
                             </div>
 
@@ -301,6 +307,9 @@ const WishlistPage = () => {
             {/* Clearance Products */}
             {clearanceItems.length > 0 && (
               <div className="pr-1 md:pr-4 mt-7">
+                <div className="block xl:hidden text-lg font-semibold text-black border-b border-[#DEDEDE] pb-2 mb-4 w-full">
+                  Clearance Product
+                </div>
                 <div className="hidden xl:flex gap-4 items-center text-16 font-semibold py-3 px-4 bg-[#F8F9FA] rounded-lg mb-4 text-black border border-[#EDEDED]">
                   <div className="w-[150px] shrink-0">Clearance Product</div>
                   <div className="flex-grow">
@@ -315,7 +324,7 @@ const WishlistPage = () => {
                 <div className="overflow-y-auto pr-2 custom-scrollbar">
                   {clearanceItems.map((item, cartindex) => (
                     <div key={cartindex} className="border-b border-[#DEDEDE] py-4 px-2 xl:px-4 last:border-b-0">
-                      
+
                       {/* Mobile Action */}
                       <div className="flex justify-end xl:hidden mb-2 gap-2">
                         <button
@@ -431,13 +440,16 @@ const WishlistPage = () => {
             {/* Accessories */}
             {accessories.length > 0 && (
               <div className="pr-1 md:pr-4 mt-7">
+                <div className="block xl:hidden text-lg font-semibold text-black border-b border-[#DEDEDE] pb-2 mb-4 w-full">
+                  Accessory
+                </div>
                 <div className="hidden xl:flex gap-4 items-center text-16 font-semibold py-3 px-4 bg-[#F8F9FA] rounded-lg mb-4 text-black border border-[#EDEDED]">
                   <div className="w-[150px] shrink-0">Accessories</div>
                   <div className="flex-grow">
                     <div className="grid grid-cols-12 w-full gap-4">
                       <div className="col-span-5"></div>
                       <div className="col-span-3 text-center">Qty Piece</div>
-                      <div className="col-span-2 text-center">Unit price</div>
+                      <div className="col-span-2 text-center">Total Price</div>
                       <div className="col-span-2 text-end">Action</div>
                     </div>
                   </div>
@@ -485,6 +497,9 @@ const WishlistPage = () => {
                               >
                                 {item.name}
                               </Link>
+                              <div className="text-[#000000] text-sm mt-1">Price:{' '}
+                                <span className="font-currency text-lg font-normal"></span> {formatAED(item.price ?? 0)}/Piece
+                              </div>
 
                               <div className="mt-2 text-sm text-gray-600 space-y-1">
                                 <p>
@@ -506,7 +521,7 @@ const WishlistPage = () => {
                                 </div>
                                 <p className="text-[16px] font-bold text-black flex items-center gap-1">
                                   <span className="font-currency font-normal text-[20px]"></span>
-                                  <span>{formatAED(item.price ?? 0)}</span>
+                                  <span>{formatAED((item.price ?? 0) * (item.requiredBoxes ?? 1))}</span>
                                 </p>
                               </div>
                             </div>
@@ -528,7 +543,7 @@ const WishlistPage = () => {
                             <div className="col-span-2 text-center hidden xl:block">
                               <p className="text-[16px] font-bold text-black flex items-center justify-center gap-1">
                                 <span className="font-currency text-lg font-normal"></span>{' '}
-                                <span>{formatAED(item.price ?? 0)}</span>
+                                <span>{formatAED((item.price ?? 0) * (item.requiredBoxes ?? 1))}</span>
                               </p>
                             </div>
 
