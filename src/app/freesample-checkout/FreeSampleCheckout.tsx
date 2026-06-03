@@ -16,6 +16,11 @@ import { ICart } from 'types/prod';
 import { fetchItems } from 'utils/cartutils';
 import { freeSampleCheckoutValidationSchema } from 'utils/freeSampleCheckoutValidation';
 import { showAlert } from 'utils/Alert';
+import locationImg from '../../../public/assets/icons/installation.png';
+import deliveryImg from '../../../public/assets/icons/truck.png';
+import Accordion from '@/components/ui/accordion';
+import { getShippingData } from '@/utils/helperFunctions';
+import { removeFreeSample } from '@/utils/indexedDB';
 
 // const SAMPLE_SLOTS = 5;
 
@@ -27,7 +32,7 @@ const labelClass = 'text-lg font-medium text-black mb-1 block';
 const FreeSampleCheckout = () => {
   const router = useRouter();
   const [items, setItems] = useState<ICart[]>([]);
-  const [selectedEmirate, setSelectedEmirate] = useState('Dubai');
+  const [selectedEmirate, setSelectedEmirate] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
   const [isOtherCity, setIsOtherCity] = useState(false);
   const [otherCity, setOtherCity] = useState('');
@@ -36,13 +41,39 @@ const FreeSampleCheckout = () => {
   >([]);
   const [isLoading, setIsLoading] = useState(false);
   const [marketingOptOut, setMarketingOptOut] = useState(false);
-
+  const [openAccordion, setOpenAccordion] = useState<string | null>(
+    'Shipping Options'
+  );
   const [initiateFreesample] = useMutation(INITIATE_FREE_SAMPLE);
+  const [shipping, setShipping] = useState<
+    | {
+      name: string;
+      fee: number;
+      deliveryDuration: string;
+      freeShipping?: number;
+    }
+    | undefined
+  >(undefined);
+  const [selectedShipping, setSelectedShipping] = useState<string | null>(null);
+  const handleToggle = (label: string) => {
+    setOpenAccordion((prev) => (prev === label ? null : label));
+  };
+  console.log(selectedShipping, 'selectedShipping', shipping)
+  const handleShippingSelect = (type: string) => {
+    setSelectedShipping(type);
+    let fee = 0;
 
-  const shipping = {
-    name: 'Standard Shipping',
-    fee: 0,
-    deliveryDuration: '3-4 working days'
+    if (type === 'standard') {
+      fee = 0;
+    } else if (type === 'self-collect') {
+      setSelectedEmirate('Dubai');
+      localStorage.setItem('selectedEmirate', JSON.stringify('Dubai'));
+      fee = 0;
+    }
+
+    const shippingData = getShippingData(type, fee, selectedEmirate);
+    setShipping(shippingData);
+    localStorage.setItem('shipping', JSON.stringify(shippingData));
   };
 
   useEffect(() => {
@@ -55,6 +86,28 @@ const FreeSampleCheckout = () => {
     window.addEventListener('freeSampleUpdated', handleUpdate);
     return () => window.removeEventListener('freeSampleUpdated', handleUpdate);
   }, []);
+
+  useEffect(() => {
+    const savedEmirate = localStorage.getItem('selectedEmirate');
+    if (savedEmirate) {
+      setSelectedEmirate(savedEmirate.replaceAll('"', ''));
+    } else {
+      setSelectedEmirate('Dubai'); // 👈 Default to Dubai
+      localStorage.setItem('selectedEmirate', JSON.stringify('Dubai'));
+    }
+    setSelectedShipping('standard');
+    handleShippingSelect('standard');
+  }, []);
+
+  useEffect(() => {
+    if (shipping) {
+      localStorage.setItem('shipping', JSON.stringify(shipping));
+      localStorage.setItem(
+        'selectedShipping',
+        JSON.stringify(selectedShipping)
+      );
+    }
+  }, [shipping]);
 
   useEffect(() => {
     const cities = emirateCityMap[selectedEmirate] || [];
@@ -142,6 +195,7 @@ const FreeSampleCheckout = () => {
               className="object-cover"
               sizes="120px"
             />
+            <button className='absolute -top-1 -right-2 bg-primary text-white text-xs font-semibold px-2 py-1 rounded-full' onClick={(e) => handleRemoveItem(e, item)} >X</button>
           </div>
           <p className="text-base font-semibold text-black text-center mt-2 leading-tight">
             {item.name}
@@ -163,6 +217,39 @@ const FreeSampleCheckout = () => {
       </Link>
     );
   };
+  //eslint-disable-next-line
+  const handleRemoveItem = async (e: any, product: ICart) => {
+    e.stopPropagation();
+    e.preventDefault();
+    const compositeKey =
+      product.category?.toLowerCase().trim() === 'accessories'
+        ? `${product.id}-${product.selectedColor?.color}`
+        : product.isClearance && product.addInstallation
+          ? `${product.id}-clearance-installation`
+          : product.isClearance
+            ? `${product.id}-clearance`
+            : product.addInstallation
+              ? `${product.id}-installation`
+              : `${product.id}`;
+    try {
+      await removeFreeSample(compositeKey);
+      setItems((prev) =>
+        prev.filter(
+          (item) =>
+            !(
+              item.id === product.id &&
+              item.selectedColor?.color === product.selectedColor?.color &&
+              item.isfreeSample === true
+            )
+        )
+      );
+    } catch {
+      showAlert({
+        title: 'Error removing item',
+        icon: 'error'
+      });
+    }
+  }
 
   return (
     <Container className="font-inter pb-16 pt-4 sm:pt-6">
@@ -459,6 +546,82 @@ const FreeSampleCheckout = () => {
                       ? 'Processing...'
                       : 'Order Free Sample'}
                   </button>
+
+                  <Accordion
+                    isCheckout
+                    label="Shipping Options"
+                    isOpen={openAccordion === 'Shipping Options'}
+                    onToggle={() => handleToggle('Shipping Options')}
+                  >
+                    <div
+                      className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'standard'
+                        ? 'border-primary'
+                        : 'border-transparent'
+                        }`}
+                      onClick={() => handleShippingSelect('standard')}
+                    >
+                      <Image
+                        src={deliveryImg}
+                        alt="icon"
+                        className="size-12 xs:size-16"
+                      />
+                      <div>
+                        <strong className="text-16 font-semibold text-primary">
+                          Standard Service{' '}
+                          {(selectedEmirate === 'Dubai'
+                            ? ' (Dubai)'
+                            : ' (All Other Emirates)')}
+                        </strong>
+                        <p className="text-14">
+                          Delivery:{' '}
+                          <strong>
+                            2{selectedCity === 'Dubai' ? '' : '-3'}{' '}
+                            working days
+                          </strong>
+                        </p>
+                        <p className="text-14">
+                          <span>Delivery Cost:</span>
+                          <strong> Free</strong>
+                        </p>
+                      </div>
+                    </div>
+
+                    <div
+                      className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'self-collect'
+                        ? 'border-primary'
+                        : 'border-transparent'
+                        }`}
+                      onClick={() => handleShippingSelect('self-collect')}
+                    >
+                      <Image
+                        src={locationImg}
+                        alt="icon"
+                        className="size-12 xs:size-16"
+                      />
+                      <div>
+                        <strong className="text-16 font-semibold text-primary">
+                          Self-Collect:
+                        </strong>
+                        <p className="text-14">
+                          Collection Monday-Saturday{' '}
+                          <strong>(9am-6pm)</strong>
+                        </p>
+                        <p className="text-14">
+                          <span>Location:</span>{' '}
+                          <strong>
+                            <Link
+                              className="hover:text-primary"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              href="https://maps.app.goo.gl/BBJjwVKgTK4PPTWR8"
+                            >
+                              24, 22nd street - Al Quoz Industrial Area 4 - Dubai - UAE
+                            </Link>
+                          </strong>
+                        </p>
+                      </div>
+                    </div>
+                  </Accordion>
                 </Form>
               )}
             </Formik>

@@ -84,7 +84,7 @@ const DropdownPanel: React.FC<DropdownPanelProps> = ({
     const handleUpdate = () => {
       const isCartPage = pathname === '/cart';
       const isWishlistPage = pathname === '/wishlist';
-      const isFreeSamplePage = pathname === '/freesample';
+      const isFreeSamplePage = pathname === '/freesample-checkout';
       const isThankYouPage = pathname === '/thank-you';
       if (
         (type === 'cart' && isThankYouPage) ||
