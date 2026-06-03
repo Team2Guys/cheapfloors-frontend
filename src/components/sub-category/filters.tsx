@@ -264,7 +264,7 @@ const Filters = ({
           </ul>
         </Accordion>
 
-        <Accordion title="Waterproof">
+        <Accordion title="Water Resistant">
           <ul className="filter_accordion">
             <li>
               <button

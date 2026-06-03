@@ -74,7 +74,7 @@ const Thumbnail = ({
   const staticTitles = [
     'Click lock system',
     'Layers of SPC or LVT',
-    'Waterproof',
+    'Water Resistant',
     'Easy to clean',
     'Scratch resistant',
     'The packaging'
