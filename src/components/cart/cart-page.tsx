@@ -789,13 +789,16 @@ const CartPage = ({ products }: CartPageProps) => {
               <div className="pr-1 md:pr-4">
                 {nonAccessoryItems.length > 0 && (
                   <>
+                    <div className="block xl:hidden text-lg font-semibold text-black border-b border-[#DEDEDE] pb-2 mb-4 w-full">
+                      Product
+                    </div>
                     <div className="hidden xl:flex gap-4 items-center text-16 font-semibold py-3 px-4 bg-[#F8F9FA] rounded-lg mb-4 text-black border border-[#EDEDED]">
                       <div className="w-[150px] shrink-0">Product</div>
                       <div className="flex-grow">
                         <div className="grid grid-cols-12 w-full gap-4">
                           <div className="col-span-6"></div>
                           <div className="col-span-3 text-center">Quantity</div>
-                          <div className="col-span-2 text-center">Unit price</div>
+                          <div className="col-span-2 text-center">Total Price</div>
                           <div className="col-span-1 text-end">Action</div>
                         </div>
                       </div>
@@ -840,6 +843,9 @@ const CartPage = ({ products }: CartPageProps) => {
                                   >
                                     {item.name}
                                   </Link>
+                                  <div className="text-[#000000] text-sm mt-1">
+                                    Price:{' '}<span className="font-currency text-lg font-normal"></span> {formatAED(item.price ?? 0)}/m<sup>2</sup>
+                                  </div>
 
                                   {/* Mobile display for Quantity and Price */}
                                   {!item.isClearance && (
@@ -1009,6 +1015,9 @@ const CartPage = ({ products }: CartPageProps) => {
 
               {clearanceItems.length > 0 && (
                 <div className="pr-1 md:pr-4 mt-7">
+                  <div className="block xl:hidden text-lg font-semibold text-black border-b border-[#DEDEDE] pb-2 mb-4 w-full">
+                    Clearance Product
+                  </div>
                   <div className="hidden xl:flex gap-4 items-center text-16 font-semibold py-3 px-4 bg-[#F8F9FA] rounded-lg mb-4 text-black border border-[#EDEDED]">
                     <div className="w-[150px] shrink-0">Clearance Product</div>
                     <div className="flex-grow">
@@ -1129,13 +1138,16 @@ const CartPage = ({ products }: CartPageProps) => {
               {/* Accessory */}
               {accessoryItems.length > 0 && (
                 <div className="pr-1 md:pr-4 mt-7">
+                  <div className="block xl:hidden text-lg font-semibold text-black border-b border-[#DEDEDE] pb-2 mb-4 w-full">
+                    Accessory
+                  </div>
                   <div className="hidden xl:flex gap-4 items-center text-16 font-semibold py-3 px-4 bg-[#F8F9FA] rounded-lg mb-4 text-black border border-[#EDEDED]">
                     <div className="w-[150px] shrink-0">Accessories</div>
                     <div className="flex-grow">
                       <div className="grid grid-cols-12 w-full gap-4">
                         <div className="col-span-6"></div>
                         <div className="col-span-3 text-center">Qty Piece</div>
-                        <div className="col-span-2 text-center">Unit price</div>
+                        <div className="col-span-2 text-center">Total Price</div>
                         <div className="col-span-1 text-end">Action</div>
                       </div>
                     </div>
@@ -1181,6 +1193,9 @@ const CartPage = ({ products }: CartPageProps) => {
                                 >
                                   {item.name}
                                 </Link>
+                                <div className="text-[#000000] text-sm mt-1">
+                                  Price:{' '} <span className="font-currency text-lg font-normal"></span> {formatAED(item.price ?? 0)}/Piece
+                                </div>
 
                                 <div className="mt-2 text-sm text-gray-600 space-y-1">
                                   <p>
@@ -1249,8 +1264,8 @@ const CartPage = ({ products }: CartPageProps) => {
 
                               <div className="col-span-2 text-center hidden xl:block">
                                 <p className="text-[16px] font-bold text-black flex items-center justify-center gap-1">
-                                  <span className="font-currency text-lg font-normal"></span>{' '}
-                                  <span>{formatAED(item.price ?? 0)}</span>
+                                  Price:{' '}<span className="font-currency text-lg font-normal"></span>{' '}
+                                  <span>{formatAED(item.price ?? 0)}</span>/m<sup>2</sup>
                                 </p>
                               </div>
 
