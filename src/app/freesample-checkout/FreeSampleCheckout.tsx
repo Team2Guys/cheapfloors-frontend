@@ -11,7 +11,7 @@ import { useMutation } from '@apollo/client';
 import Container from 'components/common/container/Container';
 import Select from 'components/appointment/Select';
 import { emirateCityMap, emirates } from 'data/data';
-import { INITIATE_FREE_SAMPLE } from 'graphql/mutations';
+import { INITIATE_FREE_SAMPLE, INITIATE_PAYMENT } from 'graphql/mutations';
 import { ICart } from 'types/prod';
 import { fetchItems } from 'utils/cartutils';
 import { freeSampleCheckoutValidationSchema } from 'utils/freeSampleCheckoutValidation';
@@ -21,6 +21,7 @@ import deliveryImg from '../../../public/assets/icons/truck.png';
 import Accordion from '@/components/ui/accordion';
 import { getShippingData } from '@/utils/helperFunctions';
 import { removeFreeSample } from '@/utils/indexedDB';
+import revalidateTag from '@/components/ServerActons/ServerAction';
 
 // const SAMPLE_SLOTS = 5;
 
@@ -55,16 +56,17 @@ const FreeSampleCheckout = () => {
     | undefined
   >(undefined);
   const [selectedShipping, setSelectedShipping] = useState<string | null>(null);
+  const [initiatePayment] = useMutation(INITIATE_PAYMENT);
+
   const handleToggle = (label: string) => {
     setOpenAccordion((prev) => (prev === label ? null : label));
   };
-  console.log(selectedShipping, 'selectedShipping', shipping)
   const handleShippingSelect = (type: string) => {
     setSelectedShipping(type);
     let fee = 0;
 
     if (type === 'standard') {
-      fee = 0;
+      fee = 15;
     } else if (type === 'self-collect') {
       setSelectedEmirate('Dubai');
       localStorage.setItem('selectedEmirate', JSON.stringify('Dubai'));
@@ -139,20 +141,37 @@ const FreeSampleCheckout = () => {
       const orderData = {
         ...values,
         city: isOtherCity ? otherCity : selectedCity || values.city,
-        shipmentFee: 0,
-        totalPrice: 0,
+        shipmentFee: selectedShipping === 'self-collect' ? 0 : 15,
+        totalPrice: selectedShipping === 'self-collect' ? 0 : 15,
         products: items,
         shippingMethod: shipping,
         note: marketingOptOut
           ? `${values.note || ''} [Marketing opt-out]`.trim()
           : values.note
       };
+      
+      if (selectedShipping === 'self-collect') {
+        const { data } = await initiateFreesample({
+          variables: { createFreesample: orderData }
+        });
+        const orderid = data.freeSample.paymentKey;
+        router.push(`/thank-you?isFreeSample=true&order=${orderid}`);
 
-      const { data } = await initiateFreesample({
-        variables: { createFreesample: orderData }
-      });
-      const orderid = data.freeSample.paymentKey;
-      router.push(`/thank-you?isFreeSample=true&order=${orderid}`);
+      } else {
+        const { data } = await initiatePayment({
+          variables: { createSalesProductInput: orderData }
+        });
+        const paymentKey = data.createSalesProduct.paymentKey;
+        if (!paymentKey.client_secret)
+          return showAlert({
+            title: 'payment Key not found',
+            icon: 'error'
+          });
+        const redirect_url = `https://uae.paymob.com/unifiedcheckout/?publicKey=${process.env.NEXT_PUBLIC_PAYMOB_PUBLIC_KEY}&clientSecret=${paymentKey.client_secret}`;
+        window.location.href = redirect_url;
+        revalidateTag('orders');
+      }
+
     } catch (err: unknown) {
       const error = err as {
         graphQLErrors?: { message: string }[];
@@ -581,7 +600,7 @@ const FreeSampleCheckout = () => {
                         </p>
                         <p className="text-14">
                           <span>Delivery Cost:</span>
-                          <strong> Free</strong>
+                          <strong> AED 15</strong>
                         </p>
                       </div>
                     </div>
