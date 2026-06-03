@@ -185,9 +185,8 @@ const FreeSampleCheckout = () => {
 
 
           <p className="text-center text-[13px] sm:text-[14px] text-black mt-6 leading-relaxed px-2">
-            All sample orders received before{' '}
-            <span className="text-primary font-semibold">4:00 pm Mon-Fri</span> will
-            be dispatched the same day by First Class Post free of charge.
+            All sample orders placed before 1:00 PM (Mon–Fri) will be delivered the next day. Orders placed after 1:00 PM will be delivered on the following business day.{' '}
+            <span className="text-primary font-semibold">Delivery charges apply at AED 15.</span>
           </p>
         </div>
 
@@ -424,8 +423,8 @@ const FreeSampleCheckout = () => {
                     />
                     <span
                       className={`w-[18px] h-[18px] shrink-0 border-2 flex items-center justify-center rounded-[2px] mt-0.5 ${marketingOptOut
-                          ? 'bg-primary border-primary'
-                          : 'bg-white border-primary'
+                        ? 'bg-primary border-primary'
+                        : 'bg-white border-primary'
                         }`}
                     >
                       {marketingOptOut && (
