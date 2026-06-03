@@ -1,10 +1,10 @@
 import Container from 'components/common/container/Container';
 import Link from 'next/link';
-import React from 'react';
-import Image from 'next/image';
 import TopLink from './top-link';
 import SocialIcon from 'components/Reusable/social-icon';
 import UserIcon from './user-icon';
+import { FiPhone } from 'react-icons/fi';
+import { BsEnvelope } from 'react-icons/bs';
 
 const TopNav = () => {
   const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER;
@@ -18,28 +18,16 @@ const TopNav = () => {
             <Link
               href={`tel:${phoneNumber}`}
               target="_blank"
-              className="flex items-center gap-2 text-white text-10 xl:text-sm 2xl:text-base font-inter font-normal"
+              className="flex items-center gap-2 text-white lg:text-black text-10 xl:text-sm 2xl:text-base font-inter font-normal"
             >
-              <Image
-                width={20}
-                height={20}
-                src="/assets/images/icon/telephone.png"
-                alt="email"
-                loading="lazy"
-              />
+              <FiPhone className="text-xl text-white lg:text-black" />
               <p>{phoneNumber}</p>
             </Link>
             <Link
               href={`mailto:${email}`}
-              className="flex items-center gap-2 text-white text-10 xl:text-sm 2xl:text-base font-inter font-normal"
+              className="flex items-center gap-2 text-white lg:text-black text-10 xl:text-sm 2xl:text-base font-inter font-normal"
             >
-              <Image
-                width={20}
-                height={14}
-                src="/assets/images/icon/email.png"
-                loading="lazy"
-                alt="email"
-              />
+              <BsEnvelope className="text-xl text-white lg:text-black" />
               <p>{email}</p>
             </Link>
           </div>

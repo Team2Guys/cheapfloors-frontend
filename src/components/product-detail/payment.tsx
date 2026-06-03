@@ -29,7 +29,7 @@ const PaymentMethod = ({
   if (compact) {
     return (
       <div className="border border-[#0000003D] rounded-lg px-2 py-2.5 xl:px-4 sm:py-3 font-inter">
-        <div className="flex flex-wrap xsm:flex-nowrap lg:flex-wrap xl:flex-nowrap items-center justify-between gap-2">
+        <div className="flex flex-wrap xsm:flex-nowrap md:flex-wrap 2xl:flex-nowrap items-center justify-between gap-2">
           <p className="text-sm xl:text-base font-medium text-black leading-tight shrink-0">
             Pay in 4 interest-free payments with
           </p>
