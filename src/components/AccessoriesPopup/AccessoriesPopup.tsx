@@ -277,7 +277,7 @@ const AccessoriesPopup = ({
           </div>
         )}
         <div>
-          <button
+          {/* <button
             id="AddToCart"
             type="button"
             className={`mt-2 w-fit px-2 xsm:px-5 sm:px-10 mx-auto py-3 font-semibold flex_center gap-2 fixed left-1/2 -translate-x-1/2 bottom-6 ${
@@ -295,7 +295,7 @@ const AccessoriesPopup = ({
               height={28}
             />
             Add to Cart
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

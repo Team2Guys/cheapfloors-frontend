@@ -55,6 +55,7 @@ const Filters = ({
   const [categoryState, setCategoryState] = useState<{
     polar?: Category;
     richmond?: Category;
+    floorSmart?: Category;
   }>({});
   const [orderedCategories, setOrderedCategories] = useState<
     CategoriesFilter[]
@@ -111,7 +112,14 @@ const Filters = ({
         cat.name.toLowerCase() === 'polar flooring' &&
         cat.status === 'PUBLISHED'
     );
-    setCategoryState({ polar, richmond });
+
+    const floorSmart = catgories.find(
+    (cat: Category) =>
+      cat.name.toLowerCase() === 'floor smart' &&
+      cat.status === 'PUBLISHED'
+  );
+
+  setCategoryState({ polar, richmond, floorSmart });
   }, [catgories]);
 
   const uniqueAttributes = useMemo(() => {

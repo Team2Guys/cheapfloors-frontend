@@ -86,7 +86,6 @@ const SearchBar = ({ className, productData, isLoading }: SearchBarProps) => {
     >
       <input
         type="text"
-        placeholder="Search"
         value={searchText}
         onClick={() => setIsProductListOpen(true)}
         onChange={(e) => {
