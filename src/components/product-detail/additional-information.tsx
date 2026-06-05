@@ -1,11 +1,13 @@
 import Tabs from 'components/ui/tabs';
+import { Fragment } from 'react/jsx-runtime';
 import { AdditionalInfoProps } from 'types/product-detail';
 
 const AdditionalInfo = ({
   description,
-  AdditionalInformation,
+  // AdditionalInformation,
   subcategory,
-  name
+  name,
+  productData,
 }: AdditionalInfoProps) => {
   const tabItems = [
     {
@@ -32,13 +34,57 @@ const AdditionalInfo = ({
               <th className="py-2 px-4 rounded-tl-md">ITEM</th>
               <th className="py-2 px-4 rounded-tr-md">{subcategory || ''}</th>
             </tr>
-            {AdditionalInformation &&
+            {/* {AdditionalInformation &&
               AdditionalInformation.map((spec, index) => (
                 <tr key={index}>
                   <td className="py-2 px-4 border">{spec.name}</td>
                   <td className="py-2 px-4 border">{spec.detail}</td>
                 </tr>
+              ))} */}
+            {productData.sizes &&
+              productData.sizes.map((spec, index) => (
+                <Fragment key={index}>
+                  <tr>
+                    <td className="py-2 px-4 border">Height</td>
+                    <td className="py-2 px-4 border">{spec.height}</td>
+                  </tr>
+                  <tr>
+                    <td className="py-2 px-4 border">Width</td>
+                    <td className="py-2 px-4 border">{spec.width}</td>
+                  </tr>
+                  {spec.thickness && (
+                    <tr>
+                      <td className="py-2 px-4 border">Thickness</td>
+                      <td className="py-2 px-4 border">{spec.thickness}</td>
+                    </tr>
+                  )}
+                </Fragment>
               ))}
+            {productData.colors &&
+              productData.colors.map((spec, index) => (
+                <tr key={index}>
+                  <td className="py-2 px-4 border">Color</td>
+                  <td className="py-2 px-4 border">{spec.name}</td>
+                </tr>
+              ))}
+            {productData.ResidentialWarranty && (
+              <tr>
+                <td className="py-2 px-4 border">Residential Warranty</td>
+                <td className="py-2 px-4 border">{productData.ResidentialWarranty}</td>
+              </tr>
+            )}
+            {productData.CommmericallWarranty && (
+              <tr>
+                <td className="py-2 px-4 border">Commmericall Warranty</td>
+                <td className="py-2 px-4 border">{productData.CommmericallWarranty}</td>
+              </tr>
+            )}
+            {productData.waterproof && (
+              <tr>
+                <td className="py-2 px-4 border">Water Resistant</td>
+                <td className="py-2 px-4 border">{productData.waterproof ? 'Yes' : 'No'}</td>
+              </tr>
+            )}
           </tbody>
         </table>
       )

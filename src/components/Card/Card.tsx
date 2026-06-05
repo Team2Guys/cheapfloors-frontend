@@ -123,7 +123,8 @@ const Card: React.FC<productCardProps> = ({
             fill
             loading="lazy"
             className={`object-cover ${isAccessories ? 'border border-gray-700 ' : ' '}`}
-            sizes="(max-width: 768px) 200px, 300px"
+            // sizes="(max-width: 768px) 200px, 300px"
+            quality={90}
           />
         </Link>
         {isAccessories && isSoldOut && (
@@ -247,7 +248,7 @@ const Card: React.FC<productCardProps> = ({
               
             </span>
             {product?.price}
-            <span className="text-sm md:text-base font-normal ml-1">{isAccessories ? '/m' : '/m²'}</span>
+            <span className="text-sm md:text-base font-normal ml-1">{isAccessories ? 'Per Piece' : '/m²'}</span>
           </p>
         )}
       </div>
@@ -272,32 +273,37 @@ const Card: React.FC<productCardProps> = ({
             Shop Now
           </Link>
         ) : !isAccessories ? (
-          <button
+          // <button
+          //   className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-xs xs:text-sm md:text-base hover:bg-primary transition text-center"
+          //   onClick={(e) => {
+          //     e.preventDefault();
+          //     handleAddToStorage(
+          //       product,
+          //       Number(product.price) * (Number(product?.boxCoverage) || 1),
+          //       Number(product.price) * (Number(product?.boxCoverage) || 1),
+          //       Number(product?.boxCoverage),
+          //       1,
+          //       product.subcategory?.custom_url || '',
+          //       'category' in product
+          //         ? (product.category?.RecallUrl ?? 'Accessories')
+          //         : 'Accessories',
+          //       'freeSample',
+          //       'productImages' in product
+          //         ? (product.productImages?.[0]?.imageUrl ?? product.posterImageUrl?.imageUrl)
+          //         : product.posterImageUrl?.imageUrl,
+          //       product?.boxCoverage,
+          //       'm',
+          //       selectedColor
+          //     );
+          //   }}
+          // >
+          //   Free sample
+          // </button>
+          <Link href={handleNavigate(product as IProduct, categoryData)}
             className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-xs xs:text-sm md:text-base hover:bg-primary transition text-center"
-            onClick={(e) => {
-              e.preventDefault();
-              handleAddToStorage(
-                product,
-                Number(product.price) * (Number(product?.boxCoverage) || 1),
-                Number(product.price) * (Number(product?.boxCoverage) || 1),
-                Number(product?.boxCoverage),
-                1,
-                product.subcategory?.custom_url || '',
-                'category' in product
-                  ? (product.category?.RecallUrl ?? 'Accessories')
-                  : 'Accessories',
-                'freeSample',
-                'productImages' in product
-                  ? (product.productImages?.[0]?.imageUrl ?? product.posterImageUrl?.imageUrl)
-                  : product.posterImageUrl?.imageUrl,
-                product?.boxCoverage,
-                'm',
-                selectedColor
-              );
-            }}
           >
-            Free sample
-          </button>
+            View product
+          </Link>
         ) : (
           <Link
             href={

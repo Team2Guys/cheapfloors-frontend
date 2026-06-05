@@ -13,7 +13,7 @@ const MeasureRoom = () => {
       <Breadcrumb
         imageClass="h-[180px]"
         title=""
-        image="/assets/images/how-to-measure-your-room/measure.webp"
+        image="/assets/images/how-to-measure-your-room/how-to-measure.webp"
       />
       <RoomMeasurement />
       <Features />

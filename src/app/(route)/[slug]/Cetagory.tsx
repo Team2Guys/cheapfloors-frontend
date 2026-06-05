@@ -17,16 +17,16 @@ const Category = ({
   return (
     <>
       <Breadcrumb
-        // image={
-        //   isSubCategory
-        //     ? subdescription?.[0]?.BannerImage?.imageUrl
-        //     : Data.whatAmiImageBanner?.imageUrl
-        //       ? Data.whatAmiImageBanner?.imageUrl
-        //       : Data.BannerImage?.imageUrl
-        //         ? Data.BannerImage?.imageUrl
-        //         : '/assets/images/category/category-breadcrumb.webp'
-        // }
-        image="/assets/images/category/category-banner.png"
+        image={
+          isSubCategory
+            ? subdescription?.[0]?.BannerImage?.imageUrl
+            : Data.whatAmiImageBanner?.imageUrl
+              ? Data.whatAmiImageBanner?.imageUrl
+              : Data.BannerImage?.imageUrl
+                ? Data.BannerImage?.imageUrl
+                : '/assets/images/category/category-breadcrumb.webp'
+        }
+        // image="/assets/images/category/category-banner.png"
         altText={Data.whatAmiImageBanner?.altText || Data.BannerImage?.altText}
         slug={slug}
         subcategory={subcategory}

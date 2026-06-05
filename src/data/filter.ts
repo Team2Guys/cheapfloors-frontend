@@ -3,6 +3,7 @@ import { IfilterValues } from 'types/type';
 export const desiredCategoryOrder = [
   'SPC FLOORING',
   'LVT FLOORING',
+  'FLOOR SMART',
   'POLAR FLOORING',
   'RICHMOND FLOORING'
 ];

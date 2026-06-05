@@ -78,7 +78,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-100 text-gray-700 pt-10 mt-20 px-0 mx-0 relative font-inter">
-      <Container className=" mx-auto grid sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8 gap-4 2xl:gap-6 font-light">
+      <Container className=" mx-auto grid sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8 gap-4">
         <div className="sm:mt-2">
           <Image
             src="/assets/images/logo.webp"
@@ -87,7 +87,7 @@ const Footer = () => {
             height={50}
             className="mb-4"
           />
-          <p className="mt-2 text-sm w-full sm:max-w-[150px] xl:max-w-[160px] 2xl:max-w-[172px]">
+          <p className="mt-2 text-sm w-full sm:max-w-[150px] xl:max-w-[160px] 2xl:max-w-[172px] text-[#00000099]">
             {footerData.company.description}
           </p>
         </div>
@@ -112,75 +112,42 @@ const Footer = () => {
                 return (Number(a.price) || 0) - (Number(b.price) || 0);
               }
             });
-            if(section.name === 'FLOOR SMART') return;
+            // if(section.name === 'FLOOR SMART') return;
             return (
               <div key={index} className="sm:block hidden">
                 <Link
                   href={`/${section.custom_url}`}
                   className="lg:text-base md:text-sm font-medium 2xl:tracking-widest text-wrap text-black"
                 >
-                  {section.name}
+                  {section.name.replace('FLOORING', ' ')}
                 </Link>
-                {section.name === 'POLAR FLOORING' ?
-                  (
-                    <div className="mt-4 space-y-4">
-                      <ul className="space-y-2">
-                        {(subcategories ?? []).map((item, i) => (
-                          <li key={i} className="footer_li">
-                            <Link
-                              href={`/${item?.category?.RecallUrl || section.RecallUrl}/${item.custom_url}`}
-                              className="filter_Link"
-                            >
-                              {item.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                      <Link
-                        href='/floor-smart'
-                        className="lg:text-base md:text-sm flex font-medium 2xl:tracking-widest text-wrap text-black"
-                      >
-                        FLOOR SMART
-                      </Link>
-                      <ul className="mt-4 space-y-2">
-                        <li className="footer_li">
+
+                <ul className="mt-4 space-y-2">
+                  {section.name === 'ACCESSORIES'
+                    ? (section.accessories ?? [])
+                      .sort(customSort)
+                      .map((item, i) => (
+                        <li key={i} className="footer_li">
                           <Link
-                            href='/floor-smart/spc-eco'
+                            href={`/accessories/${item.custom_url}`}
                             className="filter_Link"
                           >
-                            Floor Smart SPC Eco
+                            {item.name}
                           </Link>
                         </li>
-                      </ul>
-                    </div>
+                      ))
+                    : (subcategories ?? []).map((item, i) => (
+                      <li key={i} className="footer_li">
+                        <Link
+                          href={`/${item?.category?.RecallUrl || section.RecallUrl}/${item.custom_url}`}
+                          className="filter_Link"
+                        >
+                          {item.name}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
 
-                  ) : (
-                    <ul className="mt-4 space-y-2">
-                      {section.name === 'ACCESSORIES'
-                        ? (section.accessories ?? [])
-                          .sort(customSort)
-                          .map((item, i) => (
-                            <li key={i} className="footer_li">
-                              <Link
-                                href={`/accessories/${item.custom_url}`}
-                                className="filter_Link"
-                              >
-                                {item.name}
-                              </Link>
-                            </li>
-                          ))
-                        : (subcategories ?? []).map((item, i) => (
-                          <li key={i} className="footer_li">
-                            <Link
-                              href={`/${item?.category?.RecallUrl || section.RecallUrl}/${item.custom_url}`}
-                              className="filter_Link"
-                            >
-                              {item.name}
-                            </Link>
-                          </li>
-                        ))}
-                    </ul>
-                  )}
 
               </div>
             );
@@ -201,20 +168,20 @@ const Footer = () => {
           </>
         )}
 
-        <div className="sm:block xl:col-span-2">
-          <p className=" font-normal 2xl:tracking-widest">CONTACT US</p>
+        <div>
+          <p className="lg:text-base md:text-sm font-medium 2xl:tracking-widest text-wrap text-black">CONTACT US</p>
 
           <div className="text-sm mt-4 flex items-center gap-2 group">
             <div className="">
               <IoCall
                 size={16}
-                className="text-black group-hover:text-primary"
+                className="text-[#00000099] group-hover:text-primary"
               />
             </div>
             <Link
               href="tel:+971505974385"
               target="_blank"
-              className="text-black group-hover:text-primary"
+              className="text-[#00000099] group-hover:text-primary"
             >
               {footerData.contact.phone}
             </Link>
@@ -223,12 +190,12 @@ const Footer = () => {
             <div className="">
               <FaRegEnvelope
                 size={16}
-                className="text-black group-hover:text-primary"
+                className="text-[#00000099] group-hover:text-primary"
               />
             </div>
             <Link
               href="mailto:cs@easyfloors.ae"
-              className="text-black group-hover:text-primary"
+              className="text-[#00000099] group-hover:text-primary"
             >
               {footerData.contact.email}
             </Link>
@@ -237,20 +204,20 @@ const Footer = () => {
             <div className="">
               <FaMapMarkerAlt
                 size={16}
-                className="text-black group-hover:text-primary"
+                className="text-[#00000099] group-hover:text-primary"
               />
             </div>
             <Link
               href="https://maps.app.goo.gl/t4dm6MhpgeraVkBH8"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-black group-hover:text-primary md:full w-60"
+              className="text-[#00000099] group-hover:text-primary md:full w-60"
             >
               {footerData.contact.address}
             </Link>
           </div>
 
-          <div className="grid grid-cols-6 sm:grid-cols-3 xl:w-1/2 gap-3 mt-4 items-center">
+          <div className="grid grid-cols-6 sm:grid-cols-3 gap-3 mt-4 items-center">
             {footerData.paymentMethods.map((method, index) => (
               <div key={index} className="flex justify-start">
                 <Image

@@ -128,7 +128,7 @@ const Thumbnail = ({
                         height={150}
                         priority
                         src={product.imageUrl}
-                        className={`w-full aspect-square object-cover ${imageheight ? 'border-0' : 'border-0'
+                        className={`w-full aspect-square ${imageheight ? 'border-0' : 'border-0'
                           }`}
                         alt={product.altText || 'Thumbnail'}
                       />
@@ -161,7 +161,7 @@ const Thumbnail = ({
                     width={150}
                     height={150}
                     src={product.imageUrl}
-                    className="w-full aspect-square object-cover"
+                    className="w-full aspect-square"
                     alt={product.altText || 'Thumbnail'}
                   />
                 </div>
@@ -201,7 +201,7 @@ const Thumbnail = ({
                     priority={index === 0}
                     fetchPriority={index === 0 ? 'high' : 'auto'}
                     src={product.imageUrl}
-                    className={`object-cover ${selectedColor ? 'object-cover' : ''}`}
+                    // className={`object-cover ${selectedColor ? 'object-cover' : ''}`}
                     alt={product.altText || 'Product image'}
                     sizes="(max-width: 768px) 80vw, 40vw"
                   />

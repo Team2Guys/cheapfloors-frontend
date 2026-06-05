@@ -37,6 +37,7 @@ const ProductDetail = ({
           description={productData?.description || ''}
           AdditionalInformation={productData?.AdditionalInformation}
           subcategory={productData?.subcategory?.name || ''}
+          productData={productData}
         />
       </Container>
       <RelatedSlider products={AccessoriesProducts || []} />
