@@ -27,9 +27,7 @@ const TrustBadges = () => {
               />
             ))}
         </div>
-        <p className="text-[11px] sm:text-[12px] font-semibold text-black whitespace-nowrap">
-          14 reviews
-        </p>
+
       </div>
     </div>
   );

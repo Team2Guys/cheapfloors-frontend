@@ -279,7 +279,7 @@ export const featureItems = [
   {
     title: 'Factory Prices',
     description:
-      'No middlemen, just high-quality flooring at factory-direct prices. Easy Floors is among the most trusted flooring companies in Dubai, offering the best value without compromise.',
+      'No middlemen, just high-quality flooring at factory-direct prices. Easy Floors is among the most trusted flooring companies in the UAE, offering the best value without compromise.',
     icon: '/assets/images/Home/factory-icon.png'
   }
 ];
@@ -1249,7 +1249,7 @@ export const floorSmartFaqs: FAQItem[] = [
   {
     id: 1,
     question: "What makes FLOOR SMART SPC flooring in Dubai a good choice?",
-    answer: "Floor Smart SPC flooring in Dubai is fully waterproof, termite-resistant, and highly durable. It is designed to handle moisture, heavy foot traffic, and daily wear, making it ideal for homes and commercial spaces in Dubai."
+    answer: "Floor Smart SPC flooring in Dubai is fully water-resistant, termite-resistant, and highly durable. It is designed to handle moisture, heavy foot traffic, and daily wear, making it ideal for homes and commercial spaces in Dubai."
   },
   {
     id: 2,
@@ -1318,7 +1318,7 @@ export const lvtFaqs: FAQItem[] = [
   {
     id: 1,
     question: "Why is LVT flooring in Dubai popular for modern interiors?",
-    answer: "LVT flooring in Dubai is stylish, durable, and water-resistant. It mimics natural materials while being easier to maintain, making it ideal for both residential and commercial spaces."
+    answer: "LVT flooring in the UAE is stylish, durable, and water-resistant. It mimics natural materials while being easier to maintain, making it ideal for both residential and commercial spaces."
   },
   {
     id: 2,
@@ -1333,7 +1333,7 @@ export const lvtFaqs: FAQItem[] = [
   {
     id: 4,
     question: "Can LVT vinyl flooring be used in commercial shops?",
-    answer: "Yes, luxury vinyl flooring is incredibly hard-wearing. It is designed to withstand heavy foot traffic and frequent cleaning, making it a top choice for retail environments in Dubai."
+    answer: "Yes, luxury vinyl flooring is incredibly hard-wearing. It is designed to withstand heavy foot traffic and frequent cleaning, making it a top choice for retail environments in the UAE."
   }
 ];
 
