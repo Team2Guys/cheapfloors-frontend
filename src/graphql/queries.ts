@@ -592,6 +592,9 @@ export const FIND_ONE_PRODUCT = gql`
       FAQS
       custom_url
       description
+      waterproof
+      ResidentialWarranty
+      CommmericallWarranty
       acessories {
         id
         name

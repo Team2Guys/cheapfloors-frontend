@@ -7,7 +7,8 @@ const nextConfig: NextConfig = {
       "www.facebook.com"
     ],
     formats: ['image/avif', 'image/webp'],
-   unoptimized: false
+   unoptimized: false,
+   qualities: [90 ,75, 50, 25],
   },
 async headers() {
     return [

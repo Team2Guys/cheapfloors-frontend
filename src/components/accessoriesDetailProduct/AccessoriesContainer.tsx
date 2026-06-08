@@ -13,14 +13,12 @@ const AccessoriesContainer = ({ productData }: { productData: IProduct }) => {
   const [thumbnailImages, setThumbnailImages] = useState<ProductImage[]>(
     productData?.productImages || []
   );
-  const [selectedColor, setSelectedColor] = useState<ProductImage | undefined>(
-    productData?.featureImages?.[0]
-  );
+  const [selectedColor, setSelectedColor] = useState<ProductImage | undefined>();
 
   useEffect(() => {
     setThumbnailImages(productData?.productImages || []);
     setActiveImage(productData?.productImages?.[0]);
-    setSelectedColor(productData?.featureImages?.[0]);
+    // setSelectedColor(productData?.featureImages?.[0]);
   }, [productData]);
   return (
     <Container className="flex flex-col lg:flex-row gap-10 py-4">

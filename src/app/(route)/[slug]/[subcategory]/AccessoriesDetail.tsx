@@ -28,6 +28,7 @@ const AccessoriesDetail = ({
           description={productData.description || ''}
           AdditionalInformation={productData.AdditionalInformation}
           subcategory={productData.subcategory?.name || ''}
+          productData={productData}
         />
         <div className="mt-10">
           <FaqDetail faqs={productData.FAQS} />

@@ -34,6 +34,14 @@ export const handleAddToStorage = async (
     return;
   }
   if (type === 'cart') {
+    if (productData.stock != null && productData.stock <= 0) {
+      showAlert({
+        title: 'Product is out of stock.',
+        icon: 'error'
+      });
+      return;
+    }
+
     if (requiredBoxes <= 0) {
       showAlert({
         title: 'Enter a valid area to add the product to the cart.',
@@ -55,7 +63,7 @@ export const handleAddToStorage = async (
 
   const adjustedSquareMeter = (MainCategory.toLowerCase().trim() === 'accessories') ? requiredBoxes : squareMeter;
   const adjustedTotalPrice =
-    Number(totalPrice) > 0 ? totalPrice : Number(productData.price || 0 ) * (adjustedSquareMeter || 1);
+    Number(totalPrice) > 0 ? totalPrice : Number(productData.price || 0) * (adjustedSquareMeter || 1);
 
   let posterImageUrl;
   if (MainCategory.toLowerCase().trim() === 'accessories') {
@@ -86,7 +94,7 @@ export const handleAddToStorage = async (
     squareMeter: adjustedSquareMeter || 1,
     requiredBoxes: requiredBoxes || 1,
     unit: adjustedUnit,
-    selectedColor: { ...selectedColor, public_id: selectedColor?.public_id || '', imageUrl: selectedColor?.imageUrl || '', colorName: selectedColor?.colorName || selectedColor?.altText || ''},
+    selectedColor: { ...selectedColor, public_id: selectedColor?.public_id || '', imageUrl: selectedColor?.imageUrl || '', colorName: selectedColor?.colorName || selectedColor?.altText || '' },
     matchedProductImages,
     isfreeSample: type === 'freeSample' || false,
     custom_url: productData.custom_url,

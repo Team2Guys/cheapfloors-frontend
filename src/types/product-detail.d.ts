@@ -22,6 +22,7 @@ export interface AdditionalInfoProps {
   AdditionalInformation?: { name: string; detail: string }[];
   subcategory: string;
   name: string;
+  productData: IProduct;
 }
 
 export interface AreaCalculatorProps {

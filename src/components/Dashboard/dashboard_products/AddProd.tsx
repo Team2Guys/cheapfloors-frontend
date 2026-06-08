@@ -159,23 +159,29 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
 
       /* eslint-disable */
       const { products, lengthPrice, ...restValues } = values;
+
       let newValues = {
-        ...(accessoryFlag ? values : restValues),
+        ...restValues,
         posterImageUrl,
         hoverImageUrl,
         productImages: imagesUrl,
         category: +selectedCategory,
         featureImages: featureImagesimagesUrl,
-        colorCode: values.colorCode === '' ? undefined : Number(values.colorCode),
         stock: Number(values.stock),
         price: Number(values.price),
         discountPrice: Number(values.discountPrice),
-        colors: !values.colors ? [] : values.colors
       };
 
       if (!accessoryFlag) {
         Object.assign(newValues, images);
+        newValues = {
+          ...newValues,
+          colorCode:
+            values.colorCode === '' ? undefined : values.colorCode,
+          colors: values.colors || [],
+        };
       }
+
       setloading(true);
       const updateFlag = EditProductValue && EditInitialValues ? true : false;
       if (updateFlag && EditInitialValues?.id) {
@@ -351,7 +357,7 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
     const selectedCat = categoriesList?.find((cat) => cat.id === categoryId);
     setSubcategories(selectedCat?.subcategories || []);
     setSelectedSubcategory('');
-    console.log(selectedCat,'selectedCat')
+    console.log(selectedCat, 'selectedCat')
   };
   const removedValuesHandler = (ChangedValue: IProductValues) => {
     const modifiedProductValues = Object.fromEntries(
@@ -402,11 +408,10 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
                             onClick={() => form.setFieldValue('status', status)}
                             disabled={isActive}
                             className={`px-4 py-2 rounded-md text-sm
-                                  ${
-                                    isActive
-                                      ? ' border text-opacity-1 cursor-not-allowed bg-white dark:bg-black dark:text-white'
-                                      : 'dashboard_primary_button'
-                                  }`}
+                                  ${isActive
+                                ? ' border text-opacity-1 cursor-not-allowed bg-white dark:bg-black dark:text-white'
+                                : 'dashboard_primary_button'
+                              }`}
                           >
                             {status}
                           </button>
@@ -866,65 +871,69 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
                 </div>
 
                 <div className="py-4 px-6 rounded-sm border ">
-                  <div className="rounded-sm border  bg-white mb-4 dark:bg-black">
-                    <div className="border-b  py-4 px-6 ">
-                      <h3 className="font-medium text-black dark:text-white">
-                        Add Colours
-                      </h3>
-                    </div>
-                    <div className="flex flex-col py-4 px-6">
-                      <FieldArray name="colors">
-                        {({ push, remove }) => (
-                          <div className="flex flex-col gap-2">
-                            {formik.values.colors &&
-                              formik.values.colors.map(
-                                (
-                                  model: AdditionalInformation,
-                                  index: number
-                                ) => (
-                                  <div
-                                    key={index}
-                                    className="flex gap-2 items-center"
-                                  >
-                                    <Input
-                                      name={`colors[${index}].name`}
-                                      placeholder="color Name"
-                                    />
-                                    <Input
-                                      name={`colors[${index}].detail`}
-                                      placeholder="color Detail"
-                                    />
-                                    <button
-                                      type="button"
-                                      onClick={() => remove(index)}
-                                      className="ml-2 text-red-500 "
+                  {!accessoryFlag && (
+                    <div className="rounded-sm border  bg-white mb-4 dark:bg-black">
+                      <div className="border-b  py-4 px-6 ">
+                        <h3 className="font-medium text-black dark:text-white">
+                          Add Colours
+                        </h3>
+                      </div>
+                      <div className="flex flex-col py-4 px-6">
+                        <FieldArray name="colors">
+                          {({ push, remove }) => (
+                            <div className="flex flex-col gap-2">
+                              {formik.values.colors &&
+                                formik.values.colors.map(
+                                  (
+                                    model: AdditionalInformation,
+                                    index: number
+                                  ) => (
+                                    <div
+                                      key={index}
+                                      className="flex gap-2 items-center"
                                     >
-                                      <RxCross2
-                                        className="text-red-500 dark:text-white"
-                                        size={25}
+                                      <Input
+                                        name={`colors[${index}].name`}
+                                        placeholder="color Name"
                                       />
-                                    </button>
-                                  </div>
-                                )
-                              )}
-                            <button
-                              type="button"
-                              onClick={() => push({ name: '', detail: '' })}
-                              className="px-4 py-2 bg-black text-white dark:bg-primary dark:border-0  rounded-md shadow-md w-fit"
-                            >
-                              Add color
-                            </button>
-                          </div>
-                        )}
-                      </FieldArray>
+                                      <Input
+                                        name={`colors[${index}].detail`}
+                                        placeholder="color Detail"
+                                      />
+                                      <button
+                                        type="button"
+                                        onClick={() => remove(index)}
+                                        className="ml-2 text-red-500 "
+                                      >
+                                        <RxCross2
+                                          className="text-red-500 dark:text-white"
+                                          size={25}
+                                        />
+                                      </button>
+                                    </div>
+                                  )
+                                )}
+                              <button
+                                type="button"
+                                onClick={() => push({ name: '', detail: '' })}
+                                className="px-4 py-2 bg-black text-white dark:bg-primary dark:border-0  rounded-md shadow-md w-fit"
+                              >
+                                Add color
+                              </button>
+                            </div>
+                          )}
+                        </FieldArray>
+                      </div>
                     </div>
-                  </div>
+                  )}
                   <div className="grid grid-cols-2 gap-2">
-                    <Input
-                      label="Add Color Code"
-                      name="colorCode"
-                      placeholder="Add Color Code"
-                    />
+                    {!accessoryFlag && (
+                      <Input
+                        label="Add Color Code"
+                        name="colorCode"
+                        placeholder="Add Color Code"
+                      />
+                    )}
                     <Input
                       label="Add Residential Warranty"
                       name="ResidentialWarranty"
@@ -1162,7 +1171,7 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
                   <ImageUploader setImagesUrl={setfeatureImagesImagesUrl} />
 
                   {featureImagesimagesUrl &&
-                  featureImagesimagesUrl.length > 0 ? (
+                    featureImagesimagesUrl.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4 max-h-[400px] overflow-y-scroll">
                       {featureImagesimagesUrl.map(
                         (item: ProductImage, index) => {
@@ -1293,11 +1302,10 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
                         onClick={() => form.setFieldValue('status', status)}
                         disabled={isActive}
                         className={`px-4 py-2 rounded-md text-sm
-                                  ${
-                                    isActive
-                                      ? ' border text-opacity-1 cursor-not-allowed'
-                                      : 'dashboard_primary_button'
-                                  }`}
+                                  ${isActive
+                            ? ' border text-opacity-1 cursor-not-allowed'
+                            : 'dashboard_primary_button'
+                          }`}
                       >
                         {status}
                       </button>
