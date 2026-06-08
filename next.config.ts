@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     ],
     formats: ['image/avif', 'image/webp'],
    unoptimized: false,
-   qualities: [90 ,75, 50, 25],
+   qualities: [25, 50, 70, 75, 80, 90 ,100],
   },
 async headers() {
     return [

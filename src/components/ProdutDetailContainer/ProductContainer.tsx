@@ -201,13 +201,34 @@ const ProductContainer = ({
                 <p className="text-xl font-bold text-black">
                   Price Per {unit === 'sqm' ? 'Sqm' : 'Sq.ft'} :
                 </p>
-                <p className="text-xl font-bold text-primary">
-                  <span className="font-currency font-normal text-2xl"> </span>
-                  {unit === 'sqm'
-                    ? productData?.price
-                    : (productData?.price / 10.7639).toFixed(2)}
-                  <span>{unit === 'sqm' ? '/m²' : '/ft²'}</span>
-                </p>
+                {productData?.discountPrice && productData?.discountPrice > 0 ? (
+                  <div className='flex items-baseline gap-2'>
+                    <p className="text-xl font-bold text-primary">
+                      <span className="font-currency font-normal text-2xl"> </span>
+                      {unit === 'sqm'
+                        ? productData?.discountPrice
+                        : (productData?.discountPrice / 10.7639).toFixed(2)}
+                      <span>{unit === 'sqm' ? '/m²' : '/ft²'}</span>
+                    </p>
+                    <p className="text-lg font-bold text-gray-500">
+                      <span className="font-currency font-normal text-xl"> </span>
+                      <span className="line-through">{unit === 'sqm'
+                        ? productData?.price
+                        : (productData?.price / 10.7639).toFixed(2)}
+                      </span>
+                      <span className="line-through">{unit === 'sqm' ? '/m²' : '/ft²'}</span>
+                    </p>
+                  </div>
+                ) :
+                  <p className="text-xl font-bold text-primary">
+                    <span className="font-currency font-normal text-2xl"> </span>
+                    {unit === 'sqm'
+                      ? productData?.price
+                      : (productData?.price / 10.7639).toFixed(2)}
+                    <span>{unit === 'sqm' ? '/m²' : '/ft²'}</span>
+                  </p>
+                }
+
               </div>
               <div>
                 <div className="flex items-center gap-1.5">

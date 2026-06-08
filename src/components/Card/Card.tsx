@@ -104,6 +104,9 @@ const Card: React.FC<productCardProps> = ({
     }
   }, [(product as IProduct)?.featureImages]);
 
+  const discountedPrice = (product as IProduct).discountPrice;
+  const hasDiscount = !!discountedPrice && discountedPrice > 0;
+
   return (
     <div
       className={`group flex flex-col h-full font-inter p-1 xsm:p-3 group transition-shadow hover:shadow-md overflow-hidden ${isAccessories ? 'bg-[#FAFAFA] border border-gray-200' : sldier ? 'bg-white' : 'bg-[#FAFAFA] border border-gray-200'}`}
@@ -243,13 +246,30 @@ const Card: React.FC<productCardProps> = ({
 
       <div className="pb-2">
         {'price' in product && product.price && (
-          <p className="text-base font-medium text-black flex items-center">
-            <span className="font-currency font-normal text-xl mr-1 mb-0.5">
-              
-            </span>
-            {product?.price}
-            <span className="text-sm md:text-base font-normal ml-1">{isAccessories ? 'Per Piece' : '/m²'}</span>
-          </p>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <p className="text-base font-medium text-black flex items-center">
+              {/* {hasDiscount && (
+                <span className="text-sm font-normal mr-1">now</span>
+              )} */}
+              <span className="font-currency font-normal text-xl mr-1 mb-0.5">
+                
+              </span>
+              {hasDiscount ? discountedPrice : product?.price}
+              <span className="text-sm md:text-base font-normal ml-1">{isAccessories ? 'Per Piece' : '/m²'}</span>
+            </p>
+            {hasDiscount && (
+              <p className="text-sm font-normal text-gray-500 flex items-center">
+                {/* <span className="mr-1">before</span> */}
+                <span className="line-through flex items-center">
+                  <span className="font-currency font-normal text-xl mr-1 mb-0.5">
+                    
+                  </span>
+                  {product?.price}
+                  <span className="line-through">{isAccessories ? 'Per Piece' : '/m²'}</span>
+                </span>
+              </p>
+            )}
+          </div>
         )}
       </div>
 
@@ -325,8 +345,9 @@ const Card: React.FC<productCardProps> = ({
               e.preventDefault();
               handleAddToStorage(
                 product,
-                Number(product.price),
-                Number(product.price) * (Number(product?.boxCoverage) || 1),
+                Number(hasDiscount ? discountedPrice : product.price),
+                Number(hasDiscount ? discountedPrice : product.price) *
+                (Number(product?.boxCoverage) || 1),
                 1,
                 1,
                 product.subcategory?.custom_url || '',
