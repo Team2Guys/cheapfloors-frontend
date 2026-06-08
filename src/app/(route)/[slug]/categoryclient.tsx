@@ -49,27 +49,32 @@ const CategoryClient = ({
   const [isModalOpen, setModalOpen] = useState(false);
   const [sortOption, setSortOption] = useState<string>('Default');
   const Data: ISUBCATEGORY | ICategory = categoryData;
-  const { filtered, appliedFilters } = useMemo(
-    () =>
-      productFilter({
-        products: Data.products,
-        priceValue,
-        sortOption,
-        selectedProductFilters,
-        isWaterProof,
-        subcategory,
-        selectedTags
-      }),
-    [
-      Data.products,
+  const { filtered, appliedFilters } = useMemo(() => {
+    const { filtered, appliedFilters } = productFilter({
+      products: Data.products,
       priceValue,
       sortOption,
       selectedProductFilters,
       isWaterProof,
       subcategory,
       selectedTags
-    ]
-  );
+    });
+
+    // Show out-of-stock products at the bottom while preserving the
+    // chosen sort order within the in-stock and out-of-stock groups.
+    const inStock = filtered.filter((product) => product.stock !== 0);
+    const outOfStock = filtered.filter((product) => product.stock === 0);
+
+    return { filtered: [...inStock, ...outOfStock], appliedFilters };
+  }, [
+    Data.products,
+    priceValue,
+    sortOption,
+    selectedProductFilters,
+    isWaterProof,
+    subcategory,
+    selectedTags
+  ]);
 
   const publishedCategories = useMemo(() => {
     return (
