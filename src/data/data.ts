@@ -1268,6 +1268,8 @@ export const floorSmartFaqs: FAQItem[] = [
   }
 ];
 
+
+
 export const polarFaqs: FAQItem[] = [
   {
     id: 1,
@@ -1313,6 +1315,100 @@ export const richmondFaqs: FAQItem[] = [
     answer: "Richmond vinyl flooring features a click-lock system, enabling fast, adhesive-free installation in Dubai, saving time and reducing labor costs."
   }
 ];
+
+
+export const woodvailFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: "Is Woodvail Flooring water-resistant?",
+    answer: "Yes, Woodvail Flooring features a water-resistant SPC core that helps protect against moisture, spills, and humidity. This makes it suitable for kitchens, living areas, offices, and other high-traffic environments."
+  },
+  {
+    id: 2,
+    question: "Is Woodvail Flooring easy to maintain?",
+    answer: "Yes, regular sweeping and occasional damp mopping are sufficient to keep the flooring looking clean and attractive. Its stain-resistant surface helps reduce maintenance efforts."
+  },
+  {
+    id: 3,
+    question: "Does Woodvail Flooring offer comfort underfoot?",
+    answer: "Yes, the SPC construction provides stability while helping create a comfortable walking surface. It also contributes to improved sound insulation compared to traditional hard flooring materials."
+  },
+  {
+    id: 4,
+    question: "Does it come with a warranty?",
+    answer: "Every Woodvail floor is backed by a 10-year residential warranty and a 5-year commercial warranty, providing peace of mind regarding the structural integrity and surface performance of your investment."
+  }
+];
+
+export const chevronspcecoFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: "What are the dimensions of the Chevron SPC ECO planks?",
+    answer: "Each plank measures 680 × 128 × 7.0mm. This sizing is engineered to create the precise 45-degree angle required for a flawless Chevron pattern, giving any room a rhythmic, spacious feel."
+  },
+  {
+    id: 2,
+    question: "What makes Chevron SPC ECO eco-friendly? ",
+    answer: "The rigid SPC core is produced using recycled stone-composite content and a low-emission manufacturing process, so you get a durable luxury floor with a reduced environmental impact and no need to fell timber for a real parquet look."
+  },
+  {
+    id: 3,
+    question: "Can I use Chevron SPC ECO in my kitchen or bathroom? ",
+    answer: "Yes. The SPC core is water-resistant, so unlike traditional wood Chevron, it will not swell or rot when exposed to moisture, making it ideal for every room, including high-moisture areas."
+  },
+  {
+    id: 4,
+    question: "Is the installation complicated?",
+    answer: "No. Chevron SPC ECO is designed for easy click installation while delivering the premium appearance of traditional parquet. Professional fitting is available at 45 AED per sqm."
+  }
+];
+
+export const chevronspccomfortFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: "What are the dimensions of the Chevron SPC Comfort planks? ",
+    answer: "Each plank measures 680 × 128 × 7.0mm. This sizing is engineered to create the precise 45-degree angle required for a flawless Chevron pattern, giving any room a rhythmic, spacious feel."
+  },
+  {
+    id: 2,
+    question: "What does the Comfort backing add?",
+    answer: "The pre-attached comfort layer absorbs impact sound, softens every footstep, and adds warmth underfoot, so you get a quieter, cosier floor without needing to buy and fit a separate underlay."
+  },
+  {
+    id: 3,
+    question: "Can I use Chevron SPC Comfort in my kitchen or bathroom?",
+    answer: "Yes. The SPC core is water-resistant, so unlike traditional wood Chevron, it will not swell or rot when exposed to moisture, making it suitable for every room in your home."
+  },
+  {
+    id: 4,
+    question: "Is the installation complicated?",
+    answer: "No. Chevron SPC Comfort uses the same easy click system as our standard range, delivering the premium look of traditional parquet. Professional fitting is available at 45 AED per sqm."
+  }
+];
+
+export const VersaillesFaqs: FAQItem[] = [
+  {
+    id: 1,
+    question: "What is Versailles Flooring?",
+    answer: "Versailles Flooring is a decorative parquet-style flooring inspired by classic French palace flooring patterns. It delivers a luxurious and timeless appearance."
+  },
+  {
+    id: 2,
+    question: "What is the thickness and size of the Versailles planks?",
+    answer: "The Versailles SPC Eco range features a 5mm thickness with a width and length of 680mm, mirroring the scale of our Chevron collection. This thickness provides excellent stability while remaining easy to install over existing subfloors."
+  },
+  {
+    id: 3,
+    question: "What is the warranty for residential use?",
+    answer: "We provide a 10-year residential warranty and a 5-year commercial warranty. This covers the structural integrity of the SPC core and ensures the floor remains a focal point of your property for years to come."
+  },
+  {
+    id: 4,
+    question: "Is it suitable for commercial environments?",
+    answer: "Yes, Versailles Flooring is designed for both residential and commercial installations where durability and elegant design are required."
+  }
+];
+
 
 export const lvtFaqs: FAQItem[] = [
   {
@@ -1394,7 +1490,8 @@ export const categoryFaqsData: Record<string, FAQItem[]> = {
   'richmond-flooring': richmondFaqs,
   'lvt-flooring': lvtFaqs,
   'spc-flooring': spcFaqs,
-  'accessories': accessoriesFaqs
+  'accessories': accessoriesFaqs,
+  'woodvail-flooring': woodvailFaqs,
 };
 
 // ─── Subcategory FAQs ────────────────────────────────────────────────────────
@@ -1645,4 +1742,8 @@ export const subCategoryFaqsData: Record<string, FAQItem[]> = {
   'richmond-lvt-comfort': richmondLvtComfortFaqs,
   'floor-smart-spc-eco': floorSmartSpcEcoFaqs,
   'richmond-lvt-luxury': richmondLvtLuxuryFaqs,
+  'woodvail-chevron-spc-eco': chevronspcecoFaqs,
+  'woodvail-chevron-spc-comfort': chevronspccomfortFaqs,
+  'woodvail-versailles': VersaillesFaqs
+
 };
