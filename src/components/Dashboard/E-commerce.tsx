@@ -48,7 +48,6 @@ const ECommerce = ({
     fetchGA4Data();
   }, []);
 
-  console.log(data, 'datadatadata');
   const { loggedInUser } = useAppSelector((state) => state.usersSlice);
   useAdminAuthInit();
 

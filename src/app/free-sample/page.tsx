@@ -15,8 +15,7 @@ const FreeSampleDetail = () => {
         At www.easyfloors.ae , we understand that judging the quality and colour
         of our flooring on your screen isn’t the easiest task in the world. So
         we’d like to help give you the confidence by sending out free samples.
-        Yes, you can order up to 5 samples which will be delivered FREE OF
-        CHARGE anywhere in the UAE. Add to your basket or drop us a call or
+        Yes, you can order up to 5 samples which will be delivered <span className="font-currency text-2xl font-normal"></span>15 of charge anywhere in the UAE. Add to your basket or drop us a call or
         message if you need some more help or advice. We’re on hand to help you
         get exactly what you’re looking for.
       </p>
