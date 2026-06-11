@@ -97,8 +97,8 @@ const CategoryPage = async ({
           category={category}
         />
         <CategoryFaqs
-        faqs={(categoryFaqsData[slug?.trim().toLowerCase()] ?? [])
-        }
+          faqs={(categoryFaqsData[slug?.trim().toLowerCase()] ?? [])
+          }
         />
       </>
     );
@@ -113,44 +113,42 @@ const CategoryPage = async ({
       return notFound();
     }
 
-    console.log(findCategory, "findCategoryfindCategory")
+    const isFloorSmart =
+      findCategory?.name?.trim().toLowerCase() === 'floor smart';
 
-   const isFloorSmart =
-  findCategory?.name?.trim().toLowerCase() === 'floor smart';
+    const reCallFlag =
+      findCategory?.recalledSubCats &&
+      findCategory?.recalledSubCats.length > 0;
 
-const reCallFlag =
-  findCategory?.recalledSubCats &&
-  findCategory?.recalledSubCats.length > 0;
+    // 👉 Apply recall logic ONLY if NOT Floor Smart
+    if (reCallFlag && !isFloorSmart) {
+      let products: IProduct[] = [];
 
-// 👉 Apply recall logic ONLY if NOT Floor Smart
-if (reCallFlag && !isFloorSmart) {
-  let products: IProduct[] = [];
+      categories.forEach((cat: ICategory) => {
+        const filteredProd =
+          cat.products?.filter(
+            (prod: IProduct) =>
+              findCategory?.recalledSubCats?.some(
+                (subCat: ISUBCATEGORY) =>
+                  subCat.custom_url === prod.subcategory?.custom_url
+              ) && prod.status === 'PUBLISHED'
+          ) || [];
 
-  categories.forEach((cat: ICategory) => {
-    const filteredProd =
-      cat.products?.filter(
-        (prod: IProduct) =>
-          findCategory?.recalledSubCats?.some(
-            (subCat: ISUBCATEGORY) =>
-              subCat.custom_url === prod.subcategory?.custom_url
-          ) && prod.status === 'PUBLISHED'
-      ) || [];
+        products = [...products, ...filteredProd];
+      });
 
-    products = [...products, ...filteredProd];
-  });
-
-  findCategory.products = products;
-} else {
-  // 👉 Default behavior (including FLOOR SMART)
-  findCategory.products =
-    findCategory?.products?.filter(
-      (prod: IProduct) => prod.status === 'PUBLISHED'
-    ) || [];
-}
+      findCategory.products = products;
+    } else {
+      // 👉 Default behavior (including FLOOR SMART)
+      findCategory.products =
+        findCategory?.products?.filter(
+          (prod: IProduct) => prod.status === 'PUBLISHED'
+        ) || [];
+    }
 
     const filteredCategories =
       categories
-        .filter((value: ICategory) => value?.name?.trim() !== 'ACCESSORIES' )
+        .filter((value: ICategory) => value?.name?.trim() !== 'ACCESSORIES')
         .sort((a: ICategory, b: ICategory) => {
           const indexA = staticMenuItems.findIndex(
             (item) => item.label.toLowerCase() === a.name.trim().toLowerCase()
@@ -169,9 +167,6 @@ if (reCallFlag && !isFloorSmart) {
         cat.name === 'FLOOR SMART'
     );
 
-    console.log('smartFloorCategorysmartFloorCategory', smartFloorCategory);
-
-    console.log(slug,"slugslug")
     return (
       <Category
         catgories={filteredCategories}
