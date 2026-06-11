@@ -1,13 +1,9 @@
 import { useEffect, useState } from 'react';
 import Navbar from './navbar';
-import { IProduct } from 'types/prod';
-import { Category } from 'types/cat';
 import TopNav from './top-nav';
 import { staticCategories, staticProducts } from '@/data/header';
 
 const Header = () => {
-  const [categories] = useState<Category[]>(staticCategories);
-  const [products] = useState<IProduct[]>(staticProducts);
   const [isLoading] = useState<boolean>(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -30,8 +26,8 @@ const Header = () => {
     >
       <TopNav />
       <Navbar
-        categories={categories}
-        products={products}
+        categories={staticCategories}
+        products={staticProducts}
         isLoading={isLoading}
         isScrolled={isScrolled}
       />

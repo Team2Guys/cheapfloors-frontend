@@ -109,19 +109,19 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
                 products={
                   item.label === 'Accessories'
                     ? (
-                        categories?.find(
-                          (cat) =>
-                            cat.name?.trim().toLowerCase() === 'accessories'
-                        )?.accessories || []
-                      ).sort((a: IProduct, b: IProduct) => {
-                        const indexA = defaultOrder.indexOf(a.name);
-                        const indexB = defaultOrder.indexOf(b.name);
-                        const safeIndexA =
-                          indexA === -1 ? Number.MAX_SAFE_INTEGER : indexA;
-                        const safeIndexB =
-                          indexB === -1 ? Number.MAX_SAFE_INTEGER : indexB;
-                        return safeIndexA - safeIndexB;
-                      })
+                      categories?.find(
+                        (cat) =>
+                          cat.name?.trim().toLowerCase() === 'accessories'
+                      )?.accessories || []
+                    ).sort((a: IProduct, b: IProduct) => {
+                      const indexA = defaultOrder.indexOf(a.name);
+                      const indexB = defaultOrder.indexOf(b.name);
+                      const safeIndexA =
+                        indexA === -1 ? Number.MAX_SAFE_INTEGER : indexA;
+                      const safeIndexB =
+                        indexB === -1 ? Number.MAX_SAFE_INTEGER : indexB;
+                      return safeIndexA - safeIndexB;
+                    })
                     : []
                 }
               />
