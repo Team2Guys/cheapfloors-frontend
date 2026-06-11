@@ -149,7 +149,7 @@ const FreeSampleCheckout = () => {
           ? `${values.note || ''} [Marketing opt-out]`.trim()
           : values.note
       };
-      
+
       if (selectedShipping === 'self-collect') {
         const { data } = await initiateFreesample({
           variables: { createFreesample: orderData }
@@ -281,7 +281,7 @@ const FreeSampleCheckout = () => {
         <div className="w-full lg:w-[55%] xl:w-[70%]">
           <div className="bg-[#FAFAFA] py-3 px-4 text-center mb-4">
             <p className="text-[14px] font-bold text-black">
-              Order 5 Free Samples - Free of Charge
+              Order 5 Free Samples
             </p>
           </div>
 

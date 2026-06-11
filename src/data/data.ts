@@ -600,17 +600,17 @@ export const faqs: FAQItem[] = [
     answer: 'Easy Floors provides fast delivery across the UAE. Standard delivery typically takes two to three working days, while next-day express delivery is available in Dubai for urgent flooring orders.'
   },
   {
-    id: 3,
+    id: 5,
     question: 'Are Easy Floors products suitable for homes and commercial spaces?',
     answer: 'Yes, our flooring products are designed for both residential and commercial environments. Many businesses choose Easy Floors when searching for reliable flooring companies in UAE offering durable and stylish flooring.'
   },
   {
-    id: 3,
+    id: 6,
     question: 'Do Easy Floors products come with a warranty?',
     answer: 'Yes, Easy Floors flooring collections come with reliable warranties, including up to 15 years for residential use and around 5 years for commercial applications, ensuring long-term performance and peace of mind.'
   },
   {
-    id: 3,
+    id: 7,
     question: 'How can I get help choosing the right flooring?',
     answer: 'Our team is always ready to assist you through phone, email, or WhatsApp. As one of the trusted flooring companies in Dubai, we help customers choose the best flooring style for their space and budget.'
   }
@@ -743,156 +743,156 @@ export const faqspage: FAQ[] = [
     question: 'When can you walk on LVT flooring after the installation process?',
     answer:
       'Our planks have a four-sided click-lock system for easy installation, and you can walk on them right away after the installation process. However, you should wait 48 hours before walking on glue-down LVT flooring textures, although some manufacturers recommend waiting longer.',
-      category: 'General'
+    category: 'General'
   },
   {
     question: 'Is SPC flooring slippery?',
     answer:
       'SPC flooring features a nonslip surface material. Since SPC flooring has a low heat transfer coefficient, it provides excellent anti-skid properties. A few drops of water on SPC flooring will make it feel less slippery than ordinary tile and stone.',
-      category: 'General'
+    category: 'General'
   },
   {
     question: 'Is SPC flooring fireproof?',
     answer:
       'Fire-retardant SPC flooring is capable of withstanding flames and delaying the spread of fire. In some ways, this flooring type has stood the test of time over other types since it has proven to be more resistant to extreme temperatures.',
-      category: 'General'
+    category: 'General'
   },
   {
     question: 'What are the advantages of SPC flooring?',
     answer:
       'The dark or light tone wood grain finish of SPC flooring offers a classic and bold look. SPC floor coverings contain a pre-attached IXPE or EVA foam underlay for sound insulation and a soft underfoot feel. These are used in different residential and commercial buildings. It significantly reduces the need for frequent repairs and replacements, as well as guarantees the safety of children.',
-      category: 'General'
+    category: 'General'
   },
   {
     question: 'Does SPC flooring feel cold?',
     answer:
       `There's nothing better than SPC flooring underfoot, no matter what the weather is like. It is made of a stone polymer composite with wear layers, which maintains a neutral temperature in summer and a slight warmth in winter to retain heat. The warmth of this flooring makes stepping out of bed in a bedroom more comfortable than stepping on cold tiles. In homes with kids or older adults who may be sensitive to extreme temperatures, this feature is really handy.`,
-      category: 'General'
+    category: 'General'
   },
   {
     question: 'Is SPC or LVT flooring suitable for the UAE climate?',
     answer:
       `Yes. The UAE's humid and hot atmosphere is something that our Richmond SPC or LVT flooring is made to resist. It is a dependable option for both residential and commercial applications because of its heat- and water-resistant qualities. SPC and LVT provide long-term durability since they do not expand or contract in response to temperature variations like regular wood flooring does.`,
-      category: 'General'
+    category: 'General'
   },
-  
+
   {
     question:
       'How do I measure my room for flooring?',
     answer:
       'To measure your room, use a tape to record the length and width in metres. Multiply these two figures to calculate the total floor area in square metres. This helps you estimate how much flooring material you will need accurately.',
-       category: 'Measuring'
+    category: 'Measuring'
   },
   {
     question:
       'How much extra flooring should I order?',
     answer:
       'It’s recommended to add an extra 5–10% to your total flooring requirement. This allowance covers cutting, fitting adjustments, and material waste during installation, helping you avoid shortages and delays in completing your project.',
-       category: 'Measuring'
+    category: 'Measuring'
   },
   {
     question:
       'How do I measure an irregular or L-shaped room?',
     answer:
       'For irregular or L-shaped rooms, divide the space into smaller rectangular sections. Measure each section’s length and width separately, calculate their areas, and then add them together to get the total flooring area required.',
-       category: 'Measuring'
+    category: 'Measuring'
   },
   {
     question:
       'What tools do I need to measure my room?',
     answer:
       'You only need basic tools such as a measuring tape, a pencil, and paper to measure your room. These simple tools allow you to record accurate dimensions and calculate the required flooring area without needing professional equipment.',
-       category: 'Measuring'
+    category: 'Measuring'
   },
 
-   {
+  {
     question:
       ' Do you offer a professional measuring service?',
     answer:
       'Yes, we offer a professional measuring service for a refundable fee of AED 150. This amount is deducted when you place an order with us, ensuring accurate measurements and helping you choose the right flooring quantity for your space.',
-       category: 'Measuring'
+    category: 'Measuring'
   },
 
   {
     question: 'Can heavy furniture be placed on oak SPC flooring?',
     answer:
       `Yes. The strong and resilient core layer of oak SPC flooring allows it to support heavy furniture. Compared to thinner choices (3 mm), a thicker SPC core (5 mm or more) is better able to resist dents and warping. Because of its stability, the flooring won't buckle or move even when heavy furniture is placed on it. Further, SPC flooring is more durable and impact-resistant than laminate flooring, making it a better option for spaces with heavy furniture.`,
-      category: 'Product'
+    category: 'Product'
   },
-  
+
   {
     question: 'Is oak SPC flooring pet-friendly?',
     answer:
       `All of our durable floors are designed to withstand the rigours of kids and pets. Our flooring is completely free of formaldehyde, ensuring a safe and healthy indoor environment. We also have antibacterial coating on floors that provides excellent antibacterial properties, keeping your space clean and hygienic.`,
-      category: 'Product'
+    category: 'Product'
   },
 
-    {
+  {
     question: 'Does Polar LVT flooring fade under sunlight?',
     answer:
       `Our Polar LVT Flooring UAE does not fade under sunlight. We can use them for locations that receive direct sunlight, such as sunrooms or rooms with wide windows. The reason is that it contains UV protection, which prevents fading and discolouration caused by exposure to sunshine. The floors' deep antique tones remained after years of exposure to direct sunlight, giving the spaces an energetic and appealing look.`,
-      category: 'Product'
+    category: 'Product'
   },
 
-   {
+  {
     question: 'Can I use SPC flooring in the bathroom?',
     answer:
       `Of course. Because SPC flooring is water-resistant, it's a great option for bathrooms. It is resistant to warping, swelling, and moisture damage, unlike laminate or conventional wood. Even in regions with high humidity, its strong core and protective outer shell offer exceptional longevity. Selecting textured SPC planks will increase safety by preventing slippage in damp areas.`,
-      category: 'Product'
+    category: 'Product'
   },
   {
     question: 'Can you put SPC flooring on concrete?',
     answer:
       "We often receive this question from our customers. The answer is definitely yes. Stone polymer composite (SPC) looks great on concrete subfloors. Creating a solid foundation, it reduces the possibility of warping or buckling over time. So we have to use a completely flat surface for installation.",
-       category: 'Service'
+    category: 'Service'
   },
   {
     question: 'Can I install SPC flooring myself?',
     answer:
       "Yes. SPC flooring is an excellent option for do-it-yourself installation because of its simple 4-side click-lock mechanism. Before beginning, just make sure your subfloor is dry, clean, and level. With basic equipment like a rubber mallet, tape measure, and utility knife, the planks may be easily snapped together without the need for glue or nails. However, if you have any concerns or want a flawless finish, it's always a good idea to contact an expert.",
-       category: 'Service'
+    category: 'Service'
   },
   {
     question: 'Can I request samples?',
     answer:
       "Yes! We offer free flooring samples across our full range. Simply add the samples to your basket and checkout. Order up to 5 free samples delivered anywhere in the UAE so you can see and feel the quality before you buy.",
-       category: 'Service'
+    category: 'Service'
   },
-   {
+  {
     question: 'Is there a warranty on your products?',
     answer:
       "A luxury vinyl plank flooring manufacturer's warranty varies from product to product and is included with all of our flooring. Our polar products have a two-year commercial warranty and a five-year residential warranty, while our Richmond SPC and LVT floorings have a ten-year domestic warranty and a five-year commercial warranty.",
-       category: 'Service'
+    category: 'Service'
   },
   {
     question: 'How long does delivery take in the UAE?',
     answer:
       'We aim to deliver all orders across the mainland UAE within 2 to 3 working days. Delivery timelines may vary slightly depending on your location, but we strive to ensure a smooth and hassle-free experience from order placement to final delivery.',
-       category: 'Delivery'
+    category: 'Delivery'
   },
   {
     question: 'Do you offer express delivery in Dubai?',
     answer:
       'Yes, we offer express delivery within Dubai. Orders placed before the 1pm cut-off time are delivered on the next working day. This service is available for a fee of AED 150, ensuring fast and convenient delivery when you need it urgently.',
-       category: 'Delivery'
+    category: 'Delivery'
   },
   {
     question: 'Is delivery free for flooring orders?',
     answer:
       'Standard delivery is free within Dubai and for all other Emirates on orders above AED 2,000. For orders below AED 1,999 outside Dubai, a delivery fee of AED 200 applies, ensuring flexible and cost-effective shipping options.',
-       category: 'Delivery'
+    category: 'Delivery'
   },
   {
     question: 'Can I collect my order myself?',
     answer:
       'Yes, you can choose to self-collect your order from our warehouse. Collection is available Monday to Saturday between 9am and 6pm at our Al Quoz Industrial Area 4 location in Dubai, offering a convenient alternative to delivery.',
-       category: 'Delivery'
+    category: 'Delivery'
   },
-   {
+  {
     question: 'Who can I contact for delivery questions?',
     answer:
       'If you have any questions or need clarification about your delivery, you can contact our team at cs@easyfloors.ae. We are always ready to assist you and ensure your order reaches you on time without any complications.',
-       category: 'Delivery'
+    category: 'Delivery'
   },
 ];
 
@@ -928,7 +928,7 @@ export const sampleGridData: SampleGridData[] = [
     id: 1,
     title: 'Try Before You Buy',
     description:
-      'Order up to 5 free samples, delivered FREE of charge across the UAE to find the perfect match.',
+      'Order up to 5 free samples, delivered 15 Dhs of charge across the UAE to find the perfect match.',
     buttonText: 'Order free samples',
     image: '/assets/images/aboutus/order-free-sample.webp',
     alt: 'Free sample order',
@@ -1358,7 +1358,7 @@ export const accessoriesFaqs: FAQItem[] = [
     question: "Are Easy Floors accessories suitable for both residential and commercial spaces?",
     answer: "Yes, Easy Floors flooring accessories are designed for both residential and commercial applications. They are made with high-quality materials to ensure durability, long-lasting performance, and a stylish finish in any environment."
   },
-   {
+  {
     id: 5,
     question: "Can DIY users easily install Easy Floors accessories?",
     answer: "Absolutely. Easy Floors accessories are suitable for both professional installers and DIY enthusiasts. Their practical designs make installation straightforward while ensuring a clean and attractive flooring finish."

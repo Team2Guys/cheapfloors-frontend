@@ -58,7 +58,7 @@ const DropdownUser = () => {
       console.error('Logout failed', err);
     }
   };
-  console.log(loggedInUser,'loggedInUser')
+
 
   return (
     <div className="relative">
@@ -97,9 +97,8 @@ const DropdownUser = () => {
         ref={dropdown}
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
-        className={`absolute right-0 mt-1 w-40 flex flex-col rounded-sm border bg-white  dark:bg-black dark:text-white  dark:border-blue-50 ${
-          dropdownOpen === true ? 'block' : 'hidden'
-        }`}
+        className={`absolute right-0 mt-1 w-40 flex flex-col rounded-sm border bg-white  dark:bg-black dark:text-white  dark:border-blue-50 ${dropdownOpen === true ? 'block' : 'hidden'
+          }`}
       >
         <button
           className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base text-black dark:text-white "

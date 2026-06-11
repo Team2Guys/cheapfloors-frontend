@@ -38,16 +38,16 @@ const Checkbox = ({
         name={name}
         checked={isChecked}
         onChange={onChange}
+        readOnly={!onChange}
         required={required}
         className="hidden"
         disabled={disabled}
       />
       <div
-        className={`size-6 shrink-0 border-2 flex_center transition-colors duration-200 rounded-[2px] ${
-          isChecked
+        className={`size-6 shrink-0 border-2 flex_center transition-colors duration-200 rounded-[2px] ${isChecked
             ? 'bg-primary border-primary text-white'
             : 'bg-white border-primary'
-        }`}
+          }`}
       >
         {isChecked && (
           <svg
@@ -80,9 +80,8 @@ const Checkbox = ({
       </div>
       {children && (
         <span
-          className={`text-black font-inter ${
-            isChecked ? 'font-medium' : 'font-normal'
-          }`}
+          className={`text-black font-inter ${isChecked ? 'font-medium' : 'font-normal'
+            }`}
         >
           {children}
         </span>

@@ -22,7 +22,7 @@ export async function proxy(req: NextRequest) {
         301
       );
     }
-    
+
     const segments = cleanPath.split('/').filter(Boolean);
     // ✅ Only apply 410
     if (segments.length === 1) {
@@ -44,7 +44,6 @@ export async function proxy(req: NextRequest) {
     const isAuthRoute = pathname === '/dashboard/Admin-login';
     const isProtectedRoute = pathname.startsWith('/dashboard') && !isAuthRoute;
 
-    // console.log(isProtectedRoute, 'isAuthRoute', isAuthRoute);
 
     let validToken = false;
     if (token) {
