@@ -928,7 +928,7 @@ export const sampleGridData: SampleGridData[] = [
     id: 1,
     title: 'Try Before You Buy',
     description:
-      'Order up to 5 free samples, delivered FREE of charge across the UAE to find the perfect match.',
+      'Order up to 5 free samples, delivered 15 Dhs of charge across the UAE to find the perfect match.',
     buttonText: 'Order free samples',
     image: '/assets/images/aboutus/order-free-sample.webp',
     alt: 'Free sample order',
