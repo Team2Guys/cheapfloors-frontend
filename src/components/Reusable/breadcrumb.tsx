@@ -115,18 +115,19 @@ const Breadcrumb = ({
         </Container>
       </div>
       {image && (
-        <div className="relative aspect-[1440/477]">
+        <div className="relative aspect-[1440/450]">
           <Image
-            className={`object-fill w-full ${imageClass}`}
+            className={`w-full ${imageClass}`}
             fill
             src={image}
             alt={altText || title || 'breadcrumb-image'}
-            sizes="(max-width: 640px) 250px, (max-width: 1024px) 100vw, 1400px"
+            sizes="100vw"
             priority
             fetchPriority="high"
+            quality={100}
           />
           {!isImagetext && (
-            <div className="absolute inset-0 flex_center text-white text-center">
+            <div className="absolute inset-0 z-10 flex_center text-white text-center">
               {useHeadingTag ? (
                 <h1 className="text-25 md:text-[42.6px] font-bold"></h1>
               ) : (
