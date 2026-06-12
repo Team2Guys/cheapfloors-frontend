@@ -20,59 +20,68 @@ type TestimonialProps = {
     };
 };
 
-const dummyReviewChunks = [
+type ReviewItem = {
+    id: number;
+    name: string;
+    reviewDate: string;
+    starRating: number;
+    ReviewsDescription: string;
+    posterImageUrl?: { imageUrl: string };
+};
+
+const dummyReviewChunks: ReviewItem[][] = [
     [
         {
             id: 1,
-            name: "Richard Roberts",
-            reviewDate: "2026-02-07",
+            name: "Aisha Rahman",
+            reviewDate: "2026-05-28",
             starRating: 5,
-            ReviewsDescription: "We want to the shop and wore welcomed with great service, the installation process was very clem an...",
-            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+            ReviewsDescription: "Ordered the herringbone SPC for our villa in Arabian Ranches. The free samples arrived in two days and the colour matched exactly what I saw online. The installation team was punctual and tidy and finished the whole living room in a single day.",
+            posterImageUrl:  { imageUrl: "/assets/images/dummy-avatar.jpg" }
         },
         {
             id: 2,
-            name: "Sarah Jenkins",
-            reviewDate: "2026-02-08",
+            name: "James Whitfield",
+            reviewDate: "2026-05-14",
             starRating: 5,
-            ReviewsDescription: "Excellent service from start to finish. Highly recommended for flooring. The installation was seamless.",
-            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+            ReviewsDescription: "Genuinely the best price I found in Dubai for LVT. The click-lock system is so easy I fitted the bedroom myself over a weekend, no glue or nails needed. Quality feels premium, not budget at all.",
+            posterImageUrl:  { imageUrl: "/assets/images/dummy-avatar.jpg" }
         }
     ],
     [
         {
             id: 3,
-            name: "Fenne De Visser",
-            reviewDate: "2026-02-07",
+            name: "Fatima Al Mansoori",
+            reviewDate: "2026-04-30",
             starRating: 5,
-            ReviewsDescription: "It was a great experience with Fauzan, Jaspreet, and Thajudeen, the guys from Two Guys. The installation was seamless.",
-            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+            ReviewsDescription: "Beautiful flooring and great service from start to finish. The team helped me pick the right plank for a high-traffic hallway and let me split the payment with Tabby. Highly recommend Easy Floors.",
+            posterImageUrl:  { imageUrl: "/assets/images/dummy-avatar.jpg" }
         },
         {
             id: 4,
-            name: "Mike Tyson",
-            reviewDate: "2026-02-09",
+            name: "Daniel Pereira",
+            reviewDate: "2026-04-12",
             starRating: 4,
-            ReviewsDescription: "It was a great experience with Fauzan, Jaspreet, and Thajudeen, the guys from Iwa Guys. The installation was seamless.",
-            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+            ReviewsDescription: "Really happy with the SPC flooring, it looks exactly like the photos. Delivery took one extra day but customer service kept me updated the whole time. Would order from them again.",
+            posterImageUrl:  { imageUrl: "/assets/images/dummy-avatar.jpg" }
         }
     ],
     [
         {
             id: 5,
-            name: "Muriel Cressot",
-            reviewDate: "2026-02-06",
+            name: "Sana Khan",
+            reviewDate: "2026-03-22",
             starRating: 5,
-            ReviewsDescription: "I recently had curtains installed by Two Guys Home Furnishings Abdul and team, and the experience wa...",
-            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+            ReviewsDescription: "We redid our apartment in JVC with their wood-effect vinyl and it completely transformed the space. Scratch-resistant and waterproof, which is perfect with two kids and a dog. Worth every dirham.",
+            posterImageUrl:  { imageUrl: "/assets/images/dummy-avatar.jpg" }
         },
         {
             id: 6,
-            name: "Anna Smith",
-            reviewDate: "2026-02-10",
+            name: "Mohammed Saeed",
+            reviewDate: "2026-03-05",
             starRating: 5,
-            ReviewsDescription: "Loved the quality of the LVT flooring. Absolutely fantastic experience with the installation team.",
-            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+            ReviewsDescription: "Excellent experience. Visited the showroom, got honest advice, and the installers were professional and respectful of our home. The herringbone finish looks absolutely stunning.",
+            posterImageUrl:  { imageUrl: "/assets/images/dummy-avatar.jpg" }
         }
     ]
 ];
