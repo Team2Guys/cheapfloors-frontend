@@ -9,6 +9,7 @@ export const validStaticPaths = [
   '/dashboard',
   '/easy-payment',
   '/faqs',
+  '/flooring-supplier-uae',
   '/forgot-password',
   '/free-sample',
   // '/freesample',
@@ -25,6 +26,7 @@ export const validStaticPaths = [
   '/signup',
   '/terms-and-conditions',
   '/thank-you',
+  '/thankyou',
   '/track-order',
   '/what-am-i',
   '/wishlist'
