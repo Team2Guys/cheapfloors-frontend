@@ -249,6 +249,26 @@ export const CREATE_ADMIN = gql`
   }
 `;
 
+export const CREATE_B2B_QUOTE = gql`
+  mutation Created_b2bQuote($createB2bQuoteInput: CreateB2bQuoteInput!) {
+    Created_b2bQuote(createB2bQuoteInput: $createB2bQuoteInput) {
+      id
+      fullName
+      phone
+      email
+      companyName
+      role
+      quantity
+      productRequired
+      projectStatus
+      budgetRange
+      additionalInfo
+      tradeLicense
+      trnNumber
+    }
+  }
+`;
+
 export const CONTACT_US_EMAIL_MUTATION = gql`
   mutation ContactEmail($contactUsEmail: contactUsEmailInput!) {
     Contact_email(contactUsEmail: $contactUsEmail) {

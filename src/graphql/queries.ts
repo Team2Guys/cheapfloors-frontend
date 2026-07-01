@@ -712,3 +712,24 @@ export const FIND_ONE_USER = gql`
     }
   }
 `;
+
+export const FIND_B2B_QUOTE = gql`
+  query B2bQuote($id: Int!) {
+    b2bQuote(id: $id) {
+      id
+      fullName
+      phone
+      email
+      companyName
+      role
+      quantity
+      productRequired
+      projectStatus
+      budgetRange
+      additionalInfo
+      tradeLicense
+      trnNumber
+      createdAt
+    }
+  }
+`;

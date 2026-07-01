@@ -9,11 +9,15 @@ import {
   FaCloudUploadAlt,
   FaLock,
   FaChevronDown,
-  FaPaperPlane,
 } from 'react-icons/fa';
 import Container from '../common/container/Container';
 import { FaRegCircleCheck } from 'react-icons/fa6';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useMutation } from '@apollo/client';
+import { CREATE_B2B_QUOTE } from 'graphql/mutations';
+import { uploadPhotosToBackend } from 'utils/helperFunctions';
+import { showAlert } from 'utils/Alert';
 
 const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER?.replace('+', '').replace(/\s+/g, '')}`;
 
@@ -100,6 +104,8 @@ const SelectField = ({ label, name, options, placeholder, required, value, onCha
 
 export const FlooringQuoteForm = () => {
   const [fileName, setFileName] = useState<string | null>(null);
+  const router = useRouter();
+  const [createB2bQuote] = useMutation(CREATE_B2B_QUOTE);
 
   const formik = useFormik({
     initialValues: {
@@ -127,17 +133,60 @@ export const FlooringQuoteForm = () => {
       projectStatus: Yup.string(),
       budget: Yup.string(),
       additionalInfo: Yup.string(),
-      tradeLicense: Yup.mixed().required('Trade license is required'),
+      tradeLicense: Yup.mixed()
+        .required('Trade license is required')
+        .test('fileSize', 'File must be smaller than 50 MB', (file) =>
+          file ? (file as File).size <= 50 * 1024 * 1024 : true,
+        ),
       trn: Yup.string()
         .required('TRN Number is required')
         .matches(/^[0-9]+$/, 'TRN must only contain numbers')
         .length(15, 'TRN must be exactly 15 digits'),
     }),
-    onSubmit: (values) => {
-      console.log('Form Submitted:', values);
-      // alert('Form submitted successfully!');
-      // formik.resetForm();
-      // setFileName(null);
+    onSubmit: async (values, { setSubmitting, resetForm }) => {
+      try {
+        // Upload the trade license file first, store the returned upload object.
+        let tradeLicense: { imageUrl: string; public_id: string } | null = null;
+        if (values.tradeLicense) {
+          const uploaded = await uploadPhotosToBackend([
+            values.tradeLicense as unknown as File,
+          ]);
+          tradeLicense = uploaded?.[0] || null;
+        }
+
+        const { data } = await createB2bQuote({
+          variables: {
+            createB2bQuoteInput: {
+              fullName: values.fullName,
+              phone: values.phone,
+              email: values.email,
+              companyName: values.company,
+              role: values.role,
+              quantity: values.quantity,
+              productRequired: values.product ? [values.product] : [],
+              projectStatus: values.projectStatus,
+              budgetRange: values.budget,
+              additionalInfo: values.additionalInfo,
+              tradeLicense,
+              trnNumber: values.trn,
+            },
+          },
+        });
+
+        resetForm();
+        setFileName(null);
+
+        const quoteId = data?.Created_b2bQuote?.id;
+        router.push(`/thankyou${quoteId ? `?id=${quoteId}` : ''}`);
+      } catch (error) {
+        console.error('Failed to submit B2B quote:', error);
+        showAlert({
+          title: 'Failed to submit your request. Please try again.',
+          icon: 'error',
+        });
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 
@@ -206,7 +255,7 @@ export const FlooringQuoteForm = () => {
               </span>
               <h2 className="mt-4 text-26 font-bold md:text-30">Request a Flooring Quote</h2>
               <p className="mt-3 text-13 leading-relaxed text-white/65 md:text-14">
-                Please complete the form below to receive a custom B2B quote within 4 business hours. Once approved, you'll benefit from preferential trade rates and be assigned a dedicated relationship manager to assist with quotations, technical specs, and delivery lead times. A Trade License and a TRN Certificate are required to confirm B2B eligibility.
+                Please complete the form below to receive a custom B2B quote within 4 business hours. Once approved, you&apos;ll benefit from preferential trade rates and be assigned a dedicated relationship manager to assist with quotations, technical specs, and delivery lead times. A Trade License and a TRN Certificate are required to confirm B2B eligibility.
               </p>
             </div>
 
@@ -386,7 +435,7 @@ export const FlooringQuoteForm = () => {
                   disabled={formik.isSubmitting}
                   className="mt-2 flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-4 text-16 font-bold text-secondary transition hover:bg-primary/90 md:col-span-2 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  Get Flooring Quote
+                  {formik.isSubmitting ? 'Submitting...' : 'Get Flooring Quote'}
                   <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 16V0L19 8L0 16ZM2 13L13.85 8L2 3V6.5L8 8L2 9.5V13ZM2 13V8V3V6.5V9.5V13Z" fill="#271900" />
                   </svg>
