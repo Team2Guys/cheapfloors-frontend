@@ -28,14 +28,21 @@ const PathnameWrapper = ({ children }: { children: ReactNode }) => {
     '/checkout',
     '/contact-us',
     '/track-order',
-    '/help-with-installations'
+    '/help-with-installations',
+    '/thankyou',
+    '/flooring-supplier-uae',
+
   ];
+
+  const hideFooterPages = [
+    '/thankyou'
+  ]
 
   return (
     <ApolloProvider client={client}>
       <>
         {withoutHeaderPages.includes(pathname) ||
-        pathname.split('/').includes('dashboard') ? (
+          pathname.split('/').includes('dashboard') ? (
           pathname === '/dashboard/Admin-login' ? (
             <Header />
           ) : null
@@ -48,8 +55,8 @@ const PathnameWrapper = ({ children }: { children: ReactNode }) => {
           {children}
         </div>
         {pathname !== '/' &&
-        (withoutHeaderPages.includes(pathname) ||
-          pathname.split('/').includes('dashboard')) ? (
+          (withoutHeaderPages.includes(pathname) ||
+            pathname.split('/').includes('dashboard')) ? (
           pathname === '/dashboard/Admin-login' ? (
             <Footer />
           ) : null
@@ -61,7 +68,8 @@ const PathnameWrapper = ({ children }: { children: ReactNode }) => {
               <Image src='/assets/images/clearance/Banner_2.webp' alt='sale bannar' fill />
             </Link>
             )} */}
-            <Footer />
+            {!hideFooterPages.includes(pathname) && <Footer />}
+
           </>
         )}
       </>
