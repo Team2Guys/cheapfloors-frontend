@@ -149,7 +149,7 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
             isLoading={isLoading}
           />
         </div>
-        <div className="w-2/12 lg:w-[32%] 2xl:w-[30%] text-end flex_between gap-2 max-lg:justify-end">
+        <div className="relative w-2/12 lg:w-[32%] 2xl:w-[30%] text-end flex_between gap-2 max-lg:justify-end">
           <Link
             href="/measurement-appointment"
             aria-label="Book appointment"
@@ -158,7 +158,8 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
             Book Your Appointment
           </Link>
           <SearchBar
-            className="lg:block hidden"
+            className="hidden lg:flex"
+            expandable
             productData={products}
             isLoading={isLoading}
           />

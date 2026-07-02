@@ -106,6 +106,11 @@ const Card: React.FC<productCardProps> = ({
 
   const discountedPrice = (product as IProduct).discountPrice;
   const hasDiscount = !!discountedPrice && discountedPrice > 0;
+  const originalPrice = Number((product as IProduct).price);
+  const discountPercentage =
+    hasDiscount && originalPrice > 0
+      ? Math.round(((originalPrice - Number(discountedPrice)) / originalPrice) * 100)
+      : 0;
 
   return (
     <div
@@ -133,6 +138,11 @@ const Card: React.FC<productCardProps> = ({
         {isAccessories && isSoldOut && (
           <div className="bg-red-500 text-white text-xs absolute px-2 py-1 right-0 top-1 z-10">
             Sold Out
+          </div>
+        )}
+        {hasDiscount && discountPercentage > 0 && (
+          <div className="bg-primary text-white text-[10px] xsm:text-xs font-semibold absolute px-2 py-1 left-0 top-1 z-10">
+            {discountPercentage}% OFF
           </div>
         )}
         {!sldier && (
@@ -258,7 +268,7 @@ const Card: React.FC<productCardProps> = ({
               <span className="text-sm md:text-base font-normal ml-1">{isAccessories ? 'Per Piece' : '/m²'}</span>
             </p>
             {hasDiscount && (
-              <p className="text-sm font-normal text-gray-500 flex items-center">
+              <p className="order-first text-sm font-normal text-gray-500 flex items-center">
                 {/* <span className="mr-1">before</span> */}
                 <span className="line-through flex items-center">
                   <span className="font-currency font-normal text-xl mr-1 mb-0.5">
