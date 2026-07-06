@@ -178,24 +178,6 @@ const Card: React.FC<productCardProps> = ({
                 Quick View
               </span>
             </div>
-            {!isAccessories && (
-              <div className="relative">
-                <button
-                  className="bg-white p-1 xsm:p-2 shadow-sm rounded-sm hover:text-primary transition"
-                  aria-label="add free sample"
-                  onClick={handleAddSample}
-                  onMouseEnter={() => setShowCaption('Add Sample')}
-                  onMouseLeave={() => setShowCaption('')}
-                >
-                  <FreeSample isCard />
-                </button>
-                <span
-                  className={`absolute right-10 top-1 bg-gray-800 text-white text-[10px] px-2 py-1 rounded transition whitespace-nowrap z-10 pointer-events-none ${showCaption === 'Add Sample' ? 'opacity-100' : 'opacity-0'}`}
-                >
-                  Add Sample
-                </span>
-              </div>
-            )}
           </div>
         )}
       </div>
@@ -380,6 +362,16 @@ const Card: React.FC<productCardProps> = ({
           >
             Shop Now
           </Link>
+        )}
+
+        {!sldier && !isAccessories && (
+          <button
+            className="w-[42px] h-[42px] md:w-[46px] md:h-[46px] flex-shrink-0 flex items-center justify-center rounded-xl text-primary hover:bg-primary hover:text-white transition bg-white"
+            aria-label="Add free sample"
+            onClick={handleAddSample}
+          >
+            <FreeSample isCard className="size-3.5 min-[1150px]:size-4 xl:size-5" />
+          </button>
         )}
 
         {!sldier && (

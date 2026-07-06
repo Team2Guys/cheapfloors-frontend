@@ -120,7 +120,6 @@ export interface SubCategoryProps {
   categoryData?: Category;
   subCategoryData?: Category;
   setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>;
-  isClearence?: boolean;
 }
 export interface SubSection {
   subHeading: string;

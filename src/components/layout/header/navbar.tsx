@@ -15,6 +15,12 @@ import { usePathname } from 'next/navigation';
 import { IProduct } from 'types/prod';
 import { defaultOrder } from 'data/accessory';
 
+// Display-only: drop the leading "Floor" from "Floor Smart" labels
+// (e.g. "Floor Smart" -> "Smart", "Floor Smart SPC Eco" -> "Smart SPC Eco").
+// Leaves other labels like "SPC Flooring" / "LVT Flooring" untouched.
+const formatMenuLabel = (label: string) =>
+  label?.replace(/^floor\s+smart/i, 'Smart') ?? label;
+
 const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
   const [isOpen, setIsOpen] = useState(false);
   const [openMenus, setOpenMenus] = useState<{ [key: string]: boolean }>({});
@@ -60,7 +66,7 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
         return {
           ...staticItem,
           submenu: subcategories.map((sub) => ({
-            label: sub.name,
+            label: formatMenuLabel(sub.name),
             href: `/${sub?.category?.RecallUrl || matchedCategory.RecallUrl}/${sub.custom_url}`,
             image: sub.posterImageUrl?.imageUrl || '/assets/default-image.png',
             price: sub.price
@@ -103,7 +109,7 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
             {menuItems.map((item, index) => (
               <Megamenu
                 key={index}
-                label={item.label}
+                label={formatMenuLabel(item.label)}
                 href={item.href}
                 submenu={item.submenu}
                 products={
@@ -175,7 +181,7 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
                       className={`text-sm font-semibold w-fit whitespace-nowrap ${pathname === `/${item.href}` ? 'bg-gray-light' : ''}`}
                       onClick={() => setIsOpen(false)}
                     >
-                      {item.label}
+                      {formatMenuLabel(item.label)}
                     </Link>
 
                     {/* Toggle for Accordion */}

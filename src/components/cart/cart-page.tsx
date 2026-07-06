@@ -1,7 +1,6 @@
 'use client';
 import Container from 'components/common/container/Container';
 import PaymentMethod from 'components/product-detail/payment';
-import { paymentcard } from 'data/cart';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState, useEffect, ChangeEvent } from 'react';
@@ -18,7 +17,6 @@ import { emirates, generateSlug } from 'data/data';
 import Accordion from 'components/ui/accordion';
 import { showAlert } from 'utils/Alert';
 import { formatAED } from 'utils/helperFunctions';
-import TrustBadges from '../product-detail/trust-badges';
 interface CartPageProps {
   products: IProduct[];
   accessories?: IProduct[];
@@ -46,6 +44,20 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
 
   const normalizeColor = (value?: string | null) =>
     (value || '').trim().toLowerCase();
+
+  const isAccessoryCartItem = (item: ICart) =>
+    item.category?.toLowerCase().trim() === 'accessories' ||
+    item.category === 'Accessory';
+
+  const getFlooringInstallationRate = (item: ICart) =>
+    item?.name?.toLowerCase()?.includes('herringbone') ? 35 : 25;
+
+  // Installation cost: AED 35 per piece for accessories, otherwise per-sqm
+  // (AED 35 for herringbone, AED 25 for other flooring).
+  const getInstallationCost = (item: ICart) =>
+    isAccessoryCartItem(item)
+      ? (item.requiredBoxes || 0) * 35
+      : (item.squareMeter || 0) * getFlooringInstallationRate(item);
 
   // The colour name of a flooring cart item: its selected colour, falling back
   // to the suffix of names like "Polar SPC Eco - Chestnut".
@@ -355,12 +367,9 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
       }
       let newInstallationCost = 0;
       if (item.addInstallation) {
-        const installationRate = item?.name
-          .toLowerCase()
-          ?.includes('herringbone')
-          ? 35
-          : 25;
-        newInstallationCost = newSquareMeter * installationRate;
+        newInstallationCost = isAccessoryCartItem(item)
+          ? newRequiredBoxes * 35
+          : newSquareMeter * getFlooringInstallationRate(item);
       }
 
       const newTotalPrice =
@@ -518,12 +527,9 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
       }
       let newInstallationCost = 0;
       if (product.addInstallation) {
-        const installationRate = product?.name
-          .toLowerCase()
-          ?.includes('herringbone')
-          ? 35
-          : 25;
-        newInstallationCost = quantity * installationRate;
+        newInstallationCost = isAccessoryCartItem(product)
+          ? newRequiredBoxes * 35
+          : quantity * getFlooringInstallationRate(product);
       }
 
       const newTotalPrice = (product.price || 0) * quantity;
@@ -724,8 +730,9 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
     const targetItem = targetItemIndex !== -1 ? { ...cartItems[targetItemIndex] } : null;
 
     // 2️⃣ Add installation
-    const installationRate = existingItem?.name?.toLowerCase()?.includes('herringbone') ? 35 : 25;
-    const installationCost = existingItem.squareMeter * installationRate;
+    const installationCost = isAccessoryCartItem(existingItem)
+      ? existingItem.requiredBoxes * 35
+      : existingItem.squareMeter * getFlooringInstallationRate(existingItem);
     existingItem.totalPrice += installationCost;
     existingItem.installationCost = installationCost;
     existingItem.addInstallation = true;
@@ -1069,7 +1076,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                               {!item.isfreeSample && (
                                 <div className="mt-2 xl:mt-4 hidden xl:block">
                                   <div className={`border ${item.addInstallation ? 'border-[#ffb81c]' : 'border-[#e0e0e0]'} rounded-lg flex items-center justify-between p-2 md:p-3 w-full`}>
-                                    <div className="flex items-center gap-2 md:gap-3">
+                                    <label className="flex items-center gap-2 md:gap-3 cursor-pointer">
                                       <input
                                         type="checkbox"
                                         checked={item.addInstallation}
@@ -1083,7 +1090,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                                         className="w-4 h-4 md:w-5 md:h-5 accent-[#ffb81c] cursor-pointer"
                                       />
                                       <span className="font-semibold text-[15px]">Installation Charges</span>
-                                    </div>
+                                    </label>
                                     <div className={`${item.addInstallation ? 'bg-[#ffb81c] text-black' : 'bg-gray-200 text-gray-500'} font-bold rounded-full px-4 py-1.5 text-[14px] shadow-sm flex items-center gap-1 transition`}>
                                       <span className="font-currency font-normal text-[18px]"></span>
                                       <span>{formatAED(item.installationCost || (item.squareMeter * (item?.name?.toLowerCase()?.includes('herringbone') ? 35 : 25)))}</span>
@@ -1098,7 +1105,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                           {!item.isfreeSample && (
                             <div className="mt-4 block xl:hidden w-full">
                               <div className={`border ${item.addInstallation ? 'border-[#ffb81c]' : 'border-[#e0e0e0]'} rounded-md flex items-center justify-between p-3 w-full`}>
-                                <div className="flex items-center gap-3">
+                                <label className="flex items-center gap-3 cursor-pointer">
                                   <input
                                     type="checkbox"
                                     checked={item.addInstallation}
@@ -1112,7 +1119,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                                     className="w-[18px] h-[18px] accent-[#ffb81c] cursor-pointer"
                                   />
                                   <span className="font-medium text-[15px] text-black">Installation<br />Charges</span>
-                                </div>
+                                </label>
                                 <div className={`${item.addInstallation ? 'bg-[#ffb81c] text-black' : 'bg-gray-200 text-gray-500'} font-bold rounded-full px-4 py-1.5 text-[15px] flex items-center gap-1 transition`}>
                                   <span className="font-currency font-normal text-[18px]"></span>
                                   <span>{formatAED(item.installationCost || (item.squareMeter * (item?.name?.toLowerCase()?.includes('herringbone') ? 35 : 25)))}</span>
@@ -1313,11 +1320,11 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                                 >
                                   {item.name}
                                 </Link>
-                                <div className="text-[#000000] text-sm mt-1">
+                                <div className="text-[#000000] text-sm mt-0.5">
                                   Price:{' '} <span className="font-currency text-lg font-normal"></span> {formatAED(item.price ?? 0)}/Piece
                                 </div>
 
-                                <div className="mt-2 text-sm text-gray-600 space-y-1">
+                                <div className="mt-0.5 text-sm text-gray-600 space-y-1">
                                   <p>
                                     Color:{' '}
                                     <span className="font-semibold text-black">
@@ -1422,6 +1429,56 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                                   </svg>
                                 </button>
                               </div>
+                            </div>
+
+                            {/* Installation charges (accessory, Desktop) */}
+                            <div className="mt-2 xl:mt-4 hidden xl:block">
+                              <div className={`border ${item.addInstallation ? 'border-[#ffb81c]' : 'border-[#e0e0e0]'} rounded-lg flex items-center justify-between p-2 md:p-3 w-full`}>
+                                <label className="flex items-center gap-2 md:gap-3 cursor-pointer">
+                                  <input
+                                    type="checkbox"
+                                    checked={item.addInstallation}
+                                    onChange={(e) => {
+                                      if (e.target.checked) {
+                                        handleAddInstallation(item);
+                                      } else {
+                                        handleRemoveInstallation(item);
+                                      }
+                                    }}
+                                    className="w-4 h-4 md:w-5 md:h-5 accent-[#ffb81c] cursor-pointer"
+                                  />
+                                  <span className="font-semibold text-[15px]">Installation Charges</span>
+                                </label>
+                                <div className={`${item.addInstallation ? 'bg-[#ffb81c] text-black' : 'bg-gray-200 text-gray-500'} font-bold rounded-full px-4 py-1.5 text-[14px] shadow-sm flex items-center gap-1 transition`}>
+                                  <span className="font-currency font-normal text-[18px]"></span>
+                                  <span>{formatAED(item.installationCost || getInstallationCost(item))}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Installation charges (accessory, Mobile) */}
+                        <div className="mt-4 block xl:hidden w-full">
+                          <div className={`border ${item.addInstallation ? 'border-[#ffb81c]' : 'border-[#e0e0e0]'} rounded-md flex items-center justify-between p-2 md:p-3 w-full`}>
+                            <label className="flex items-center gap-2 md:gap-3 cursor-pointer">
+                              <input
+                                type="checkbox"
+                                checked={item.addInstallation}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    handleAddInstallation(item);
+                                  } else {
+                                    handleRemoveInstallation(item);
+                                  }
+                                }}
+                                className="w-[18px] h-[18px] accent-[#ffb81c] cursor-pointer"
+                              />
+                              <span className="font-semibold text-[15px] text-black">Installation Charges</span>
+                            </label>
+                            <div className={`${item.addInstallation ? 'bg-[#ffb81c] text-black' : 'bg-gray-200 text-gray-500'} font-bold rounded-full px-4 py-1.5 text-[14px] shadow-sm flex items-center gap-1 transition`}>
+                              <span className="font-currency font-normal text-[18px]"></span>
+                              <span>{formatAED(item.installationCost || getInstallationCost(item))}</span>
                             </div>
                           </div>
                         </div>
@@ -1634,7 +1691,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
               >
                 Proceed to Checkout
               </Link>
-              <TrustBadges />
+              {/* <TrustBadges /> */}
 
             </div>
           </div>

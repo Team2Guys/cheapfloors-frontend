@@ -17,6 +17,7 @@ import Faqs from 'components/Faqs/Faqs';
 import Testimonial from '@/components/Testimonial/testimonial';
 import JobsDone from '@/components/JobsDone/JobsDone';
 import Container from '@/components/common/container/Container';
+import VideoReelsWrapper from '@/components/VideoReels/VideoReelsWrapper';
 
 export default async function Home() {
   const [categories, subCategories] = await Promise.all([
@@ -88,6 +89,7 @@ export default async function Home() {
           alt: "showroom",
         }}
       />
+      <VideoReelsWrapper />
       <JobsDone />
     </>
   );

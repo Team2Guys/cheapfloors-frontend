@@ -31,6 +31,20 @@ type ReviewItem = {
 const dummyReviewChunks: ReviewItem[][] = [
     [
         {
+            name: "Finance artiart",
+            reviewDate: "2026-07-04",
+            starRating: 5,
+            ReviewsDescription: "Best price I found in UAE for herringbone SPC. No fitting, but their recommended fitter was cheap.",
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+        },
+        {
+            name: "arjun rajeev",
+            reviewDate: "2026-07-03",
+            starRating: 5,
+            ReviewsDescription: "Had a really nice experience with this company. Chatted to the lady on whatsapp and she was very helpful. She sent me some real sample same day and we were able to choose easily. Placed the order and arrived in 1 day and they gave me number for fitting guy. Very good value compared to some of the bigger companies. Very recommended",
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+        },
+        {
             name: "Galina Egorova",
             reviewDate: "2026-01-1",
             starRating: 5,
@@ -54,6 +68,13 @@ const dummyReviewChunks: ReviewItem[][] = [
     ],
     [
         {
+            name: "Adeel's Official",
+            reviewDate: "2026-07-04",
+            starRating: 5,
+            ReviewsDescription: "Very fast service, good selection and item is high quality. We are contractor and will use this company again and again",
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+        },
+        {
             name: "Rozhan",
             reviewDate: "2026-02-10",
             starRating: 5,
@@ -76,6 +97,13 @@ const dummyReviewChunks: ReviewItem[][] = [
         }
     ],
     [
+        {
+            name: "Gulnar Hanjayeva",
+            reviewDate: "2026-07-04",
+            starRating: 5,
+            ReviewsDescription: "Moved recently and found this company who gave me the same brand that I had before from another store. Almost same amount and even paying for installation, I saved around 40% . Couldn’t be happier! Will tell all my friends",
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+        },
         {
             name: "Rakshith",
             reviewDate: "2026-04-20",

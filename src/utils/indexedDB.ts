@@ -183,17 +183,37 @@ export const addToCart = async (product: ICart): Promise<boolean> => {
     //   });
     //   return false;
     // }
-    const adjustedSquareMeter = (product.category?.toLowerCase().trim() === 'accessories') ? newRequiredBoxes : newSquareMeter;
+    const isAccessory =
+      product.category?.toLowerCase().trim() === 'accessories';
+    const adjustedSquareMeter = isAccessory ? newRequiredBoxes : newSquareMeter;
+
+    // Installation must reflect the MERGED quantity. Because accessories use the
+    // same cart key with or without installation, adding the same accessory a
+    // second time (with installation) merges the two — so if either the existing
+    // item or the new add had installation, keep it and recompute for the total.
+    const mergedAddInstallation = Boolean(
+      existingProduct?.addInstallation || product.addInstallation
+    );
+    let mergedInstallationCost = 0;
+    if (mergedAddInstallation) {
+      const installationRate = isAccessory
+        ? 35
+        : product.name?.toLowerCase()?.includes('herringbone')
+          ? 35
+          : 25;
+      const installationUnits = isAccessory ? newRequiredBoxes : newSquareMeter;
+      mergedInstallationCost = installationUnits * installationRate;
+    }
 
     // 8️⃣ Build updated product for saving
     const updatedProduct = {
       ...product,
       requiredBoxes: newRequiredBoxes,
       squareMeter: newSquareMeter,
-      totalPrice: product.addInstallation
-        ? Number(product.price || 0) * adjustedSquareMeter +
-        (product.installationCost || 0)
-        : Number(product.price || 0) * adjustedSquareMeter
+      addInstallation: mergedAddInstallation,
+      installationCost: mergedInstallationCost,
+      totalPrice:
+        Number(product.price || 0) * adjustedSquareMeter + mergedInstallationCost
     };
     // 9️⃣ Save to DB
     await store.put(updatedProduct, compositeKey);

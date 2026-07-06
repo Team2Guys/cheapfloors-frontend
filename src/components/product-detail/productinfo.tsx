@@ -1,6 +1,6 @@
 'use client';
 
-import { SetStateAction, useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import PaymentMethod from 'components/product-detail/payment';
 import { IProduct, IProductAccessories, ProductImage } from 'types/prod';
@@ -8,7 +8,12 @@ import { handleAddToStorage } from 'lib/carthelper';
 import { LuHeart } from 'react-icons/lu';
 import { formatAED } from 'utils/helperFunctions';
 import { FaRegCircleCheck } from 'react-icons/fa6';
+import { RxCross2 } from 'react-icons/rx';
+import Checkbox from 'components/ui/checkbox';
 import TrustBadges from './trust-badges';
+
+// Accessory installation is charged per piece.
+const ACCESSORY_INSTALLATION_RATE = 35;
 
 const SkirtingProductDetail = ({
   productData,
@@ -30,12 +35,43 @@ const SkirtingProductDetail = ({
     ProductImage[]
   >([]);
   const [matchingColor, setMatchingColor] = useState<IProduct[]>([]);
+  const [addInstallation, setAddInstallation] = useState(false);
+  const [isInstallationModal, setIsInstallationModal] = useState(false);
+  const installationRef = useRef<HTMLDivElement | null>(null);
   const boxCoverage = 2.4;
   const calculateSquareMeter = (boxes: number) => {
     return boxCoverage * boxes;
   };
 
   const squareMeter = calculateSquareMeter(requiredBoxes);
+  const installationCost = addInstallation
+    ? requiredBoxes * ACCESSORY_INSTALLATION_RATE
+    : 0;
+
+  const handleInstallationChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const checked = e.target.checked;
+    setAddInstallation(checked);
+    setIsInstallationModal(checked);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent): void => {
+      if (
+        installationRef.current &&
+        !installationRef.current.contains(event.target as Node)
+      ) {
+        setIsInstallationModal(false);
+      }
+    };
+    if (isInstallationModal) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isInstallationModal]);
 
   const handleLengthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -235,6 +271,43 @@ const SkirtingProductDetail = ({
         </p>
       </div>
 
+      <div className="relative mt-4">
+        <Checkbox
+          name="installation"
+          checked={addInstallation}
+          onChange={handleInstallationChange}
+        >
+          <span className="text-sm xsm:text-base font-semibold">
+            Add Professional Installation (site survey required)
+          </span>
+        </Checkbox>
+
+        {addInstallation && isInstallationModal && (
+          <div
+            className="absolute bottom-10 right-0 z-10 w-full max-w-[400px] bg-white py-4 px-2 drop-shadow-2xl"
+            ref={installationRef}
+          >
+            <RxCross2
+              className="rounded-full cursor-pointer bg-primary ms-auto mb-2"
+              onClick={() => setIsInstallationModal(false)}
+              size={20}
+              color="black"
+            />
+            <ul className="list-disc ps-5">
+              <li>
+                <span className="flex justify-between pb-2 font-semibold">
+                  Installation Charges{' '}
+                  <span>AED {formatAED(installationCost)}</span>
+                </span>
+              </li>
+              <li>Charged per piece.</li>
+              <li>Survey will be conducted before installation.</li>
+              <li>Our team will contact you to arrange an appt.</li>
+            </ul>
+          </div>
+        )}
+      </div>
+
       <div className="my-6 flex w-full gap-1 items-center sm:gap-3">
         <button
           onClick={() =>
@@ -250,7 +323,11 @@ const SkirtingProductDetail = ({
               image?.imageUrl ?? '',
               boxCoverage.toString(),
               'm',
-              selectedColor
+              selectedColor,
+              undefined,
+              false,
+              installationCost,
+              addInstallation
             )
           }
           className="flex_center bg-black text-11 xs:text-12 text-white w-6/12 2xl:text-22 gap-2 h-[64px] px-2 py-2 sm:py-3 sm:text-base"

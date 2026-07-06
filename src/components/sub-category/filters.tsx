@@ -21,6 +21,7 @@ import {
   handleClearFilter,
   handleFilterSelection
 } from 'lib/filterhelper';
+import { formatDisplayName } from 'utils/helperFunctions';
 
 const Filters = ({
   catgories,
@@ -114,12 +115,12 @@ const Filters = ({
     );
 
     const floorSmart = catgories.find(
-    (cat: Category) =>
-      cat.name.toLowerCase() === 'floor smart' &&
-      cat.status === 'PUBLISHED'
-  );
+      (cat: Category) =>
+        cat.name.toLowerCase() === 'floor smart' &&
+        cat.status === 'PUBLISHED'
+    );
 
-  setCategoryState({ polar, richmond, floorSmart });
+    setCategoryState({ polar, richmond, floorSmart });
   }, [catgories]);
 
   const uniqueAttributes = useMemo(() => {
@@ -180,7 +181,7 @@ const Filters = ({
           <p className="font-medium text-base uppercase text-black">Filter by Category</p>
         </div>
         {orderedCategories.map((category, index) => (
-          <Accordion key={index} title={category.name.toLowerCase()}>
+          <Accordion key={index} title={formatDisplayName(category.name)}>
             <ul className="filter_accordion">
               {category.sortedSubcategories?.map((subCategory, i) => (
                 <li key={i}>
@@ -188,7 +189,7 @@ const Filters = ({
                     href={`/${subCategory?.category?.RecallUrl || category.RecallUrl}/${subCategory.custom_url}`}
                     className="filter_Link"
                   >
-                    {subCategory.name}
+                    {formatDisplayName(subCategory.name)}
                   </Link>
                 </li>
               ))}
@@ -204,9 +205,9 @@ const Filters = ({
                   <li key={item.custom_url}>
                     <Link
                       href={`/${item.custom_url ?? ''}`}
-                      className="filter_Link capitalize"
+                      className="filter_Link"
                     >
-                      {item.name.toLowerCase()}
+                      {formatDisplayName(item.name)}
                     </Link>
                   </li>
                 );
@@ -224,7 +225,7 @@ const Filters = ({
                   }/spc-herringbone`}
                 className="filter_Link capitalize"
               >
-                HB
+                Herringbone
               </Link>
             </li>
 
@@ -454,39 +455,42 @@ const Filters = ({
           </div>
         </div>
       )}
-      <div className="pb-5">
-        <div className="bg-[#F9FAFB] py-3 mb-6 rounded-sm text-center">
-          <p className="font-semibold text-sm uppercase text-[#191C1F]">Popular Tag</p>
-        </div>
-        <div className="flex flex-wrap gap-2 items-center">
-          {isSubCategory || isClearance
-            ? orderedCategories.map((option, index) => (
-              <Link
-                href={`/${option.custom_url}`}
-                key={index}
-                className={`py-1.5 px-4 transition-colors duration-300 font-inter text-sm ${path === `/${option.custom_url}`
-                  ? 'bg-[#F0B323] border border-[#F0B323] text-black font-semibold rounded-full'
-                  : 'bg-white text-[#475156] font-medium border border-gray-300 rounded-full'
-                  }`}
-              >
-                {option.name}
-              </Link>
-            ))
-            : popularTags.map((tag, index) => (
-              <button
-                key={index}
-                onClick={() => handleTagClick(tag)}
-                className={`py-1.5 px-4 transition-colors duration-300 font-inter text-sm border uppercase
+      {path !== '/floor-smart' && (
+
+        <div className="pb-5">
+          <div className="bg-[#F9FAFB] py-3 mb-6 rounded-sm text-center">
+            <p className="font-semibold text-sm uppercase text-[#191C1F]">Popular Tag</p>
+          </div>
+          <div className="flex flex-wrap gap-2 items-center">
+            {isSubCategory || isClearance
+              ? orderedCategories.map((option, index) => (
+                <Link
+                  href={`/${option.custom_url}`}
+                  key={index}
+                  className={`py-1.5 px-4 transition-colors duration-300 font-inter text-sm ${path === `/${option.custom_url}`
+                    ? 'bg-[#F0B323] border border-[#F0B323] text-black font-semibold rounded-full'
+                    : 'bg-white text-[#475156] font-medium border border-gray-300 rounded-full'
+                    }`}
+                >
+                  {option.name}
+                </Link>
+              ))
+              : popularTags.map((tag, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleTagClick(tag)}
+                  className={`py-1.5 px-4 transition-colors duration-300 font-inter text-sm border uppercase
           ${selectedTags.includes(tag)
-                    ? 'bg-[#F0B323] border-[#F0B323] text-black font-semibold rounded-full'
-                    : 'bg-white text-[#475156] font-medium border-gray-300 rounded-full'
-                  }`}
-              >
-                {tag}
-              </button>
-            ))}
+                      ? 'bg-[#F0B323] border-[#F0B323] text-black font-semibold rounded-full'
+                      : 'bg-white text-[#475156] font-medium border-gray-300 rounded-full'
+                    }`}
+                >
+                  {tag}
+                </button>
+              ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

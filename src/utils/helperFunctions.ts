@@ -632,6 +632,18 @@ export const formatAED = (price: number | undefined | null): string => {
   });
 };
 
+// Uppercase "SPC"/"LVT", capitalize every other word.
+// e.g. "spc flooring" -> "SPC Flooring", "POLAR FLOORING" -> "Polar Flooring".
+export const formatDisplayName = (name: string) =>
+  name
+    ?.split(/\s+/)
+    .map((word) => {
+      const lower = word.toLowerCase();
+      if (lower === 'spc' || lower === 'lvt') return word.toUpperCase();
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join(' ') ?? name;
+
 export const DateFormatHandler = (input: Date | string) => {
   if (!input) return 'Not available';
 

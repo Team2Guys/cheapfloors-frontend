@@ -394,8 +394,8 @@ export const FloorItemsData = [
   {
     id: 1,
     title: 'Herringbone Floor',
-    imageUrl: '/assets/images/Home/herring-new.webp',
-    hoverImage: '/assets/images/Home/herring-new.webp'
+    imageUrl: '/assets/images/Home/Herring-new.webp',
+    hoverImage: '/assets/images/Home/Herring-new.webp'
   },
   {
     id: 2,
@@ -620,7 +620,7 @@ export const boxData: BoxData[] = [
   {
     title: 'Need help with measurement?',
     description: `We have a detailed How to Measure Guide to make it easy. If you need further assistance, feel free to contact us—we're here to help!`,
-    buttonText: 'Book Your Appointment',
+    buttonText: 'Book Your Measurement',
     icon: '/assets/images/Home/measure1.png',
     link: '/measurement-appointment',
     bgImage: '/assets/images/aboutus/about5.webp'
@@ -628,7 +628,7 @@ export const boxData: BoxData[] = [
   {
     title: 'Need help with installation?',
     description: `Our easy click-lock system makes installation simple—no glue or nails are required. If self-fitting isn’t your thing, let us take care of the hassle. One call or message and we’ll send our expert teams to take care of the installation.`,
-    buttonText: 'Book Your Appointment',
+    buttonText: 'Book Your Installation',
     icon: '/assets/images/Home/Vectorrg.png',
     link: '/help-with-installations',
     bgImage: '/assets/images/aboutus/about6.webp'
@@ -913,7 +913,7 @@ export const alternatingData: TAboutUs[] = [
     alt: 'First Image',
     heading: 'Your Trusted Online Flooring Store',
     paragraph:
-      "We’re the leading online flooring store in the UAE, offering our valued customers top-quality products from the Richmond and Polar collections. With years of experience, we've earned a solid reputation for being reliable, efficient, and customer satisfaction-centric. Our Jebel Ali warehouse in Dubai holds 60,000 sqm of stock, so we can deliver fast anywhere in the UAE."
+      "We’re the leading online flooring store in the UAE, offering our valued customers top-quality products from the Richmond, Polar and Floor Smart collections. With years of experience, we've earned a solid reputation for being reliable, efficient, and customer satisfaction-centric. Our Jebel Ali warehouse in Dubai holds 60,000 sqm of stock, so we can deliver fast anywhere in the UAE."
   },
   {
     id: 2,

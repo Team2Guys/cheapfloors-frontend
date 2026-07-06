@@ -1,11 +1,15 @@
 'use client';
 import Card from 'components/Card/Card';
-import ClearanceCard from 'components/Card/ClearanceCard';
 import { features } from 'data/data';
 import React, { useEffect, useState } from 'react';
 import { FiX } from 'react-icons/fi';
 import { FilterState } from 'types/cat';
 import { SubCategoryProps } from 'types/types';
+import { IProduct } from 'types/prod';
+
+const isAccessoryProduct = (product: IProduct) =>
+  product?.category?.custom_url?.toLowerCase().trim() === 'accessories' ||
+  product?.category?.name?.toLowerCase().trim() === 'accessories';
 
 const SubCategory = ({
   filteredProducts,
@@ -13,8 +17,7 @@ const SubCategory = ({
   setSelectedProductFilters,
   setIsWaterProof,
   categoryData,
-  setSelectedTags,
-  isClearence
+  setSelectedTags
 }: SubCategoryProps) => {
   const [showNoProductsMessage, setShowNoProductsMessage] = useState(false);
 
@@ -95,31 +98,19 @@ const SubCategory = ({
       </div>
 
       {/* Products Grid - Key optimization area */}
-      <div
-        className={`grid grid-cols-2 sm:grid-cols-3 mb-4 ${isClearence ? 'gap-2 sm:gap-4 2xl:grid-cols-4' : 'gap-2 sm:gap-4'}`}
-      >
+      <div className="grid grid-cols-2 sm:grid-cols-3 mb-4 gap-2 sm:gap-4">
         {filteredProducts.length > 0 ? (
-          isClearence ? (
-            filteredProducts.map((product, index) => (
-              <ClearanceCard
-                key={product.id || index}
-                product={product}
-                isSoldOut={false}
-              />
-            ))
-          ) : (
-            filteredProducts.map((product, index) => (
-              <Card
-                key={product.id || index} // Use product.id if available for stable keys
-                product={product}
-                features={features}
-                categoryData={categoryData}
-                isSoldOut={false}
-                isAccessories={false}
-                priority={index < 3} // Add priority loading for first 3 images (LCP improvement)
-              />
-            ))
-          )
+          filteredProducts.map((product, index) => (
+            <Card
+              key={product.id || index} // Use product.id if available for stable keys
+              product={product}
+              features={features}
+              categoryData={categoryData}
+              isSoldOut={false}
+              isAccessories={isAccessoryProduct(product as IProduct)}
+              priority={index < 3} // Add priority loading for first 3 images (LCP improvement)
+            />
+          ))
         ) : !showNoProductsMessage ? (
           // Optimized skeleton loading with fewer elements
           Array.from({ length: 6 }).map((_, i) => (

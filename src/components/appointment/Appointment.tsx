@@ -1,4 +1,4 @@
-'use client';
+  'use client';
 import { Formik, Form, Field, ErrorMessage, FieldProps } from 'formik';
 import Input from './Input';
 import Select from './Select';
@@ -246,9 +246,9 @@ function SubmitButton({ isSubmitting }: { isSubmitting: boolean }) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-fit  border border-primary p-2 lg:py-3 px-4 sm:px-10 text-15 rounded-md"
+        className="w-fit border border-primary bg-primary p-2 lg:py-3 px-4 sm:px-10 text-15 rounded-md"
       >
-        {isSubmitting ? 'Submitting...' : ' BOOK AN APPOINTMENT'}
+        {isSubmitting ? 'Submitting...' : ' Book Your Appointment'}
       </button>
     </div>
   );

@@ -11,6 +11,7 @@ import { categoryBreakpoint } from 'data/slider';
 import SliderArrow from 'components/common/slider-arrow/slider-arrow';
 import { BsArrowRight } from 'react-icons/bs';
 import Container from '../common/container/Container';
+import { formatDisplayName } from 'utils/helperFunctions';
 
 const getPrice = (cat: Category) => {
   if (cat.price) return cat.price;
@@ -79,7 +80,7 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
                   {/* Category Info Box */}
                   <div className='w-full lg:w-[300px] 2xl:w-[355px] 3xl:w-[420px] shrink-0 border border-primary rounded-xl p-2 sm:p-8 flex flex-col items-center justify-center text-center bg-white hover:bg-primary hover:border-primary group'>
                     <h2 className="text-2xl md:text-[28px] font-semibold text-black mb-1 sm:mb-4">
-                      {category.name}
+                      {formatDisplayName(category.name)}
                     </h2>
                     <p className="text-black mb-3 sm:mb-8 text-sm md:text-base lg:text-lg flex items-center gap-1">
                       Price Starting From:{' '}
