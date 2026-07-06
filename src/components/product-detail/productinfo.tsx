@@ -88,7 +88,10 @@ const SkirtingProductDetail = ({
     setSelectedColor(color);
   };
   return (
-    <div className="p-1 lg:px-4 font-inter lg:mt-12">
+    <div className="p-1 lg:px-4 font-inter">
+      <h1 className="text-xl sm:text-2xl lg:text-[28px] 2xl:text-[32px] font-bold text-primary mb-4">
+        {productData.name}
+      </h1>
       <div className="space-y-4 mt-5 lg:mt-0">
         <p className="text-sm xl:text-[23.6px] font-semibold">
           Price Per Piece:{' '}
@@ -190,7 +193,7 @@ const SkirtingProductDetail = ({
             )}
           </p>
           <p className="mt-2">
-            Height: <span className="font-medium text-base text-primary">10 cm</span>
+            Height: <span className="font-medium text-base text-primary">{(productData.sizes && productData.sizes[0]?.height) ? productData.sizes[0].height : '10 cm'}</span>
           </p>
           <p className="mt-2">
             Depth: <span className="font-medium text-base text-primary">1.6 cm</span>

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { MouseEvent, useEffect, useState } from 'react';
 import { FiEye, FiHeart } from 'react-icons/fi';
+import FreeSample from 'components/svg/free-sample';
 import { productCardProps } from 'types/PagesProps';
 import { IProduct, ProductImage } from 'types/prod';
 import { fetchAccessories, fetchSingeProduct } from 'config/fetch';
@@ -107,6 +108,30 @@ const Card: React.FC<productCardProps> = ({
   const discountedPrice = (product as IProduct).discountPrice;
   const hasDiscount = !!discountedPrice && discountedPrice > 0;
 
+  const handleAddSample = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    handleAddToStorage(
+      product,
+      Number(hasDiscount ? discountedPrice : product.price),
+      Number(hasDiscount ? discountedPrice : product.price) *
+        (Number(product?.boxCoverage) || 1),
+      1,
+      1,
+      product.subcategory?.custom_url || '',
+      'category' in product
+        ? (product.category?.RecallUrl ?? 'Accessories')
+        : 'Accessories',
+      'freeSample',
+      'productImages' in product
+        ? (product.productImages?.[0]?.imageUrl ?? product.posterImageUrl?.imageUrl)
+        : product.posterImageUrl?.imageUrl,
+      product?.boxCoverage || '2.4',
+      'm',
+      selectedColor
+    );
+  };
+
   return (
     <div
       className={`group flex flex-col h-full font-inter p-1 xsm:p-3 group transition-shadow hover:shadow-md overflow-hidden ${isAccessories ? 'bg-[#FAFAFA] border border-gray-200' : sldier ? 'bg-white' : 'bg-[#FAFAFA] border border-gray-200'}`}
@@ -136,21 +161,41 @@ const Card: React.FC<productCardProps> = ({
           </div>
         )}
         {!sldier && (
-          <div className="absolute top-2 right-2 xsm:-right-40 xsm:group-hover:right-2 z-10">
-            <button
-              className="bg-white p-1 xsm:p-2 shadow-sm rounded-sm hover:text-primary transition"
-              aria-label="open quick view"
-              onClick={(e) => handleModel(e)}
-              onMouseEnter={() => setShowCaption('Quick View')}
-              onMouseLeave={() => setShowCaption('')}
-            >
-              <FiEye className="text-black text-base xsm:text-lg" />
-            </button>
-            <span
-              className={`absolute right-10 top-1 bg-gray-800 text-white text-[10px] px-2 py-1 rounded transition whitespace-nowrap z-10 pointer-events-none ${showCaption === 'Quick View' ? 'opacity-100' : 'opacity-0'}`}
-            >
-              Quick View
-            </span>
+          <div className="absolute top-2 right-2 xsm:-right-40 xsm:group-hover:right-2 z-10 flex flex-col gap-2 items-end">
+            <div className="relative">
+              <button
+                className="bg-white p-1 xsm:p-2 shadow-sm rounded-sm hover:text-primary transition"
+                aria-label="open quick view"
+                onClick={(e) => handleModel(e)}
+                onMouseEnter={() => setShowCaption('Quick View')}
+                onMouseLeave={() => setShowCaption('')}
+              >
+                <FiEye className="text-black text-base xsm:text-lg" />
+              </button>
+              <span
+                className={`absolute right-10 top-1 bg-gray-800 text-white text-[10px] px-2 py-1 rounded transition whitespace-nowrap z-10 pointer-events-none ${showCaption === 'Quick View' ? 'opacity-100' : 'opacity-0'}`}
+              >
+                Quick View
+              </span>
+            </div>
+            {!isAccessories && (
+              <div className="relative">
+                <button
+                  className="bg-white p-1 xsm:p-2 shadow-sm rounded-sm hover:text-primary transition"
+                  aria-label="add free sample"
+                  onClick={handleAddSample}
+                  onMouseEnter={() => setShowCaption('Add Sample')}
+                  onMouseLeave={() => setShowCaption('')}
+                >
+                  <FreeSample isCard />
+                </button>
+                <span
+                  className={`absolute right-10 top-1 bg-gray-800 text-white text-[10px] px-2 py-1 rounded transition whitespace-nowrap z-10 pointer-events-none ${showCaption === 'Add Sample' ? 'opacity-100' : 'opacity-0'}`}
+                >
+                  Add Sample
+                </span>
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -11,6 +11,7 @@ import { FIND_ONE_Accessory } from 'graphql/queries';
 import Breadcrumb from 'components/Reusable/breadcrumb';
 import AccessoriesComp from 'components/Accessories/Accessories';
 import CategoryFaqs from '@/components/Faqs/CategoryFaqs';
+import Testimonial from '@/components/Testimonial/testimonial';
 
 export async function generateMetadata({
   params
@@ -100,6 +101,12 @@ const CategoryPage = async ({
           faqs={(categoryFaqsData[slug?.trim().toLowerCase()] ?? [])
           }
         />
+        <Testimonial
+          backgroundImage={{
+            src: "/assets/showroom.webp",
+            alt: "showroom",
+          }}
+        />
       </>
     );
   } else {
@@ -162,10 +169,6 @@ const CategoryPage = async ({
           );
         }) || [];
 
-    const smartFloorCategory = filteredCategories.find(
-      (cat: ICategory) =>
-        cat.name === 'FLOOR SMART'
-    );
 
     return (
       <Category

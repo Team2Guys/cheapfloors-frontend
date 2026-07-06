@@ -1,9 +1,10 @@
 import { HeroMainProps } from 'types/type';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const HeroMain = ({ items }: HeroMainProps) => {
   return (
-    <div className="relative aspect-[1440/784] w-full">
+    <Link href="/collections" className="relative block aspect-[1440/784] w-full">
       {/* {items.map((item, index) => (
         <div
           key={index}
@@ -72,7 +73,7 @@ const HeroMain = ({ items }: HeroMainProps) => {
           </div> */}
       {/* </div>
       ))} */}
-    </div>
+    </Link>
   );
 };
 

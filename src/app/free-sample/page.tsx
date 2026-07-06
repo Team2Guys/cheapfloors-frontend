@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 import { createMetadata } from 'utils/metadataHelper';
 import { pageMetadataData } from 'data/meta-data';
+import Link from 'next/link';
 export const metadata = createMetadata(pageMetadataData.free_sample);
 const FreeSampleDetail = () => {
   return (
@@ -36,6 +37,9 @@ const FreeSampleDetail = () => {
         Find the essence of quality, texture, and colour firsthand, because the
         journey to the perfect choice begins with a premium experience.
       </p>
+      <div className='text-center'>
+        <Link href="/collections" className="inline-block px-6 w-fit mx-auto bg-primary text-white py-2 rounded-md mt-4">Shop Now</Link>
+      </div>
     </Container>
   );
 };

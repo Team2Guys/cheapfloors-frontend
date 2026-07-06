@@ -775,6 +775,16 @@ export const faqspage: FAQ[] = [
       `Yes. The UAE's humid and hot atmosphere is something that our Richmond SPC or LVT flooring is made to resist. It is a dependable option for both residential and commercial applications because of its heat- and water-resistant qualities. SPC and LVT provide long-term durability since they do not expand or contract in response to temperature variations like regular wood flooring does.`,
     category: 'General'
   },
+    {
+    category: 'General',
+    question: 'How much does it cost for having SPC or LVT for a room of 4m x 5m size?',
+    answer: 'Based on our entry level SPC, the approximate cost would be AED 1,100 inc VAT. For LVT, going for the entry level range, the cost would be AED 1,880 inc VAT.'
+  },
+  {
+    category: 'General',
+    question: 'Which one should I use — Herringbone or Straight Planks?',
+    answer: 'This is really down to personal taste. Within straight planks, we have the Eco range (standard sizes) or, if you’d like a more authentic wood look, then we also offer the Lux and Prime planks. The bigger planks look great in a longer room but can feel a bit big in smaller areas. Herringbone styles all come in one size and can be used in narrow or wide areas. Currently, we sell an almost equal amount in both finishes, so it really is a matter of personal taste.'
+  },
 
   {
     question:
@@ -911,7 +921,7 @@ export const alternatingData: TAboutUs[] = [
     alt: 'Second Image',
     heading: 'For Homes And Businesses In The UAE',
     paragraph:
-      'We cater to a range of customers, including homeowners, commercial properties like schools and offices, flooring contractors, and interior designers. With a direct factory connection and years of hands-on experience, we’ve designed our flooring materials to handle the tough climate of Dubai and the UAE'
+      'We cater to a range of customers, including homeowners, commercial properties like schools and offices, flooring contractors, and interior designers. With a direct factory connection and years of hands-on experience, we’ve designed our flooring materials to handle the tough climate of Dubai and the UAE.'
   },
   {
     id: 3,

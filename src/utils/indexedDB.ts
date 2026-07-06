@@ -1,4 +1,4 @@
-import { ICart } from 'types/prod';
+import { ICart, ProductImage } from 'types/prod';
 import { showAlert } from './Alert';
 let deleteTimer: NodeJS.Timeout | null = null;
 
@@ -229,6 +229,49 @@ export const removeCartItem = async (id: string | number): Promise<void> => {
       request.onerror = () => reject(request.error);
       tx.oncomplete = () => resolve();
     });
+    window.dispatchEvent(new Event('cartUpdated'));
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Swap an accessory cart item's color to a matching variant. Because the
+// accessory composite key includes the color, this moves the item to a new key.
+export const updateCartItemColor = async (
+  item: ICart,
+  newColor: ProductImage
+): Promise<void> => {
+  try {
+    const db = await openDB();
+    await new Promise<void>((resolve, reject) => {
+      const tx = db.transaction('cart', 'readwrite');
+      const store = tx.objectStore('cart');
+
+      const oldKey = `${item.id}-${item.selectedColor?.color}`;
+      const newKey = `${item.id}-${newColor.color}`;
+
+      const updatedItem: ICart = {
+        ...item,
+        selectedColor: {
+          ...newColor,
+          public_id: newColor.public_id || '',
+          imageUrl: newColor.imageUrl || '',
+          colorName: newColor.colorName || newColor.altText || ''
+        },
+        image: newColor.imageUrl || item.image,
+        matchedProductImages: newColor
+      };
+
+      if (oldKey !== newKey) {
+        store.delete(oldKey);
+      }
+      store.put(updatedItem, newKey);
+
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+      tx.onabort = () => reject(tx.error);
+    });
+
     window.dispatchEvent(new Event('cartUpdated'));
   } catch (error) {
     throw error;

@@ -216,6 +216,18 @@ const Filters = ({
 
         <Accordion title="Style">
           <ul className="filter_accordion">
+            <li>
+              <Link
+                href={`/${catSlug === 'spc-flooring' || catSlug === 'polar-flooring'
+                  ? 'polar'
+                  : 'richmond'
+                  }/spc-herringbone`}
+                className="filter_Link capitalize"
+              >
+                HB
+              </Link>
+            </li>
+
             {(catSlug === 'polar-flooring' ||
               catSlug === 'spc-flooring' ||
               catSlug === 'lvt-flooring' ||
@@ -236,18 +248,6 @@ const Filters = ({
                 </li>
               )}
 
-            <li>
-              <Link
-                href={`/${catSlug === 'spc-flooring' || catSlug === 'polar-flooring'
-                  ? 'polar'
-                  : 'richmond'
-                  }/spc-herringbone`}
-                className="filter_Link capitalize"
-              >
-                Herringbone
-              </Link>
-            </li>
-
             {catSlug === 'polar-flooring' && (
               <li>
                 <Link href="/polar/lvt" className="filter_Link capitalize">
@@ -255,6 +255,19 @@ const Filters = ({
                 </Link>
               </li>
             )}
+
+            {(catSlug === 'richmond-flooring' ||
+              catSlug === 'richmond' ||
+              catSlug === 'lvt-flooring') && (
+                <li>
+                  <Link
+                    href="/richmond/lvt-luxury"
+                    className="filter_Link capitalize"
+                  >
+                    Luxury
+                  </Link>
+                </li>
+              )}
 
             {(catSlug === 'richmond-flooring' ||
               catSlug === 'lvt-flooring' ||
@@ -431,7 +444,7 @@ const Filters = ({
                           name="terms"
                           className="custom-checkbox"
                         >
-                          {item.name}
+                          {item.name.toLowerCase() === 'floor smart' ? 'SMART FLOORING' : item.name}
                         </Checkbox>
                       </Link>
                     </li>
