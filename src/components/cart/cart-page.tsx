@@ -1681,7 +1681,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                       ? parseFloat(total.toFixed(2)) / 4
                       : parseFloat(subTotal.toFixed(2)) / 4
                   }
-                  compact
+                  // compact
                 />
               )}
 

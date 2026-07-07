@@ -38,7 +38,7 @@ const NeedHelp = () => {
             <Link
               href={box.link}
               aria-label="Book appointment"
-              className="w-full max-w-xl mx-auto block text-xs sm:text-sm md:text-base bg-primary hover:bg-secondary text-black sm:ont-medium px-4 py-2 rounded-full"
+              className="w-full max-w-xl mx-auto block text-xs sm:text-sm md:text-base bg-primary hover:bg-secondary text-black hover:text-white sm:ont-medium px-4 py-2 rounded-full"
             >
               {box.buttonText}
             </Link>

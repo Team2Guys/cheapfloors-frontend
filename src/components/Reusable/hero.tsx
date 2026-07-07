@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const HeroMain = ({ items }: HeroMainProps) => {
   return (
-    <Link href="/collections" className="relative block aspect-[1440/784] w-full">
+    <Link href="/clearance" className="relative block aspect-[1440/784] w-full">
       {/* {items.map((item, index) => (
         <div
           key={index}

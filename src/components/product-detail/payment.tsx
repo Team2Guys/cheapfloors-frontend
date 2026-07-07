@@ -72,63 +72,61 @@ const PaymentMethod = ({ installments, compact }: PaymentMethodProps) => {
   }
 
   return (
-    <div className="border border-[#0000001F] rounded-xl p-4 font-inter">
-      <h3 className="text-base font-bold text-black">Buy Now, Pay Later</h3>
+    <div className="border border-[#0000003D] rounded-xl p-2 font-inter">
+      <h3 className="text-lg font-medium text-black">Buy Now, Pay Later</h3>
 
-      <div className="relative mt-6 rounded-lg border border-[#0000001F] px-4 pt-5 pb-4">
-        <div className="absolute -top-3 left-3 flex items-center gap-2">
+      <div className="relative mt-6 rounded-lg border border-[#0000003D] px-2 pt-4 pb-4">
+        <div className="absolute -top-3 left-2 flex items-center gap-2">
           <button
             type="button"
             onClick={() => setTabbyOpen(true)}
             aria-label="Tabby payment info"
-            className="flex items-center rounded-md bg-[#3BFFC1] px-2 py-1"
+            className="flex items-center rounded-md"
           >
             <Image
               src={tabbyLogo}
               alt="tabby"
-              width={44}
-              height={16}
-              className="h-[15px] w-auto object-contain"
+              width={64}
+              height={24}
+              className="h-6 w-auto object-contain"
             />
           </button>
           <button
             type="button"
             onClick={() => setTamaraOpen(true)}
             aria-label="Tamara payment info"
-            className="flex items-center rounded-md bg-gradient-to-r from-orange-300 via-blue-300 to-pink-300 px-2 py-1"
+            className="flex items-center rounded-md border border-[#D47F86]"
           >
             <Image
               src={tamaraLogo}
               alt="tamara"
-              width={52}
-              height={16}
-              className="h-[15px] w-auto object-contain"
+              width={64}
+              height={24}
+              className="h-6 w-auto object-contain"
             />
           </button>
         </div>
-        <p className="text-13 text-[#6B6B6B]">
-          Pay 4 interest-free payments of{' '}
-          <span className="font-currency font-normal"></span>{' '}
-          {formatAED(installments)}
+        <p className="text-base font-medium text-[#8D8D8D]">
+          Pay 4 interest-free payments of
         </p>
         <button
           type="button"
           onClick={() => setTabbyOpen(true)}
-          className="text-13 text-[#6B6B6B] underline"
+          className="text-base text-black underline"
         >
           Learn more...
         </button>
 
-        <div className="mt-3 flex flex-wrap items-start gap-x-7 gap-y-2">
+        <div className="mt-3 flex flex-wrap items-start justify-between xsm:justify-start gap-x-2 xsm:gap-x-7 gap-y-2">
           {paymentLabels.map((label, index) => (
             <div key={index} className="text-left">
               <p
-                className={`text-13 font-semibold text-nowrap ${index === 0 ? 'text-black' : 'text-[#8D8D8D] line-through'}`}
+                className='text-base font-medium text-nowrap text-black'
               >
-                <span className="font-currency font-normal text-xs"></span>{' '}
+                <span className="font-currency font-normal text-lg"></span>
                 {formatAED(installments)}
               </p>
-              <p className="mt-0.5 text-[11px] text-[#8D8D8D]">{label}</p>
+              <p className="mt-0.5 text-xs text-[#8D8D8D]">{label}</p>
             </div>
           ))}
         </div>

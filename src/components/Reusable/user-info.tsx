@@ -46,7 +46,7 @@ const UserInfo = () => {
           <Image
             width={848}
             height={501}
-            src="/assets/images/Home/EFFORTLESS-INSTALLATION.webp"
+            src="/assets/images/Home/EFFORTLESS.webp"
             loading="lazy"
             alt="Effortless Installation"
             className="w-full h-auto object-cover"
