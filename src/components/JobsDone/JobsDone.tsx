@@ -54,12 +54,12 @@ const dummyJobsData = [
         location: "Dubai Marina",
         image: "/assets/images/jobs/7.webp",
     },
-    {
-        id: 8,
-        title: "Richmond LVT Comfort - Forest",
-        location: "Downtown",
-        image: "/assets/images/jobs/8.webp",
-    },
+    // {
+    //     id: 8,
+    //     title: "Richmond LVT Comfort - Forest",
+    //     location: "Downtown",
+    //     image: "/assets/images/jobs/8.webp",
+    // },
 ];
 
 const JobsDone = () => {

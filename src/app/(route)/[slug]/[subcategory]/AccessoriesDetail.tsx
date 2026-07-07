@@ -9,7 +9,6 @@ const Features = dynamic(() => import('components/Reusable/features'));
 import RelatedSlider from 'components/related-slider/related-slider';
 import Breadcrumb from 'components/Reusable/breadcrumb';
 import dynamic from 'next/dynamic';
-import React from 'react';
 import { IProduct } from 'types/prod';
 import { detailprops } from 'types/product-detail';
 

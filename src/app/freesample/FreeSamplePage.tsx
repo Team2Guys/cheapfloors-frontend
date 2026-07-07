@@ -316,9 +316,9 @@ const FreeSamplePage = () => {
                 Proceed to Checkout
               </Link>
 
-              <p className="text-18 xl:text-22 font-semibold text-center">
+              {/* <p className="text-18 xl:text-22 font-semibold text-center">
                 Buy Now, Pay Later
-              </p>
+              </p> */}
               {total > 0 && (
                 <PaymentMethod
                   installments={

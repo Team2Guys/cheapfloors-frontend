@@ -4,6 +4,7 @@ import {
   FETCH_ALL_ORDERS,
   FETCH_ALL_PRODUCTS,
   FETCH_ALL_SUB_CATEGORIES,
+  FIND_B2B_QUOTE,
   FIND_ONE_CATEGORY,
   FIND_ONE_PRODUCT,
   FIND_ONE_SUB_CATEGORY,
@@ -15,6 +16,7 @@ import client from './apolloClient';
 import { DocumentNode } from '@apollo/client';
 import { Category } from 'types/cat';
 import { IProduct } from 'types/prod';
+import { IB2BQuote } from 'types/b2bQuote';
 import { ORDER_QUERY } from 'graphql/mutations';
 import { FETCH_ALL_ACCESSORIES, FETCH_META_TITLE } from 'graphql/accessorie';
 
@@ -287,6 +289,22 @@ export const fetchSingleOrder = async (orderId: string) => {
     return data?.Order || null;
   } catch (error) {
     console.error('Error fetching order:', error);
+    return null;
+  }
+};
+
+export const fetchSingleB2bQuote = async (
+  id: number
+): Promise<IB2BQuote | null> => {
+  try {
+    const { data } = await client.query({
+      query: FIND_B2B_QUOTE,
+      variables: { id },
+      fetchPolicy: 'no-cache'
+    });
+    return data?.b2bQuote || null;
+  } catch (error) {
+    console.error('Error fetching B2B quote:', error);
     return null;
   }
 };

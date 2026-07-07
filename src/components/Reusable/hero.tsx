@@ -1,9 +1,10 @@
 import { HeroMainProps } from 'types/type';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const HeroMain = ({ items }: HeroMainProps) => {
   return (
-    <div className="relative aspect-[1440/784] w-full">
+    <Link href="/clearance" className="relative block aspect-[1440/784] w-full">
       {/* {items.map((item, index) => (
         <div
           key={index}
@@ -11,7 +12,7 @@ const HeroMain = ({ items }: HeroMainProps) => {
         > */}
       <Image
         // src="https://res.cloudinary.com/dmmeqgdhv/image/upload/v1754289893/hero-min_hek1qt.avif"
-        src="/assets/images/Home/hero.webp"
+        src="/assets/images/Home/Hero.webp"
         alt="hero"
         fill
         priority
@@ -72,7 +73,7 @@ const HeroMain = ({ items }: HeroMainProps) => {
           </div> */}
       {/* </div>
       ))} */}
-    </div>
+    </Link>
   );
 };
 

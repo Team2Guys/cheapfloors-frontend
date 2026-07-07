@@ -21,6 +21,9 @@ const Thumbnail = ({
   setSelectedColor
 }: ExtendedThumbnailProps) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
+  const [featureImage, setFeatureImage] = useState<
+    { imageUrl: string; altText?: string } | null
+  >(null);
   const mainSwiperRef = useRef<SwiperType | null>(null);
   const thumbSwiperRef = useRef<SwiperType | null>(null);
   const featureSwiperRef = useRef<SwiperType | null>(null);
@@ -45,6 +48,7 @@ const Thumbnail = ({
       }
       if (idx !== -1) {
         setCurrentSlide(idx);
+        setFeatureImage(null);
         onImageChange?.(ThumnailImage[idx]);
 
         mainSwiperRef.current?.slideTo(idx);
@@ -57,6 +61,7 @@ const Thumbnail = ({
 
   const handleThumbnailClick = (index: number) => {
     setCurrentSlide(index);
+    setFeatureImage(null);
     onImageChange?.(ThumnailImage[index]);
     setSelectedColor?.({
       index,
@@ -170,10 +175,12 @@ const Thumbnail = ({
           )}
         </div>
         <div className="w-[82%] sm:w-[85%] flex-1">
+          <div className="relative">
           <Swiper
             onSwiper={(swiper) => (mainSwiperRef.current = swiper)}
             onSlideChange={(swiper) => {
               setCurrentSlide(swiper.activeIndex);
+              setFeatureImage(null);
               onImageChange?.(ThumnailImage[swiper.activeIndex]);
               const product = ThumnailImage[swiper.activeIndex];
               setSelectedColor?.({
@@ -240,6 +247,18 @@ const Thumbnail = ({
               </SwiperSlide>
             ))}
           </Swiper>
+            {featureImage && (
+              <div className="absolute inset-0 z-10 aspect-square bg-white">
+                <Image
+                  fill
+                  src={featureImage.imageUrl}
+                  alt={featureImage.altText || 'Feature image'}
+                  className="object-cover"
+                  sizes="(max-width: 768px) 80vw, 40vw"
+                />
+              </div>
+            )}
+          </div>
 
           {!hideThumnailBottom && ThumnailBottom && ThumnailBottom.length > 0 && (
             <div className="relative mt-3 sm:mt-4">
@@ -269,7 +288,10 @@ const Thumbnail = ({
               >
                 {ThumnailBottom.map((array, index) => (
                   <SwiperSlide key={index}>
-                    <div className="text-center px-0.5">
+                    <div
+                      className="text-center px-0.5 cursor-pointer"
+                      onClick={() => setFeatureImage(array)}
+                    >
                       <div className="w-full aspect-square relative border border-[#E0E0E0] bg-white">
                         <Image
                           fill

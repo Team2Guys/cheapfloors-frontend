@@ -16,15 +16,10 @@ import { PaymentMethodProps } from 'types/product-detail';
 import { formatAED } from 'utils/helperFunctions';
 import { IoInformationCircleOutline } from 'react-icons/io5';
 
-const PaymentMethod = ({
-  showheading,
-  installments,
-  isClearance,
-  compact
-}: PaymentMethodProps) => {
+const PaymentMethod = ({ installments, compact }: PaymentMethodProps) => {
   const [tabbyOpen, setTabbyOpen] = useState(false);
   const [tamaraOpen, setTamaraOpen] = useState(false);
-  const paymentLabels = ['Today', 'In 1 month', 'In 2 months', 'In 3 months'];
+  const paymentLabels = ['Today', 'In 1 month', 'In 2 month', 'In 3 month'];
 
   if (compact) {
     return (
@@ -77,97 +72,63 @@ const PaymentMethod = ({
   }
 
   return (
-    <div
-      className={`${isClearance ? 'border border-[#0000001F] rounded-md p-4' : ''}`}
-    >
-      {showheading && (
-        <div className="flex_center relative text-[#E4E4E4] font-inter">
-          <span className="absolute left-0 w-1/6 border-t border-gray-300"></span>
-          <p className="text-center px-3 w-4/6 whitespace-nowrap font-semibold text-[#000000] text-sm xs:text-base lg:text-xs xl:text-base">
-            Buy Now, Pay Later
-          </p>
-          <span className="absolute right-0 w-1/6 border-t border-gray-300"></span>
+    <div className="border border-[#0000003D] rounded-xl p-2 font-inter">
+      <h3 className="text-lg font-medium text-black">Buy Now, Pay Later</h3>
+
+      <div className="relative mt-6 rounded-lg border border-[#0000003D] px-2 pt-4 pb-4">
+        <div className="absolute -top-3 left-2 flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setTabbyOpen(true)}
+            aria-label="Tabby payment info"
+            className="flex items-center rounded-md"
+          >
+            <Image
+              src={tabbyLogo}
+              alt="tabby"
+              width={64}
+              height={24}
+              className="h-6 w-auto object-contain"
+            />
+          </button>
+          <button
+            type="button"
+            onClick={() => setTamaraOpen(true)}
+            aria-label="Tamara payment info"
+            className="flex items-center rounded-md border border-[#D47F86]"
+          >
+            <Image
+              src={tamaraLogo}
+              alt="tamara"
+              width={64}
+              height={24}
+              className="h-6 w-auto object-contain"
+            />
+          </button>
         </div>
-      )}
-      {isClearance && (
-        <p className="text-center text-sm xs:text-base lg:text-xs xl:text-base font-semibold">
-          Guaranteed Safe Checkout
+        <p className="text-base font-medium text-[#8D8D8D]">
+          Pay 4 interest-free payments of
         </p>
-      )}
-      <div
-        className={`flex ${isClearance ? 'flex-col gap-4' : 'flex-row gap-2'} pt-4 font-inter`}
-      >
-        <div
-          className={`relative ${isClearance ? 'w-full' : 'w-1/2'} border-4 border-[#00FFBC] px-1 py-4 xl:px-2 shadow`}
+        <button
+          type="button"
+          onClick={() => setTabbyOpen(true)}
+          className="text-base text-black underline"
         >
-          <span className="absolute -top-3 left-2 bg-[#00FFBC] px-2 py-1  text-xs font-extrabold">
-            tabby
-          </span>
-          <p className=" text-xs sm:text-sm font-medium text-[#8D8D8D]">
-            Pay 4 interest-free payments of{' '}
-            <span className="font-currency font-normal"></span>{' '}
-            {formatAED(installments)}{' '}
-            <span
-              className="underline cursor-pointer text-red-500"
-              onClick={() => setTabbyOpen(true)}
-            >
-              Learn more
-            </span>
-          </p>
-          <div className="flex flex-wrap justify-evenly gap-2 mt-2">
-            {paymentLabels.map((label, index) => (
-              <div
-                key={index}
-                className="text-black font-medium 2xl:font-semibold pb-1 text-center "
+          Learn more...
+        </button>
+
+        <div className="mt-3 flex flex-wrap items-start justify-between xsm:justify-start gap-x-2 xsm:gap-x-7 gap-y-2">
+          {paymentLabels.map((label, index) => (
+            <div key={index} className="text-left">
+              <p
+                className='text-base font-medium text-nowrap text-black'
               >
-                <p className="text-10 xl:text-10 2xl:text-xs text-nowrap">
-                  <span className="font-currency font-normal text-xs 2xl:text-sm">
-                    
-                  </span>{' '}
-                  {formatAED(installments)}
-                </p>
-                <p className="text-[8px] xl:text-[8px] 2xl:text-10 text-[#8D8D8D]">
-                  {label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div
-          className={`relative ${isClearance ? 'w-full' : 'w-1/2'} border-4 border-[#D47C84] px-1 py-4 xl:px-2 shadow`}
-        >
-          <span className="absolute -top-3 left-2 bg-gradient-to-r from-blue-300 via-orange-300 to-pink-300 text-black font-extrabold px-2 py-1  text-xs">
-            tamara
-          </span>
-          <p className=" text-xs sm:text-sm font-medium text-[#8D8D8D]">
-            Pay 4 interest-free payments of{' '}
-            <span className="font-currency font-normal"></span>{' '}
-            {formatAED(installments)}{' '}
-            <span
-              className="underline cursor-pointer text-red-500"
-              onClick={() => setTamaraOpen(true)}
-            >
-              Learn more
-            </span>
-          </p>
-          <div className="flex flex-wrap justify-evenly gap-2 mt-2">
-            {paymentLabels.map((label, index) => (
-              <div
-                key={index}
-                className="text-black font-medium 2xl:font-semibold pb-1 text-center "
-              >
-                <p className="text-10 2xl:text-xs text-nowrap">
-                  <span className="font-currency font-normal text-xs 2xl:text-sm">
-                    
-                  </span>{' '}
-                  {formatAED(installments)}
-                </p>
-                <p className="text-[8px] xl:text-[8px] 2xl:text-10 text-[#8D8D8D]">
-                  {label}
-                </p>
-              </div>
-            ))}
-          </div>
+                <span className="font-currency font-normal text-lg"></span>
+                {formatAED(installments)}
+              </p>
+              <p className="mt-0.5 text-xs text-[#8D8D8D]">{label}</p>
+            </div>
+          ))}
         </div>
       </div>
 

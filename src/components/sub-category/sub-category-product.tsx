@@ -1,13 +1,15 @@
 'use client';
 import Card from 'components/Card/Card';
-import ClearanceCard from 'components/Card/ClearanceCard';
 import { features } from 'data/data';
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiX } from 'react-icons/fi';
 import { FilterState } from 'types/cat';
 import { SubCategoryProps } from 'types/types';
+import { IProduct } from 'types/prod';
 
-const PRODUCTS_PER_PAGE = 9;
+const isAccessoryProduct = (product: IProduct) =>
+  product?.category?.custom_url?.toLowerCase().trim() === 'accessories' ||
+  product?.category?.name?.toLowerCase().trim() === 'accessories';
 
 const SubCategory = ({
   filteredProducts,
@@ -15,70 +17,20 @@ const SubCategory = ({
   setSelectedProductFilters,
   setIsWaterProof,
   categoryData,
-  setSelectedTags,
-  isClearence
+  setSelectedTags
 }: SubCategoryProps) => {
-  const [visibleCount, setVisibleCount] = useState(PRODUCTS_PER_PAGE);
   const [showNoProductsMessage, setShowNoProductsMessage] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const observerRef = useRef<HTMLDivElement | null>(null);
-
-  // Use a more efficient intersection observer with throttling
   useEffect(() => {
     if (filteredProducts.length === 0) {
       const timer = setTimeout(() => {
         setShowNoProductsMessage(true);
-      }, 1000); // Reduced from 5000ms to 1000ms
+      }, 1000);
       return () => clearTimeout(timer);
     } else {
       setShowNoProductsMessage(false);
     }
   }, [filteredProducts]);
-
-  useEffect(() => {
-    setVisibleCount(PRODUCTS_PER_PAGE);
-  }, [filteredProducts]);
-
-  // Throttled load more function
-  const loadMore = useCallback(() => {
-    if (isLoading) return;
-
-    setIsLoading(true);
-    setVisibleCount((prev) =>
-      Math.min(prev + PRODUCTS_PER_PAGE, filteredProducts.length)
-    );
-
-    // Reset loading state after a short delay
-    setTimeout(() => setIsLoading(false), 300);
-  }, [filteredProducts, isLoading]);
-
-  // Optimized intersection observer with throttling
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (
-          entries[0].isIntersecting &&
-          visibleCount < filteredProducts.length &&
-          !isLoading
-        ) {
-          loadMore();
-        }
-      },
-      { threshold: 0.5 } // Reduced threshold from 1.0 to 0.5 for earlier triggering
-    );
-
-    const currentRef = observerRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, [loadMore, visibleCount, filteredProducts.length, isLoading]);
 
   const handleRemoveFilter = (
     item:
@@ -99,9 +51,6 @@ const SubCategory = ({
       }));
     }
   };
-
-  // Pre-render first batch of products to improve LCP
-  const visibleProducts = filteredProducts.slice(0, visibleCount);
 
   return (
     <div className="pt-5 lg:mb-20">
@@ -149,31 +98,19 @@ const SubCategory = ({
       </div>
 
       {/* Products Grid - Key optimization area */}
-      <div
-        className={`grid grid-cols-2 sm:grid-cols-3 mb-4 ${isClearence ? 'gap-2 sm:gap-4 2xl:grid-cols-4' : 'gap-2 sm:gap-4'}`}
-      >
+      <div className="grid grid-cols-2 sm:grid-cols-3 mb-4 gap-2 sm:gap-4">
         {filteredProducts.length > 0 ? (
-          isClearence ? (
-            visibleProducts.map((product, index) => (
-              <ClearanceCard
-                key={product.id || index}
-                product={product}
-                isSoldOut={false}
-              />
-            ))
-          ) : (
-            visibleProducts.map((product, index) => (
-              <Card
-                key={product.id || index} // Use product.id if available for stable keys
-                product={product}
-                features={features}
-                categoryData={categoryData}
-                isSoldOut={false}
-                isAccessories={false}
-                priority={index < 3} // Add priority loading for first 3 images (LCP improvement)
-              />
-            ))
-          )
+          filteredProducts.map((product, index) => (
+            <Card
+              key={product.id || index} // Use product.id if available for stable keys
+              product={product}
+              features={features}
+              categoryData={categoryData}
+              isSoldOut={false}
+              isAccessories={isAccessoryProduct(product as IProduct)}
+              priority={index < 3} // Add priority loading for first 3 images (LCP improvement)
+            />
+          ))
         ) : !showNoProductsMessage ? (
           // Optimized skeleton loading with fewer elements
           Array.from({ length: 6 }).map((_, i) => (
@@ -198,19 +135,6 @@ const SubCategory = ({
           </div>
         )}
       </div>
-
-      {visibleCount < filteredProducts.length && (
-        <div
-          ref={observerRef}
-          className="text-center py-4"
-          aria-label="Loading more products"
-        >
-          <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
-          <span className="ml-2 text-sm text-gray-400">
-            Loading more products...
-          </span>
-        </div>
-      )}
     </div>
   );
 };

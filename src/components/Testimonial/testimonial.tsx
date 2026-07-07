@@ -21,7 +21,6 @@ type TestimonialProps = {
 };
 
 type ReviewItem = {
-    id: number;
     name: string;
     reviewDate: string;
     starRating: number;
@@ -32,56 +31,99 @@ type ReviewItem = {
 const dummyReviewChunks: ReviewItem[][] = [
     [
         {
-            id: 1,
+            name: "Finance artiart",
+            reviewDate: "2026-07-04",
+            starRating: 5,
+            ReviewsDescription: "Best price I found in UAE for herringbone SPC. No fitting, but their recommended fitter was cheap.",
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+        },
+        {
+            name: "arjun rajeev",
+            reviewDate: "2026-07-03",
+            starRating: 5,
+            ReviewsDescription: "Had a really nice experience with this company. Chatted to the lady on whatsapp and she was very helpful. She sent me some real sample same day and we were able to choose easily. Placed the order and arrived in 1 day and they gave me number for fitting guy. Very good value compared to some of the bigger companies. Very recommended",
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+        },
+        {
+            name: "Galina Egorova",
+            reviewDate: "2026-01-1",
+            starRating: 5,
+            ReviewsDescription: "I am impressed with the level of service! I had an urgency and urgently needed floors delivery same day. I called, requested expedited delivery, they called me back, confirmed, I paid and had the delivery same day! It was amazing experience. I want to thank Kal for awesome service and for care. She followed up with me till the delivery took place. She is very responsible and kind person. I wish her all the best and much luck!",
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+        },
+        {
             name: "Aisha Rahman",
             reviewDate: "2026-05-28",
             starRating: 5,
             ReviewsDescription: "Ordered the herringbone SPC for our villa in Arabian Ranches. The free samples arrived in two days and the colour matched exactly what I saw online. The installation team was punctual and tidy and finished the whole living room in a single day.",
-            posterImageUrl:  { imageUrl: "/assets/images/dummy-avatar.jpg" }
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
         },
         {
-            id: 2,
             name: "James Whitfield",
             reviewDate: "2026-05-14",
             starRating: 5,
             ReviewsDescription: "Genuinely the best price I found in Dubai for LVT. The click-lock system is so easy I fitted the bedroom myself over a weekend, no glue or nails needed. Quality feels premium, not budget at all.",
-            posterImageUrl:  { imageUrl: "/assets/images/dummy-avatar.jpg" }
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
         }
     ],
     [
         {
-            id: 3,
+            name: "Adeel's Official",
+            reviewDate: "2026-07-04",
+            starRating: 5,
+            ReviewsDescription: "Very fast service, good selection and item is high quality. We are contractor and will use this company again and again",
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+        },
+        {
+            name: "Rozhan",
+            reviewDate: "2026-02-10",
+            starRating: 5,
+            ReviewsDescription: "I had selected samples first from their website, they had sent it within a day, price was really reasonable in comparison to my other quotations. Reliable 👍🏼 …",
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+        },
+        {
             name: "Fatima Al Mansoori",
             reviewDate: "2026-04-30",
             starRating: 5,
             ReviewsDescription: "Beautiful flooring and great service from start to finish. The team helped me pick the right plank for a high-traffic hallway and let me split the payment with Tabby. Highly recommend Easy Floors.",
-            posterImageUrl:  { imageUrl: "/assets/images/dummy-avatar.jpg" }
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
         },
         {
-            id: 4,
             name: "Daniel Pereira",
             reviewDate: "2026-04-12",
             starRating: 4,
             ReviewsDescription: "Really happy with the SPC flooring, it looks exactly like the photos. Delivery took one extra day but customer service kept me updated the whole time. Would order from them again.",
-            posterImageUrl:  { imageUrl: "/assets/images/dummy-avatar.jpg" }
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
         }
     ],
     [
         {
-            id: 5,
+            name: "Gulnar Hanjayeva",
+            reviewDate: "2026-07-04",
+            starRating: 5,
+            ReviewsDescription: "Moved recently and found this company who gave me the same brand that I had before from another store. Almost same amount and even paying for installation, I saved around 40% . Couldn’t be happier! Will tell all my friends",
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+        },
+        {
+            name: "Rakshith",
+            reviewDate: "2026-04-20",
+            starRating: 5,
+            ReviewsDescription: "i had nice experience with Easy floor. very fast service and good pricing",
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
+        },
+        {
             name: "Sana Khan",
             reviewDate: "2026-03-22",
             starRating: 5,
             ReviewsDescription: "We redid our apartment in JVC with their wood-effect vinyl and it completely transformed the space. Scratch-resistant and waterproof, which is perfect with two kids and a dog. Worth every dirham.",
-            posterImageUrl:  { imageUrl: "/assets/images/dummy-avatar.jpg" }
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
         },
         {
-            id: 6,
             name: "Mohammed Saeed",
             reviewDate: "2026-03-05",
             starRating: 5,
             ReviewsDescription: "Excellent experience. Visited the showroom, got honest advice, and the installers were professional and respectful of our home. The herringbone finish looks absolutely stunning.",
-            posterImageUrl:  { imageUrl: "/assets/images/dummy-avatar.jpg" }
+            posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
         }
     ]
 ];
