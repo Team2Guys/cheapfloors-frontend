@@ -10,8 +10,8 @@ const Contact = () => {
   return (
     <>
       <Breadcrumb
-        title="Contact Us"
-        image="/assets/images/Contact/Contact.webp"
+        // title="Contact Us"
+        image="/assets/images/Contact/Contact-us.webp"
       />
        <Container className="md:mt-16 mt-10 mb-20 bg-white">
         <div className="text-center font-inter md:space-y-4 bg-white">

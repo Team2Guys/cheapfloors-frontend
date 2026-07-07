@@ -1,7 +1,7 @@
 'use client';
 import { useState, useMemo } from 'react';
 import Container from 'components/common/container/Container';
-import { FilterState, CLEATANCE_PAGES_PROPS } from 'types/cat';
+import { Category, FilterState, CLEATANCE_PAGES_PROPS } from 'types/cat';
 import Select from 'components/ui/Select';
 import Drawer from 'components/ui/drawer';
 const SubCategory = dynamic(
@@ -38,7 +38,6 @@ const Clearance = ({
     });
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [priceValue, setPriceValue] = useState<[number, number]>([20, 149]);
-  const [coverageArea, setcoverageArea] = useState<[number, number]>([0, 1000]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [sortOption, setSortOption] = useState<string>('Default');
   const { filtered, appliedFilters } = useMemo(
@@ -46,18 +45,15 @@ const Clearance = ({
       productFilter({
         products: products,
         priceValue,
-        coverageArea,
         sortOption,
         selectedProductFilters,
         isWaterProof,
         subcategory: undefined,
-        selectedTags,
-        isClearance: true
+        selectedTags
       }),
     [
       products,
       priceValue,
-      coverageArea,
       sortOption,
       selectedProductFilters,
       isWaterProof,
@@ -79,8 +75,6 @@ const Clearance = ({
           catSlug={slug}
           setSelectedTags={setSelectedTags}
           selectedTags={selectedTags}
-          setcoverageArea={setcoverageArea}
-          coverageArea={coverageArea}
           isClearance
           products={products}
         />
@@ -117,8 +111,6 @@ const Clearance = ({
                   catSlug={slug}
                   setSelectedTags={setSelectedTags}
                   selectedTags={selectedTags}
-                  setcoverageArea={setcoverageArea}
-                  coverageArea={coverageArea}
                   isClearance
                   products={products}
                 />
@@ -149,7 +141,7 @@ const Clearance = ({
           setIsWaterProof={setIsWaterProof}
           setSelectedProductFilters={setSelectedProductFilters}
           setSelectedTags={setSelectedTags}
-          isClearence
+          categoryData={{ name: 'Clearance' } as Category}
         />
       </div>
     </Container>

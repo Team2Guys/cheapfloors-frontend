@@ -454,6 +454,14 @@ export const FETCH_HEADER_CATEGORIES = gql`
         discountPrice
         stock
         posterImageUrl
+        status
+        custom_url
+        category {
+          RecallUrl
+        }
+        subcategory {
+          custom_url
+        }
       }
       recalledSubCats {
         id

@@ -56,7 +56,7 @@ const Shipping = () => {
           <span className="font-currency font-normal sm:text-25"></span> 2,000.{' '}
           <span className="font-currency font-normal sm:text-25"></span> 200
           delivery charge applies for orders below{' '}
-          <span className="font-currency font-normal sm:text-25"></span> 1999
+          <span className="font-currency font-normal sm:text-25"></span> 1,999.
         </li>
       </ul>
 
@@ -74,6 +74,18 @@ const Shipping = () => {
           </Link>
         </li>
       </ul>
+
+      <div className="overflow-hidden rounded-lg">
+        <iframe
+          title="Easy Floors Showroom Location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3269.1510190571935!2d55.2357386!3d25.1177844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69fca32528d3%3A0x63e4dd6474477d84!2sEasyFloors%20-%20Affordable%20Flooring!5e1!3m2!1sen!2s!4v1782991951523!5m2!1sen!2s"
+          className="w-full h-[300px] sm:h-[450px] border-0"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          allowFullScreen
+        />
+      </div>
+      
     </Container>
   );
 };

@@ -269,6 +269,22 @@ export const CREATE_B2B_QUOTE = gql`
   }
 `;
 
+export const CREATE_REQUEST_CALLBACK = gql`
+  mutation CreateRequestCallback(
+    $createRequestCallbackInput: CreateRequestCallbackInput!
+  ) {
+    createRequestCallback(
+      createRequestCallbackInput: $createRequestCallbackInput
+    ) {
+      id
+      name
+      email
+      phone
+      whatsapp
+    }
+  }
+`;
+
 export const CONTACT_US_EMAIL_MUTATION = gql`
   mutation ContactEmail($contactUsEmail: contactUsEmailInput!) {
     Contact_email(contactUsEmail: $contactUsEmail) {

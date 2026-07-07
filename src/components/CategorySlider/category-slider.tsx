@@ -3,7 +3,8 @@ import { SwiperSlide } from 'swiper/react';
 import Link from 'next/link';
 const Card = dynamic(() => import('components/Card/Card'));
 import { features } from 'data/data';
-import { Category, EDIT_CATEGORY, ISUBCATEGORY } from 'types/cat';
+import { Category, ISUBCATEGORY } from 'types/cat';
+import { IProduct } from 'types/prod';
 import { getSubcategoryOrder } from 'data/home-category';
 import dynamic from 'next/dynamic';
 import SwiperSlider from 'components/common/swiper-slider/swiper-slider';
@@ -11,6 +12,7 @@ import { categoryBreakpoint } from 'data/slider';
 import SliderArrow from 'components/common/slider-arrow/slider-arrow';
 import { BsArrowRight } from 'react-icons/bs';
 import Container from '../common/container/Container';
+import { formatDisplayName } from 'utils/helperFunctions';
 
 const getPrice = (cat: Category) => {
   if (cat.price) return cat.price;
@@ -47,12 +49,28 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
               return (Number(a.price) || 0) - (Number(b.price) || 0);
             }
           });
-          const shouldEnablePagination =
-            subcategories && subcategories.length >= 0;
+
+          // Floor Smart shows its individual products instead of subcategories.
+          const isFloorSmart =
+            category.name?.trim().toLowerCase() === 'floor smart';
+          const floorSmartProducts = ((category.products as IProduct[]) || [])
+            .filter((p) => (p.status ? p.status === 'PUBLISHED' : true))
+            .sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
+
+          const sliderItems: (ISUBCATEGORY | IProduct)[] = isFloorSmart
+            ? floorSmartProducts
+            : subcategories;
+
+          const shouldEnablePagination = sliderItems.length >= 0;
           const seeAllLink = `/${category?.custom_url || category.name.toLowerCase().replace(/\s+/g, '-')}`;
 
           const isYellowBg = category.name.toUpperCase() === 'LVT FLOORING';
-          const price = getPrice(category);
+          const itemPrices = sliderItems
+            .map((item) => Number(item.price))
+            .filter((p) => !isNaN(p) && p > 0);
+          const price = itemPrices.length
+            ? String(Math.min(...itemPrices))
+            : getPrice(category);
 
           const getArrowHiddenClasses = (length: number) => {
             if (length <= 1) return '!hidden';
@@ -60,7 +78,7 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
             if (length === 3 || length === 4) return 'xl:!hidden';
             return '';
           };
-          const arrowHiddenClass = getArrowHiddenClasses(subcategories?.length || 0);
+          const arrowHiddenClass = getArrowHiddenClasses(sliderItems.length);
 
           return (
             <div className='bg-[#CDCDCD14]' key={index}>
@@ -73,8 +91,8 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
                 <div className="flex flex-col lg:flex-row w-full gap-4 lg:gap-8 relative">
                   {/* Category Info Box */}
                   <div className='w-full lg:w-[300px] 2xl:w-[355px] 3xl:w-[420px] shrink-0 border border-primary rounded-xl p-2 sm:p-8 flex flex-col items-center justify-center text-center bg-white hover:bg-primary hover:border-primary group'>
-                    <h2 className="text-2xl md:text-[28px] font-semibold text-black mb-1 sm:mb-4 capitalize">
-                      {category.name.toLowerCase()}
+                    <h2 className="text-2xl md:text-[28px] font-semibold text-black mb-1 sm:mb-4">
+                      {formatDisplayName(category.name)}
                     </h2>
                     <p className="text-black mb-3 sm:mb-8 text-sm md:text-base lg:text-lg flex items-center gap-1">
                       Price Starting From:{' '}
@@ -110,19 +128,17 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
                         breakpoints={categoryBreakpoint}
                         className="w-full"
                       >
-                        {subcategories?.map(
-                          (product: EDIT_CATEGORY, idx: number) => (
-                            <SwiperSlide key={idx} className="pb-2 lg:px-1">
-                              <Card
-                                product={product}
-                                categoryData={category}
-                                features={features}
-                                sldier
-                                subCategoryFlag
-                              />
-                            </SwiperSlide>
-                          )
-                        )}
+                        {sliderItems?.map((item, idx: number) => (
+                          <SwiperSlide key={idx} className="pb-2 lg:px-1">
+                            <Card
+                              product={item as IProduct}
+                              categoryData={category}
+                              features={features}
+                              sldier
+                              subCategoryFlag={!isFloorSmart}
+                            />
+                          </SwiperSlide>
+                        ))}
                       </SwiperSlider>
                     </div>
                   </div>

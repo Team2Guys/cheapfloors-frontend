@@ -394,8 +394,8 @@ export const FloorItemsData = [
   {
     id: 1,
     title: 'Herringbone Floor',
-    imageUrl: '/assets/images/Home/herring-new.webp',
-    hoverImage: '/assets/images/Home/herring-new.webp'
+    imageUrl: '/assets/images/Home/Herring-new.webp',
+    hoverImage: '/assets/images/Home/Herring-new.webp'
   },
   {
     id: 2,
@@ -620,7 +620,7 @@ export const boxData: BoxData[] = [
   {
     title: 'Need help with measurement?',
     description: `We have a detailed How to Measure Guide to make it easy. If you need further assistance, feel free to contact us—we're here to help!`,
-    buttonText: 'Book Your Appointment',
+    buttonText: 'Book an Measurement',
     icon: '/assets/images/Home/measure1.png',
     link: '/measurement-appointment',
     bgImage: '/assets/images/aboutus/about5.webp'
@@ -628,7 +628,7 @@ export const boxData: BoxData[] = [
   {
     title: 'Need help with installation?',
     description: `Our easy click-lock system makes installation simple—no glue or nails are required. If self-fitting isn’t your thing, let us take care of the hassle. One call or message and we’ll send our expert teams to take care of the installation.`,
-    buttonText: 'Book Your Appointment',
+    buttonText: 'Book an Installation',
     icon: '/assets/images/Home/Vectorrg.png',
     link: '/help-with-installations',
     bgImage: '/assets/images/aboutus/about6.webp'
@@ -775,6 +775,16 @@ export const faqspage: FAQ[] = [
       `Yes. The UAE's humid and hot atmosphere is something that our Richmond SPC or LVT flooring is made to resist. It is a dependable option for both residential and commercial applications because of its heat- and water-resistant qualities. SPC and LVT provide long-term durability since they do not expand or contract in response to temperature variations like regular wood flooring does.`,
     category: 'General'
   },
+    {
+    category: 'General',
+    question: 'How much does it cost for having SPC or LVT for a room of 4m x 5m size?',
+    answer: 'Based on our entry level SPC, the approximate cost would be AED 1,100 inc VAT. For LVT, going for the entry level range, the cost would be AED 1,880 inc VAT.'
+  },
+  {
+    category: 'General',
+    question: 'Which one should I use — Herringbone or Straight Planks?',
+    answer: 'This is really down to personal taste. Within straight planks, we have the Eco range (standard sizes) or, if you’d like a more authentic wood look, then we also offer the Lux and Prime planks. The bigger planks look great in a longer room but can feel a bit big in smaller areas. Herringbone styles all come in one size and can be used in narrow or wide areas. Currently, we sell an almost equal amount in both finishes, so it really is a matter of personal taste.'
+  },
 
   {
     question:
@@ -903,7 +913,7 @@ export const alternatingData: TAboutUs[] = [
     alt: 'First Image',
     heading: 'Your Trusted Online Flooring Store',
     paragraph:
-      "We’re the leading online flooring store in the UAE, offering our valued customers top-quality products from the Richmond and Polar collections. With years of experience, we've earned a solid reputation for being reliable, efficient, and customer satisfaction-centric. Our Jebel Ali warehouse in Dubai holds 60,000 sqm of stock, so we can deliver fast anywhere in the UAE."
+      "We’re the leading online flooring store in the UAE, offering our valued customers top-quality products from the Richmond, Polar and Floor Smart collections. With years of experience, we've earned a solid reputation for being reliable, efficient, and customer satisfaction-centric. Our Jebel Ali warehouse in Dubai holds 60,000 sqm of stock, so we can deliver fast anywhere in the UAE."
   },
   {
     id: 2,
@@ -911,7 +921,7 @@ export const alternatingData: TAboutUs[] = [
     alt: 'Second Image',
     heading: 'For Homes And Businesses In The UAE',
     paragraph:
-      'We cater to a range of customers, including homeowners, commercial properties like schools and offices, flooring contractors, and interior designers. With a direct factory connection and years of hands-on experience, we’ve designed our flooring materials to handle the tough climate of Dubai and the UAE'
+      'We cater to a range of customers, including homeowners, commercial properties like schools and offices, flooring contractors, and interior designers. With a direct factory connection and years of hands-on experience, we’ve designed our flooring materials to handle the tough climate of Dubai and the UAE.'
   },
   {
     id: 3,

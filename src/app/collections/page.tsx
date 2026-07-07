@@ -52,7 +52,7 @@ const AllCollection = async ({
       <Breadcrumb
         title=""
         useHeadingTag
-        image="/assets/images/category/allcollection-new.webp"
+        image="/assets/images/category/allcollection.webp"
       />
       <Collections
         sortedSubcategories={sortedSubcategories}

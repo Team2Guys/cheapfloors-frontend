@@ -461,36 +461,6 @@ const ProductContainer = ({
 
               <div className="flex flex-col xsm:flex-row w-full gap-2 pt-2">
                 <button
-                  id="OrderFreeSample"
-                  className="flex_center flex-1 bg-primary hover:bg-secondary text-base xl:text-xl text-white font-semibold gap-1.5 h-[64px] px-2 py-2"
-                  onClick={() =>
-                    handleAddToStorage(
-                      productData,
-                      totalPrice,
-                      pricePerBox,
-                      squareMeter,
-                      requiredBoxes,
-                      subCategory ?? '',
-                      MainCategory ?? '',
-                      'freeSample',
-                      productData?.productImages?.[0]?.imageUrl,
-                      boxCoverage,
-                      unit,
-                      selectedColor,
-                      matchedProductImages
-                    )
-                  }
-                >
-                  <Image
-                    src="/assets/images/icon/measure.png"
-                    alt="box"
-                    width={30}
-                    height={30}
-                    className="size-7 shrink-0"
-                  />
-                  <span className="whitespace-nowrap leading-tight">Order Now Free Sample</span>
-                </button>
-                <button
                   id="AddToCart"
                   onClick={() =>
                     handleAddToStorage(
@@ -523,6 +493,36 @@ const ProductContainer = ({
                   />
                   Add to Cart
                 </button>
+                <button
+                  id="OrderFreeSample"
+                  className="flex_center flex-1 bg-primary hover:bg-secondary text-base xl:text-xl text-white font-semibold gap-1.5 h-[64px] px-2 py-2"
+                  onClick={() =>
+                    handleAddToStorage(
+                      productData,
+                      totalPrice,
+                      pricePerBox,
+                      squareMeter,
+                      requiredBoxes,
+                      subCategory ?? '',
+                      MainCategory ?? '',
+                      'freeSample',
+                      productData?.productImages?.[0]?.imageUrl,
+                      boxCoverage,
+                      unit,
+                      selectedColor,
+                      matchedProductImages
+                    )
+                  }
+                >
+                  <Image
+                    src="/assets/images/icon/measure.png"
+                    alt="box"
+                    width={30}
+                    height={30}
+                    className="size-7 shrink-0"
+                  />
+                  <span className="whitespace-nowrap leading-tight">Order Now Free Sample</span>
+                </button>
               </div>
               <button
                 id="AddToWishlist"
@@ -552,7 +552,7 @@ const ProductContainer = ({
                 Add to Wishlist
               </button>
               <div className="space-y-2.5">
-                <PaymentMethod installments={installments ?? 0} compact />
+                <PaymentMethod installments={installments ?? 0} />
                 <TrustBadges />
               </div>
             </>

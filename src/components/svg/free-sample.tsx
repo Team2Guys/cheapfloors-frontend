@@ -1,9 +1,10 @@
 import React from 'react';
 
-const FreeSample = ({isCard}: {isCard?: boolean}) => {
+const FreeSample = ({isCard, className}: {isCard?: boolean, className?: string}) => {
   return (
     <svg
-      className={`${isCard ? 'size-5' : 'size-3.5 min-[1150px]:size-4 xl:size-5'}`}
+      className={`${isCard ? (className ?? 'size-5') : 'size-3.5 min-[1150px]:size-4 xl:size-5'}`}
+      fill={isCard ? 'currentColor' : undefined}
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
     >

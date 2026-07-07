@@ -1,13 +1,16 @@
 import React from 'react';
 import CartPage from 'components/cart/cart-page';
 import Breadcrumb from 'components/Reusable/breadcrumb';
-import { fetchProducts } from 'config/fetch';
+import { fetchAccessories, fetchProducts } from 'config/fetch';
 import { createMetadata } from 'utils/metadataHelper';
 import { pageMetadataData } from 'data/meta-data';
 import { IProduct } from 'types/prod';
 export const metadata = createMetadata(pageMetadataData.cart);
 const Cart = async () => {
-  const products = await fetchProducts();
+  const [products, accessories] = await Promise.all([
+    fetchProducts(),
+    fetchAccessories()
+  ]);
   const publishedProducts = products.filter((product: IProduct) => {
     const categoryStatus = product.category?.status;
     const subcategoryStatus = product.subcategory?.status;
@@ -21,7 +24,7 @@ const Cart = async () => {
   return (
     <>
       <Breadcrumb title="Cart" />
-      <CartPage products={publishedProducts} />
+      <CartPage products={publishedProducts} accessories={accessories} />
     </>
   );
 };

@@ -4,9 +4,36 @@ import Image from 'next/image';
 import React from 'react';
 import { createMetadata } from 'utils/metadataHelper';
 import { pageMetadataData } from 'data/meta-data';
+import { fetchAccessories, fetchCategories, fetchProducts } from 'config/fetch';
+import { ICategory } from 'types/type';
+import FreeSampleProducts from './FreeSampleProducts';
 export const metadata = createMetadata(pageMetadataData.free_sample);
-const FreeSampleDetail = () => {
+const FreeSampleDetail = async () => {
+  const [products, accessories, categories] = await Promise.all([
+    fetchProducts(),
+    fetchAccessories(),
+    fetchCategories()
+  ]);
+  const publishedProducts = products.filter(
+    (product: ICategory) => product.status === 'PUBLISHED'
+  );
+  const publishedAccessories = accessories.filter(
+    (item: ICategory) => item.status === 'PUBLISHED'
+  );
+  const publishedCategories = categories
+    .filter((cat: ICategory) => cat.status === 'PUBLISHED')
+    .map((cat: ICategory) => ({
+      ...cat,
+      subcategories:
+        cat.subcategories?.filter(
+          (sub: ICategory) => sub.status === 'PUBLISHED'
+        ) || [],
+      recalledSubCats:
+        cat.recalledSubCats?.filter((recall) => recall?.status === 'PUBLISHED') ||
+        []
+    }));
   return (
+    <>
     <Container className="space-y-2 sm:space-y-4 my-10 font-inter">
       <h1 className="text-center text-24 sm:text-36 font-semibold mb-4 font-inter">
         Free Samples
@@ -37,6 +64,12 @@ const FreeSampleDetail = () => {
         journey to the perfect choice begins with a premium experience.
       </p>
     </Container>
+    <FreeSampleProducts
+      products={publishedProducts}
+      accessories={publishedAccessories}
+      categories={publishedCategories}
+    />
+    </>
   );
 };
 
