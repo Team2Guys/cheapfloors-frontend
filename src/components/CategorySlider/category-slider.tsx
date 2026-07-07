@@ -3,7 +3,8 @@ import { SwiperSlide } from 'swiper/react';
 import Link from 'next/link';
 const Card = dynamic(() => import('components/Card/Card'));
 import { features } from 'data/data';
-import { Category, EDIT_CATEGORY, ISUBCATEGORY } from 'types/cat';
+import { Category, ISUBCATEGORY } from 'types/cat';
+import { IProduct } from 'types/prod';
 import { getSubcategoryOrder } from 'data/home-category';
 import dynamic from 'next/dynamic';
 import SwiperSlider from 'components/common/swiper-slider/swiper-slider';
@@ -48,16 +49,27 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
               return (Number(a.price) || 0) - (Number(b.price) || 0);
             }
           });
-          const shouldEnablePagination =
-            subcategories && subcategories.length >= 0;
+
+          // Floor Smart shows its individual products instead of subcategories.
+          const isFloorSmart =
+            category.name?.trim().toLowerCase() === 'floor smart';
+          const floorSmartProducts = ((category.products as IProduct[]) || [])
+            .filter((p) => (p.status ? p.status === 'PUBLISHED' : true))
+            .sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
+
+          const sliderItems: (ISUBCATEGORY | IProduct)[] = isFloorSmart
+            ? floorSmartProducts
+            : subcategories;
+
+          const shouldEnablePagination = sliderItems.length >= 0;
           const seeAllLink = `/${category?.custom_url || category.name.toLowerCase().replace(/\s+/g, '-')}`;
 
           const isYellowBg = category.name.toUpperCase() === 'LVT FLOORING';
-          const subPrices = subcategories
-            .map((sub) => Number(sub.price))
+          const itemPrices = sliderItems
+            .map((item) => Number(item.price))
             .filter((p) => !isNaN(p) && p > 0);
-          const price = subPrices.length
-            ? String(Math.min(...subPrices))
+          const price = itemPrices.length
+            ? String(Math.min(...itemPrices))
             : getPrice(category);
 
           const getArrowHiddenClasses = (length: number) => {
@@ -66,7 +78,7 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
             if (length === 3 || length === 4) return 'xl:!hidden';
             return '';
           };
-          const arrowHiddenClass = getArrowHiddenClasses(subcategories?.length || 0);
+          const arrowHiddenClass = getArrowHiddenClasses(sliderItems.length);
 
           return (
             <div className='bg-[#CDCDCD14]' key={index}>
@@ -116,19 +128,17 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
                         breakpoints={categoryBreakpoint}
                         className="w-full"
                       >
-                        {subcategories?.map(
-                          (product: EDIT_CATEGORY, idx: number) => (
-                            <SwiperSlide key={idx} className="pb-2 lg:px-1">
-                              <Card
-                                product={product}
-                                categoryData={category}
-                                features={features}
-                                sldier
-                                subCategoryFlag
-                              />
-                            </SwiperSlide>
-                          )
-                        )}
+                        {sliderItems?.map((item, idx: number) => (
+                          <SwiperSlide key={idx} className="pb-2 lg:px-1">
+                            <Card
+                              product={item as IProduct}
+                              categoryData={category}
+                              features={features}
+                              sldier
+                              subCategoryFlag={!isFloorSmart}
+                            />
+                          </SwiperSlide>
+                        ))}
                       </SwiperSlider>
                     </div>
                   </div>

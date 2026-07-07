@@ -1,19 +1,41 @@
 export interface ReelItem {
-  // Instagram reel permalink. The slider renders the lightweight
-  // `/embed` version of each in an iframe.
-  url: string;
+  videoUrl: string;
+  videoPoster?: string;
 }
 
+// Reels are served from /public/assets/reels. Order: the last 5 (reel-07..reel-11) shown first.
 export const reelsData: ReelItem[] = [
-  { url: 'https://www.instagram.com/reel/DX9hNFNiEep/' },
-  { url: 'https://www.instagram.com/reel/DXKBgz-ikzT/' },
-  { url: 'https://www.instagram.com/reel/DVBVhV_jEe8/' },
-  { url: 'https://www.instagram.com/reel/DUyGYUUjDtj/' },
-  { url: 'https://www.instagram.com/reel/DUvvUKMjS6y/' }, // skirting
-  { url: 'https://www.instagram.com/reel/DUFyk1EjEpy/' },
-  { url: 'https://www.instagram.com/reel/DTnv7VhE146/' }, // old prices (kept intentionally)
-  { url: 'https://www.instagram.com/reel/DOLvdToACkd/' },
-  { url: 'https://www.instagram.com/reel/DR4tNp2EYLD/' }, // herringbone
-  { url: 'https://www.instagram.com/reel/DSFlMNWjSZ4/' },
-  { url: 'https://www.instagram.com/reel/DSKowT7F3JO/' }
+  {
+    "videoUrl": "/assets/reels/reel-07.mp4"
+  },
+  {
+    "videoUrl": "/assets/reels/reel-08.mp4"
+  },
+  {
+    "videoUrl": "/assets/reels/reel-09.mp4"
+  },
+  {
+    "videoUrl": "/assets/reels/reel-10.mp4"
+  },
+  {
+    "videoUrl": "/assets/reels/reel-11.mp4"
+  },
+  {
+    "videoUrl": "/assets/reels/reel-01.mp4"
+  },
+  {
+    "videoUrl": "/assets/reels/reel-02.mp4"
+  },
+  {
+    "videoUrl": "/assets/reels/reel-03.mp4"
+  },
+  {
+    "videoUrl": "/assets/reels/reel-04.mp4"
+  },
+  {
+    "videoUrl": "/assets/reels/reel-05.mp4"
+  },
+  {
+    "videoUrl": "/assets/reels/reel-06.mp4"
+  }
 ];

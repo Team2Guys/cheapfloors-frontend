@@ -4,43 +4,47 @@ import {
   useRef,
   useEffect,
   useCallback,
-  TouchEvent
+  useMemo,
+  TouchEvent,
+  SyntheticEvent
 } from 'react';
 import Container from 'components/common/container/Container';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaPlay } from 'react-icons/fa';
 import { reelsData } from 'data/SellerSlider';
-
-const getEmbedUrl = (url: string) =>
-  `${url.endsWith('/') ? url : `${url}/`}embed`;
 
 export default function VideoReelsSlider() {
   const [activeIndex, setActiveIndex] = useState(
     Math.min(2, Math.max(0, reelsData.length - 1))
   );
+  const [popupVideoIndex, setPopupVideoIndex] = useState<number | null>(null);
+  const [videoSize, setVideoSize] = useState<{
+    width: number;
+    height: number;
+  } | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  // Load each embed once (never unload) so navigating doesn't reload iframes.
-  const [loaded, setLoaded] = useState<number[]>([]);
 
-  const total = reelsData.length;
-  const sliderRef = useRef<HTMLDivElement>(null);
+  const totalVideos = reelsData.length;
+  const videoRefs = useRef<HTMLVideoElement[]>([]);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
   const minSwipeDistance = 50;
 
   const goToPrevious = useCallback(
-    () => setActiveIndex((prev) => (prev === 0 ? total - 1 : prev - 1)),
-    [total]
+    () => setActiveIndex((prev) => (prev === 0 ? totalVideos - 1 : prev - 1)),
+    [totalVideos]
   );
+
   const goToNext = useCallback(
-    () => setActiveIndex((prev) => (prev === total - 1 ? 0 : prev + 1)),
-    [total]
+    () => setActiveIndex((prev) => (prev === totalVideos - 1 ? 0 : prev + 1)),
+    [totalVideos]
   );
 
   useEffect(() => {
     const node = sliderRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.2 }
+      { threshold: 0.3 }
     );
     if (node) observer.observe(node);
     return () => {
@@ -48,18 +52,24 @@ export default function VideoReelsSlider() {
     };
   }, []);
 
-  // Only load the ~5 reels around the active one, and keep them loaded.
   useEffect(() => {
-    if (!isVisible) return;
-    const near = [
-      activeIndex,
-      (activeIndex - 1 + total) % total,
-      (activeIndex - 2 + total) % total,
-      (activeIndex + 1) % total,
-      (activeIndex + 2) % total
-    ];
-    setLoaded((prev) => Array.from(new Set([...prev, ...near])));
-  }, [isVisible, activeIndex, total]);
+    if (!isVisible || popupVideoIndex !== null) return;
+    const interval = setInterval(goToNext, 3000);
+    return () => clearInterval(interval);
+  }, [goToNext, popupVideoIndex, isVisible]);
+
+  useEffect(() => {
+    if (!isVisible || popupVideoIndex !== null) return;
+    const activeVideo = videoRefs.current[activeIndex];
+    if (activeVideo) {
+      activeVideo.play().catch(() => {});
+    }
+  }, [isVisible, activeIndex, popupVideoIndex]);
+
+  useEffect(() => {
+    document.body.style.overflow = popupVideoIndex !== null ? 'hidden' : '';
+    if (popupVideoIndex === null) setVideoSize(null);
+  }, [popupVideoIndex]);
 
   const onTouchStart = (e: TouchEvent<HTMLDivElement>) => {
     touchStartX.current = e.changedTouches[0].clientX;
@@ -75,88 +85,158 @@ export default function VideoReelsSlider() {
     touchEndX.current = null;
   };
 
-  const getPositionClass = (index: number) => {
-    const left1 = (activeIndex - 1 + total) % total;
-    const left2 = (activeIndex - 2 + total) % total;
-    const right1 = (activeIndex + 1) % total;
-    const right2 = (activeIndex + 2) % total;
+  const getPositionClass = useCallback(
+    (index: number) => {
+      const left1 = (activeIndex - 1 + totalVideos) % totalVideos;
+      const left2 = (activeIndex - 2 + totalVideos) % totalVideos;
+      const right1 = (activeIndex + 1) % totalVideos;
+      const right2 = (activeIndex + 2) % totalVideos;
 
-    if (index === activeIndex) return 'z-30 scale-100 opacity-100';
-    if (index === left1) return 'z-20 scale-[0.85] -translate-x-[60%]';
-    if (index === left2) return 'z-10 scale-[0.75] -translate-x-[110%]';
-    if (index === right1) return 'z-20 scale-[0.85] translate-x-[60%]';
-    if (index === right2) return 'z-10 scale-[0.75] translate-x-[110%]';
-    return 'hidden';
-  };
+      if (index === activeIndex) return 'z-30 scale-100 opacity-100';
+      if (index === left1) return 'z-20 scale-[0.85] -translate-x-[60%]';
+      if (index === left2) return 'z-10 scale-[0.75] -translate-x-[110%]';
+      if (index === right1) return 'z-20 scale-[0.85] translate-x-[60%]';
+      if (index === right2) return 'z-10 scale-[0.75] translate-x-[110%]';
+      return 'hidden';
+    },
+    [activeIndex, totalVideos]
+  );
 
-  if (total === 0) return null;
+  const handleLoadedMetadata = useCallback(
+    (e: SyntheticEvent<HTMLVideoElement>) => {
+      const video = e.currentTarget;
+      const maxWidth = window.innerWidth * 0.9;
+      const maxHeight = window.innerHeight * 0.9;
+
+      let width = video.videoWidth;
+      let height = video.videoHeight;
+
+      if (width > maxWidth) {
+        const ratio = maxWidth / width;
+        width = maxWidth;
+        height *= ratio;
+      }
+      if (height > maxHeight) {
+        const ratio = maxHeight / height;
+        height = maxHeight;
+        width *= ratio;
+      }
+      setVideoSize({ width, height });
+    },
+    []
+  );
+
+  const videoElements = useMemo(
+    () =>
+      reelsData.map((item, index) => {
+        const isNearActive = [
+          activeIndex,
+          (activeIndex - 1 + totalVideos) % totalVideos,
+          (activeIndex - 2 + totalVideos) % totalVideos,
+          (activeIndex + 1) % totalVideos,
+          (activeIndex + 2) % totalVideos
+        ].includes(index);
+
+        return (
+          <div
+            key={index}
+            onClick={() => {
+              setActiveIndex(index);
+              setTimeout(() => setPopupVideoIndex(index), 100);
+            }}
+            className={`absolute transition-all duration-500 ease-in-out cursor-pointer ${getPositionClass(
+              index
+            )}`}
+          >
+            <div className="relative sm:w-[420px] sm:h-[720px] w-[180px] h-[320px] rounded-2xl overflow-hidden shadow-lg bg-black">
+              <div className="absolute top-2 right-2 z-40 bg-black/40 rounded-full p-1.5 sm:p-2.5">
+                <FaPlay className="w-3 h-3 sm:w-5 sm:h-5 text-white" />
+              </div>
+              <video
+                ref={(el) => {
+                  if (el) videoRefs.current[index] = el;
+                }}
+                // Active reel plays from the start; the others load just their
+                // first frame (#t=0.1 + metadata) so no black screen shows.
+                src={
+                  isNearActive
+                    ? index === activeIndex
+                      ? item.videoUrl
+                      : `${item.videoUrl}#t=0.1`
+                    : undefined
+                }
+                className="w-full h-full object-cover"
+                loop
+                muted
+                playsInline
+                preload={index === activeIndex ? 'auto' : 'metadata'}
+                poster={item.videoPoster}
+                autoPlay={
+                  isVisible && index === activeIndex && popupVideoIndex === null
+                }
+              />
+            </div>
+          </div>
+        );
+      }),
+    [getPositionClass, activeIndex, totalVideos, isVisible, popupVideoIndex]
+  );
+
+  if (totalVideos === 0) return null;
 
   return (
-    <div className="relative mt-4 font-inter" ref={sliderRef}>
-      <div className="sm:py-6 py-4 text-center">
-        <p className="sm:text-4xl text-xl text-primary font-bold">
-          Press Play on Our Flooring Reels!
-        </p>
-      </div>
+    <>
+      <div className="relative mt-4 font-inter" ref={sliderRef}>
+        <div className="sm:py-6 py-4 text-center">
+          <p className="sm:text-4xl text-xl text-primary font-bold">
+            Press Play on Our Flooring Reels!
+          </p>
+        </div>
 
-      <Container>
-        <div className="relative flex items-center justify-center">
-          <button
-            type="button"
-            onClick={goToPrevious}
-            aria-label="Previous reel"
-            className="absolute left-1 sm:left-4 z-40 flex size-9 sm:size-11 items-center justify-center rounded-full bg-white shadow-md hover:bg-primary hover:text-white transition"
-          >
-            <FaChevronLeft />
-          </button>
-
+        <Container>
           <div
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
-            className="relative flex items-center justify-center sm:h-[760px] h-[340px] w-full overflow-hidden"
+            className="relative flex items-center justify-center sm:h-[760px] h-[340px] overflow-hidden"
           >
-            {reelsData.map((item, index) => (
-              <div
-                key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`absolute transition-all duration-500 ease-in-out cursor-pointer ${getPositionClass(
-                  index
-                )}`}
-              >
-                <div className="relative sm:w-[420px] sm:h-[720px] w-[180px] h-[320px] rounded-2xl overflow-hidden shadow-lg bg-black">
-                  {loaded.includes(index) ? (
-                    <iframe
-                      src={getEmbedUrl(item.url)}
-                      className="w-full h-full"
-                      loading="lazy"
-                      scrolling="no"
-                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                      allowFullScreen
-                      title={`Instagram reel ${index + 1}`}
-                    />
-                  ) : (
-                    <div className="w-full h-full animate-pulse bg-gray-200" />
-                  )}
-                  {/* Non-active cards: overlay so a click selects the card
-                      instead of interacting with the embedded reel. */}
-                  {index !== activeIndex && (
-                    <div className="absolute inset-0 z-10" />
-                  )}
-                </div>
-              </div>
-            ))}
+            {videoElements}
           </div>
+        </Container>
+      </div>
 
-          <button
-            type="button"
-            onClick={goToNext}
-            aria-label="Next reel"
-            className="absolute right-1 sm:right-4 z-40 flex size-9 sm:size-11 items-center justify-center rounded-full bg-white shadow-md hover:bg-primary hover:text-white transition"
+      {popupVideoIndex !== null && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80"
+          onClick={() => setPopupVideoIndex(null)}
+        >
+          <div
+            className="relative bg-black rounded-lg shadow-lg"
+            style={{
+              width: videoSize?.width ?? 'auto',
+              height: videoSize?.height ?? 'auto',
+              maxWidth: '90vw',
+              maxHeight: '90vh'
+            }}
+            onClick={(e) => e.stopPropagation()}
           >
-            <FaChevronRight />
-          </button>
+            <button
+              onClick={() => setPopupVideoIndex(null)}
+              className="absolute top-3 right-3 z-50 text-black bg-primary rounded-full px-2.5 py-1 focus:outline-none"
+              aria-label="Close video"
+            >
+              ✕
+            </button>
+            <video
+              key={reelsData[popupVideoIndex].videoUrl}
+              src={reelsData[popupVideoIndex].videoUrl}
+              className="rounded-lg object-contain w-full h-full"
+              controls
+              autoPlay
+              onLoadedMetadata={handleLoadedMetadata}
+            />
+          </div>
         </div>
-      </Container>
-    </div>
+      )}
+    </>
   );
 }
