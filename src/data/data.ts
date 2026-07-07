@@ -394,7 +394,7 @@ export const FloorItemsData = [
   {
     id: 1,
     title: 'Herringbone Floor',
-    imageUrl: '/assets/images/Home/Herring-new.webp',
+    imageUrl: '/assets/images/Home/HerringNew.webp',
     hoverImage: '/assets/images/Home/Herring-new.webp'
   },
   {
