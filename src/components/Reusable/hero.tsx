@@ -12,7 +12,7 @@ const HeroMain = ({ items }: HeroMainProps) => {
         > */}
       <Image
         // src="https://res.cloudinary.com/dmmeqgdhv/image/upload/v1754289893/hero-min_hek1qt.avif"
-        src="/assets/images/Home/Hero.webp"
+        src="/assets/images/Home/Hero-Banner.webp"
         alt="hero"
         fill
         priority
