@@ -107,6 +107,11 @@ const Card: React.FC<productCardProps> = ({
 
   const discountedPrice = (product as IProduct).discountPrice;
   const hasDiscount = !!discountedPrice && discountedPrice > 0;
+  const originalPrice = Number((product as IProduct).price);
+  const discountPercentage =
+    hasDiscount && originalPrice > 0
+      ? Math.round(((originalPrice - Number(discountedPrice)) / originalPrice) * 100)
+      : 0;
 
   const handleAddSample = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -115,7 +120,7 @@ const Card: React.FC<productCardProps> = ({
       product,
       Number(hasDiscount ? discountedPrice : product.price),
       Number(hasDiscount ? discountedPrice : product.price) *
-        (Number(product?.boxCoverage) || 1),
+      (Number(product?.boxCoverage) || 1),
       1,
       1,
       product.subcategory?.custom_url || '',
@@ -158,6 +163,11 @@ const Card: React.FC<productCardProps> = ({
         {isAccessories && isSoldOut && (
           <div className="bg-red-500 text-white text-xs absolute px-2 py-1 right-0 top-1 z-10">
             Sold Out
+          </div>
+        )}
+        {hasDiscount && discountPercentage > 0 && (
+          <div className="bg-primary text-white text-[10px] xsm:text-xs font-semibold absolute px-2 py-1 left-0 top-1 z-10">
+            {discountPercentage}% OFF
           </div>
         )}
         {!sldier && (
@@ -274,16 +284,6 @@ const Card: React.FC<productCardProps> = ({
       <div className="pb-2">
         {'price' in product && product.price && (
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <p className="text-base font-medium text-black flex items-center">
-              {/* {hasDiscount && (
-                <span className="text-sm font-normal mr-1">now</span>
-              )} */}
-              <span className="font-currency font-normal text-xl mr-1 mb-0.5">
-                
-              </span>
-              {hasDiscount ? discountedPrice : product?.price}
-              <span className="text-sm md:text-base font-normal ml-1">{isAccessories ? 'Per Piece' : '/m²'}</span>
-            </p>
             {hasDiscount && (
               <p className="text-sm font-normal text-gray-500 flex items-center">
                 {/* <span className="mr-1">before</span> */}
@@ -296,6 +296,16 @@ const Card: React.FC<productCardProps> = ({
                 </span>
               </p>
             )}
+            <p className="text-base font-medium text-black flex items-center">
+              {/* {hasDiscount && (
+                <span className="text-sm font-normal mr-1">now</span>
+              )} */}
+              <span className="font-currency font-normal text-xl mr-1 mb-0.5">
+                
+              </span>
+              {hasDiscount ? discountedPrice : product?.price}
+              <span className="text-sm md:text-base font-normal ml-1">{isAccessories ? 'Per Piece' : '/m²'}</span>
+            </p>
           </div>
         )}
       </div>
