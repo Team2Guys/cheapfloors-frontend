@@ -30,7 +30,8 @@ const Card: React.FC<productCardProps> = ({
   isSoldOut = false,
   // subCategoryFlag,
   setModalProduct,
-  setIsOpen
+  setIsOpen,
+  isFreeSample = false
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showCaption, setShowCaption] = useState('');
@@ -128,6 +129,31 @@ const Card: React.FC<productCardProps> = ({
         ? (product.category?.RecallUrl ?? 'Accessories')
         : 'Accessories',
       'freeSample',
+      'productImages' in product
+        ? (product.productImages?.[0]?.imageUrl ?? product.posterImageUrl?.imageUrl)
+        : product.posterImageUrl?.imageUrl,
+      product?.boxCoverage || '2.4',
+      'm',
+      selectedColor
+    );
+  };
+
+  const handleAddToCart = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const unitPrice = Number(hasDiscount ? discountedPrice : product.price);
+    const coverage = Number(product?.boxCoverage) || 1;
+    handleAddToStorage(
+      product,
+      unitPrice * coverage,
+      unitPrice * coverage,
+      coverage,
+      1,
+      product.subcategory?.custom_url || '',
+      'category' in product
+        ? (product.category?.RecallUrl ?? 'Accessories')
+        : 'Accessories',
+      'cart',
       'productImages' in product
         ? (product.productImages?.[0]?.imageUrl ?? product.posterImageUrl?.imageUrl)
         : product.posterImageUrl?.imageUrl,
@@ -356,11 +382,20 @@ const Card: React.FC<productCardProps> = ({
           // >
           //   Free sample
           // </button>
-          <Link href={handleNavigate(product as IProduct, categoryData)}
-            className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-xs xs:text-sm md:text-base hover:bg-primary transition text-center"
-          >
-            View product
-          </Link>
+          isFreeSample ? (
+            <button
+              className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-xs xs:text-sm md:text-base hover:bg-primary hover:text-white transition text-center"
+              onClick={handleAddToCart}
+            >
+              Add to cart
+            </button>
+          ) : (
+            <Link href={handleNavigate(product as IProduct, categoryData)}
+              className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-xs xs:text-sm md:text-base hover:bg-primary transition text-center"
+            >
+              View product
+            </Link>
+          )
         ) : (
           <Link
             href={

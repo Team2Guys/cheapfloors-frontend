@@ -180,6 +180,10 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
             values.colorCode === '' ? undefined : values.colorCode,
           colors: values.colors || [],
         };
+      } else {
+        Object.assign(newValues, {
+          products: (products || []).map((id) => Number(id)),
+        });
       }
 
       setloading(true);

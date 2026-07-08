@@ -1,7 +1,4 @@
 import Container from 'components/common/container/Container';
-import { freeSampleImage } from 'data/free-sample';
-import Image from 'next/image';
-import React from 'react';
 import { createMetadata } from 'utils/metadataHelper';
 import { pageMetadataData } from 'data/meta-data';
 import { fetchAccessories, fetchCategories, fetchProducts } from 'config/fetch';
@@ -46,13 +43,13 @@ const FreeSampleDetail = async () => {
         message if you need some more help or advice. We’re on hand to help you
         get exactly what you’re looking for.
       </p>
-      <div className="w-full grid grid-cols-5 gap-2">
+      {/* <div className="w-full grid grid-cols-5 gap-2">
         {freeSampleImage.map((item, index) => (
           <div key={index}>
             <Image width={400} height={400} src={item.image} alt="freesample" />
           </div>
         ))}
-      </div>
+      </div> */}
       <p className="text-sm sm:text-20 sm:leading-[26px] text-justify">
         We meticulously pack and ship your choices to guarantee they reach you
         in flawless condition. Additionally, there’s no pressure to buy

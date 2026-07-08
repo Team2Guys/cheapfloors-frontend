@@ -17,7 +17,8 @@ const SubCategory = ({
   setSelectedProductFilters,
   setIsWaterProof,
   categoryData,
-  setSelectedTags
+  setSelectedTags,
+  isFreeSample = false
 }: SubCategoryProps) => {
   const [showNoProductsMessage, setShowNoProductsMessage] = useState(false);
 
@@ -109,6 +110,7 @@ const SubCategory = ({
               isSoldOut={false}
               isAccessories={isAccessoryProduct(product as IProduct)}
               priority={index < 3} // Add priority loading for first 3 images (LCP improvement)
+              isFreeSample={isFreeSample}
             />
           ))
         ) : !showNoProductsMessage ? (
