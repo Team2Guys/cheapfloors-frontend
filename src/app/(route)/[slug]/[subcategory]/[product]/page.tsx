@@ -78,7 +78,6 @@ const Product = async ({ params }: { params: Promise<IParams> }) => {
   const PublishAccessory = AccessoriesProducts.filter(
     (acc: IProduct) => acc.status === 'PUBLISHED'
   );
-
   return (
     <ProductDetail
       MainCategory={slug}

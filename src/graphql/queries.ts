@@ -618,6 +618,7 @@ export const FIND_ONE_PRODUCT = gql`
         status
       }
       category {
+        name
         RecallUrl
       }
       subcategory {

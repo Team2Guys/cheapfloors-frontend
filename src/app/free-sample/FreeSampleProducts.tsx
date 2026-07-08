@@ -162,6 +162,7 @@ const FreeSampleProducts = ({
           setSelectedProductFilters={setSelectedProductFilters}
           categoryData={allProductsCategory}
           setSelectedTags={setSelectedTags}
+          isFreeSample
         />
       </div>
     </Container>

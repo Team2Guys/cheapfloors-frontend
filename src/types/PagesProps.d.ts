@@ -66,6 +66,7 @@ export interface productCardProps {
   categoryData?: ICategory;
   subCategoryFlag?: boolean;
   priority?: boolean;
+  isFreeSample?: boolean;
   setModalProduct?: React.Dispatch<React.SetStateAction<IProduct | null>>;
   setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }

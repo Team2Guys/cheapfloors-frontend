@@ -76,12 +76,18 @@ export const handleAddToStorage = async (
   }
   const adjustedUnit = unit || 'sqm';
 
+  const discountPrice = (productData as IProduct).discountPrice;
+  const hasDiscount = !!discountPrice && discountPrice > 0;
+  const effectiveUnitPrice = isClearance
+    ? (productData as IProduct).bundlePrice
+    : hasDiscount
+      ? discountPrice
+      : productData.price;
+
   const item = {
     id: Number(productData.id),
     name: productData.name,
-    price: Number(
-      isClearance ? (productData as IProduct).bundlePrice : productData.price
-    ),
+    price: Number(effectiveUnitPrice),
     stock: Number(productData.stock),
     image: posterImageUrl,
     subcategories: subCategory,
@@ -160,7 +166,12 @@ export const calculateProductDetails = (
   productData: IProduct | undefined
 ) => {
   const boxCoverage = productData?.boxCoverage;
-  const pricePerSqm = (productData?.price || 0);
+  const hasDiscount =
+    !!productData?.discountPrice && productData.discountPrice > 0;
+  const effectivePrice = hasDiscount
+    ? Number(productData?.discountPrice)
+    : (productData?.price || 0);
+  const pricePerSqm = effectivePrice;
   const numericCoverage = Number(boxCoverage);
   const convertedArea =
     unit === 'sqft'
@@ -173,7 +184,7 @@ export const calculateProductDetails = (
       : 0;
 
   const pricePerBox =
-    productData?.price !== undefined ? numericCoverage * productData.price : 0;
+    productData?.price !== undefined ? numericCoverage * effectivePrice : 0;
 
   const squareMeter = convertedArea;
   const totalPrice = unit === 'sqft' ? Number(area) * Number(pricePerSqm / 10.7639) : Number(area) * pricePerSqm;

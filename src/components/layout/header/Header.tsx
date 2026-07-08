@@ -9,7 +9,6 @@ const Header = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const [products, setProducts] = useState<IProduct[]>([]);
-  console.log(products.slice(0, 10))
   useEffect(() => {
     const loadProducts = async () => {
       try {
