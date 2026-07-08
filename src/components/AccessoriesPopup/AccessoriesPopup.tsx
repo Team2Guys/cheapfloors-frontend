@@ -90,7 +90,7 @@ const AccessoriesPopup = ({
           product.price,
           squareMeter,
           requiredBoxes[productId] || 1,
-          'm',
+          product.subcategory?.custom_url || 'accessories',
           product.category?.name ??
             (product?.__typename?.toLowerCase().trim() === 'accessory'
               ? 'accessories'
@@ -277,10 +277,10 @@ const AccessoriesPopup = ({
           </div>
         )}
         <div>
-          {/* <button
+          <button
             id="AddToCart"
             type="button"
-            className={`mt-2 w-fit px-2 xsm:px-5 sm:px-10 mx-auto py-3 font-semibold flex_center gap-2 fixed left-1/2 -translate-x-1/2 bottom-6 ${
+            className={`w-fit px-2 xsm:px-5 sm:px-10 py-3 font-semibold flex_center gap-2 absolute left-1/2 -translate-x-1/2 bottom-6 ${
               selectedProducts.length > 0
                 ? 'bg-black text-white cursor-pointer'
                 : 'bg-black text-white cursor-not-allowed opacity-70'
@@ -295,7 +295,7 @@ const AccessoriesPopup = ({
               height={28}
             />
             Add to Cart
-          </button> */}
+          </button>
         </div>
       </div>
     </div>
