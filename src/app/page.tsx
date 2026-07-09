@@ -9,7 +9,7 @@ import CompareSlider from 'components/image-compare/image-compare';
 import Features from 'components/Reusable/features';
 import CategorySlider from 'components/CategorySlider/category-slider';
 import Layers from 'components/Layers/layers';
-import FloorItems from 'components/FloorItems/FloorItems';
+import PlankSize from 'components/PlankSize/PlankSize';
 import AmCategory from 'components/Categories/AmCategory';
 import SampleBanner from 'components/Reusable/SampleBanner';
 import UserInfo from 'components/Reusable/user-info';
@@ -71,7 +71,7 @@ export default async function Home() {
       </Link> */}
       <CategorySlider categories={sortedCategories} />
       <Layers />
-      <FloorItems />
+      <PlankSize />
       <AmCategory subCategories={sortedSubcategories} />
       <Container>
         <SampleBanner />
