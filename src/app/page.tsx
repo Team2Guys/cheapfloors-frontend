@@ -1,5 +1,5 @@
 import HeroMain from 'components/Reusable/hero';
-import { faqs, heroItems, staticMenuItems } from 'data/data';
+import { faqs, staticMenuItems } from 'data/data';
 import { FETCH_ALL_WHAT_AM_I, FETCH_HEADER_CATEGORIES } from 'graphql/queries';
 import { fetchCategories, fetchSubCategories } from 'config/fetch';
 import { ICategory } from 'types/type';
@@ -64,7 +64,7 @@ export default async function Home() {
 
   return (
     <>
-      <HeroMain items={heroItems} />
+      <HeroMain />
       <Features />
       {/* <Link href='/clearance' className='relative block w-full h-[100px] sm:h-[200px] lg:h-[300px] mb-7 sm:mb-10 xl:mb-16'>
         <Image src='/assets/images/clearance/Banner_1.webp' alt='sale bannar' fill />
