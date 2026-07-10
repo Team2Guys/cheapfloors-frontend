@@ -7,7 +7,7 @@ const SampleBanner = () => {
   return (
      <div className="w-full mt-7 xl:mt-14">
         <Link
-          href="/collections"
+          href="/free-sample"
           className="relative block w-full aspect-[4/5] md:aspect-[16/7] overflow-hidden"
         >
           {/* Desktop Image */}
