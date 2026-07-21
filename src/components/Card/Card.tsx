@@ -111,8 +111,17 @@ const Card: React.FC<productCardProps> = ({
   const originalPrice = Number((product as IProduct).price);
   const discountPercentage =
     hasDiscount && originalPrice > 0
-      ? Math.round(((originalPrice - Number(discountedPrice)) / originalPrice) * 100)
+      ? Math.round(
+          ((originalPrice - Number(discountedPrice)) / originalPrice) * 100
+        )
       : 0;
+
+  const isOutOfStock =
+    isSoldOut || ((product as IProduct).stock === 0 && !isAccessories);
+  // On the main product card, the price lives on the (filled) "View product"
+  // button instead of a separate box above the actions.
+  const showPriceOnButton =
+    !sldier && !isAccessories && !isFreeSample && !isOutOfStock;
 
   const handleAddSample = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -121,7 +130,7 @@ const Card: React.FC<productCardProps> = ({
       product,
       Number(hasDiscount ? discountedPrice : product.price),
       Number(hasDiscount ? discountedPrice : product.price) *
-      (Number(product?.boxCoverage) || 1),
+        (Number(product?.boxCoverage) || 1),
       1,
       1,
       product.subcategory?.custom_url || '',
@@ -130,7 +139,8 @@ const Card: React.FC<productCardProps> = ({
         : 'Accessories',
       'freeSample',
       'productImages' in product
-        ? (product.productImages?.[0]?.imageUrl ?? product.posterImageUrl?.imageUrl)
+        ? (product.productImages?.[0]?.imageUrl ??
+            product.posterImageUrl?.imageUrl)
         : product.posterImageUrl?.imageUrl,
       product?.boxCoverage || '2.4',
       'm',
@@ -155,7 +165,8 @@ const Card: React.FC<productCardProps> = ({
         : 'Accessories',
       'cart',
       'productImages' in product
-        ? (product.productImages?.[0]?.imageUrl ?? product.posterImageUrl?.imageUrl)
+        ? (product.productImages?.[0]?.imageUrl ??
+            product.posterImageUrl?.imageUrl)
         : product.posterImageUrl?.imageUrl,
       product?.boxCoverage || '2.4',
       'm',
@@ -303,40 +314,50 @@ const Card: React.FC<productCardProps> = ({
           }
           className="block font-semibold text-black text-sm md:text-base leading-snug hover:text-primary transition line-clamp-2 min-h-[2.5rem]"
         >
-          <h2 className="line-clamp-2">{isAccessories ? `${product.name}` : product.name}</h2>
+          <h2 className="line-clamp-2">
+            {isAccessories ? `${product.name}` : product.name}
+          </h2>
         </Link>
       </div>
 
-      <div className="pb-2">
-        {'price' in product && product.price && (
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            {hasDiscount && (
-              <p className="text-sm font-normal text-gray-500 flex items-center">
-                <span className="mr-1">Was:</span>
-                <span className="line-through flex items-center">
-                  <span className="font-currency font-normal text-xl mr-1 mb-0.5">
-                    
+      {!showPriceOnButton && (
+        <div className="pb-2">
+          {'price' in product && product.price && (
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              {hasDiscount && (
+                <p className="text-sm font-normal text-gray-500 flex items-center">
+                  <span className="mr-1">Was:</span>
+                  <span className="line-through flex items-center">
+                    <span className="font-currency font-normal text-xl mr-1 mb-0.5">
+                      
+                    </span>
+                    {product?.price}
+                    <span className="line-through">
+                      {isAccessories ? 'Per Piece' : '/m²'}
+                    </span>
                   </span>
-                  {product?.price}
-                  <span className="line-through">{isAccessories ? 'Per Piece' : '/m²'}</span>
+                </p>
+              )}
+              <p className="text-red-500 flex items-center font-semibold">
+                {hasDiscount && (
+                  <span className="text-sm md:text-base xl:text-lg mr-1">
+                    Now:
+                  </span>
+                )}
+                <span className="font-currency text-xl mr-1 mb-0.5"></span>
+                {hasDiscount ? discountedPrice : product?.price}
+                <span className="text-sm md:text-base xl:text-lg ml-1">
+                  {isAccessories ? 'Per Piece' : '/m²'}
                 </span>
               </p>
-            )}
-            <p className="text-red-500 flex items-center font-semibold">
-              {hasDiscount && (
-                <span className="text-sm md:text-base xl:text-lg mr-1">Now:</span>
-              )}
-              <span className="font-currency text-xl mr-1 mb-0.5">
-                
-              </span>
-              {hasDiscount ? discountedPrice : product?.price}
-              <span className="text-sm md:text-base xl:text-lg ml-1">{isAccessories ? 'Per Piece' : '/m²'}</span>
-            </p>
-          </div>
-        )}
-      </div>
+            </div>
+          )}
+        </div>
+      )}
 
-      <div className={`mt-auto flex items-center sm:gap-4 gap-1 pt-2 ${sldier ? 'justify-start' : 'justify-between'}`}>
+      <div
+        className={`mt-auto flex items-center sm:gap-4 gap-1 pt-2 ${sldier ? 'justify-start' : 'justify-between'}`}
+      >
         {isSoldOut || ((product as IProduct).stock === 0 && !isAccessories) ? (
           <button
             disabled
@@ -390,10 +411,33 @@ const Card: React.FC<productCardProps> = ({
               Add to cart
             </button>
           ) : (
-            <Link href={handleNavigate(product as IProduct, categoryData)}
-              className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-xs xs:text-sm md:text-base hover:bg-primary transition text-center"
+            <Link
+              href={handleNavigate(product as IProduct, categoryData)}
+              aria-label={`View product ${product.name}`}
+              className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-red-500 bg-red-500 text-white font-bold text-xs xs:text-sm md:text-base hover:bg-red-600 transition text-center flex items-center justify-center"
             >
-              View product
+              {hasDiscount && (
+                <span className="flex items-center gap-1 mr-2 font-normal text-white">
+                  Was:{' '}
+                  <span className="line-through flex items-center">
+                    <span className="font-currency text-base mr-0.5"></span>
+                    {product?.price}
+                    <span className="text-xs xs:text-sm md:text-base font-medium ml-1">
+                      /m²
+                    </span>
+                  </span>
+                </span>
+              )}
+              <span className="flex items-center gap-1 mr-2 font-semibold text-sm md:text-base xl:text-lg">
+                {hasDiscount ? `Now:` : null}
+                <span className="flex items-center">
+                  <span className="font-currency text-lg mr-1 mb-0.5"></span>
+                  {hasDiscount ? discountedPrice : product?.price}
+                  <span className="text-xs xs:text-sm md:text-base font-medium ml-1">
+                    /m²
+                  </span>
+                </span>
+              </span>
             </Link>
           )
         ) : (
@@ -415,7 +459,10 @@ const Card: React.FC<productCardProps> = ({
             aria-label="Add free sample"
             onClick={handleAddSample}
           >
-            <FreeSample isCard className="size-3.5 min-[1150px]:size-4 xl:size-5" />
+            <FreeSample
+              isCard
+              className="size-3.5 min-[1150px]:size-4 xl:size-5"
+            />
           </button>
         )}
 
@@ -429,7 +476,7 @@ const Card: React.FC<productCardProps> = ({
                 product,
                 Number(hasDiscount ? discountedPrice : product.price),
                 Number(hasDiscount ? discountedPrice : product.price) *
-                (Number(product?.boxCoverage) || 1),
+                  (Number(product?.boxCoverage) || 1),
                 1,
                 1,
                 product.subcategory?.custom_url || '',
@@ -438,7 +485,8 @@ const Card: React.FC<productCardProps> = ({
                   : 'Accessories',
                 'wishlist',
                 'productImages' in product
-                  ? (product.productImages?.[0]?.imageUrl ?? product.posterImageUrl?.imageUrl)
+                  ? (product.productImages?.[0]?.imageUrl ??
+                      product.posterImageUrl?.imageUrl)
                   : product.posterImageUrl?.imageUrl,
                 product?.boxCoverage || '2.4',
                 'm',
