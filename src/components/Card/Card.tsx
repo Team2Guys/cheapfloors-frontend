@@ -414,10 +414,10 @@ const Card: React.FC<productCardProps> = ({
             <Link
               href={handleNavigate(product as IProduct, categoryData)}
               aria-label={`View product ${product.name}`}
-              className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-red-500 bg-red-500 text-white font-bold text-xs xs:text-sm md:text-base hover:bg-red-600 transition text-center flex items-center justify-center"
+              className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary bg-primary font-bold text-xs xs:text-sm md:text-base hover:bg-primary/90 transition text-center flex items-center justify-center"
             >
               {hasDiscount && (
-                <span className="flex items-center gap-1 mr-2 font-normal text-white">
+                <span className="flex items-center gap-1 mr-2 font-normal text-black">
                   Was:{' '}
                   <span className="line-through flex items-center">
                     <span className="font-currency text-base mr-0.5"></span>
@@ -428,7 +428,7 @@ const Card: React.FC<productCardProps> = ({
                   </span>
                 </span>
               )}
-              <span className="flex items-center gap-1 mr-2 font-semibold text-sm md:text-base xl:text-lg">
+              <span className="flex items-center gap-1 mr-2 font-semibold text-sm md:text-base xl:text-lg text-red-500">
                 {hasDiscount ? `Now:` : null}
                 <span className="flex items-center">
                   <span className="font-currency text-lg mr-1 mb-0.5"></span>
