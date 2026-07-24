@@ -118,14 +118,6 @@ const Card: React.FC<productCardProps> = ({
         )
       : 0;
 
-  const isOutOfStock =
-    isSoldOut || ((product as IProduct).stock === 0 && !isAccessories);
-  // Floor Smart slider cards (products) show the price on the filled button.
-  // Subcategory slider cards keep the price in the block above the actions, so
-  // they are excluded here.
-  const showPriceOnButton =
-    sldier && !subCategoryFlag && !isAccessories && !isFreeSample && !isOutOfStock;
-
   const handleAddSample = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -323,7 +315,7 @@ const Card: React.FC<productCardProps> = ({
         </Link>
       </div>
 
-      {!showPriceOnButton && (
+      {(sldier && subCategoryFlag) && (
         <div className="pb-2">
           {'price' in product && product.price && (
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
