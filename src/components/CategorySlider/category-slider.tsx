@@ -65,8 +65,19 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
           const seeAllLink = `/${category?.custom_url || category.name.toLowerCase().replace(/\s+/g, '-')}`;
 
           const isYellowBg = category.name.toUpperCase() === 'LVT FLOORING';
+          // Only Floor Smart renders individual products, which can carry a
+          // discountPrice; every other category renders subcategories that have
+          // no discount. So apply the discounted price only for Floor Smart,
+          // mirroring what each Card displays. Other categories keep the base
+          // price.
           const itemPrices = sliderItems
-            .map((item) => Number(item.price))
+            .map((item) => {
+              if (isFloorSmart) {
+                const discount = Number((item as IProduct).discountPrice);
+                if (!isNaN(discount) && discount > 0) return discount;
+              }
+              return Number(item.price);
+            })
             .filter((p) => !isNaN(p) && p > 0);
           const price = itemPrices.length
             ? String(Math.min(...itemPrices))
@@ -79,6 +90,8 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
             return '';
           };
           const arrowHiddenClass = getArrowHiddenClasses(sliderItems.length);
+
+          console.log(categories,'sliderItems')
 
           return (
             <div className='bg-[#CDCDCD14]' key={index}>
