@@ -17,17 +17,27 @@ import { formatDisplayName } from 'utils/helperFunctions';
 const getPrice = (cat: Category) => {
   if (cat.price) return cat.price;
   switch (cat.name.toUpperCase()) {
-    case 'SPC FLOORING': return '150';
-    case 'LVT FLOORING': return '180';
-    case 'POLAR FLOORING': return '200';
-    case 'RICHMOND FLOORING': return '220';
-    default: return '';
+    case 'SPC FLOORING':
+      return '150';
+    case 'LVT FLOORING':
+      return '180';
+    case 'POLAR FLOORING':
+      return '200';
+    case 'RICHMOND FLOORING':
+      return '220';
+    default:
+      return '';
   }
 };
 
 const CategorySlider = ({ categories }: { categories: Category[] }) => {
   return (
-    <div className="flex flex-col w-full gap-3 md:gap-14 my-10">
+    <div className="flex flex-col w-full gap-3 md:gap-12 my-10">
+      <Container className="text-start relative w-full">
+        <h1 className="text-2xl md:text-[28px] font-semibold text-black w-full">
+          Affordable Flooring Solutions Across the UAE
+        </h1>
+      </Container>
       {categories
         ?.filter((category) => category.name !== 'ACCESSORIES')
         .map((category: Category, index: number) => {
@@ -91,32 +101,44 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
           };
           const arrowHiddenClass = getArrowHiddenClasses(sliderItems.length);
 
-          console.log(categories,'sliderItems')
-
           return (
-            <div className='bg-[#CDCDCD14]' key={index}>
-              <Container key={index} className='relative overflow-hidden py-6'>
+            <div className="bg-[#CDCDCD14]" key={index}>
+              <Container key={index} className="relative overflow-hidden py-6">
                 {/* Desktop Arrows */}
-                <div className={`hidden lg:flex justify-end gap-3 mb-4 ${arrowHiddenClass}`}>
-                  <SliderArrow direction="left" className={`cat-prev-${index}`} />
-                  <SliderArrow direction="right" className={`cat-next-${index}`} />
+                <div
+                  className={`hidden lg:flex justify-end gap-3 mb-4 ${arrowHiddenClass}`}
+                >
+                  <SliderArrow
+                    direction="left"
+                    className={`cat-prev-${index}`}
+                  />
+                  <SliderArrow
+                    direction="right"
+                    className={`cat-next-${index}`}
+                  />
                 </div>
                 <div className="flex flex-col lg:flex-row w-full gap-4 lg:gap-8 relative">
                   {/* Category Info Box */}
-                  <div className='w-full lg:w-[300px] 2xl:w-[355px] 3xl:w-[420px] shrink-0 border border-primary rounded-xl p-2 sm:p-8 flex flex-col items-center justify-center text-center bg-white hover:bg-primary hover:border-primary group'>
+                  <div className="w-full lg:w-[300px] 2xl:w-[355px] 3xl:w-[420px] shrink-0 border border-primary rounded-xl p-2 sm:p-8 flex flex-col items-center justify-center text-center bg-white hover:bg-primary hover:border-primary group">
                     <h2 className="text-2xl md:text-[28px] font-semibold text-black mb-1 sm:mb-4">
                       {formatDisplayName(category.name)}
                     </h2>
                     <p className="text-black mb-3 sm:mb-8 text-sm md:text-base lg:text-lg flex items-center gap-1">
                       Price Starting From:{' '}
-                      <span className={`font-currency font-normal text-lg ml-1 ${isYellowBg ? 'text-black' : 'text-black'}`}></span>
-                      <span className={`font-medium ${isYellowBg ? 'text-black' : 'text-black'}`}>
+                      <span
+                        className={`font-currency font-normal text-lg ml-1 ${isYellowBg ? 'text-black' : 'text-black'}`}
+                      >
+                        
+                      </span>
+                      <span
+                        className={`font-medium ${isYellowBg ? 'text-black' : 'text-black'}`}
+                      >
                         {price ? `${price}/m²` : ''}
                       </span>
                     </p>
                     <Link
                       href={seeAllLink}
-                      className='px-6 py-2.5 bg-primary text-black group-hover:bg-white rounded-full font-semibold transition flex items-center justify-center gap-2 text-sm md:text-base'
+                      className="px-6 py-2.5 bg-primary text-black group-hover:bg-white rounded-full font-semibold transition flex items-center justify-center gap-2 text-sm md:text-base"
                     >
                       See All <BsArrowRight className="w-4 h-4" />
                     </Link>
@@ -125,9 +147,17 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
                   {/* Slider Section */}
                   <div className="w-full lg:w-3/4 relative flex flex-col justify-center">
                     {/* Mobile Arrows */}
-                    <div className={`flex lg:hidden justify-between gap-3 mb-4 mt-2 ${arrowHiddenClass}`}>
-                      <SliderArrow direction="left" className={`cat-prev-${index}`} />
-                      <SliderArrow direction="right" className={`cat-next-${index}`} />
+                    <div
+                      className={`flex lg:hidden justify-between gap-3 mb-4 mt-2 ${arrowHiddenClass}`}
+                    >
+                      <SliderArrow
+                        direction="left"
+                        className={`cat-prev-${index}`}
+                      />
+                      <SliderArrow
+                        direction="right"
+                        className={`cat-next-${index}`}
+                      />
                     </div>
 
                     <div className="w-full">
@@ -135,7 +165,7 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
                         enablePagination={false}
                         navigation={{
                           prevEl: `.cat-prev-${index}`,
-                          nextEl: `.cat-next-${index}`,
+                          nextEl: `.cat-next-${index}`
                         }}
                         allowTouch={shouldEnablePagination}
                         breakpoints={categoryBreakpoint}
