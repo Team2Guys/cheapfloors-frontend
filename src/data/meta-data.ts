@@ -225,6 +225,28 @@ export const pageMetadataData = {
     },
     canonical: `${BASE_URL}/wishlist`
   },
+  clearance: {
+    title: 'Flooring Clearance Sale UAE — Up to 46% Off',
+    description:
+      'Shop discounted SPC and LVT flooring — up to 46% off. Prices include UAE delivery. Limited clearance stock. Richmond & Polar ranges.',
+    url: `${BASE_URL}/clearance`,
+    image: {
+      src: `${BASE_URL}${logo.src}`,
+      alt: 'Easyfloors'
+    },
+    canonical: `${BASE_URL}/clearance`
+  },
+  flooringSupplierUAE: {
+    title: 'SPC & LVT Flooring Supplier in UAE | Wholesale & Bulk Orders',
+    description:
+      "UAE's trusted SPC & LVT flooring supplier for contractors and developers. Wholesale pricing, fast delivery across all Emirates. Request a quote.",
+    url: `${BASE_URL}/flooring-supplier-uae`,
+    image: {
+      src: `${BASE_URL}${logo.src}`,
+      alt: 'Easyfloors'
+    },
+    canonical: `${BASE_URL}/flooring-supplier-uae`
+  },
   HomePage: {
     title: 'Flooring in UAE | SPC, LVT & Herringbone | Easy Floors',
     description:

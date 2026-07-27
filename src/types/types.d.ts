@@ -58,6 +58,7 @@ export interface TAboutUs {
 }
 export interface TAboutUsProps {
   sections: TAboutUs[];
+  isAboutUs: boolean;
 }
 export interface SampleGridData {
   id: number;

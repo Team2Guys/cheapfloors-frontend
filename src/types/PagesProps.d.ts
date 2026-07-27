@@ -46,6 +46,7 @@ export interface DASHBOARD_MAIN_PRODUCT_PROPS {
 
 export interface BreadcrumbProps {
   title?: string;
+  heading?: string;
   image?: string;
   slug?: string;
   subcategory?: string;
@@ -55,6 +56,7 @@ export interface BreadcrumbProps {
   showTitle?: boolean;
   useHeadingTag?: boolean;
   isClearance?: boolean;
+  isHideTitle?: boolean;
 }
 
 export interface productCardProps {
