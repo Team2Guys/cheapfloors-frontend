@@ -12,14 +12,11 @@ const AboutUs = () => {
   return (
     <>
       <Breadcrumb
-        title="About Us"
-        useHeadingTag
-        showTitle
         image="/assets/images/aboutus/About-Us.webp"
       />
       <Container>
         <div className="py-12">
-          <AboutUsInfo sections={alternatingData} />
+          <AboutUsInfo sections={alternatingData} isAboutUs />
         </div>
       
           {/* <VideoComponent videoUrl="https://bncmain.s3.eu-north-1.amazonaws.com/1747803062851-s3" /> */}

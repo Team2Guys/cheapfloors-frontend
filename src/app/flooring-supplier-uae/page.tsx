@@ -7,6 +7,10 @@ import { FlooringTrust } from '@/components/flooring/FlooringTrust'
 import React from 'react'
 import Faqs from '@/components/Faqs/Faqs'
 import { FlooringFaqs } from '@/data/flooring'
+import { createMetadata } from 'utils/metadataHelper'
+import { pageMetadataData } from 'data/meta-data'
+
+export const metadata = createMetadata(pageMetadataData.flooringSupplierUAE)
 
 const FlooringSupplierUAE = () => {
     return (

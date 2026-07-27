@@ -5,6 +5,10 @@ import { ICategory } from 'types/type';
 import Clearance from './Clearance';
 import Breadcrumb from 'components/Reusable/breadcrumb';
 import { IProduct } from 'types/prod';
+import { createMetadata } from 'utils/metadataHelper';
+import { pageMetadataData } from 'data/meta-data';
+
+export const metadata = createMetadata(pageMetadataData.clearance);
 
 const Page = async () => {
   const [categories, products] = await Promise.all([

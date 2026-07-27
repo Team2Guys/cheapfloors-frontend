@@ -5,6 +5,7 @@ import { BreadcrumbProps } from 'types/PagesProps';
 
 const Breadcrumb = ({
   title = '',
+  heading = '',
   image = '',
   slug,
   subcategory,
@@ -12,7 +13,8 @@ const Breadcrumb = ({
   isImagetext,
   imageClass,
   useHeadingTag,
-  isClearance
+  isClearance,
+  isHideTitle
 }: BreadcrumbProps) => {
   return (
     <div className="w-full pt-3 font-inter">
@@ -127,11 +129,13 @@ const Breadcrumb = ({
             quality={100}
           />
           {!isImagetext && (
-            <div className="absolute inset-0 z-10 flex_center text-white text-center">
+            <div className={isHideTitle ? 'hidden' : 'absolute inset-0 z-10 flex_center text-white text-center'}>
               {useHeadingTag ? (
-                <h1 className="text-25 md:text-[42.6px] font-bold"></h1>
+                <h1 className="text-25 md:text-[42.6px] font-bold">
+                  {heading || title}
+                </h1>
               ) : (
-                <p className="text-25 md:text-[42.6px] font-bold">{title}</p>
+                 <p className="text-25 md:text-[42.6px] font-bold">{title}</p>
               )}
             </div>
           )}
