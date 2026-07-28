@@ -58,22 +58,30 @@ module.exports = {
   // their real per-page <lastmod> via additionalPaths below.
   transform: async (config, path) => ({ loc: path }),
 
-   robotsTxtOptions: {
+  robotsTxtOptions: {
+    // One group for all crawlers (search + AI): allow the site, then disallow
+    // the account/cart/checkout and post-conversion routes that have no search
+    // value. This is intentionally separate from the sitemap `exclude` list
+    // above (which controls the URLs we advertise), so the two can diverge.
     policies: [
-    {
-      userAgent: 'Googlebot',
-      allow: '/',
-    },
-    {
-      userAgent: 'Googlebot-Image',
-      allow: '/',
-    },
-    {
-      userAgent: '*',
-      disallow: excludePages,
-    },
-  ],
-    additionalSitemaps: ['https://easyfloors.ae/sitemap.xml']},
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: [
+          '/cart',
+          '/checkout',
+          '/login',
+          '/signup',
+          '/forgot-password',
+          '/wishlist',
+          '/dashboard',
+          '/freesample-checkout',
+          '/thank-you',
+        ],
+      },
+    ],
+    additionalSitemaps: ['https://easyfloors.ae/sitemap.xml'],
+  },
 
 
     additionalPaths: async () => {
