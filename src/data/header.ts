@@ -48,11 +48,11 @@ export const staticAccessories = [
     },
     {
         id: 'acc-5',
-        name: 'Skirting 10cm Height',
-        custom_url: 'skirting-10cm',
+        name: 'L Shape Skirting 10cm Height',
+        custom_url: 'l-shape-skirting-10cm',
         status: 'PUBLISHED',
         posterImageUrl: {
-            imageUrl: '/assets/images/headerpics/L10.webp',
+            imageUrl: '/assets/images/headerpics/L12.webp',
             altText: 'L Shape Skirting 10cm Height',
             public_id: ''
         }
@@ -90,17 +90,17 @@ export const staticAccessories = [
             public_id: ''
         }
     },
-    {
-        id: 'acc-9',
-        name: 'Skirting 12cm Height',
-        custom_url: 'skirting-12cm',
-        status: 'PUBLISHED',
-        posterImageUrl: {
-            imageUrl: '/assets/images/headerpics/skirting12.webp',
-            altText: 'Skirting 12cm Height',
-            public_id: ''
-        }
-    }
+    // {
+    //     id: 'acc-9',
+    //     name: 'Skirting 12cm Height',
+    //     custom_url: 'skirting-12cm',
+    //     status: 'PUBLISHED',
+    //     posterImageUrl: {
+    //         imageUrl: '/assets/images/headerpics/skirting12.webp',
+    //         altText: 'Skirting 12cm Height',
+    //         public_id: ''
+    //     }
+    // }
 ];
 
 export const staticCategories = [
