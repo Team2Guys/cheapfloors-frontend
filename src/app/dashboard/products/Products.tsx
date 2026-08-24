@@ -88,8 +88,8 @@ const Product = ({
           setEditProduct={setEditProduct}
           EditProductValue={
             EditInitialValues &&
-            (EditInitialValues.name !== undefined ||
-              EditInitialValues.category !== undefined)
+              (EditInitialValues.name !== undefined ||
+                EditInitialValues.category !== undefined)
               ? EditInitialValues
               : undefined
           }

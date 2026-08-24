@@ -164,7 +164,8 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
             Book Your Appointment
           </Link>
           <SearchBar
-            className="lg:block hidden"
+            className="hidden lg:flex"
+            expandable
             productData={products}
             isLoading={isLoading}
           />
