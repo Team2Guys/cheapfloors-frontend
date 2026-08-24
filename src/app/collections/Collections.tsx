@@ -2,7 +2,7 @@
 import CollectionCard from 'components/CollectionCard/CollectionCard';
 import Container from 'components/common/container/Container';
 import Filters from 'components/sub-category/filters';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FiX } from 'react-icons/fi';
 import { FilterState, ISUBCATEGORY } from 'types/cat';
 import { ICategory } from 'types/type';

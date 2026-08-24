@@ -43,6 +43,17 @@ const Features = () => {
         className="w-full features-swiper"
       >
         {featureItems.map((item, index) => {
+          const iconWrapperClass = `mb-4 flex justify-center items-center size-16 rounded-full ${index % 2 !== 0 ? 'bg-white' : 'bg-primary'}`;
+          const iconImage = (
+            <Image
+              src={item.icon}
+              alt={item.title}
+              width={48}
+              height={48}
+              loading="lazy"
+              className="size-12 object-contain"
+            />
+          );
           return (
             <SwiperSlide key={index} className="!h-auto !flex pb-2">
               <div
@@ -51,16 +62,13 @@ const Features = () => {
                   : 'bg-[#FBFBFB] border border-gray-100'
                   }`}
               >
-                <div className={`mb-4 flex justify-center items-center size-16 rounded-full ${index % 2 !== 0 ? 'bg-white' : 'bg-primary'}`}>
-                  <Image
-                    src={item.icon}
-                    alt={item.title}
-                    width={48}
-                    height={48}
-                    loading="lazy"
-                    className="size-12 object-contain"
-                  />
-                </div>
+                {item.buttonLink ? (
+                  <Link href={item.buttonLink} className={iconWrapperClass} aria-label={item.title}>
+                    {iconImage}
+                  </Link>
+                ) : (
+                  <div className={iconWrapperClass}>{iconImage}</div>
+                )}
                 <h3 className="text-lg lg:text-xl font-bold mb-3 text-black">
                   {item.title}
                 </h3>

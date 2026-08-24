@@ -5,7 +5,8 @@ export const desiredCategoryOrder = [
   'LVT FLOORING',
   'FLOOR SMART',
   'POLAR FLOORING',
-  'RICHMOND FLOORING'
+  'RICHMOND FLOORING',
+  'ACCESSORIES'
 ];
 
 export const filterTitles = {

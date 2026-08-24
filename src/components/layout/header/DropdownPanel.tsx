@@ -397,10 +397,7 @@ const DropdownPanel: React.FC<DropdownPanelProps> = ({
                               ''
                             )
                           )}
-                          {item.category?.toLowerCase().trim() ===
-                            'accessories' ? (
-                            ''
-                          ) : item.addInstallation ? (
+                          {item.isfreeSample ? null : item.addInstallation ? (
                             <p className="sm:text-xs mt-1">
                               Installation Cost:{' '}
                               <span className="font-semibold">

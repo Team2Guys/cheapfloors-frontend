@@ -1,14 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import Container from '../common/container/Container';
-const desktopBanner = '/assets/images/Home/sample.webp';
-const mobilesample = '/assets/images/Home/mobilesample.webp';
+const desktopBanner = '/assets/images/Home/desktop-sample.webp';
+const mobilesample = '/assets/images/Home/mobile-sample.webp';
 
 const SampleBanner = () => {
   return (
      <div className="w-full mt-7 xl:mt-14">
         <Link
-          href="/collections"
+          href="/free-sample"
           className="relative block w-full aspect-[4/5] md:aspect-[16/7] overflow-hidden"
         >
           {/* Desktop Image */}

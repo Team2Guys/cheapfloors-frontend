@@ -3,6 +3,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { MouseEvent, useEffect, useState } from 'react';
 import { FiEye, FiHeart } from 'react-icons/fi';
+import FreeSample from 'components/svg/free-sample';
 import { productCardProps } from 'types/PagesProps';
 import { IProduct, ProductImage } from 'types/prod';
 import { fetchAccessories, fetchSingeProduct } from 'config/fetch';
@@ -27,9 +28,10 @@ const Card: React.FC<productCardProps> = ({
   categoryData,
   isAccessories,
   isSoldOut = false,
-  // subCategoryFlag,
+  subCategoryFlag,
   setModalProduct,
-  setIsOpen
+  setIsOpen,
+  isFreeSample = false
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showCaption, setShowCaption] = useState('');
@@ -106,11 +108,66 @@ const Card: React.FC<productCardProps> = ({
 
   const discountedPrice = (product as IProduct).discountPrice;
   const hasDiscount = !!discountedPrice && discountedPrice > 0;
+
+
   const originalPrice = Number((product as IProduct).price);
   const discountPercentage =
     hasDiscount && originalPrice > 0
-      ? Math.round(((originalPrice - Number(discountedPrice)) / originalPrice) * 100)
+      ? Math.round(
+        ((originalPrice - Number(discountedPrice)) / originalPrice) * 100
+      )
       : 0;
+
+  const handleAddSample = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    handleAddToStorage(
+      product,
+      Number(hasDiscount ? discountedPrice : product.price),
+      Number(hasDiscount ? discountedPrice : product.price) *
+      (Number(product?.boxCoverage) || 1),
+      1,
+      1,
+      product.subcategory?.custom_url || '',
+      'category' in product
+        ? (product.category?.RecallUrl ?? 'Accessories')
+        : 'Accessories',
+      'freeSample',
+      'productImages' in product
+        ? (product.productImages?.[0]?.imageUrl ??
+          product.posterImageUrl?.imageUrl)
+        : product.posterImageUrl?.imageUrl,
+      product?.boxCoverage || '2.4',
+      'm',
+      selectedColor
+    );
+  };
+
+  const handleAddToCart = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const unitPrice = Number(hasDiscount ? discountedPrice : product.price);
+    const coverage = Number(product?.boxCoverage) || 1;
+    handleAddToStorage(
+      product,
+      unitPrice * coverage,
+      unitPrice * coverage,
+      coverage,
+      1,
+      product.subcategory?.custom_url || '',
+      'category' in product
+        ? (product.category?.RecallUrl ?? 'Accessories')
+        : 'Accessories',
+      'cart',
+      'productImages' in product
+        ? (product.productImages?.[0]?.imageUrl ??
+          product.posterImageUrl?.imageUrl)
+        : product.posterImageUrl?.imageUrl,
+      product?.boxCoverage || '2.4',
+      'm',
+      selectedColor
+    );
+  };
 
   return (
     <div
@@ -146,21 +203,23 @@ const Card: React.FC<productCardProps> = ({
           </div>
         )}
         {!sldier && (
-          <div className="absolute top-2 right-2 xsm:-right-40 xsm:group-hover:right-2 z-10">
-            <button
-              className="bg-white p-1 xsm:p-2 shadow-sm rounded-sm hover:text-primary transition"
-              aria-label="open quick view"
-              onClick={(e) => handleModel(e)}
-              onMouseEnter={() => setShowCaption('Quick View')}
-              onMouseLeave={() => setShowCaption('')}
-            >
-              <FiEye className="text-black text-base xsm:text-lg" />
-            </button>
-            <span
-              className={`absolute right-10 top-1 bg-gray-800 text-white text-[10px] px-2 py-1 rounded transition whitespace-nowrap z-10 pointer-events-none ${showCaption === 'Quick View' ? 'opacity-100' : 'opacity-0'}`}
-            >
-              Quick View
-            </span>
+          <div className="absolute top-2 right-2 xsm:-right-40 xsm:group-hover:right-2 z-10 flex flex-col gap-2 items-end">
+            <div className="relative">
+              <button
+                className="bg-white p-1 xsm:p-2 shadow-sm rounded-sm hover:text-primary transition"
+                aria-label="open quick view"
+                onClick={(e) => handleModel(e)}
+                onMouseEnter={() => setShowCaption('Quick View')}
+                onMouseLeave={() => setShowCaption('')}
+              >
+                <FiEye className="text-black text-base xsm:text-lg" />
+              </button>
+              <span
+                className={`absolute right-10 top-1 bg-gray-800 text-white text-[10px] px-2 py-1 rounded transition whitespace-nowrap z-10 pointer-events-none ${showCaption === 'Quick View' ? 'opacity-100' : 'opacity-0'}`}
+              >
+                Quick View
+              </span>
+            </div>
           </div>
         )}
       </div>
@@ -250,40 +309,50 @@ const Card: React.FC<productCardProps> = ({
           }
           className="block font-semibold text-black text-sm md:text-base leading-snug hover:text-primary transition line-clamp-2 min-h-[2.5rem]"
         >
-          <h2 className="line-clamp-2">{isAccessories ? `${product.name}` : product.name}</h2>
+          <h2 className="line-clamp-2">
+            {isAccessories ? `${product.name}` : product.name}
+          </h2>
         </Link>
       </div>
 
-      <div className="pb-2">
-        {'price' in product && product.price && (
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <p className="text-base font-medium text-black flex items-center">
-              {/* {hasDiscount && (
-                <span className="text-sm font-normal mr-1">now</span>
-              )} */}
-              <span className="font-currency font-normal text-xl mr-1 mb-0.5">
-                
-              </span>
-              {hasDiscount ? discountedPrice : product?.price}
-              <span className="text-sm md:text-base font-normal ml-1">{isAccessories ? 'Per Piece' : '/m²'}</span>
-            </p>
-            {hasDiscount && (
-              <p className="order-first text-sm font-normal text-gray-500 flex items-center">
-                {/* <span className="mr-1">before</span> */}
-                <span className="line-through flex items-center">
-                  <span className="font-currency font-normal text-xl mr-1 mb-0.5">
-                    
+      {(sldier && subCategoryFlag) && (
+        <div className="pb-2">
+          {'price' in product && product.price && (
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              {hasDiscount && (
+                <p className="text-sm font-normal text-gray-500 flex items-center">
+                  <span className="mr-1">Was:</span>
+                  <span className="line-through flex items-center">
+                    <span className="font-currency font-normal text-xl mr-1 mb-0.5">
+                      
+                    </span>
+                    {product?.price}
+                    <span className="line-through">
+                      {isAccessories ? 'Per Piece' : '/m²'}
+                    </span>
                   </span>
-                  {product?.price}
-                  <span className="line-through">{isAccessories ? 'Per Piece' : '/m²'}</span>
+                </p>
+              )}
+              <p className="text-red-500 flex items-center font-semibold">
+                {hasDiscount && (
+                  <span className="text-sm md:text-base xl:text-lg mr-1">
+                    Now:
+                  </span>
+                )}
+                <span className="font-currency text-xl mr-1 mb-0.5"></span>
+                {hasDiscount ? discountedPrice : product?.price}
+                <span className="text-sm md:text-base xl:text-lg ml-1">
+                  {isAccessories ? 'Per Piece' : '/m²'}
                 </span>
               </p>
-            )}
-          </div>
-        )}
-      </div>
+            </div>
+          )}
+        </div>
+      )}
 
-      <div className={`mt-auto flex items-center sm:gap-4 gap-1 pt-2 ${sldier ? 'justify-start' : 'justify-between'}`}>
+      <div
+        className={`mt-auto flex items-center sm:gap-4 gap-1 pt-2 ${sldier ? 'justify-start' : 'justify-between'}`}
+      >
         {isSoldOut || ((product as IProduct).stock === 0 && !isAccessories) ? (
           <button
             disabled
@@ -291,7 +360,10 @@ const Card: React.FC<productCardProps> = ({
           >
             {isSoldOut ? 'Sold Out' : 'Out of Stock'}
           </button>
-        ) : sldier ? (
+        ) : sldier && subCategoryFlag ? (
+          // Subcategory slider cards link out; their price is shown in the block
+          // above the actions instead of on the button. Floor Smart renders
+          // products and keeps the price on the button below.
           <Link
             href={
               isAccessories
@@ -329,11 +401,43 @@ const Card: React.FC<productCardProps> = ({
           // >
           //   Free sample
           // </button>
-          <Link href={handleNavigate(product as IProduct, categoryData)}
-            className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-xs xs:text-sm md:text-base hover:bg-primary transition text-center"
-          >
-            View product
-          </Link>
+          isFreeSample ? (
+            <button
+              className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-xs xs:text-sm md:text-base hover:bg-primary hover:text-white transition text-center"
+              onClick={handleAddToCart}
+            >
+              Add to cart
+            </button>
+          ) : (
+            <Link
+              href={handleNavigate(product as IProduct, categoryData)}
+              aria-label={`View product ${product.name}`}
+              className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary bg-primary font-bold text-xs xs:text-sm md:text-base hover:bg-primary/90 transition text-center flex items-center justify-center"
+            >
+              {hasDiscount && (
+                <span className="flex items-center gap-1 mr-2 font-normal text-black">
+                  Was:{' '}
+                  <span className="line-through flex items-center">
+                    <span className="font-currency text-base mr-0.5"></span>
+                    {product?.price}
+                    <span className="text-xs xs:text-sm md:text-base font-medium ml-1">
+                      /m²
+                    </span>
+                  </span>
+                </span>
+              )}
+              <span className="flex items-center gap-1 mr-2 font-semibold text-sm md:text-base xl:text-lg text-red-500">
+                {hasDiscount ? `Now:` : null}
+                <span className="flex items-center">
+                  <span className="font-currency text-lg mr-1 mb-0.5"></span>
+                  {hasDiscount ? discountedPrice : product?.price}
+                  <span className="text-xs xs:text-sm md:text-base font-medium ml-1">
+                    /m²
+                  </span>
+                </span>
+              </span>
+            </Link>
+          )
         ) : (
           <Link
             href={
@@ -345,6 +449,19 @@ const Card: React.FC<productCardProps> = ({
           >
             Shop Now
           </Link>
+        )}
+
+        {!sldier && !isAccessories && (
+          <button
+            className="w-[42px] h-[42px] md:w-[46px] md:h-[46px] flex-shrink-0 flex items-center justify-center rounded-xl text-primary hover:bg-primary hover:text-white transition bg-white"
+            aria-label="Add free sample"
+            onClick={handleAddSample}
+          >
+            <FreeSample
+              isCard
+              className="size-3.5 min-[1150px]:size-4 xl:size-5"
+            />
+          </button>
         )}
 
         {!sldier && (
@@ -366,7 +483,8 @@ const Card: React.FC<productCardProps> = ({
                   : 'Accessories',
                 'wishlist',
                 'productImages' in product
-                  ? (product.productImages?.[0]?.imageUrl ?? product.posterImageUrl?.imageUrl)
+                  ? (product.productImages?.[0]?.imageUrl ??
+                    product.posterImageUrl?.imageUrl)
                   : product.posterImageUrl?.imageUrl,
                 product?.boxCoverage || '2.4',
                 'm',

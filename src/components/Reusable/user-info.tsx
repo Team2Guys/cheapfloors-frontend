@@ -18,8 +18,8 @@ const UserInfo = () => {
                 ON FLOORING
               </span>
             </h2>
-            <p className="text-sm lg:text-base 2xl:text-[18px] font-normal text-center text-black leading-relaxed">
-              Save smart on flooring in Dubai with durable, low-maintenance options like SPC and vinyl, perfect for heat, humidity, and high traffic. Enjoy water-resistant, long-lasting floors with easy installation and great value. Premium quality, made affordable with EasyFloors.
+            <p className="text-sm lg:text-base 2xl:text-[18px] font-normal text-justify text-black leading-relaxed">
+              Save smart on flooring in the UAE with durable, low-maintenance options like SPC and vinyl, perfect for heat, humidity, and high traffic. Enjoy water-resistant, long-lasting floors with easy installation and great value. Premium quality, made affordable with EasyFloors.
             </p>
             <Link href="/collections">
               <button className="mt-2 bg-primary text-black text-sm md:text-base font-semibold py-3 px-8 rounded-full hover:bg-black hover:text-white transition-colors duration-300">
@@ -46,7 +46,7 @@ const UserInfo = () => {
           <Image
             width={848}
             height={501}
-            src="/assets/images/Home/EFFORTLESS-INSTALLATION.webp"
+            src="/assets/images/Home/EFFORTLESS.webp"
             loading="lazy"
             alt="Effortless Installation"
             className="w-full h-auto object-cover"

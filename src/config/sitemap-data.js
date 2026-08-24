@@ -1,14 +1,22 @@
 // src/config/sitemap-data.js (CommonJS)
 
+// NOTE: `status`, `updatedAt` and `createdAt` are fetched so the sitemap can
+// (a) drop dead/unpublished routes (status !== 'PUBLISHED', including the parent
+// chain) and (b) emit a real per-page <lastmod> instead of the build timestamp.
 const FETCH_ALL_PRODUCTS_SITE_MAP = `
   query Products {
     products {
       custom_url
+      status
+      updatedAt
+      createdAt
       category {
-       RecallUrl
+        RecallUrl
+        status
       }
       subcategory {
         custom_url
+        status
       }
     }
   }
@@ -18,18 +26,23 @@ const FETCH_ALL_PRODUCTS_SITE_MAP = `
   query Categories {
     categories {
       custom_url
-}}
+      status
+      updatedAt
+      createdAt
+    }
+  }
 `;
  const FETCH_ALL_SUB_CATEGORIES = `
   query SubCategories {
     subCategories {
-
       custom_url
-    
-     category {
-      RecallUrl
-            }
-
+      status
+      updatedAt
+      createdAt
+      category {
+        RecallUrl
+        status
+      }
     }
   }
 `;
@@ -37,13 +50,14 @@ const FETCH_ALL_PRODUCTS_SITE_MAP = `
  const FETCH_ALL_ACCESSORIES = `
   query Accessories {
     accessories {
-        custom_url
-
+      custom_url
+      status
+      updatedAt
+      createdAt
       category {
-  
-      RecallUrl
+        RecallUrl
+        status
       }
-   
     }
   }
 `;
@@ -119,7 +133,6 @@ const fetchAccessoriesForSitemap = async () => {
     });
 
     const json = await response.json();
-    console.log(json, "FETCH_ALL_ACCESSORIES")
     return json.data?.accessories || [];
   } catch (error) {
     console.error('Failed to fetch products for sitemap:', error);

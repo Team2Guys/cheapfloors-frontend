@@ -58,6 +58,7 @@ export interface TAboutUs {
 }
 export interface TAboutUsProps {
   sections: TAboutUs[];
+  isAboutUs: boolean;
 }
 export interface SampleGridData {
   id: number;
@@ -120,7 +121,7 @@ export interface SubCategoryProps {
   categoryData?: Category;
   subCategoryData?: Category;
   setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>;
-  isClearence?: boolean;
+  isFreeSample?: boolean;
 }
 export interface SubSection {
   subHeading: string;

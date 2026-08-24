@@ -48,11 +48,11 @@ export const staticAccessories = [
     },
     {
         id: 'acc-5',
-        name: 'Skirting 10cm Height',
-        custom_url: 'l-shape-skirting-10cm-height',
+        name: 'L Shape Skirting 10cm Height',
+        custom_url: 'l-shape-skirting-10cm',
         status: 'PUBLISHED',
         posterImageUrl: {
-            imageUrl: '/assets/images/headerpics/L10.webp',
+            imageUrl: '/assets/images/headerpics/L12.webp',
             altText: 'L Shape Skirting 10cm Height',
             public_id: ''
         }
@@ -60,7 +60,7 @@ export const staticAccessories = [
     {
         id: 'acc-6',
         name: 'L Shape Skirting 12cm Height',
-        custom_url: 'l-shape-skirting-12cm-height',
+        custom_url: 'l-shape-skirting-12cm',
         status: 'PUBLISHED',
         posterImageUrl: {
             imageUrl: '/assets/images/headerpics/L12.webp',
@@ -71,7 +71,7 @@ export const staticAccessories = [
     {
         id: 'acc-7',
         name: 'L Shape Skirting 15cm Height',
-        custom_url: 'l-shape-skirting-15cm-height',
+        custom_url: 'l-shape-skirting-15cm',
         status: 'PUBLISHED',
         posterImageUrl: {
             imageUrl: '/assets/images/headerpics/L15.webp',
@@ -82,7 +82,7 @@ export const staticAccessories = [
     {
         id: 'acc-8',
         name: 'Skirting 8cm Height',
-        custom_url: 'skirting-8cm-height',
+        custom_url: 'skirting-8cm',
         status: 'PUBLISHED',
         posterImageUrl: {
             imageUrl: '/assets/images/headerpics/L8.webp',
@@ -90,17 +90,17 @@ export const staticAccessories = [
             public_id: ''
         }
     },
-    {
-        id: 'acc-9',
-        name: 'Skirting 12cm Height',
-        custom_url: 'skirting-12cm-height',
-        status: 'PUBLISHED',
-        posterImageUrl: {
-            imageUrl: '/assets/images/headerpics/skirting12.webp',
-            altText: 'Skirting 12cm Height',
-            public_id: ''
-        }
-    }
+    // {
+    //     id: 'acc-9',
+    //     name: 'Skirting 12cm Height',
+    //     custom_url: 'skirting-12cm',
+    //     status: 'PUBLISHED',
+    //     posterImageUrl: {
+    //         imageUrl: '/assets/images/headerpics/skirting12.webp',
+    //         altText: 'Skirting 12cm Height',
+    //         public_id: ''
+    //     }
+    // }
 ];
 
 export const staticCategories = [

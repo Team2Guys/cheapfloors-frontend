@@ -454,6 +454,14 @@ export const FETCH_HEADER_CATEGORIES = gql`
         discountPrice
         stock
         posterImageUrl
+        status
+        custom_url
+        category {
+          RecallUrl
+        }
+        subcategory {
+          custom_url
+        }
       }
       recalledSubCats {
         id
@@ -610,6 +618,7 @@ export const FIND_ONE_PRODUCT = gql`
         status
       }
       category {
+        name
         RecallUrl
       }
       subcategory {
@@ -709,6 +718,27 @@ export const FIND_ONE_USER = gql`
       email
       token
       userImageUrl
+    }
+  }
+`;
+
+export const FIND_B2B_QUOTE = gql`
+  query B2bQuote($id: Int!) {
+    b2bQuote(id: $id) {
+      id
+      fullName
+      phone
+      email
+      companyName
+      role
+      quantity
+      productRequired
+      projectStatus
+      budgetRange
+      additionalInfo
+      tradeLicense
+      trnNumber
+      createdAt
     }
   }
 `;

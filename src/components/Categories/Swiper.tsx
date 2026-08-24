@@ -71,11 +71,6 @@ const BlogSwiper = ({ subCategories }: { subCategories: ISUBCATEGORY[] }) => (
         background: #FEB907 !important;
         border-color: #FEB907 !important;
       }
-
-      /* STRICTLY HIDE EVERYTHING AFTER THE 3RD DOT */
-      .custom-pagination .swiper-pagination-bullet:nth-child(n+4) {
-        display: none !important;
-      }
     `}
     </style>
   </div>

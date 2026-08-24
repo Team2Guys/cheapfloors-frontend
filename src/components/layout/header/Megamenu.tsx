@@ -103,8 +103,8 @@ const Megamenu: React.FC<
                       }) => {
                         const label = item.label.toLowerCase();
                         if (label.includes('polar')) return '0';
-                        if (label.includes('spc')) return '1';
-                        if (label.includes('lvt')) return '2';
+                        if (label.includes('richmond')) return '1';
+                        if (label.includes('smart')) return '2';
                         return '3';
                       };
                       const groupA = getGroup({ ...a, price: a.price || '0' });

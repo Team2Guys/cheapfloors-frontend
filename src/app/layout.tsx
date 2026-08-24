@@ -39,6 +39,7 @@ export default function RootLayout({
           name="google-site-verification"
           content="faPNTY-av9Kw-FQsjD6DplLzKbaUP3uViHm5vogBmM4"
         />
+        <meta name="facebook-domain-verification" content="r3l7djuu7hyrz0c744xvd076vgkrdc" />
         <Script id="gtm-init" strategy="afterInteractive">
           {`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

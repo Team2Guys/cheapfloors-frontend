@@ -66,6 +66,14 @@ export const TrimerHandler = (value: string) => {
   return value.trim().toLowerCase();
 };
 
+// Returns the price to use for sorting/filtering: the discount price when the
+// product has a valid discount, otherwise the regular price.
+export const getEffectivePrice = (product: IProduct): number => {
+  const discountedPrice = product.discountPrice;
+  const hasDiscount = !!discountedPrice && discountedPrice > 0;
+  return Number(hasDiscount ? discountedPrice : product.price);
+};
+
 export const ProductsSorting = (
   filtered: IProduct[],
   sortOption: string,
@@ -116,7 +124,7 @@ export const ProductsSorting = (
           return priceA - priceB;
         }
 
-        return a.price - b.price;
+        return getEffectivePrice(a) - getEffectivePrice(b);
       });
 
     case 'High to Low':
@@ -140,7 +148,7 @@ export const ProductsSorting = (
           return priceB - priceA;
         }
 
-        return b.price - a.price;
+        return getEffectivePrice(b) - getEffectivePrice(a);
       });
 
     default:
@@ -394,9 +402,9 @@ export const productFilter = ({
   filtered = ProductsSorting(filtered || [], sortOption, isClearance);
 
   filtered = filtered?.filter((product) => {
-    const price = parseFloat(
-      String(isClearance ? product.bundlePrice : product.price)
-    );
+    const price = isClearance
+      ? parseFloat(String(product.bundlePrice))
+      : getEffectivePrice(product);
     return price >= priceValue[0] && price <= priceValue[1];
   });
 
@@ -623,6 +631,18 @@ export const formatAED = (price: number | undefined | null): string => {
     maximumFractionDigits: 2
   });
 };
+
+// Uppercase "SPC"/"LVT", capitalize every other word.
+// e.g. "spc flooring" -> "SPC Flooring", "POLAR FLOORING" -> "Polar Flooring".
+export const formatDisplayName = (name: string) =>
+  name
+    ?.split(/\s+/)
+    .map((word) => {
+      const lower = word.toLowerCase();
+      if (lower === 'spc' || lower === 'lvt') return word.toUpperCase();
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join(' ') ?? name;
 
 export const DateFormatHandler = (input: Date | string) => {
   if (!input) return 'Not available';

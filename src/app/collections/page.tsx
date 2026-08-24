@@ -1,7 +1,6 @@
 import Breadcrumb from 'components/Reusable/breadcrumb';
 import { fetchCategories, fetchSubCategories } from 'config/fetch';
 import { FETCHSUBCAT } from 'graphql/queries';
-import React from 'react';
 import Collections from './Collections';
 import { createMetadata } from 'utils/metadataHelper';
 import { pageMetadataData } from 'data/meta-data';
@@ -50,9 +49,10 @@ const AllCollection = async ({
   return (
     <div>
       <Breadcrumb
-        title=""
+        title="Premium Flooring Collections in Dubai & Across the UAE"
         useHeadingTag
-        image="/assets/images/category/allcollection-new.webp"
+        isHideTitle
+        image="/assets/images/category/collection-banner.webp"
       />
       <Collections
         sortedSubcategories={sortedSubcategories}

@@ -1,6 +1,6 @@
 import logo from '../../public/assets/images/logo.webp';
 
-const BASE_URL = 'https://easyfloors.ae';
+const BASE_URL = 'https://cheapfloors.ae';
 
 export const pageMetadataData = {
   easyPayment: {
@@ -10,7 +10,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/easy-payment`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/easy-payment`
   },
@@ -22,7 +22,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/about-us`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/about-us`
   },
@@ -34,7 +34,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/cart`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/cart`
   },
@@ -45,7 +45,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/checkout`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/checkout`
   },
@@ -56,7 +56,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/collections`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/collections`
   },
@@ -67,7 +67,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/contact-us`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/contact-us`
   },
@@ -78,7 +78,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/faqs`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/faqs`
   },
@@ -89,7 +89,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/free-sample`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/free-sample`
   },
@@ -100,7 +100,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/freesample`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/freesample`
   },
@@ -111,7 +111,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/freesample-checkout`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/freesample-checkout`
   },
@@ -122,7 +122,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/help-with-installations`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/help-with-installations`
   },
@@ -133,7 +133,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/how-to-measure-your-room`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/how-to-measure-your-room`
   },
@@ -144,7 +144,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/login`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/login`
   },
@@ -155,7 +155,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/measurement-appointment`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/measurement-appointment`
   },
@@ -166,7 +166,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/privacy-policy`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/privacy-policy`
   },
@@ -177,7 +177,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/return-and-refund-policy`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/return-and-refund-policy`
   },
@@ -188,7 +188,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/shipping-policy`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/shipping-policy`
   },
@@ -199,7 +199,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/signup`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/signup`
   },
@@ -210,7 +210,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/terms-and-conditions`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/terms-and-conditions`
   },
@@ -221,9 +221,31 @@ export const pageMetadataData = {
     url: `${BASE_URL}/wishlist`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/wishlist`
+  },
+  clearance: {
+    title: 'Flooring Clearance Sale UAE — Up to 46% Off',
+    description:
+      'Shop discounted SPC and LVT flooring — up to 46% off. Prices include UAE delivery. Limited clearance stock. Richmond & Polar ranges.',
+    url: `${BASE_URL}/clearance`,
+    image: {
+      src: `${BASE_URL}${logo.src}`,
+      alt: 'cheapfloors'
+    },
+    canonical: `${BASE_URL}/clearance`
+  },
+  flooringSupplierUAE: {
+    title: 'SPC & LVT Flooring Supplier in UAE | Wholesale & Bulk Orders',
+    description:
+      "UAE's trusted SPC & LVT flooring supplier for contractors and developers. Wholesale pricing, fast delivery across all Emirates. Request a quote.",
+    url: `${BASE_URL}/flooring-supplier-uae`,
+    image: {
+      src: `${BASE_URL}${logo.src}`,
+      alt: 'cheapfloors'
+    },
+    canonical: `${BASE_URL}/flooring-supplier-uae`
   },
   HomePage: {
     title: 'Flooring in UAE | SPC, LVT & Herringbone | Easy Floors',
@@ -232,7 +254,7 @@ export const pageMetadataData = {
     url: `${BASE_URL}/`,
     image: {
       src: `${BASE_URL}${logo.src}`,
-      alt: 'Easyfloors'
+      alt: 'cheapfloors'
     },
     canonical: `${BASE_URL}/`
   }

@@ -29,5 +29,6 @@ export const validStaticPaths = [
   '/thankyou',
   '/track-order',
   '/what-am-i',
-  '/wishlist'
+  '/wishlist',
+  '/blogs',
 ];

@@ -1,7 +1,6 @@
 import AboutUsInfo from 'components/AboutUsInfo/AboutUsInfo';
 import Container from 'components/common/container/Container';
 import Breadcrumb from 'components/Reusable/breadcrumb';
-import VideoComponent from 'components/VideoComponent/AboutCompany';
 import { alternatingData } from 'data/data';
 import { createMetadata } from 'utils/metadataHelper';
 import { pageMetadataData } from 'data/meta-data';
@@ -13,17 +12,14 @@ const AboutUs = () => {
   return (
     <>
       <Breadcrumb
-        title="About Us"
-        useHeadingTag
-        showTitle
-        image="/assets/images/aboutus/about.webp"
+        image="/assets/images/aboutus/About-Us.webp"
       />
       <Container>
         <div className="py-12">
-          <AboutUsInfo sections={alternatingData} />
+          <AboutUsInfo sections={alternatingData} isAboutUs />
         </div>
       
-          <VideoComponent videoUrl="https://bncmain.s3.eu-north-1.amazonaws.com/1747803062851-s3" />
+          {/* <VideoComponent videoUrl="https://bncmain.s3.eu-north-1.amazonaws.com/1747803062851-s3" /> */}
           <SampleBanner />
           {/* <SampleGrid sections={sampleGridData} /> */}
           <DiscoverFloor />

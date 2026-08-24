@@ -14,6 +14,7 @@ import { formatAED } from 'utils/helperFunctions';
 import { RxCross2 } from 'react-icons/rx';
 import { IProduct } from 'types/prod';
 import { FaRegCircleCheck } from 'react-icons/fa6';
+import { FLOOR_SMART_ACCESSORY_COLOR } from 'data/floorSmartAccessoryColor';
 
 const ProductContainer = ({
   MainCategory,
@@ -44,17 +45,41 @@ const ProductContainer = ({
     [area, unit, productData]
   );
 
+  const targetColorCode = productData.productImages?.[0]?.colorCode;
+  const isFloorSmart =
+    productData?.category?.name?.trim().toLowerCase() === 'floor smart' ||
+    productData?.category?.RecallUrl?.trim().toLowerCase() === 'floor-smart';
+
+  const extractColorName = (value?: string | number) => {
+    const parts = String(value ?? '').trim().split(' - ');
+    return parts[parts.length - 1].trim().toLowerCase();
+  };
+  const nameOf = (img?: { colorName?: string; altText?: string }) =>
+    extractColorName(img?.colorName ?? img?.altText);
+
+  const floorShade = extractColorName(
+    productData.productImages?.[0]?.colorName ??
+      productData.productImages?.[0]?.altText ??
+      productData.name
+  );
+  const accessoryColorMap = FLOOR_SMART_ACCESSORY_COLOR[floorShade];
+
   const filteredProducts: IProduct[] = (productData?.acessories ?? []).map(
     (product) => {
-      const selectedColor = product.featureImages?.find(
-        (img) =>
-          img.color === productData.productImages?.[0]?.colorCode
-      );
+      const accessoryName = product.name?.trim().toLowerCase() ?? '';
+      // Mapped accessory shade for this floor + accessory; falls back to the
+      // floor shade itself when there is no mapping.
+      const targetColorName = accessoryColorMap?.[accessoryName] ?? floorShade;
 
-      const matchedProductImages = product.productImages?.filter(
-        (img) =>
-          img.colorCode === productData.productImages?.[0]?.colorCode
-      );
+      const selectedColor = isFloorSmart
+        ? product.featureImages?.find((img) => nameOf(img) === targetColorName)
+        : product.featureImages?.find((img) => img.color === targetColorCode);
+
+      const matchedProductImages = isFloorSmart
+        ? product.productImages?.filter((img) => nameOf(img) === targetColorName)
+        : product.productImages?.filter(
+            (img) => img.colorCode === targetColorCode
+          );
 
       return {
         ...product,
@@ -62,7 +87,12 @@ const ProductContainer = ({
         matchedProductImages,
       };
     }
-  );
+  ).filter((product) => {
+    if (!isFloorSmart) return true;
+    const accessoryName = product.name?.trim().toLowerCase() ?? '';
+    if (accessoryColorMap?.[accessoryName] === '') return true;
+    return (product.matchedProductImages?.length ?? 0) > 0;
+  });
 
   const selectedColor = useMemo(
     () =>
@@ -461,36 +491,6 @@ const ProductContainer = ({
 
               <div className="flex flex-col xsm:flex-row w-full gap-2 pt-2">
                 <button
-                  id="OrderFreeSample"
-                  className="flex_center flex-1 bg-primary hover:bg-secondary text-base xl:text-xl text-white font-semibold gap-1.5 h-[64px] px-2 py-2"
-                  onClick={() =>
-                    handleAddToStorage(
-                      productData,
-                      totalPrice,
-                      pricePerBox,
-                      squareMeter,
-                      requiredBoxes,
-                      subCategory ?? '',
-                      MainCategory ?? '',
-                      'freeSample',
-                      productData?.productImages?.[0]?.imageUrl,
-                      boxCoverage,
-                      unit,
-                      selectedColor,
-                      matchedProductImages
-                    )
-                  }
-                >
-                  <Image
-                    src="/assets/images/icon/measure.png"
-                    alt="box"
-                    width={30}
-                    height={30}
-                    className="size-7 shrink-0"
-                  />
-                  <span className="whitespace-nowrap leading-tight">Order Now Free Sample</span>
-                </button>
-                <button
                   id="AddToCart"
                   onClick={() =>
                     handleAddToStorage(
@@ -523,6 +523,36 @@ const ProductContainer = ({
                   />
                   Add to Cart
                 </button>
+                <button
+                  id="OrderFreeSample"
+                  className="flex_center flex-1 bg-primary hover:bg-secondary text-base xl:text-xl text-white font-semibold gap-1.5 h-[64px] px-2 py-2"
+                  onClick={() =>
+                    handleAddToStorage(
+                      productData,
+                      totalPrice,
+                      pricePerBox,
+                      squareMeter,
+                      requiredBoxes,
+                      subCategory ?? '',
+                      MainCategory ?? '',
+                      'freeSample',
+                      productData?.productImages?.[0]?.imageUrl,
+                      boxCoverage,
+                      unit,
+                      selectedColor,
+                      matchedProductImages
+                    )
+                  }
+                >
+                  <Image
+                    src="/assets/images/icon/measure.png"
+                    alt="box"
+                    width={30}
+                    height={30}
+                    className="size-7 shrink-0"
+                  />
+                  <span className="whitespace-nowrap leading-tight">Order Now Free Sample</span>
+                </button>
               </div>
               <button
                 id="AddToWishlist"
@@ -552,7 +582,7 @@ const ProductContainer = ({
                 Add to Wishlist
               </button>
               <div className="space-y-2.5">
-                <PaymentMethod installments={installments ?? 0} compact />
+                <PaymentMethod installments={installments ?? 0} />
                 <TrustBadges />
               </div>
             </>

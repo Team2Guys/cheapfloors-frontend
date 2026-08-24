@@ -5,7 +5,6 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { headers } from 'next/headers';
 import ProductDetail from 'app/(route)/[slug]/[subcategory]/[product]/ProductDetail';
-import { clearanceProducts } from 'data/clearance';
 
 interface IParams {
   slug: string;
@@ -79,22 +78,14 @@ const Page = async ({ params }: { params: Promise<IParams> }) => {
   const PublishAccessory = AccessoriesProducts.filter(
     (acc: IProduct) => acc.status === 'PUBLISHED'
   );
-  const product = clearanceProducts.find(
-    (r) => r.name.toLowerCase() === ProductInfo.name.toLowerCase()
-  );
-
-  const clearance = product ? { ...product, ...ProductInfo } : null;
-
-  if (!clearance) return notFound();
 
   return (
     <ProductDetail
       MainCategory={slug}
       subCategory={subcategory}
       ProductName={paramsprod}
-      productData={clearance}
+      productData={ProductInfo}
       AccessoriesProducts={PublishAccessory}
-      isClearance
     />
   );
 };
