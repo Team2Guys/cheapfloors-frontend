@@ -19,7 +19,7 @@ const UserInfo = () => {
               </span>
             </h2>
             <p className="text-sm lg:text-base 2xl:text-[18px] font-normal text-justify text-black leading-relaxed">
-              Save smart on flooring in the UAE with durable, low-maintenance options like SPC and vinyl, perfect for heat, humidity, and high traffic. Enjoy water-resistant, long-lasting floors with easy installation and great value. Premium quality, made affordable with EasyFloors.
+              Save smart on flooring in the UAE with durable, low-maintenance options like SPC and vinyl, perfect for heat, humidity, and high traffic. Enjoy water-resistant, long-lasting floors with easy installation and great value. Premium quality, made affordable with CheapFloors.
             </p>
             <Link href="/collections">
               <button className="mt-2 bg-primary text-black text-sm md:text-base font-semibold py-3 px-8 rounded-full hover:bg-black hover:text-white transition-colors duration-300">

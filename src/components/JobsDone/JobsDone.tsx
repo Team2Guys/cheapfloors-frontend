@@ -74,7 +74,7 @@ const JobsDone = () => {
                         Jobs Done
                     </h2>
                     <p className="text-sm md:text-base text-black text-center font-brandon leading-relaxed px-2">
-                        Easy Floors has completed flooring projects across Dubai and the UAE, including Dubai Marina, Downtown, Palm Jumeirah, JVC, Abu Dhabi, and Sharjah. We deliver premium flooring solutions with expert installation for homes, offices, and commercial spaces.
+                        Cheap Floors has completed flooring projects across Dubai and the UAE, including Dubai Marina, Downtown, Palm Jumeirah, JVC, Abu Dhabi, and Sharjah. We deliver premium flooring solutions with expert installation for homes, offices, and commercial spaces.
                     </p>
                 </div>
 

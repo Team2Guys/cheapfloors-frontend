@@ -82,7 +82,7 @@ const Footer = () => {
         <div className="sm:mt-2">
           <Image
             src="/assets/images/logo.webp"
-            alt="Easyfloors"
+            alt="CheapFloors"
             width={120}
             height={50}
             className="mb-4"
@@ -194,7 +194,7 @@ const Footer = () => {
               />
             </div>
             <Link
-              href="mailto:cs@easyfloors.ae"
+              href="mailto:cs@cheapfloors.ae"
               className="text-[#00000099] group-hover:text-primary"
             >
               {footerData.contact.email}
@@ -260,7 +260,7 @@ const Footer = () => {
           </div>
           <div className="text-center hidden sm:block">
             <p className="text-12 sm:text-13 text-black font-medium xs:font-semibold ">
-              Easyfloors.ae ©{new Date().getFullYear()}
+              CheapFloors.ae ©{new Date().getFullYear()}
             </p>
           </div>
           <div className="text-black  flex flex-wrap lg:flex-nowrap  lg:justify-end  w-full">
@@ -304,7 +304,7 @@ const Footer = () => {
                 <SocialIcon />
               </div>
               <p className="text-12 sm:text-13 text-black font-medium ml-14 xs:ml-8 sm:font-semibold">
-                Easyfloors.ae ©{new Date().getFullYear()}
+                CheapFloors.ae ©{new Date().getFullYear()}
               </p>
 
             </div>

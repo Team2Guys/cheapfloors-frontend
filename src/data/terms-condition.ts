@@ -2,7 +2,7 @@ export const termsConditionsData = [
   {
     title: 'Scope of these terms',
     content: [
-      'We are Easy Floors, a respectable provider of luxury flooring choices. We want the process of selecting and purchasing flooring to be simple and smooth. Our online sales are covered by these terms. Our website, www.easyfloors.ae, always has the most recent version. Please take note of all the important phrases.'
+      'We are Cheap Floors, a respectable provider of luxury flooring choices. We want the process of selecting and purchasing flooring to be simple and smooth. Our online sales are covered by these terms. Our website, www.cheapfloors.ae, always has the most recent version. Please take note of all the important phrases.'
     ]
   },
   {
@@ -107,7 +107,7 @@ export const termsConditionsData = [
   {
     heading: ['Intellectual Property'],
     subItems: [
-      'Product descriptions, photos, graphics, logos, and designs are all the exclusive property of Easy Floors and are all protected by copyright laws on the Easy Floors website.',
+      'Product descriptions, photos, graphics, logos, and designs are all the exclusive property of Cheap Floors and are all protected by copyright laws on the Cheap Floors website.',
       'Without express consent, it is completely forbidden to reproduce, distribute, or alter our content in any way.'
     ]
   },
@@ -120,7 +120,7 @@ export const termsConditionsData = [
   {
     title: 'Limitation of Liability',
     subItems: [
-      'Easy Floors makes every effort to provide excellent flooring and services, but we cannot be held responsible for any incidental, indirect, or consequential damages that may arise from using our products or website.',
+      'Cheap Floors makes every effort to provide excellent flooring and services, but we cannot be held responsible for any incidental, indirect, or consequential damages that may arise from using our products or website.',
       'Challenges related to installation (we advise using an experienced professional for installation).',
       'Certain limitations may not apply to you because limits of liability may not be permitted in some areas.'
     ]
@@ -136,7 +136,7 @@ export const termsConditionsData = [
     content: [
       'Please contact us with any queries, order support, or warranty questions:'
     ],
-    Links: ['Phone: +971505974385', 'Email: cs@easyfloors.ae'],
+    Links: ['Phone: +971505974385', 'Email: cs@cheapfloors.ae'],
     contentend: [
       'Our staff is ready to assist with any of your flooring needs!'
     ]

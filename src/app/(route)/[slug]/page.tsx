@@ -31,8 +31,8 @@ export async function generateMetadata({
 
   const fullUrl = `${protocol}://${domain}${pathname}`;
 
-  const ImageUrl = Category?.posterImageUrl.imageUrl || 'Easy Floor';
-  const alt = Category?.posterImageUrl.altText || 'Easy Floor';
+  const ImageUrl = Category?.posterImageUrl.imageUrl || 'Cheap Floors';
+  const alt = Category?.posterImageUrl.altText || 'Cheap Floor';
 
   const NewImage = [
     {
@@ -40,8 +40,8 @@ export async function generateMetadata({
       alt: alt
     }
   ];
-  const title = Category?.Meta_Title || 'Easy Floor';
-  const description = Category?.Meta_Description || 'Welcome to Easy Floor';
+  const title = Category?.Meta_Title || 'Cheap Floor';
+  const description = Category?.Meta_Description || 'Welcome to Cheap Floor';
   const url = `${fullUrl}${slug}`;
   return {
     title: title,

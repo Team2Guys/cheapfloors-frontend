@@ -69,7 +69,7 @@ export const AssistanceFooter = () => {
                 <footer className="mt-8 rounded-2xl bg-gray-100 px-6 py-10 text-center">
                     <Image
                         src="/assets/images/logo.webp"
-                        alt="Easy Floors"
+                        alt="Cheap Floors"
                         width={120}
                         height={40}
                         className="mx-auto h-auto w-28 object-contain"
@@ -77,8 +77,8 @@ export const AssistanceFooter = () => {
 
                     <div className="mt-5 space-y-1 text-13 text-gray-600">
                         <p>Agsons, J1 Warehouses, Jebel Ali Industrial &ndash; Dubai</p>
-                        <p>TRN: 100xxxxxxxxx | sales@easyfloors.ae</p>
-                        <p>www.easyfloors.ae</p>
+                        <p>TRN: 100xxxxxxxxx | sales@cheapfloors.ae</p>
+                        <p>www.cheapfloors.ae</p>
                     </div>
 
                     <nav className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
@@ -94,7 +94,7 @@ export const AssistanceFooter = () => {
                     </nav>
 
                     <p className="mt-8 border-t border-gray-200 pt-6 text-12 text-gray-500">
-                        &copy; 2026 Easy Floors UAE. All Rights Reserved.
+                        &copy; {new Date().getFullYear()} Cheap Floors UAE. All Rights Reserved.
                     </p>
                 </footer>
             </div>

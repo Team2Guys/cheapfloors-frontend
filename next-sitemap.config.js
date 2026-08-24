@@ -80,7 +80,7 @@ module.exports = {
         ],
       },
     ],
-    additionalSitemaps: ['https://easyfloors.ae/sitemap.xml'],
+    additionalSitemaps: ['https://cheapfloors.ae/sitemap.xml'],
   },
 
 

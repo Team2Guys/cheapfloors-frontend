@@ -16,11 +16,11 @@ const Shipping = () => {
         locations in the UAE within 2 to 3 working days, which ensures a smooth
         and hassle-free buying experience. You can contact us any time at{' '}
         <Link
-          href="mailto:cs@easyfloors.ae"
+          href="mailto:cs@cheapfloors.ae"
           className="font-normal text-primary"
           target='_blank'
         >
-          cs@easyfloors.ae
+          cs@cheapfloors.ae
         </Link>{' '}
         for further information or any clarification regarding our delivery
         process. Your satisfaction is our priority.
@@ -77,7 +77,7 @@ const Shipping = () => {
 
       <div className="overflow-hidden rounded-lg">
         <iframe
-          title="Easy Floors Showroom Location"
+          title="Cheap Floors Showroom Location"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3269.1510190571935!2d55.2357386!3d25.1177844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f69fca32528d3%3A0x63e4dd6474477d84!2sEasyFloors%20-%20Affordable%20Flooring!5e1!3m2!1sen!2s!4v1782991951523!5m2!1sen!2s"
           className="w-full h-[300px] sm:h-[450px] border-0"
           loading="lazy"

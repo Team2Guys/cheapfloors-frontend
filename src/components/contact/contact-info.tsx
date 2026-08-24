@@ -20,7 +20,7 @@ const ContactInfo = () => {
         </div>
         <div className="flex gap-6 items-center">
           <IoMailSharp size={20} />
-          <Link href="mailto:Info@easyfloors.ae">Info@easyfloors.ae</Link>
+          <Link href="mailto:Info@cheapfloors.ae">Info@cheapfloors.ae</Link>
         </div>
         <div className="flex gap-4 md:gap-6">
           <FaLocationDot size={22} />
@@ -42,7 +42,7 @@ const ContactInfo = () => {
           loading="lazy"
           allowFullScreen
           referrerPolicy="no-referrer-when-downgrade"
-          title="Easy Floors Location in Jebel Ali"
+          title="Cheap Floors Location in Jebel Ali"
         >
         </iframe>
       </div>

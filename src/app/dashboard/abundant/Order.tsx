@@ -388,7 +388,7 @@ const Order = ({
         ProductsIds: order.products.map((p) => p.id).join(', '),
         ProductsUrls: order.products
           .map((p) => {
-            let urls = 'https://easyfloors.ae/';
+            let urls = 'https://cheapfloors.ae/';
             const category = p.category.trim().toLowerCase();
             if (category == 'accessories' || category === 'accessory') {
               urls += `accessories/${p.custom_url ?? ''}`;

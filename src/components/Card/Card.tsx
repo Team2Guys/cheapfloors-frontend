@@ -109,15 +109,6 @@ const Card: React.FC<productCardProps> = ({
   const discountedPrice = (product as IProduct).discountPrice;
   const hasDiscount = !!discountedPrice && discountedPrice > 0;
 
-
-  const originalPrice = Number((product as IProduct).price);
-  const discountPercentage =
-    hasDiscount && originalPrice > 0
-      ? Math.round(
-        ((originalPrice - Number(discountedPrice)) / originalPrice) * 100
-      )
-      : 0;
-
   const handleAddSample = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -315,39 +306,33 @@ const Card: React.FC<productCardProps> = ({
         </Link>
       </div>
 
-      {(sldier && subCategoryFlag) && (
-        <div className="pb-2">
-          {'price' in product && product.price && (
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-              {hasDiscount && (
-                <p className="text-sm font-normal text-gray-500 flex items-center">
-                  <span className="mr-1">Was:</span>
-                  <span className="line-through flex items-center">
-                    <span className="font-currency font-normal text-xl mr-1 mb-0.5">
-                      
-                    </span>
-                    {product?.price}
-                    <span className="line-through">
-                      {isAccessories ? 'Per Piece' : '/m²'}
-                    </span>
+      <div className="pb-2">
+        {'price' in product && product.price && (
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <p className="text-base font-medium text-black flex items-center">
+              {/* {hasDiscount && (
+                <span className="text-sm font-normal mr-1">now</span>
+              )} */}
+              <span className="font-currency font-normal text-xl mr-1 mb-0.5">
+                
+              </span>
+              {hasDiscount ? discountedPrice : product?.price}
+              <span className="text-sm md:text-base font-normal ml-1">{isAccessories ? 'Per Piece' : '/m²'}</span>
+            </p>
+            {hasDiscount && (
+              <p className="order-first text-sm font-normal text-gray-500 flex items-center">
+                {/* <span className="mr-1">before</span> */}
+                <span className="line-through flex items-center">
+                  <span className="font-currency font-normal text-xl mr-1 mb-0.5">
+                    
                   </span>
-                </p>
-              )}
-              <p className="text-red-500 flex items-center font-semibold">
-                {hasDiscount && (
-                  <span className="text-sm md:text-base xl:text-lg mr-1">
-                    Now:
-                  </span>
-                )}
-                <span className="font-currency text-xl mr-1 mb-0.5"></span>
-                {hasDiscount ? discountedPrice : product?.price}
-                <span className="text-sm md:text-base xl:text-lg ml-1">
-                  {isAccessories ? 'Per Piece' : '/m²'}
+                  {product?.price}
+                  <span className="line-through">{isAccessories ? 'Per Piece' : '/m²'}</span>
                 </span>
               </p>
             </div>
-          )}
-        </div>
+        )}
+      </div>
       )}
 
       <div

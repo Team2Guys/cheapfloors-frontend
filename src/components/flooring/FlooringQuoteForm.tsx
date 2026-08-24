@@ -201,12 +201,12 @@ export const FlooringQuoteForm = () => {
               Who We <span className="text-primary">Serve</span>
             </h2>
             <p className="mt-4 text-15 leading-relaxed text-[#6B6B6B] md:text-16">
-              Easy Floors supplies high-performance SPC, LVT, and engineered wood to contractors, fit-out companies, developers, and government projects across the UAE and GCC.
+              Cheap Floors supplies high-performance SPC, LVT, and engineered wood to contractors, fit-out companies, developers, and government projects across the UAE and GCC.
             </p>
 
             {/* Why Choose card */}
             <div className="mt-7 rounded-2xl bg-[#EBEBEB] p-6 md:p-7">
-              <h3 className="text-20 font-bold text-secondary md:text-22">Why Choose Easy Floors?</h3>
+              <h3 className="text-20 font-bold text-secondary md:text-22">Why Choose Cheap Floors?</h3>
               <ul className="mt-5 space-y-4">
                 {benefits.map((b) => (
                   <li key={b.title} className="flex gap-3">
