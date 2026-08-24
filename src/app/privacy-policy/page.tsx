@@ -58,7 +58,7 @@ const PrivacyPolicy = () => {
         Privacy Policy
       </h1>
       <p className="sm:text-lg">
-        Our first goal at Easy Floors is to maintain the privacy of our
+        Our first goal at Cheap Floors is to maintain the privacy of our
         customers and website visitors. As specified in this privacy policy, we
         collect, use, retain, and safeguard your personal information when you
         visit or make a purchase from our website.

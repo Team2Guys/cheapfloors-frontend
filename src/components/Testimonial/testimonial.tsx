@@ -85,7 +85,7 @@ const dummyReviewChunks: ReviewItem[][] = [
             name: "Fatima Al Mansoori",
             reviewDate: "2026-04-30",
             starRating: 5,
-            ReviewsDescription: "Beautiful flooring and great service from start to finish. The team helped me pick the right plank for a high-traffic hallway and let me split the payment with Tabby. Highly recommend Easy Floors.",
+            ReviewsDescription: "Beautiful flooring and great service from start to finish. The team helped me pick the right plank for a high-traffic hallway and let me split the payment with Tabby. Highly recommend Cheap Floors.",
             posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
         },
         {
@@ -108,7 +108,7 @@ const dummyReviewChunks: ReviewItem[][] = [
             name: "Rakshith",
             reviewDate: "2026-04-20",
             starRating: 5,
-            ReviewsDescription: "i had nice experience with Easy floor. very fast service and good pricing",
+            ReviewsDescription: "i had nice experience with Cheap Floors. very fast service and good pricing",
             posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
         },
         {

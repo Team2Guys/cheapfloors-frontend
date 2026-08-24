@@ -7,8 +7,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 const heroBanners = [
-  { src: '/assets/images/Home/Hero-Banner-2.webp', alt: 'Easy Floors hero banner 1' },
-  { src: '/assets/images/Home/Hero-Banner-1.webp', alt: 'Easy Floors hero banner 2' }
+  { src: '/assets/images/Home/Hero-Banner-2.webp', alt: 'Cheap Floors hero banner 1' },
+  { src: '/assets/images/Home/Hero-Banner-1.webp', alt: 'Cheap Floors hero banner 2' }
 ];
 
 const HeroMain = () => {

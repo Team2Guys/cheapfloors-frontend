@@ -26,6 +26,6 @@ export const FlooringFaqs: FAQItem[] = [
     {
         id: 5,
         question: 'Do you provide VAT invoices for all B2B orders?',
-        answer: 'Yes. Easy Floors is fully registered for UAE VAT and issues TRN-compliant commercial invoices with every B2B order. A valid Trade License and TRN Certificate are required from your company to activate B2B pricing and invoicing.'
+        answer: 'Yes. Cheap Floors is fully registered for UAE VAT and issues TRN-compliant commercial invoices with every B2B order. A valid Trade License and TRN Certificate are required from your company to activate B2B pricing and invoicing.'
     },
 ];

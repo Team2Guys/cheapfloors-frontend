@@ -19,39 +19,39 @@ export const generateMetadata = async ({
   const isFreeSample = params.isFreeSample === 'true';
   return isFreeSample || isPaymentSuccessful
     ? {
-        title: 'Payment Successful | Easy Floors',
+        title: 'Payment Successful | Cheap Floors',
         description:
           'Thank you for your purchase! Your payment has been processed successfully. We’ll begin preparing your order right away.',
         openGraph: {
-          title: 'Payment Successful | Easy Floors',
+          title: 'Payment Successful | Cheap Floors',
           description:
             'Thank you for your purchase! Your payment was successful. Your flooring products will be delivered soon.',
-          url: 'https://easyfloors.ae/thank-you',
+          url: 'https://cheapfloors.ae/thank-you',
           images: [
-            { url: `https://easyfloors.ae${logo.src}`, alt: 'Easyfloors' }
+            { url: `https://cheapfloors.ae${logo.src}`, alt: 'CheapFloors' }
           ],
           type: 'website'
         },
         alternates: {
-          canonical: 'https://easyfloors.ae/thank-you'
+          canonical: 'https://cheapfloors.ae/thank-you'
         }
       }
     : {
-        title: 'Payment Failed | Easy Floors',
+        title: 'Payment Failed | Cheap Floors',
         description:
           'Unfortunately, your payment could not be processed. Please try again or contact our support team for assistance.',
         openGraph: {
-          title: 'Payment Failed | Easy Floors',
+          title: 'Payment Failed | Cheap Floors',
           description:
             'There was an issue processing your payment. Please retry or get in touch with our support team.',
-          url: 'https://easyfloors.ae/thank-you',
+          url: 'https://cheapfloors.ae/thank-you',
           images: [
-            { url: `https://easyfloors.ae${logo.src}`, alt: 'Easyfloors' }
+            { url: `https://cheapfloors.ae${logo.src}`, alt: 'CheapFloors' }
           ],
           type: 'website'
         },
         alternates: {
-          canonical: 'https://easyfloors.ae/thank-you'
+          canonical: 'https://cheapfloors.ae/thank-you'
         }
       };
 };

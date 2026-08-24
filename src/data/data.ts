@@ -279,7 +279,7 @@ export const featureItems = [
   {
     title: 'Factory Prices',
     description:
-      'No middlemen, just high-quality flooring at factory-direct prices. Easy Floors is among the most trusted flooring companies in the UAE, offering the best value without compromise.',
+      'No middlemen, just high-quality flooring at factory-direct prices. Cheap Floors is among the most trusted flooring companies in the UAE, offering the best value without compromise.',
     icon: '/assets/images/Home/factory-icon.png'
   }
 ];
@@ -341,15 +341,15 @@ export const features: Feature[] = [
 
 export const footerData = {
   company: {
-    name: 'easy floors',
+    name: 'cheap floors',
     description:
-      'Founded with a passion for quality and design. Easyfloors is all about top-notch quality, happy customers, and awesome deals.'
+      'Founded with a passion for quality and design. CheapFloors is all about top-notch quality, happy customers, and awesome deals.'
   },
   contact: {
     address:
-      'Easy Floors - Floorings · 24, 22nd street - Al Quoz Industrial Area 4 - Dubai - UAE',
+      'Cheap Floors - Floorings · 24, 22nd street - Al Quoz Industrial Area 4 - Dubai - UAE',
     phone: '+971 50 597 4385',
-    email: 'cs@easyfloors.ae'
+    email: 'cs@cheapfloors.ae'
   },
   paymentMethods: [
     'visa',
@@ -534,10 +534,10 @@ export const HomeUserInfo = [
 export const policySections = [
   {
     title:
-      'Can I Return A Purchased Product From easyfloors.ae, If I Have A Change of Mind?',
+      'Can I Return A Purchased Product From cheapfloors.ae, If I Have A Change of Mind?',
     content: [
       'Yes, You can return any item within 7 days of receiving your order if it is unused, and in its original packing.',
-      'Begin a return simply by emailing our friendly customer service team at <a href="mailto:cs@easyfloors.ae" target="_blank" class="font-normal text-primary">cs@easyfloors.ae</a> with your order number and a 2-3 sentence explanation of why you’re returning an item.',
+      'Begin a return simply by emailing our friendly customer service team at <a href="mailto:cs@cheapfloors.ae" target="_blank" class="font-normal text-primary">cs@cheapfloors.ae</a> with your order number and a 2-3 sentence explanation of why you’re returning an item.',
       "We'll get back to you within 24 hours, and we'll give you a return authorisation number (RAN) that you need to include with the package when you send it back to be processed.",
       "Once we get and accept your return, we'll send you your money back. It could take a few days to show up in your account, but we'll start the return process right away."
     ]
@@ -546,14 +546,14 @@ export const policySections = [
     title: 'What Should I Do If I Receive A Defective Item?',
     content: [
       'If we send you a faulty set, please adhere to the above instructions. You need to enter in the subject line of the email “Defective – Order Number”. We shall respond to your request promptly and offer a substitute for the order.',
-      'We understand that if there is an issue with the installation of an item, it will remain unused. For this, you can write to us at <a href="mailto:cs@easyfloors.ae" class="font-normal text-primary" target="_blank">cs@easyfloors.ae</a> and we will arrange for one of our skilled representatives to visit the site.'
+      'We understand that if there is an issue with the installation of an item, it will remain unused. For this, you can write to us at <a href="mailto:cs@cheapfloors.ae" class="font-normal text-primary" target="_blank">cs@cheapfloors.ae</a> and we will arrange for one of our skilled representatives to visit the site.'
     ]
   },
   {
     title: 'Who Pays For Return Shipping?',
     content: [
       'If you want to return an item you purchased from us, you will need to pay for the return shipping unless the item is faulty or we sent you the wrong order.',
-      'We recommend using a trackable shipping method so we can track the package with you and easyfloors.ae as it comes to you. This will ensure the product gets back to you on time. If the item gets lost or the courier drops it, we can’t help and won’t refund.',
+      'We recommend using a trackable shipping method so we can track the package with you and cheapfloors.ae as it comes to you. This will ensure the product gets back to you on time. If the item gets lost or the courier drops it, we can’t help and won’t refund.',
       ' • Items That Are Final Sale',
       ' • Items available during the sale and promotion period',
       ' • Items not in pristine condition, worn or damaged'
@@ -570,8 +570,8 @@ export const policySections = [
   {
     title: 'Get in Touch',
     content: [
-      'Have questions about our return and refund policy? Reach out to us at <a href="mailto:cs@easyfloors.ae" class="font-normal text-primary" target="_blank">cs@easyfloors.ae</a>. Our customer service team is here to help from 9 am to 6 pm, Monday to Saturday (except on public holidays).',
-      'Thanks for shopping with <a href="/" class="font-normal text-primary" target="_blank">easyfloors.ae</a>.'
+      'Have questions about our return and refund policy? Reach out to us at <a href="mailto:cs@cheapfloors.ae" class="font-normal text-primary" target="_blank">cs@cheapfloors.ae</a>. Our customer service team is here to help from 9 am to 6 pm, Monday to Saturday (except on public holidays).',
+      'Thanks for shopping with <a href="/" class="font-normal text-primary" target="_blank">cheapfloors.ae</a>.'
     ]
   }
 ];
@@ -579,15 +579,15 @@ export const policySections = [
 export const faqs: FAQItem[] = [
   {
     id: 1,
-    question: 'What types of flooring does Easy Floors offer?',
+    question: 'What types of flooring does Cheap Floors offer?',
     answer:
-      "Easy Floors offers a wide range of modern flooring solutions, including SPC, LVT, and stylish herringbone designs. These durable options are perfect for homes and businesses looking for high-quality flooring solutions in Dubai."
+      "Cheap Floors offers a wide range of modern flooring solutions, including SPC, LVT, and stylish herringbone designs. These durable options are perfect for homes and businesses looking for high-quality flooring solutions in Dubai."
   },
   {
     id: 2,
     question: "Can I order flooring samples before making a purchase?",
     answer:
-      "Yes, Easy Floors allows customers to order up to five free flooring samples delivered anywhere in the UAE. This helps you evaluate colour, texture, and quality before choosing the perfect flooring."
+      "Yes, Cheap Floors allows customers to order up to five free flooring samples delivered anywhere in the UAE. This helps you evaluate colour, texture, and quality before choosing the perfect flooring."
   },
   {
     id: 3,
@@ -597,17 +597,17 @@ export const faqs: FAQItem[] = [
   {
     id: 4,
     question: 'How long does delivery take across the UAE?',
-    answer: 'Easy Floors provides fast delivery across the UAE. Standard delivery typically takes two to three working days, while next-day express delivery is available in Dubai for urgent flooring orders.'
+    answer: 'Cheap Floors provides fast delivery across the UAE. Standard delivery typically takes two to three working days, while next-day express delivery is available in Dubai for urgent flooring orders.'
   },
   {
     id: 5,
-    question: 'Are Easy Floors products suitable for homes and commercial spaces?',
-    answer: 'Yes, our flooring products are designed for both residential and commercial environments. Many businesses choose Easy Floors when searching for reliable flooring companies in UAE offering durable and stylish flooring.'
+    question: 'Are Cheap Floors products suitable for homes and commercial spaces?',
+    answer: 'Yes, our flooring products are designed for both residential and commercial environments. Many businesses choose Cheap Floors when searching for reliable flooring companies in UAE offering durable and stylish flooring.'
   },
   {
     id: 6,
-    question: 'Do Easy Floors products come with a warranty?',
-    answer: 'Yes, Easy Floors flooring collections come with reliable warranties, including up to 15 years for residential use and around 5 years for commercial applications, ensuring long-term performance and peace of mind.'
+    question: 'Do Cheap Floors products come with a warranty?',
+    answer: 'Yes, Cheap Floors flooring collections come with reliable warranties, including up to 15 years for residential use and around 5 years for commercial applications, ensuring long-term performance and peace of mind.'
   },
   {
     id: 7,
@@ -901,7 +901,7 @@ export const faqspage: FAQ[] = [
   {
     question: 'Who can I contact for delivery questions?',
     answer:
-      'If you have any questions or need clarification about your delivery, you can contact our team at cs@easyfloors.ae. We are always ready to assist you and ensure your order reaches you on time without any complications.',
+      'If you have any questions or need clarification about your delivery, you can contact our team at cs@cheapfloors.ae. We are always ready to assist you and ensure your order reaches you on time without any complications.',
     category: 'Delivery'
   },
 ];
@@ -927,9 +927,9 @@ export const alternatingData: TAboutUs[] = [
     id: 3,
     image: '/assets/images/aboutus/about3.webp',
     alt: 'Third Image',
-    heading: 'Why Choose Easy Floors',
+    heading: 'Why Choose Cheap Floors',
     paragraph:
-      'At Easy Floors, we understand that choosing the right flooring is a big decision. We offer many premium options to fit any space and budget, along with a 15-year residential and 5-year commercial warranty enabling you to choose with confidence. Our focus on quality, transparency, and customer satisfaction sets us apart.'
+      'At Cheap Floors, we understand that choosing the right flooring is a big decision. We offer many premium options to fit any space and budget, along with a 15-year residential and 5-year commercial warranty enabling you to choose with confidence. Our focus on quality, transparency, and customer satisfaction sets us apart.'
   }
 ];
 
@@ -1014,15 +1014,15 @@ export const measurementData: MeasurementSection[] = [
     image: ''
   },
   {
-    title: 'Get Expert Guidance from Easy Floors',
+    title: 'Get Expert Guidance from Cheap Floors',
     description:
-      'With Easy Floors, you have various premium flooring options in Dubai and the United Arab Emirates. If you need additional professional assistance with floor design ideas or flooring recommendations, please email us at cs@easyfloors.ae.',
+      'With Cheap Floors, you have various premium flooring options in Dubai and the United Arab Emirates. If you need additional professional assistance with floor design ideas or flooring recommendations, please email us at cs@cheapfloors.ae.',
     steps: [],
     image: ''
   }
 ];
 export const loginData: AuthData = {
-  title: 'WELCOME TO <br> EASY FLOORS',
+  title: 'WELCOME TO <br> Cheap Floors',
   subtitle: 'Sign In',
   description: 'Please login using account details below.',
   emailPlaceholder: 'Enter your email',
@@ -1307,7 +1307,7 @@ export const richmondFaqs: FAQItem[] = [
   {
     id: 1,
     question: "Where can I buy Richmond flooring in Dubai for my project?",
-    answer: "You can buy Richmond flooring in Dubai from trusted suppliers offering a wide range of designs. For premium options and reliable service, consider purchasing from a trusted supplier like easyfloors.ae, known for delivering high-quality flooring solutions."
+    answer: "You can buy Richmond flooring in Dubai from trusted suppliers offering a wide range of designs. For premium options and reliable service, consider purchasing from a trusted supplier like cheapfloors.ae, known for delivering high-quality flooring solutions."
   },
   {
     id: 2,
@@ -1456,18 +1456,18 @@ export const accessoriesFaqs: FAQItem[] = [
   },
   {
     id: 3,
-    question: "Which skirting sizes are available at Easy Floors?",
-    answer: "Easy Floors offers skirting in several heights, including 8cm, 10cm, and 12cm, as well as L-shaped skirting in 12cm and 15cm, allowing customers to choose the perfect style for their interiors."
+    question: "Which skirting sizes are available at Cheap Floors?",
+    answer: "Cheap Floors offers skirting in several heights, including 8cm, 10cm, and 12cm, as well as L-shaped skirting in 12cm and 15cm, allowing customers to choose the perfect style for their interiors."
   },
   {
     id: 4,
-    question: "Are Easy Floors accessories suitable for both residential and commercial spaces?",
-    answer: "Yes, Easy Floors flooring accessories are designed for both residential and commercial applications. They are made with high-quality materials to ensure durability, long-lasting performance, and a stylish finish in any environment."
+    question: "Are Cheap Floors accessories suitable for both residential and commercial spaces?",
+    answer: "Yes, Cheap Floors flooring accessories are designed for both residential and commercial applications. They are made with high-quality materials to ensure durability, long-lasting performance, and a stylish finish in any environment."
   },
   {
     id: 5,
-    question: "Can DIY users easily install Easy Floors accessories?",
-    answer: "Absolutely. Easy Floors accessories are suitable for both professional installers and DIY enthusiasts. Their practical designs make installation straightforward while ensuring a clean and attractive flooring finish."
+    question: "Can DIY users easily install Cheap Floors accessories?",
+    answer: "Absolutely. Cheap Floors accessories are suitable for both professional installers and DIY enthusiasts. Their practical designs make installation straightforward while ensuring a clean and attractive flooring finish."
   }
 ];
 

@@ -2,7 +2,7 @@ export const privacyPolicyData = [
   {
     title: 'Information We Collect',
     content: [
-      'When you visit or use Easy Floors, you may acquire the following kinds of information:'
+      'When you visit or use Cheap Floors, you may acquire the following kinds of information:'
     ],
     subItems: [
       'Personal Data: During a purchase, your name, phone number, email address, billing and shipping address, and payment information are all considered personal data.',
@@ -62,7 +62,7 @@ export const privacyPolicyData = [
       'Opt-out receive marketing communications. '
     ],
     contentend: [
-      'To exercise these rights, please contact us at cs@easyfloors.ae.'
+      'To exercise these rights, please contact us at cs@cheapfloors.ae.'
     ]
   },
   {
@@ -82,9 +82,9 @@ export const privacyPolicyData = [
     content: [
       'If you have any inquiries about our privacy policy or our data processing procedures, you may contact us at:'
     ],
-    Links: ['cs@easyfloors.ae', '+971505974385', 'www.easyfloors.ae'],
+    Links: ['cs@cheapfloors.ae', '+971505974385', 'www.cheapfloors.ae'],
     contentend: [
-      'You agree to this privacy policy by using easyfloors.ae. We appreciate you trusting us with your data!'
+      'You agree to this privacy policy by using cheapfloors.ae. We appreciate you trusting us with your data!'
     ]
   }
 ];

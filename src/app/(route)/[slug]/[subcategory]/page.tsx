@@ -35,8 +35,8 @@ export async function generateMetadata({
   const pathname = headersList.get('x-invoke-path') || '/';
 
   const fullUrl = `${protocol}://${domain}${pathname}`;
-  const ImageUrl = subCategory?.posterImageUrl.imageUrl || 'Easy Floor';
-  const alt = subCategory?.posterImageUrl.altText || 'Easy Floor';
+  const ImageUrl = subCategory?.posterImageUrl.imageUrl || 'Cheap Floors';
+  const alt = subCategory?.posterImageUrl.altText || 'Cheap Floors';
 
   const NewImage = [
     {
@@ -44,8 +44,8 @@ export async function generateMetadata({
       alt: alt
     }
   ];
-  const title = subCategory?.Meta_Title || 'Easy Floor';
-  const description = subCategory?.Meta_Description || 'Welcome to Easy Floor';
+  const title = subCategory?.Meta_Title || 'Cheap Floors';
+  const description = subCategory?.Meta_Description || 'Welcome to Cheap Floors';
   const url = `${fullUrl}${slug}/${subcategory}`;
   return {
     title: title,

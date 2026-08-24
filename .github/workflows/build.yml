@@ -46,13 +46,13 @@ jobs:
           [ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh" # This loads nvm
           [ -s "\$NVM_DIR/bash_completion" ] && \. "\$NVM_DIR/bash_completion" # This loads nvm bash_completion
           nvm use 20
-          cd /var/www/easyfloors/client
+          cd /var/www/cheapfloors/client
           git pull origin dev --no-rebase
           
           npm install --legacy-peer-deps
           rm -rf .next
           npm run build
-          pm2 restart easyfloors_fe
+          pm2 restart cheapfloors_fe
           exit
           EOF
 

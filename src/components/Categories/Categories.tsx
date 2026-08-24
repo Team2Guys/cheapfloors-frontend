@@ -17,7 +17,7 @@ const Categories: React.FC<Props> = ({ card, index }) => {
       <div className="relative h-full w-full">
         <Image
           src={card?.homePageImage?.imageUrl || ''}
-          alt={card?.homePageImage?.altText || 'easy Floor'}
+          alt={card?.homePageImage?.altText || 'Cheap Floors'}
           fill
           quality={80}
           loading="lazy"

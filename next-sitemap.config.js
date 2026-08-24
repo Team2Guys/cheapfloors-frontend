@@ -40,7 +40,7 @@ const toLastmod = (item) => {
 };
 
 module.exports = {
-  siteUrl: 'https://easyfloors.ae/',
+  siteUrl: 'https://cheapfloors.ae/',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   sitemapSize: 5000,
@@ -80,7 +80,7 @@ module.exports = {
         ],
       },
     ],
-    additionalSitemaps: ['https://easyfloors.ae/sitemap.xml'],
+    additionalSitemaps: ['https://cheapfloors.ae/sitemap.xml'],
   },
 
 

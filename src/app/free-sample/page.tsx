@@ -36,7 +36,7 @@ const FreeSampleDetail = async () => {
         Free Samples
       </h1>
       <p className="text-sm sm:text-20 sm:leading-[26px] text-justify">
-        At www.easyfloors.ae , we understand that judging the quality and colour
+        At www.cheapfloors.ae , we understand that judging the quality and colour
         of our flooring on your screen isn’t the easiest task in the world. So
         we’d like to help give you the confidence by sending out free samples.
         Yes, you can order up to 5 samples which will be delivered <span className="font-currency text-2xl font-normal"></span>15 of charge anywhere in the UAE. Add to your basket or drop us a call or
