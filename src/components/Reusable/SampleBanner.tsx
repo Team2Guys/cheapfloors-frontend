@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-const desktopBanner = '/assets/images/Home/desktop-sample.webp';
-const mobilesample = '/assets/images/Home/mobile-sample.webp';
+const desktopBanner = '/assets/images/Home/desktop-sample1.webp';
+const mobilesample = '/assets/images/Home/mobile-sample1.webp';
 
 const SampleBanner = () => {
   return (

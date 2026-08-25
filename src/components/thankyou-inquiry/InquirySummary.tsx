@@ -87,7 +87,7 @@ export const InquirySummary = ({ quote }: { quote?: IB2BQuote | null }) => {
                         Inquiry Summary
                     </span>
                     <span className="text-xs font-semibold text-secondary/80">
-                        Ref: #EF-{quote.id}
+                        Ref: #CF-{quote.id}
                     </span>
                 </div>
 
