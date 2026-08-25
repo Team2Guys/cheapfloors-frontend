@@ -116,6 +116,15 @@ const Card: React.FC<productCardProps> = ({
         100
       )
       : 0;
+  const isOutOfStock =
+    isSoldOut || ((product as IProduct).stock === 0 && !isAccessories);
+  // The yellow CTA renders the Was/Now price itself; hide the price block
+  // above it in that case so the price isn't shown twice on the card.
+  const showsPriceOnButton =
+    !isOutOfStock &&
+    !(sldier && subCategoryFlag) &&
+    !isAccessories &&
+    !isFreeSample;
 
   const handleAddSample = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -315,7 +324,7 @@ const Card: React.FC<productCardProps> = ({
       </div>
 
       <div className="pb-2">
-        {'price' in product && product.price && (
+        {!showsPriceOnButton && 'price' in product && product.price && (
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <p className="text-base font-medium text-black flex items-center">
               {/* {hasDiscount && (
@@ -346,7 +355,7 @@ const Card: React.FC<productCardProps> = ({
       <div
         className={`mt-auto flex items-center sm:gap-4 gap-1 pt-2 ${sldier ? 'justify-start' : 'justify-between'}`}
       >
-        {isSoldOut || ((product as IProduct).stock === 0 && !isAccessories) ? (
+        {isOutOfStock ? (
           <button
             disabled
             className={`${sldier ? 'px-8 w-fit' : 'flex-1'} py-2 md:py-2.5 rounded-full border border-gray-400 bg-gray-100 text-gray-500 font-semibold text-xs xs:text-sm md:text-base cursor-not-allowed text-center`}
@@ -405,26 +414,26 @@ const Card: React.FC<productCardProps> = ({
             <Link
               href={handleNavigate(product as IProduct, categoryData)}
               aria-label={`View product ${product.name}`}
-              className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary bg-primary font-bold text-xs xs:text-sm md:text-base hover:bg-primary/90 transition text-center flex items-center justify-center"
+              className="flex-1 px-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary bg-primary font-bold text-xs xs:text-sm md:text-base hover:bg-primary/90 transition text-center flex flex-wrap items-center justify-center gap-x-2"
             >
               {hasDiscount && (
-                <span className="flex items-center gap-1 mr-2 font-normal text-black">
+                <span className="flex items-center gap-1 font-normal text-black whitespace-nowrap">
                   Was:{' '}
                   <span className="line-through flex items-center">
-                    <span className="font-currency text-base mr-0.5"></span>
+                    <span className="font-currency text-sm xs:text-base mr-0.5"></span>
                     {product?.price}
-                    <span className="text-xs xs:text-sm md:text-base font-medium ml-1">
+                    <span className="text-xs xs:text-sm md:text-base font-medium ml-0.5 xs:ml-1">
                       /m²
                     </span>
                   </span>
                 </span>
               )}
-              <span className="flex items-center gap-1 mr-2 font-semibold text-sm md:text-base xl:text-lg text-red-500">
+              <span className="flex items-center gap-1 font-semibold text-xs xs:text-sm md:text-base xl:text-lg text-red-500 whitespace-nowrap">
                 {hasDiscount ? `Now:` : null}
                 <span className="flex items-center">
-                  <span className="font-currency text-lg mr-1 mb-0.5"></span>
+                  <span className="font-currency text-sm xs:text-lg mr-0.5 xs:mr-1 mb-0.5"></span>
                   {hasDiscount ? discountedPrice : product?.price}
-                  <span className="text-xs xs:text-sm md:text-base font-medium ml-1">
+                  <span className="text-xs xs:text-sm md:text-base font-medium ml-0.5 xs:ml-1">
                     /m²
                   </span>
                 </span>
