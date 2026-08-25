@@ -1,4 +1,4 @@
-import logo from '../../public/assets/images/logo.webp';
+import logo from '../../public/assets/images/logo.png';
 
 const BASE_URL = 'https://cheapfloors.ae';
 

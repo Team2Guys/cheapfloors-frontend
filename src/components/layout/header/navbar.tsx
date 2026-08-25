@@ -98,7 +98,7 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
               width={300}
               height={300}
               className="w-[54px] h-[30px] lg:h-[35px] xl:w-[150px] xl:h-[50px] 2xl:h-auto max-h-20 md:pb-2"
-              src="/assets/images/logo.webp"
+              src="/assets/images/logo.png"
               alt="logo"
               sizes="(max-width: 768px) 70px, 200px"
             />

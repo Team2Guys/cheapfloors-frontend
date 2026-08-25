@@ -81,7 +81,7 @@ const Footer = () => {
       <Container className=" mx-auto grid sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8 gap-4">
         <div className="sm:mt-2">
           <Image
-            src="/assets/images/logo.webp"
+            src="/assets/images/logo.png"
             alt="CheapFloors"
             width={120}
             height={50}

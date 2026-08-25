@@ -5,7 +5,7 @@ import ThankYouComp from 'components/ThankYou/ThankYou';
 import { fetchProducts } from 'config/fetch';
 import { Metadata } from 'next';
 import React from 'react';
-import logo from '../../../public/assets/images/logo.webp';
+import logo from '../../../public/assets/images/logo.png';
 import { IProduct } from 'types/prod';
 interface ThankYouProps {
   searchParams: Promise<Record<string, string | null>>;

@@ -68,7 +68,7 @@ export const AssistanceFooter = () => {
                 {/* Footer */}
                 <footer className="mt-8 rounded-2xl bg-gray-100 px-6 py-10 text-center">
                     <Image
-                        src="/assets/images/logo.webp"
+                        src="/assets/images/logo.png"
                         alt="Cheap Floors"
                         width={120}
                         height={40}

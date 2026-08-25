@@ -108,6 +108,14 @@ const Card: React.FC<productCardProps> = ({
 
   const discountedPrice = (product as IProduct).discountPrice;
   const hasDiscount = !!discountedPrice && discountedPrice > 0;
+  const discountPercentage =
+    hasDiscount && Number(product.price) > 0
+      ? Math.round(
+        ((Number(product.price) - Number(discountedPrice)) /
+          Number(product.price)) *
+        100
+      )
+      : 0;
 
   const handleAddSample = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -330,10 +338,10 @@ const Card: React.FC<productCardProps> = ({
                   <span className="line-through">{isAccessories ? 'Per Piece' : '/m²'}</span>
                 </span>
               </p>
-            </div>
+            )}
+          </div>
         )}
       </div>
-      )}
 
       <div
         className={`mt-auto flex items-center sm:gap-4 gap-1 pt-2 ${sldier ? 'justify-start' : 'justify-between'}`}
