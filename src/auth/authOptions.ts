@@ -7,7 +7,6 @@ import { Session } from 'next-auth';
 import { FIND_ONE_USER } from 'graphql/queries';
 import Cookies from 'js-cookie';
 
-
 export const authOptions = {
   providers: [
     CredentialsProvider({
@@ -30,7 +29,7 @@ export const authOptions = {
 
           const user = data?.userLogin;
 
-          // ✅ Validate properly
+          
           if (!user || !user.token) {
             return null;
           }
