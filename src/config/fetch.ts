@@ -19,6 +19,8 @@ import { IProduct } from 'types/prod';
 import { IB2BQuote } from 'types/b2bQuote';
 import { ORDER_QUERY } from 'graphql/mutations';
 import { FETCH_ALL_ACCESSORIES, FETCH_META_TITLE } from 'graphql/accessorie';
+import { FETCH_ALL_BLOGS, FIND_ONE_BLOG } from 'graphql/blog';
+import { Blog } from 'types/blog';
 
 export const fetchProducts = async (CUSTOMIZE_QUERY?: DocumentNode) => {
   try {
@@ -346,5 +348,41 @@ export const getMetaTitleData = async (
     }
 
     return null;
+  }
+};
+
+export const fetchBlogs = async (): Promise<Blog[]> => {
+  try {
+    const { data } = await client.query({
+      query: FETCH_ALL_BLOGS,
+      fetchPolicy: 'no-cache',
+      context: {
+        fetchOptions: { next: { tags: ['blogs'] } }
+      }
+    });
+
+    return data?.blogs || [];
+  } catch (error) {
+    return [];
+    throw error;
+  }
+};
+
+export const fetchSingleBlog = async (
+  customUrl: string
+): Promise<Blog | null> => {
+  try {
+    const { data } = await client.query({
+      query: FIND_ONE_BLOG,
+      variables: { customUrl },
+      fetchPolicy: 'no-cache',
+      context: {
+        fetchOptions: { next: { tags: ['blogs'] } }
+      }
+    });
+    return data?.blog || null;
+  } catch (error) {
+    return null;
+    throw error;
   }
 };

@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 //eslint-disable-next-line
-const { fetchProductsForSitemap, fetchcategoryForSitemap, fetchsubcategoryForSitemap, fetchAccessoriesForSitemap } = require('./src/config/sitemap-data');
+const { fetchProductsForSitemap, fetchcategoryForSitemap, fetchsubcategoryForSitemap, fetchAccessoriesForSitemap, fetchBlogsForSitemap } = require('./src/config/sitemap-data');
 const excludePages = [
   '/dashboard*',
   '/cart',
@@ -85,12 +85,13 @@ module.exports = {
 
 
   additionalPaths: async () => {
-    const [products, categories, subcategories, accessories] =
+    const [products, categories, subcategories, accessories, blogs] =
       await Promise.all([
         fetchProductsForSitemap(),
         fetchcategoryForSitemap(),
         fetchsubcategoryForSitemap(),
         fetchAccessoriesForSitemap(),
+        fetchBlogsForSitemap(),
       ]);
 
     const staticPages = [
@@ -154,12 +155,21 @@ module.exports = {
         lastmod: toLastmod(accessory),
       }));
 
+    // Blog detail page: /blogs/{custom_url}
+    const blogPaths = blogs
+      .filter((blog) => isLive(blog.status) && blog.custom_url)
+      .map((blog) => ({
+        loc: `/blogs/${blog.custom_url}`,
+        lastmod: toLastmod(blog),
+      }));
+
     return [
       ...staticPages,
       ...categoryPaths,
       ...subcategoryPaths,
       ...productPaths,
       ...accessoriesPaths,
+      ...blogPaths,
     ];
   },
 };

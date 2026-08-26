@@ -4,7 +4,11 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import SidebarLinkGroup from './SidebarLinkGroup';
-import { MdOutlineDashboard, MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import {
+  MdOutlineArticle,
+  MdOutlineDashboard,
+  MdOutlineKeyboardArrowDown
+} from 'react-icons/md';
 import { BiCategoryAlt } from 'react-icons/bi';
 import { GrCodeSandbox, GrUserAdmin } from 'react-icons/gr';
 import { useAppSelector } from 'components/Others/HelperRedux';
@@ -461,6 +465,19 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   );
                 }}
               </SidebarLinkGroup>
+
+              <li>
+                <Link
+                  href="/dashboard/blogs"
+                  className={`Sidebar-Link group ${
+                    pathname === '/dashboard/blogs' &&
+                    'bg-black dark:bg-primary'
+                  }`}
+                >
+                  <MdOutlineArticle size={20} className="text-white" />
+                  Blogs
+                </Link>
+              </li>
 
               <SidebarLinkGroup
                 activeCondition={GeneralLinks.some(

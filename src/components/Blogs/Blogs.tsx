@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Container from 'components/common/container/Container';
-import { blogCategories, blogsData } from 'data/blogs';
+import { blogCategories } from 'data/blogs';
 import { BlogsProps } from 'types/blog';
 import BlogCard from './BlogCard';
 
@@ -12,7 +12,7 @@ const Blogs = ({
   description = 'Expert guides on SPC, LVT, herringbone, installation, and everything in between — for every room and every budget in the UAE.',
   bannerImage = '/assets/showroom.webp',
   categories = blogCategories,
-  blogs = blogsData,
+  blogs,
   initialCount = 6,
   activeCategory,
   activeSearch

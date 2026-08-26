@@ -47,6 +47,17 @@ const FETCH_ALL_PRODUCTS_SITE_MAP = `
   }
 `;
 
+ const FETCH_ALL_BLOGS = `
+  query Blogs {
+    blogs {
+      custom_url
+      status
+      updatedAt
+      createdAt
+    }
+  }
+`;
+
  const FETCH_ALL_ACCESSORIES = `
   query Accessories {
     accessories {
@@ -140,4 +151,24 @@ const fetchAccessoriesForSitemap = async () => {
   }
 };
 
-module.exports = { fetchProductsForSitemap,fetchcategoryForSitemap,fetchsubcategoryForSitemap,fetchAccessoriesForSitemap };
+const fetchBlogsForSitemap = async () => {
+  try {
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: FETCH_ALL_BLOGS,
+      }),
+    });
+
+    const json = await response.json();
+    return json.data?.blogs || [];
+  } catch (error) {
+    console.error('Failed to fetch blogs for sitemap:', error);
+    return [];
+  }
+};
+
+module.exports = { fetchProductsForSitemap,fetchcategoryForSitemap,fetchsubcategoryForSitemap,fetchAccessoriesForSitemap,fetchBlogsForSitemap };

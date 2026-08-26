@@ -9,7 +9,8 @@ const stripHtml = (html: string) =>
     .replace(/\s+/g, ' ')
     .trim();
 
-const formatDate = (value: string) => {
+const formatDate = (value?: string) => {
+  if (!value) return '';
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
   return date.toLocaleDateString('en-GB', {
@@ -30,7 +31,7 @@ const BlogCard = ({
     <article className="flex flex-col bg-white">
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         <Image
-          src={blog.posterImage?.imageUrl || ''}
+          src={blog.posterImageUrl?.imageUrl || ''}
           alt={blog.Images_Alt_Text || blog.title}
           fill
           loading="lazy"
@@ -52,7 +53,7 @@ const BlogCard = ({
           </p>
         )}
         <Link
-          href={`/blogs/${blog.redirectionUrl}`}
+          href={`/blogs/${blog.custom_url}`}
           className="mt-3 inline-block text-xs md:text-sm font-semibold text-primary hover:underline"
         >
           Read Article
