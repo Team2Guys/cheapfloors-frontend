@@ -1,26 +1,4 @@
-import { ITabbyList, ITabbyPayList, ITamaraList } from 'types/type';
-import masterCard from './../../public/assets/images/payment-icons/Mastercard-Logo.png';
-import viseCard from './../../public/assets/images/payment-icons/visacard-logo.png';
-import gPayCard from './../../public/assets/images/payment-icons/googlepay-logo.png';
-
-export const tabbyfeature: ITabbyList[] = [
-  { id: 1, para: 'No interest. No fees.' },
-  { id: 2, para: 'Trusted by 4,5m+ customers.' },
-  { id: 3, para: 'Shariah-compliant.' }
-];
-
-export const tabbyhowitwork: ITabbyList[] = [
-  { id: 1, para: 'Choose Tabby at checkout' },
-  { id: 2, para: 'Enter your information and add your debit or credit card.' },
-  { id: 3, para: 'Your first payment is taken when the order is made.' },
-  { id: 4, para: 'We will send you a reminder when your next payment is due' }
-];
-
-export const tabbypayicon: ITabbyPayList[] = [
-  { id: 1, imageUrl: masterCard },
-  { id: 2, imageUrl: viseCard },
-  { id: 3, imageUrl: gPayCard }
-];
+import { ITamaraList } from 'types/type';
 
 export const tamarawhy: ITamaraList[] = [
   { id: 1, para: 'Sharia-compliant' },

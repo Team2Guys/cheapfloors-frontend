@@ -1,6 +1,5 @@
 import { FormEventHandler, SetStateAction } from 'react';
 import { IProduct } from './prod';
-import { StaticImageData } from 'next/image';
 import { ISUBCATEGORY } from './cat';
 
 export interface Feature {
@@ -303,15 +302,6 @@ export interface AdminRecord {
   canDeleteCategory: boolean;
   canCheckProfit: boolean;
   canViewUsers: boolean;
-}
-
-export interface ITabbyList {
-  id: number;
-  para: string;
-}
-export interface ITabbyPayList {
-  id: number;
-  imageUrl: StaticImageData;
 }
 
 export interface ITamaraList {

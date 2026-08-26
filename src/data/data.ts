@@ -263,7 +263,7 @@ export const featureItems = [
   {
     title: 'Easy Payment',
     description:
-      'With Tabby or Tamara, split your payment into four easy installments — no hassle, no hidden fees, Shariah compliant. Get premium flooring today while managing your budget comfortably.',
+      'With Tamara, split your payment into four easy installments — no hassle, no hidden fees, Shariah compliant. Get premium flooring today while managing your budget comfortably.',
     icon: '/assets/images/Home/payment-icon.png',
     buttonText: 'Learn More',
     buttonLink: '/easy-payment'
@@ -291,18 +291,18 @@ export const socialLinks: SocialLink[] = [
     alt: 'facebook',
     className: 'w-[6px] h-[9px] sm:w-[8px] sm:h-[15px]'
   },
-  // {
-  //   href: 'https://www.instagram.com/easyfloorsuae/?hl=en',
-  //   target: '_blank',
-  //   alt: 'instagram',
-  //   className: 'w-[10px] h-[10px] sm:w-[16px] sm:h-[16px]'
-  // },
-  // {
-  //   href: 'https://www.pinterest.com/easyfloorsuae/',
-  //   target: '_blank',
-  //   alt: 'pinterest',
-  //   className: 'w-[8px] h-[11px] sm:w-[12px] sm:h-[16px]'
-  // }
+  {
+    href: 'https://www.instagram.com/cheapfloorsuae/',
+    target: '_blank',
+    alt: 'instagram',
+    className: 'w-[10px] h-[10px] sm:w-[16px] sm:h-[16px]'
+  },
+  {
+    href: 'https://www.pinterest.com/cheapfloorsuae/',
+    target: '_blank',
+    alt: 'pinterest',
+    className: 'w-[8px] h-[11px] sm:w-[12px] sm:h-[16px]'
+  }
 ];
 
 export const staticMenuItems = [
@@ -351,14 +351,7 @@ export const footerData = {
     phone: '+971 50 597 4385',
     email: 'cs@cheapfloors.ae'
   },
-  paymentMethods: [
-    'visa',
-    'apple-pay',
-    'tabby',
-    'mastercard',
-    'g-pay',
-    'tamara'
-  ]
+  paymentMethods: ['visa', 'apple-pay', 'mastercard', 'g-pay', 'tamara']
 };
 export const blocksData = [
   {

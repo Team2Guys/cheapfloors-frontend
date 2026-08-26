@@ -22,8 +22,8 @@ const EasyPayment = () => {
           payment.
         </li>
         <li className="text-sm sm:text-20 sm:leading-[26px]">
-          Use trusted partners like <b>Tabby</b> and <b>Tamara </b>to divide
-          your purchase into <b>4 equal payments</b>.
+          Use our trusted partner <b>Tamara </b>to divide your purchase into{' '}
+          <b>4 equal payments</b>.
         </li>
         <li className="text-sm sm:text-20 sm:leading-[26px]">
           Pay the first installment today, then the rest over the next{' '}
@@ -33,11 +33,11 @@ const EasyPayment = () => {
           It’s <b>simple, safe, and transparent</b>.
         </li>
         <li className="text-sm sm:text-20 sm:leading-[26px]">
-          To activate, just select <b>Tabby or Tamara</b> at checkout.
+          To activate, just select <b>Tamara</b> at checkout.
         </li>
       </ul>
       <div className="flex flex-wrap gap-5 pt-3">
-        {easyPayment.slice(-2).map((array, index) => (
+        {easyPayment.slice(-1).map((array, index) => (
           <Image
             className="w-14 h-10 md:w-14 md:h-12 2xl:w-[90px] 2xl:h-[60px] shadow"
             key={index}
