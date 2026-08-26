@@ -6,7 +6,7 @@ export const pageMetadataData = {
   easyPayment: {
     title: 'Buy Now, Pay Later | 0% Interest Payment Plans for floorings',
     description:
-      'Cheap Floors makes it easy to pay! Split your payment into 4 with Tabby or Tamara. no interest, no fees. Shop with Visa, Mastercard, Apple Pay & Google Pay.',
+      'Cheap Floors makes it easy to pay! Split your payment into 4 with Tamara. no interest, no fees. Shop with Visa, Mastercard, Apple Pay & Google Pay.',
     url: `${BASE_URL}/easy-payment`,
     image: {
       src: `${BASE_URL}${logo.src}`,

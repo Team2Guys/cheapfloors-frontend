@@ -85,7 +85,7 @@ const dummyReviewChunks: ReviewItem[][] = [
             name: "Fatima Al Mansoori",
             reviewDate: "2026-04-30",
             starRating: 5,
-            ReviewsDescription: "Beautiful flooring and great service from start to finish. The team helped me pick the right plank for a high-traffic hallway and let me split the payment with Tabby. Highly recommend Cheap Floors.",
+            ReviewsDescription: "Beautiful flooring and great service from start to finish. The team helped me pick the right plank for a high-traffic hallway and let me split the payment with Tamara. Highly recommend Cheap Floors.",
             posterImageUrl: { imageUrl: "/assets/images/dummy-avatar.jpg" }
         },
         {
