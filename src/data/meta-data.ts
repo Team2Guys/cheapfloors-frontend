@@ -247,6 +247,17 @@ export const pageMetadataData = {
     },
     canonical: `${BASE_URL}/flooring-supplier-uae`
   },
+  blogs: {
+    title: 'Flooring Blog | Tips, Trends & Guides | Cheap Floors UAE',
+    description:
+      'Expert flooring guides from Cheap Floors UAE — SPC, LVT, herringbone, installation tips, maintenance advice and design ideas for every room and budget.',
+    url: `${BASE_URL}/blogs`,
+    image: {
+      src: `${BASE_URL}${logo.src}`,
+      alt: 'Cheapfloors'
+    },
+    canonical: `${BASE_URL}/blogs`
+  },
   HomePage: {
     title: 'Flooring in UAE | SPC, LVT & Herringbone | Cheap Floors',
     description:

@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Container from 'components/common/container/Container';
-import { blogCategories, blogsData } from 'data/blogs';
+import { blogCategories } from 'data/blogs';
 import { Blog, BlogCategory } from 'types/blog';
 import BlogSearch from './BlogSearch';
 import RelatedPosts from './RelatedPosts';
 
-const formatDate = (value: string) => {
+const formatDate = (value?: string) => {
+  if (!value) return '';
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
   return date.toLocaleDateString('en-GB', {
@@ -18,7 +19,7 @@ const formatDate = (value: string) => {
 
 interface BlogDetailProps {
   blog: Blog;
-  blogs?: Blog[];
+  blogs: Blog[];
   categories?: BlogCategory[];
   bannerImage?: string;
   latestCount?: number;
@@ -26,7 +27,7 @@ interface BlogDetailProps {
 
 const BlogDetail = ({
   blog,
-  blogs = blogsData,
+  blogs,
   categories = blogCategories,
   bannerImage = '/assets/showroom.webp',
   latestCount = 5
@@ -61,15 +62,15 @@ const BlogDetail = ({
             <h2 className="text-center text-2xl md:text-3xl font-bold text-black">
               {blog.title}
             </h2>
-            {blog.Meta_description && (
+            {blog.Meta_Description && (
               <p className="mt-3 text-center text-xs md:text-sm text-black">
-                {blog.Meta_description}
+                {blog.Meta_Description}
               </p>
             )}
 
             <div className="relative mt-6 aspect-[16/10] w-full overflow-hidden rounded-md">
               <Image
-                src={blog.posterImage?.imageUrl || ''}
+                src={blog.posterImageUrl?.imageUrl || ''}
                 alt={blog.Images_Alt_Text || blog.title}
                 fill
                 sizes="(max-width: 1024px) 100vw, 66vw"
@@ -86,9 +87,9 @@ const BlogDetail = ({
           {/* Sidebar */}
           <aside className="lg:col-span-1 h-fit">
             {/* Search */}
-            <div className="pb-6">
+            {/* <div className="pb-6">
               <BlogSearch />
-            </div>
+            </div> */}
 
             {/* Categories */}
             <div className="pt-5 border border-b-0 border-[#0000001F] bg-[#FEB90714]">
@@ -118,7 +119,7 @@ const BlogDetail = ({
                 {latestPosts.map((post) => (
                   <li key={post.id}>
                     <Link
-                      href={`/blogs/${post.redirectionUrl}`}
+                      href={`/blogs/${post.custom_url}`}
                       className="group block border-b border-[#0000001F] px-4 py-3 transition-colors hover:bg-[#FEB90714]"
                     >
                       <p className="text-sm font-medium text-black group-hover:text-primary line-clamp-2">

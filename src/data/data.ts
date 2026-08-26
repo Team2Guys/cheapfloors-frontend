@@ -17,6 +17,7 @@ import {
 import * as Yup from 'yup';
 import { AdditionalInformation } from 'types/prod';
 import { EDIT_CATEGORY, ISUBCATEGORY_EDIT } from 'types/cat';
+import { EDIT_BLOG } from 'types/blog';
 import { MeasurementSection } from '../types/types';
 
 export const generateSlug = (text: string) => {
@@ -57,6 +58,25 @@ export const validationSchema = Yup.object({
   selectRooms: Yup.string().required('Area is required'),
   preferredDate: Yup.string().required('Preferred date is required'),
   preferredTime: Yup.string().required('Preferred time is required')
+});
+
+export const blogInitialValues: EDIT_BLOG = {
+  title: '',
+  content: '',
+  category: '',
+  Images_Alt_Text: '',
+  Meta_Title: '',
+  Meta_Description: '',
+  Canonical_Tag: '',
+  custom_url: '',
+  status: 'DRAFT'
+};
+
+export const blogValidationSchema = Yup.object({
+  title: Yup.string().required('Add Blog Title'),
+  content: Yup.string().required('Add Blog Content'),
+  category: Yup.string().required('Select Category'),
+  custom_url: Yup.string().required('Custom URL is required')
 });
 
 export const categoryInitialValues: EDIT_CATEGORY = {
@@ -313,7 +333,7 @@ export const staticMenuItems = [
   { label: 'Floor Smart', href: 'floor-smart', submenu: [] },
   { label: 'How to measure', href: 'how-to-measure-your-room' },
   { label: 'Accessories', href: 'accessories', submenu: [] },
-  // { label: "Blogs", href: "blogs" },
+  { label: 'Blogs', href: 'blogs' },
   // { label: 'About Us', href: 'about-us' },
   // { label: 'Contact Us', href: 'contact-us' }
 ];
