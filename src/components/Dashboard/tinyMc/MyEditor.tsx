@@ -1,11 +1,41 @@
 import { Editor } from '@tinymce/tinymce-react';
 import { Field, FieldProps } from 'formik';
 import { useEffect, useMemo, useState } from 'react';
+import { FILE_UPLOAD_MUTATION } from 'graphql/mutations';
 
 interface TinyMCEEditorProps {
   name: string;
   placeholder?: string;
 }
+
+const uploadImageToBackend = async (
+  file: Blob,
+  filename: string
+): Promise<string> => {
+  const formData = new FormData();
+  formData.append(
+    'operations',
+    JSON.stringify({
+      query: FILE_UPLOAD_MUTATION,
+      variables: { file: null }
+    })
+  );
+  formData.append('map', JSON.stringify({ file: ['variables.file'] }));
+  formData.append('file', file, filename);
+
+  const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL || '', {
+    method: 'POST',
+    body: formData,
+    credentials: 'include'
+  });
+
+  const result = await response.json();
+  const imageUrl = result?.data?.createFileUploading?.imageUrl;
+  if (!imageUrl) {
+    throw new Error(result?.errors?.[0]?.message || 'Image upload failed');
+  }
+  return imageUrl;
+};
 
 const TinyMCEEditor = ({ name, placeholder }: TinyMCEEditorProps) => {
   const [isDark, setIsDark] = useState(false);
@@ -32,7 +62,43 @@ const TinyMCEEditor = ({ name, placeholder }: TinyMCEEditorProps) => {
       placeholder: placeholder || 'Start typing...',
       file_picker_types: 'file image media',
       automatic_uploads: true,
+      paste_data_images: true,
+      images_file_types: 'jpg,jpeg,png,gif,webp,svg,avif',
+      images_reuse_filename: true,
+      images_upload_handler: (blobInfo: {
+        blob: () => Blob;
+        filename: () => string;
+      }) => uploadImageToBackend(blobInfo.blob(), blobInfo.filename()),
+      file_picker_callback: (
+        cb: (url: string, meta?: Record<string, string>) => void,
+        _value: string,
+        meta: Record<string, unknown>
+      ) => {
+        if (meta.filetype !== 'image') return;
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = async () => {
+          const file = input.files?.[0];
+          if (!file) return;
+          try {
+            const url = await uploadImageToBackend(file, file.name);
+            // Pre-fill alt text from filename; user can edit it in the
+            // dialog's "Alternative description" field before inserting
+            const defaultAlt = file.name
+              .replace(/\.[^.]+$/, '')
+              .replace(/[-_]+/g, ' ');
+            cb(url, { alt: defaultAlt, title: defaultAlt });
+          } catch (err) {
+            alert(
+              err instanceof Error ? err.message : 'Image upload failed'
+            );
+          }
+        };
+        input.click();
+      },
       image_advtab: true,
+      image_description: true,
       image_dimensions: true,
       image_caption: true,
       image_title: true,
@@ -61,7 +127,6 @@ const TinyMCEEditor = ({ name, placeholder }: TinyMCEEditorProps) => {
         'searchreplace',
         'wordcount',
         'visualblocks',
-        'insertimage',
         'visualchars',
         'code',
         'fullscreen',

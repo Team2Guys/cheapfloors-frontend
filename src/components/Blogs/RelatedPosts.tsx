@@ -1,7 +1,6 @@
 'use client';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import Container from 'components/common/container/Container';
 import { Blog } from 'types/blog';
 import BlogCard from './BlogCard';
 
@@ -14,7 +13,7 @@ const RelatedPosts = ({ blogs, title = 'Related posts' }: RelatedPostsProps) => 
   if (!blogs?.length) return null;
 
   return (
-    <Container className="py-8 md:py-12 font-inter">
+    <div className="mx-auto max-w-7xl px-2 py-8 md:py-12 font-inter">
       <h2 className="mb-6 md:mb-10 text-center text-2xl md:text-3xl font-bold text-black">
         {title}
       </h2>
@@ -34,7 +33,7 @@ const RelatedPosts = ({ blogs, title = 'Related posts' }: RelatedPostsProps) => 
           </SwiperSlide>
         ))}
       </Swiper>
-    </Container>
+    </div>
   );
 };
 

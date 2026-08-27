@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import Container from 'components/common/container/Container';
 import { blogCategories } from 'data/blogs';
 import { Blog, BlogCategory } from 'types/blog';
 import BlogSearch from './BlogSearch';
@@ -55,7 +54,7 @@ const BlogDetail = ({
         </h1>
       </div>
 
-      <Container className="py-8 md:py-12">
+      <div className="mx-auto max-w-7xl px-2 py-8 md:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
           {/* Article */}
           <article className="lg:col-span-2 bg-[#FEB90714] p-4 sm:p-6 md:p-8">
@@ -135,7 +134,7 @@ const BlogDetail = ({
             </div>
           </aside>
         </div>
-      </Container>
+      </div>
 
       <RelatedPosts blogs={relatedPosts} />
     </section>
