@@ -13,7 +13,7 @@ const Contact = () => {
         // title="Contact Us"
         image="/assets/images/Contact/Contact-us.webp"
       />
-       <Container className="md:mt-16 mt-10 mb-20 bg-white">
+      <Container className="md:mt-16 mt-10 mb-20 bg-white">
         <div className="text-center font-inter md:space-y-4 bg-white">
           <h2 className="md:text-[36px] text-xl font-semibold leading-10">
             Get In Touch With Us
@@ -34,7 +34,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-       </Container>
+      </Container>
     </>
   );
 };
