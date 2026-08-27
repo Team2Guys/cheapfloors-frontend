@@ -1197,7 +1197,11 @@ const Checkout = ({
                 </div> */}
 
                 <div className="space-y-2.5">
-                  <PaymentMethod installments={installments ?? 0} />
+                  <PaymentMethod
+                    installments={
+                      installments ?? (subTotal + (selectedFee || 0)) / 4
+                    }
+                  />
                   <TrustBadges />
                 </div>
               </div>
