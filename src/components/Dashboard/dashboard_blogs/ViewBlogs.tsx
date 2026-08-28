@@ -4,6 +4,7 @@ import React, { SetStateAction, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { LiaEdit } from 'react-icons/lia';
+import { AiOutlineEye } from 'react-icons/ai';
 import Swal from 'sweetalert2';
 import { Blog } from 'types/blog';
 import { useMutation } from '@apollo/client';
@@ -145,6 +146,30 @@ const ViewBlogs = ({ setMenuType, setEditBlog, blogs }: BlogsProps) => {
     {
       title: 'Edited By',
       key: 'last_editedBy'
+    },
+    {
+      title: 'View',
+      key: 'view',
+      render: (record: Blog) =>
+        record.status === 'PUBLISHED' ? (
+          <a
+            href={`/blogs/${record.custom_url}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="View blog page"
+          >
+            <AiOutlineEye
+              className="cursor-pointer text-black dark:text-white"
+              size={20}
+            />
+          </a>
+        ) : (
+          <AiOutlineEye
+            className="cursor-not-allowed text-slate-300 dark:text-slate-600"
+            size={20}
+            title="Draft blogs have no public page"
+          />
+        )
     },
     {
       title: 'Edit',

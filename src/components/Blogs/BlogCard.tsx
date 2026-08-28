@@ -28,38 +28,37 @@ const BlogCard = ({
   showExcerpt?: boolean;
 }) => {
   return (
-    <article className="flex flex-col bg-white">
-      <div className="relative aspect-[4/3] w-full overflow-hidden">
-        <Image
-          src={blog.posterImageUrl?.imageUrl || ''}
-          alt={blog.Images_Alt_Text || blog.title}
-          fill
-          loading="lazy"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover"
-        />
-      </div>
+    <Link href={`/blogs/${blog.custom_url}`} className="group block">
+      <article className="flex h-full flex-col bg-white">
+        <div className="relative aspect-[4/3] w-full overflow-hidden">
+          <Image
+            src={blog.posterImageUrl?.imageUrl || ''}
+            alt={blog.Images_Alt_Text || blog.title}
+            fill
+            loading="lazy"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover"
+          />
+        </div>
 
-      <div className="flex flex-1 flex-col p-3 md:p-4">
-        <p className="text-[11px] md:text-xs text-gray-500">
-          {formatDate(blog.createdAt)}
-        </p>
-        <h3 className="mt-1 text-sm md:text-base font-bold text-black line-clamp-1">
-          {blog.title}
-        </h3>
-        {showExcerpt && (
-          <p className="mt-2 text-xs md:text-[13px] leading-relaxed text-gray-600 line-clamp-4">
-            {stripHtml(blog.content)}
+        <div className="flex flex-1 flex-col p-3 md:p-4">
+          <p className="text-[11px] md:text-xs text-gray-500">
+            {formatDate(blog.createdAt)}
           </p>
-        )}
-        <Link
-          href={`/blogs/${blog.custom_url}`}
-          className="mt-3 inline-block text-xs md:text-sm font-semibold text-primary hover:underline"
-        >
-          Read Article
-        </Link>
-      </div>
-    </article>
+          <h3 className="mt-1 text-sm md:text-base font-bold text-black line-clamp-1">
+            {blog.title}
+          </h3>
+          {showExcerpt && (
+            <p className="mt-2 text-xs md:text-[13px] leading-relaxed text-gray-600 line-clamp-4">
+              {stripHtml(blog.content)}
+            </p>
+          )}
+          <span className="mt-3 inline-block text-xs md:text-sm font-semibold text-primary group-hover:underline">
+            Read Article
+          </span>
+        </div>
+      </article>
+    </Link>
   );
 };
 
