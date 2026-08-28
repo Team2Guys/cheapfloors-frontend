@@ -333,7 +333,6 @@ export const staticMenuItems = [
   { label: 'Floor Smart', href: 'floor-smart', submenu: [] },
   { label: 'How to measure', href: 'how-to-measure-your-room' },
   { label: 'Accessories', href: 'accessories', submenu: [] },
-  { label: 'Blogs', href: 'blogs' },
   // { label: 'About Us', href: 'about-us' },
   // { label: 'Contact Us', href: 'contact-us' }
 ];

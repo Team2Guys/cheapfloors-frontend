@@ -14,6 +14,7 @@ const TopLink = ({ className }: TopLinkprops) => {
       <Link href="/shipping-policy" className='lg:text-black '>Shipping</Link>
       <Link href="/return-and-refund-policy" className='lg:text-black '>Returns</Link>
       <Link href="/faqs" className='lg:text-black '>FAQs</Link>
+      <Link href="/blogs" className='lg:text-black '>Blogs</Link>
     </div>
   );
 };
