@@ -14,6 +14,17 @@ const BreadcrumbChevron = () => (
   </svg>
 );
 
+const formatDate = (value?: string) => {
+  if (!value) return '';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+};
+
 interface BlogDetailProps {
   blog: Blog;
   blogs: Blog[];
@@ -55,9 +66,9 @@ const BlogDetail = ({ blog, blogs }: BlogDetailProps) => {
           <h1 className="text-center text-2xl md:text-3xl font-bold text-black">
             {blog.title}
           </h1>
-          {blog.Meta_Description && (
-            <p className="mt-3 text-center text-xs md:text-sm text-black">
-              {blog.Meta_Description}
+          {blog.createdAt && (
+            <p className="mt-3 text-center text-xs md:text-sm text-gray-500">
+              {formatDate(blog.createdAt)}
             </p>
           )}
 
