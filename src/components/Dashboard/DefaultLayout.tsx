@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import Sidebar from 'components/Dashboard/Sidebar';
 import Header from 'components/Dashboard/Header';
+import { useSessionExpiry } from 'hooks/useSessionExpiry';
+import { useAdminAuthInit } from 'hooks/useAuthInitializer';
 
 export default function DefaultLayout({
   children
@@ -9,6 +11,8 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  useAdminAuthInit();
+  useSessionExpiry();
 
   return (
     <div className="flex h-screen overflow-hidden relative bg-white dark:bg-black">
