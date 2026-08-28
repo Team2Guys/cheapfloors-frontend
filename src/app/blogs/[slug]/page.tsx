@@ -6,6 +6,10 @@ import { Blog } from 'types/blog';
 
 const BASE_URL = 'https://cheapfloors.ae';
 
+// The GraphQL fetch is a POST, so revalidateTag('blogs') can't refresh this
+// route — render per request so dashboard edits show up immediately.
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({
   params
 }: {

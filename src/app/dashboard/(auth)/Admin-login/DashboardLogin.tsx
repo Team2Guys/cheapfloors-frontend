@@ -57,13 +57,14 @@ const DashboardLogin = () => {
           : 'super_admin_access_token',
         response.data[Admin_type].token,
         {
-          expires: 24 * 60 * 60 * 1000
+          // js-cookie expires is in days; keep in sync with the backend's 24h JWT
+          expires: 1
         }
       );
       Cookies.set(
         'admin_data',
         JSON.stringify({ ...response.data[Admin_type], role: adminType }),
-        { expires: 24 * 60 * 60 * 1000 }
+        { expires: 1 }
       );
       setFormData(intialvalue);
       showAlert({

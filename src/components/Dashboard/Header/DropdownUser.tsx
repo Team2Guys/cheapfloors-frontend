@@ -73,7 +73,7 @@ const DropdownUser = () => {
               {loggedInUser ? loggedInUser?.fullname : null}
             </span>
             <span className="block text-11 xs:text-sm text-white ">
-              {loggedInUser?.role || 'new adsd'}
+              {loggedInUser?.role || ''}
             </span>
           </span>
         </div>
