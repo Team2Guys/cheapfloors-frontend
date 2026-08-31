@@ -507,10 +507,16 @@ export const collectionFilter = ({
     return price >= priceValue[0] && price <= priceValue[1];
   });
 
+  // Draft products must not influence any subcategory matching below
+  const publishedProducts = (subcat: ISUBCATEGORY) =>
+    subcat.products?.filter((prod) => prod.status === 'PUBLISHED') ?? [];
+
   // Filter by waterproof
   if (isWaterProof === true || isWaterProof === false) {
     filtered = filtered.filter((subcat) => {
-      return subcat.products?.some((prod) => prod.waterproof === isWaterProof);
+      return publishedProducts(subcat).some(
+        (prod) => prod.waterproof === isWaterProof
+      );
     });
     appliedFilters.push({ name: 'isWaterProof', value: isWaterProof });
   }
@@ -521,7 +527,7 @@ export const collectionFilter = ({
       const subcatName = subcat.name?.toLowerCase() || '';
       return selectedTags.some((tag) => {
         const normalizedTag = tag.toLowerCase();
-        return subcatName.includes(normalizedTag) || subcat.products?.some((prod) => prod.name?.toLowerCase().includes(normalizedTag));
+        return subcatName.includes(normalizedTag) || publishedProducts(subcat).some((prod) => prod.name?.toLowerCase().includes(normalizedTag));
       });
     });
     selectedTags.forEach((tag) => {
@@ -573,7 +579,7 @@ export const collectionFilter = ({
         }
 
         // Otherwise check its products
-        return subcat.products?.some((product) => {
+        return publishedProducts(subcat).some((product) => {
           let productValue = product[productKey as keyof typeof product];
 
           if (key === 'plankLength') {
