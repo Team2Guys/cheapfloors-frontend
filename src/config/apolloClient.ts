@@ -8,21 +8,26 @@ import { onError } from '@apollo/client/link/error';
 import Cookies from 'js-cookie';
 
 // CMS rows still hold easyfloors.ae URLs (image srcs like
-// https://easyfloors.ae/_next/image?url=..., stray hrefs in rich text).
+// https://easyfloors.ae/_next/image?url=..., stray hrefs in rich text) plus
+// bare-domain brand mentions in prose ("at Easyfloors.ae, we don't charge").
 // Rewriting every response here removes the site's runtime dependency on the
 // old domain staying online, without waiting for the data cleanup. The bare
-// www form maps to the apex; email addresses (cs@easyfloors.ae) carry neither
-// protocol nor www, so they are never touched.
+// form keeps the first letter's case so prose stays natural; emails migrate
+// too (cs@easyfloors.ae -> cs@cheapfloors.ae), which matches the new inbox.
 const rewriteOldDomain = (json: string) =>
   json
     .replace(/https?:\/\/(www\.)?easyfloors\.ae/gi, 'https://cheapfloors.ae')
-    .replace(/www\.easyfloors\.ae/gi, 'cheapfloors.ae');
+    .replace(/https?:\/\/easyfloors-frontend\.vercel\.app/gi, 'https://cheapfloors.ae')
+    .replace(/www\.easyfloors\.ae/gi, 'cheapfloors.ae')
+    .replace(/easyfloors\.ae/gi, (hit) =>
+      hit[0] === 'E' ? 'Cheapfloors.ae' : 'cheapfloors.ae'
+    );
 
 const oldDomainLink = new ApolloLink((operation, forward) =>
   forward(operation).map((response) => {
     if (!response.data) return response;
     const json = JSON.stringify(response.data);
-    if (!/easyfloors\.ae/i.test(json)) return response;
+    if (!/easyfloors/i.test(json)) return response;
     return { ...response, data: JSON.parse(rewriteOldDomain(json)) };
   })
 );
