@@ -70,7 +70,9 @@ export const extractUniqueAttributes = (
           );
 
         if (subcat.products?.length) {
-          subcat.products.forEach((product) => {
+          subcat.products
+            .filter((product) => product.status === 'PUBLISHED')
+            .forEach((product) => {
             if (product.thickness)
               thicknessSet.add(product.thickness.replace(/\s+/g, '').trim());
 
