@@ -25,6 +25,19 @@ const formatDate = (value?: string) => {
   });
 };
 
+// The CMS emits raw <table> markup with cramped inline styles. Wrap each table
+// so globals.css (.blog-content) can restyle it: multi-cell tables become
+// scrollable data grids, single-cell tables become callout boxes.
+const wrapTables = (html: string) =>
+  html.replace(/<table\b([^>]*)>([\s\S]*?)<\/table>/gi, (_m, attrs, inner) => {
+    const cellCount = (inner.match(/<t[dh]\b/gi) || []).length;
+    const isCallout = cellCount <= 1;
+    const wrapClass = isCallout ? 'blog-callout-wrap' : 'blog-table-wrap';
+    const tableClass = isCallout ? 'blog-callout' : 'blog-data-table';
+    const cleanAttrs = attrs.replace(/\sclass=("[^"]*"|'[^']*')/i, '');
+    return `<div class="${wrapClass}"><table class="${tableClass}"${cleanAttrs}>${inner}</table></div>`;
+  });
+
 interface BlogDetailProps {
   blog: Blog;
   blogs: Blog[];
@@ -32,6 +45,7 @@ interface BlogDetailProps {
 
 const BlogDetail = ({ blog, blogs }: BlogDetailProps) => {
   const relatedPosts = blogs.filter((b) => b.id !== blog.id);
+  const content = wrapTables(blog.content || '');
 
   return (
     <section className="font-inter">
@@ -63,7 +77,7 @@ const BlogDetail = ({ blog, blogs }: BlogDetailProps) => {
       <div className="mx-auto max-w-7xl px-2 py-8 md:py-12">
         {/* Article */}
         <article className="mx-auto max-w-4xl p-4 sm:p-6 md:p-8">
-          <h1 className="text-center text-2xl md:text-3xl font-bold text-black">
+          <h1 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold text-black leading-tight">
             {blog.title}
           </h1>
           {blog.createdAt && (
@@ -72,7 +86,7 @@ const BlogDetail = ({ blog, blogs }: BlogDetailProps) => {
             </p>
           )}
 
-          <div className="relative mt-6 aspect-[16/10] w-full overflow-hidden rounded-md">
+          <div className="relative mt-6 md:mt-8 aspect-[16/10] w-full overflow-hidden rounded-md">
             <Image
               src={blog.posterImageUrl?.imageUrl || ''}
               alt={blog.Images_Alt_Text || blog.title}
@@ -83,10 +97,12 @@ const BlogDetail = ({ blog, blogs }: BlogDetailProps) => {
             />
           </div>
 
-          <div
-            className="mt-6 text-sm md:text-base leading-relaxed text-black [&_h2]:mt-6 [&_h2]:mb-2 [&_h2]:text-lg [&_h2]:md:text-xl [&_h2]:font-bold [&_h2]:text-black [&_h3]:mt-4 [&_h3]:mb-1 [&_h3]:font-semibold [&_h3]:text-black [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1 [&_ol]:mb-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_a]:text-primary [&_a]:underline"
-            dangerouslySetInnerHTML={{ __html: blog.content }}
-          />
+          <div className="mt-6 md:mt-8 px-1 blog-content-wrapper">
+            <div
+              className="blog-content text-left md:text-justify"
+              dangerouslySetInnerHTML={{ __html: content }}
+            />
+          </div>
         </article>
       </div>
 

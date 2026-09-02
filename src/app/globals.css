@@ -368,3 +368,271 @@
   height: 100%;
   object-fit: cover; 
 }
+/* -------------------------------------------------------------------------
+   Rich blog article content (rendered via dangerouslySetInnerHTML).
+   Tailwind preflight strips heading sizes/weights and list markers from the
+   raw CMS HTML, so the reading hierarchy is restored here.
+   ------------------------------------------------------------------------- */
+.blog-content {
+  font-family: var(--font-Inter), system-ui, sans-serif;
+  color: #444;
+  line-height: 1.75;
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 768px) {
+  .blog-content {
+    font-size: 1rem;
+  }
+}
+
+/* Headings */
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  color: var(--light-black);
+  font-weight: 700 !important;
+  line-height: 1.3;
+  scroll-margin-top: 6rem;
+}
+
+.blog-content h1 {
+  font-size: 1.75rem !important;
+  margin: 2.25rem 0 1rem;
+}
+
+.blog-content h2 {
+  font-size: 1.5rem !important;
+  margin: 2.25rem 0 1rem;
+}
+
+.blog-content h3 {
+  color: var(--secondary);
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  margin: 1.5rem 0 0.6rem;
+}
+
+.blog-content h4 {
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.blog-content h5,
+.blog-content h6 {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  margin: 1rem 0 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .blog-content h1 {
+    font-size: 2rem !important;
+  }
+
+  .blog-content h2 {
+    font-size: 1.875rem !important;
+  }
+
+  .blog-content h3 {
+    font-size: 1.375rem !important;
+  }
+
+  .blog-content h4 {
+    font-size: 1.15rem !important;
+  }
+}
+
+/* Paragraphs */
+.blog-content p {
+  margin-bottom: 1rem;
+}
+
+/* Collapse the editor's empty spacer paragraphs (e.g. <p><strong>&nbsp;</strong></p>) */
+.blog-content p:empty {
+  display: none;
+}
+
+/* Lists */
+.blog-content ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 1rem;
+}
+
+.blog-content ol {
+  list-style-type: decimal;
+  margin-left: 20px;
+  margin-bottom: 1rem;
+}
+
+.blog-content ul ul,
+.blog-content ol ol,
+.blog-content ul ol,
+.blog-content ol ul {
+  margin-top: 0.35rem;
+  margin-bottom: 0;
+}
+
+.blog-content li {
+  margin-top: 0.35rem;
+}
+
+.blog-content li::marker {
+  color: var(--secondary);
+}
+
+/* The rich-text editor wraps list-item text in <p>; strip its extra margins */
+.blog-content li p {
+  margin-bottom: 0;
+  display: inline;
+}
+
+/* Inline emphasis */
+.blog-content strong,
+.blog-content b {
+  font-weight: 600;
+  color: var(--light-black);
+}
+
+/* Links */
+.blog-content a {
+  color: var(--secondary);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition:
+    color 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.blog-content a:hover {
+  opacity: 0.75;
+}
+
+/* Quotes & rules */
+.blog-content blockquote {
+  margin: 1.75rem 0;
+  padding: 0.75rem 1.25rem;
+  border-left: 4px solid var(--primary);
+  background: var(--background);
+  color: var(--light-black);
+  font-style: italic;
+}
+
+.blog-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.blog-content hr {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Keep embedded media responsive inside blog content */
+.blog-content img,
+.blog-content video,
+.blog-content iframe {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: 1.25rem auto;
+  display: block;
+}
+
+.blog-content iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+/* -------------------------------------------------------------------------
+   Tables rendered from raw CMS HTML.
+   Each <table> is wrapped (see components/Blogs/BlogDetail.tsx) in either
+   .blog-table-wrap (multi-cell data tables) or .blog-callout-wrap
+   (single-cell info boxes). The !important rules override the cramped,
+   black-bordered inline styles that come from the editor.
+   ------------------------------------------------------------------------- */
+
+/* Data tables — e.g. the comparison grid */
+.blog-content .blog-table-wrap {
+  width: 100%;
+  margin: 1.75rem 0;
+  overflow-x: auto; /* scroll instead of clipping on narrow screens */
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+}
+
+.blog-content table.blog-data-table {
+  width: 100% !important;
+  border: none !important;
+  border-collapse: collapse;
+  background: #ffffff;
+  font-size: 0.95rem;
+}
+
+.blog-content table.blog-data-table td,
+.blog-content table.blog-data-table th {
+  border: 1px solid #e5e7eb !important;
+  padding: 12px 16px !important;
+  vertical-align: top;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.blog-content table.blog-data-table td p,
+.blog-content table.blog-callout td p {
+  margin-bottom: 0.5rem;
+}
+
+.blog-content table.blog-data-table td p:last-child,
+.blog-content table.blog-callout td p:last-child {
+  margin-bottom: 0;
+}
+
+/* Header row — the CMS marks headings with <td><strong>, not <th> */
+.blog-content table.blog-data-table tr:first-child td,
+.blog-content table.blog-data-table th {
+  background-color: #f5f5f6;
+  font-weight: 600;
+  color: var(--light-black);
+}
+
+/* Zebra striping for readability */
+.blog-content table.blog-data-table tr:nth-child(even):not(:first-child) td {
+  background-color: #fafafa;
+}
+
+/* Callout / info boxes — single-cell tables ("Field Insight", tips) */
+.blog-content .blog-callout-wrap {
+  margin: 1.75rem 0;
+}
+
+.blog-content table.blog-callout {
+  width: 100% !important;
+  border: none !important;
+  border-collapse: collapse;
+  background: var(--background);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.blog-content table.blog-callout td {
+  border: none !important;
+  border-left: 4px solid var(--primary) !important;
+  padding: 16px 20px !important;
+  line-height: 1.7;
+}
+
+.blog-content table.blog-callout h4 {
+  margin: 0 0 6px;
+  font-weight: 700;
+}
