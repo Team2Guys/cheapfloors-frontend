@@ -22,6 +22,7 @@ import Accordion from '@/components/ui/accordion';
 import { getShippingData } from '@/utils/helperFunctions';
 import { removeFreeSample } from '@/utils/indexedDB';
 import revalidateTag from '@/components/ServerActons/ServerAction';
+import { submitCCAvenueForm } from 'utils/ccavenue';
 
 // const SAMPLE_SLOTS = 5;
 
@@ -162,14 +163,13 @@ const FreeSampleCheckout = () => {
           variables: { createSalesProductInput: orderData }
         });
         const paymentKey = data.createSalesProduct.paymentKey;
-        if (!paymentKey.client_secret)
+        if (!paymentKey?.encRequest || !paymentKey?.actionUrl)
           return showAlert({
             title: 'payment Key not found',
             icon: 'error'
           });
-        const redirect_url = `https://uae.paymob.com/unifiedcheckout/?publicKey=${process.env.NEXT_PUBLIC_PAYMOB_PUBLIC_KEY}&clientSecret=${paymentKey.client_secret}`;
-        window.location.href = redirect_url;
         revalidateTag('orders');
+        submitCCAvenueForm(paymentKey);
       }
 
     } catch (err: unknown) {

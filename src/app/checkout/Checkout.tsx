@@ -28,6 +28,7 @@ import { fetchItems } from 'utils/cartutils';
 import { formatAED, getShippingData } from 'utils/helperFunctions';
 import Accordion from 'components/ui/accordion';
 import { showAlert } from 'utils/Alert';
+import { submitCCAvenueForm } from 'utils/ccavenue';
 import { termsConditionsData } from 'data/terms-condition';
 import TrustBadges from '@/components/product-detail/trust-badges';
 
@@ -244,14 +245,13 @@ const Checkout = ({
         variables: { createSalesProductInput: orderData }
       });
       const paymentKey = data.createSalesProduct.paymentKey;
-      if (!paymentKey.client_secret)
+      if (!paymentKey?.encRequest || !paymentKey?.actionUrl)
         return showAlert({
           title: 'payment Key not found',
           icon: 'error'
         });
-      const redirect_url = `https://uae.paymob.com/unifiedcheckout/?publicKey=${process.env.NEXT_PUBLIC_PAYMOB_PUBLIC_KEY}&clientSecret=${paymentKey.client_secret}`;
-      window.location.href = redirect_url;
       revalidateTag('orders');
+      submitCCAvenueForm(paymentKey);
       //eslint-disable-next-line
     } catch (err: any) {
       const errorMessage =
