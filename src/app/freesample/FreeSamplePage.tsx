@@ -281,7 +281,7 @@ const FreeSamplePage = () => {
                       Collection: Monday to Saturday{' '}
                       <strong>(8:30am - 10pm)</strong>
                     </p>
-                    <p className="text-11 xs:text-base">
+                    {/* <p className="text-11 xs:text-base">
                       <span>Location:</span>{' '}
                       <strong>
                         <Link
@@ -294,7 +294,7 @@ const FreeSamplePage = () => {
                           Dubai - UAE
                         </Link>
                       </strong>
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </Accordion>

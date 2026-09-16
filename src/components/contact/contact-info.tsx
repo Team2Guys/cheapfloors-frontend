@@ -22,7 +22,7 @@ const ContactInfo = () => {
           <IoMailSharp size={20} />
           <Link href="mailto:Info@cheapfloors.ae">Info@cheapfloors.ae</Link>
         </div>
-        <div className="flex gap-4 md:gap-6">
+        {/* <div className="flex gap-4 md:gap-6">
           <FaLocationDot size={22} />
           <Link
             target="_blank"
@@ -33,7 +33,7 @@ const ContactInfo = () => {
             <br className="hidden sm:block" />
             Area 4 - Dubai - UAE
           </Link>
-        </div>
+        </div> */}
       </div>
       <div className="mt-5 md:mt-20">
         <iframe

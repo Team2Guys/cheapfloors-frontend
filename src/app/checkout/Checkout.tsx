@@ -10,7 +10,8 @@ import Link from 'next/link';
 import lightImg from '../../../public/assets/icons/light.png';
 import light_2Img from '../../../public/assets/icons/light-02-(traced).png';
 import deliveryImg from '../../../public/assets/icons/truck.png';
-import locationImg from '../../../public/assets/icons/installation.png';
+// HIDDEN (Self-Collect) - restore together with the Self-Collect block below
+// import locationImg from '../../../public/assets/icons/installation.png';
 // import { CiDeliveryTruck } from 'react-icons/ci';
 import { emirateCityMap, emirates } from 'data/data';
 import { ICart } from 'types/prod';
@@ -130,7 +131,9 @@ const Checkout = ({
         const parsedShipping = JSON.parse(savedShipping);
         if (parsedShipping?.name) {
           const key = parsedShipping.name.toLowerCase().replace(/\s+/g, '-');
-          handleShippingSelect(key);
+          // HIDDEN (Self-Collect): a stale saved selection must not resurface while
+          // the option has no UI. Drop this fallback when re-enabling Self-Collect.
+          handleShippingSelect(key === 'self-collect' ? 'standard' : key);
         }
       } catch {
         localStorage.removeItem('shipping');
@@ -157,9 +160,10 @@ const Checkout = ({
         if (parsedShipping?.name === 'Express Shipping') {
           setSelectedShipping('express');
           handleShippingSelect('express');
-        } else if (parsedShipping?.name === 'Self-Collect') {
-          setSelectedShipping('self-collect');
-          handleShippingSelect('self-collect');
+          // HIDDEN (Self-Collect): restore this branch when re-enabling the option.
+          // } else if (parsedShipping?.name === 'Self-Collect') {
+          //   setSelectedShipping('self-collect');
+          //   handleShippingSelect('self-collect');
         } else if (parsedShipping?.name === 'Standard Shipping') {
           setSelectedShipping('standard');
           handleShippingSelect('standard');
@@ -1053,6 +1057,7 @@ const Checkout = ({
                         </>
                       )}
 
+                      {/* HIDDEN (Self-Collect) - temporarily disabled, keep for future use.
                       <div
                         className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'self-collect'
                           ? 'border-primary'
@@ -1088,6 +1093,7 @@ const Checkout = ({
                           </p>
                         </div>
                       </div>
+                      */}
                     </Accordion>
                     <Accordion
                       isCheckout

@@ -200,7 +200,7 @@ const Footer = () => {
               {footerData.contact.email}
             </Link>
           </div>
-          <div className="text-sm mt-3 flex items-start gap-2 group">
+          {/* <div className="text-sm mt-3 flex items-start gap-2 group">
             <div className="">
               <FaMapMarkerAlt
                 size={16}
@@ -215,7 +215,7 @@ const Footer = () => {
             >
               {footerData.contact.address}
             </Link>
-          </div>
+          </div> */}
 
           <div className="grid grid-cols-6 sm:grid-cols-3 gap-3 mt-4 items-center">
             {footerData.paymentMethods.map((method, index) => (
