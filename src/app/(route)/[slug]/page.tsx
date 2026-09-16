@@ -9,6 +9,8 @@ import Category from './Cetagory';
 import { defaultOrder } from 'data/accessory';
 import { FIND_ONE_Accessory } from 'graphql/queries';
 import Breadcrumb from 'components/Reusable/breadcrumb';
+import JsonLd from 'components/Seo/JsonLd';
+import { pageSchemas } from 'data/page-schema';
 import AccessoriesComp from 'components/Accessories/Accessories';
 import CategoryFaqs from '@/components/Faqs/CategoryFaqs';
 import Testimonial from '@/components/Testimonial/testimonial';
@@ -87,6 +89,7 @@ const CategoryPage = async ({
 
     return (
       <>
+        <JsonLd schema={pageSchemas[slug]} />
         <Breadcrumb
           image={category.whatAmiImageBanner?.imageUrl}
           altText={category.whatAmiImageBanner?.altText || 'Accessories'}
@@ -171,12 +174,15 @@ const CategoryPage = async ({
 
 
     return (
-      <Category
-        catgories={filteredCategories}
-        categoryData={findCategory}
-        isSubCategory={false}
-        slug={slug}
-      />
+      <>
+        <JsonLd schema={pageSchemas[slug]} />
+        <Category
+          catgories={filteredCategories}
+          categoryData={findCategory}
+          isSubCategory={false}
+          slug={slug}
+        />
+      </>
     );
   }
 };
