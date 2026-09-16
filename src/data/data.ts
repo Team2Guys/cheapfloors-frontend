@@ -365,8 +365,8 @@ export const footerData = {
       'Founded with a passion for quality and design. CheapFloors is all about top-notch quality, happy customers, and awesome deals.'
   },
   contact: {
-    address:
-      'Cheap Floors - Floorings · 24, 22nd street - Al Quoz Industrial Area 4 - Dubai - UAE',
+    // address:
+    //   'Cheap Floors - Floorings · 24, 22nd street - Al Quoz Industrial Area 4 - Dubai - UAE',
     phone: '+971 50 597 4385',
     email: 'cs@cheapfloors.ae'
   },

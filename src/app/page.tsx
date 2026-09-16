@@ -1,4 +1,6 @@
 import HeroMain from 'components/Reusable/hero';
+import JsonLd from 'components/Seo/JsonLd';
+import { pageSchemas } from 'data/page-schema';
 import { faqs, staticMenuItems } from 'data/data';
 import { FETCH_ALL_WHAT_AM_I, FETCH_HEADER_CATEGORIES } from 'graphql/queries';
 import { fetchCategories, fetchSubCategories } from 'config/fetch';
@@ -64,6 +66,7 @@ export default async function Home() {
 
   return (
     <>
+      <JsonLd schema={pageSchemas.home} />
       <HeroMain />
       <Features />
       {/* <Link href='/clearance' className='relative block w-full h-[100px] sm:h-[200px] lg:h-[300px] mb-7 sm:mb-10 xl:mb-16'>

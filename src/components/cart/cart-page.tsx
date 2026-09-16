@@ -12,7 +12,8 @@ import { ICart, IProduct, ProductImage } from 'types/prod';
 import RelatedSlider from 'components/related-slider/related-slider';
 import lightImg from '../../../public/assets/icons/light1(traced).png';
 import deliveryImg from '../../../public/assets/icons/delivery-truck 2 (traced).png';
-import locationImg from '../../../public/assets/icons/location 1 (traced).png';
+// HIDDEN (Self-Collect) - restore together with the Self-Collect block below
+// import locationImg from '../../../public/assets/icons/location 1 (traced).png';
 import { emirates, generateSlug } from 'data/data';
 import Accordion from 'components/ui/accordion';
 import { showAlert } from 'utils/Alert';
@@ -1621,6 +1622,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                       </p>
                     </div>
                   </div>
+                  {/* HIDDEN (Self-Collect) - temporarily disabled, keep for future use.
                   <div
                     className={`bg-white px-2 xs:px-4 py-2 mt-2 flex gap-2 xs:gap-4 items-center cursor-pointer border-2 ${selectedShipping === 'self-collect'
                       ? 'border-primary'
@@ -1656,6 +1658,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                       </p>
                     </div>
                   </div>
+                  */}
                 </Accordion>
               )}
 
