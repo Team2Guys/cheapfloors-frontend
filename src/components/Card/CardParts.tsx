@@ -16,8 +16,9 @@ export const DiscountBadge = ({ percentage }: { percentage: number }) => (
   </div>
 );
 
-// Yellow price pill: "Was" (struck through) above "Now" in red, or just the
-// price when there is no discount.
+// Yellow price pill that fills the row up to the icons: "Was" (struck
+// through) and "Now" in red on one line, wrapping to two lines only when the
+// card is too narrow (phones). Shows just the price when there is no discount.
 export const PricePill = ({
   href,
   label,
@@ -36,21 +37,21 @@ export const PricePill = ({
     <Link
       href={href}
       aria-label={label}
-      className={`mr-auto min-w-0 w-fit bg-primary hover:bg-primary/90 transition rounded-[14px] xsm:rounded-[20px] md:rounded-[26px] px-2 xsm:px-3 md:px-4 py-1 xsm:py-1.5 md:py-2 flex flex-col items-start justify-center leading-tight ${className}`}
+      className={`flex-1 min-w-0 bg-primary hover:bg-primary/90 transition rounded-full px-2 md:px-2.5 2xl:px-3 py-1.5 xsm:py-2 md:py-2.5 flex flex-wrap items-center justify-center gap-x-1 md:gap-x-1.5 leading-tight ${className}`}
     >
       {hasDiscount ? (
         <>
-          <span className="text-[9px] xsm:text-[11px] md:text-sm text-black whitespace-nowrap">
+          <span className="text-[9px] xsm:text-[11px] 2xl:text-sm text-black whitespace-nowrap">
             Was: <Currency />
             <span className="line-through">{price}/m²</span>
           </span>
-          <span className="text-[10px] xsm:text-xs md:text-base font-semibold text-red-600 whitespace-nowrap">
+          <span className="text-[10px] xsm:text-[13px] 2xl:text-base font-semibold text-red-600 whitespace-nowrap">
             Now: <Currency />
             {discountPrice}/m²
           </span>
         </>
       ) : (
-        <span className="text-[11px] xsm:text-sm md:text-base font-semibold text-black whitespace-nowrap">
+        <span className="text-[11px] xsm:text-sm 2xl:text-base font-semibold text-black whitespace-nowrap">
           <Currency />
           {price}/m²
         </span>
