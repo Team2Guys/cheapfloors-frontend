@@ -10,6 +10,7 @@ import { formatAED } from 'utils/helperFunctions';
 import { FaRegCircleCheck } from 'react-icons/fa6';
 import { RxCross2 } from 'react-icons/rx';
 import Checkbox from 'components/ui/checkbox';
+import { INSTALLATION_ENABLED } from 'data/features';
 import TrustBadges from './trust-badges';
 
 // Accessory installation is charged per piece.
@@ -271,7 +272,7 @@ const SkirtingProductDetail = ({
         </p>
       </div>
 
-      <div className="relative mt-4">
+      <div className={`relative mt-4 ${INSTALLATION_ENABLED ? '' : 'hidden'}`}>
         <Checkbox
           name="installation"
           checked={addInstallation}

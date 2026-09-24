@@ -156,13 +156,14 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
           />
         </div>
         <div className="w-2/12 lg:w-[34%] 2xl:w-[30%] text-end flex_between gap-2 max-lg:justify-end">
+          {/* Hidden for now; the /measurement-appointment page still exists.
           <Link
             href="/measurement-appointment"
             aria-label="Book appointment"
             className="w-fit mx-auto text-xs sm:text-sm 2xl:text-[16px] bg-primary hover:bg-secondary text-white px-2 py-1 text-nowrap hidden lg:block "
           >
             Book Your Appointment
-          </Link>
+          </Link> */}
           <SearchBar
             className="hidden lg:flex"
             expandable

@@ -4,6 +4,7 @@ import { FiMinus } from 'react-icons/fi';
 import { GoPlus } from 'react-icons/go';
 import { GrCart } from 'react-icons/gr';
 import { ICart } from 'types/prod';
+import { INSTALLATION_ENABLED } from 'data/features';
 
 interface ItemCardProps {
   product: ICart;
@@ -66,7 +67,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
                 </>
               ) : (
                 <>
-                  {product.addInstallation ? (
+                  {!INSTALLATION_ENABLED ? null : product.addInstallation ? (
                     <p>
                       installation Cost:{' '}
                       <span className="font-semibold">

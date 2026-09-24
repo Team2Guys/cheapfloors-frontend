@@ -181,11 +181,14 @@ export const handleClearFilter = (
   setIsWaterProof: React.Dispatch<
     React.SetStateAction<boolean | null | undefined>
   >,
-  setcoverageArea?: React.Dispatch<React.SetStateAction<[number, number]>>
+  setcoverageArea?: React.Dispatch<React.SetStateAction<[number, number]>>,
+  priceBounds?: [number, number]
 ) => {
   if (setcoverageArea) {
     setcoverageArea([0, 1000]);
     setPriceValue([20, 149]);
+  } else if (priceBounds) {
+    setPriceValue(priceBounds);
   } else {
     setPriceValue([40, 149]);
   }

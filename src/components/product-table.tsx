@@ -12,6 +12,7 @@ import {
 } from 'utils/cartutils';
 import { ProductTableProps } from 'types/type';
 import { generateSlug } from 'data/data';
+import { INSTALLATION_ENABLED } from 'data/features';
 
 const ProductTable: React.FC<ProductTableProps> = ({
   columns,
@@ -108,7 +109,7 @@ const ProductTable: React.FC<ProductTableProps> = ({
                               </p>
                             )}
                           </>
-                        ) : (
+                        ) : INSTALLATION_ENABLED ? (
                           <div className="border border-[#ffb81c] rounded-md flex items-center justify-between p-2 max-w-[400px] mt-3">
                             <div className="flex items-center gap-3">
                               <input
@@ -152,7 +153,7 @@ const ProductTable: React.FC<ProductTableProps> = ({
                               </span>
                             </div>
                           </div>
-                        )
+                        ) : null
                       ) : (
                         <p className="text-xs xl:text-16">Free Sample</p>
                       )}

@@ -104,6 +104,7 @@ export interface FIlterprops {
   subcategory?: string;
   isClearance?: boolean;
   products?: IProduct[];
+  priceBounds?: [number, number];
 }
 
 export type SelectedFilter =

@@ -492,6 +492,8 @@ export const FETCHSUBCAT = gql`
         id
         name
         status
+        price
+        discountPrice
         thickness
         CommmericallWarranty
         ResidentialWarranty

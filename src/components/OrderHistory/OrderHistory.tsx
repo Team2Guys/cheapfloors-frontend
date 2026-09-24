@@ -6,6 +6,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Modal from 'components/ui/modal';
 import { formatAED } from 'utils/helperFunctions';
+import { INSTALLATION_ENABLED } from 'data/features';
 
 const OrderHistoryTable = ({ OrderHistory }: { OrderHistory: Order[] }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -233,12 +234,12 @@ const OrderHistoryTable = ({ OrderHistory }: { OrderHistory: Order[] }) => {
                                 {prod.installationCost?.toFixed(2)}
                               </span>
                             </p>
-                          ) : (
+                          ) : INSTALLATION_ENABLED ? (
                             <p className="font-medium">
                               Installation:{' '}
                               <span className="font-normal">Not Included</span>
                             </p>
-                          )}
+                          ) : null}
                         </>
                       )}
                     </div>

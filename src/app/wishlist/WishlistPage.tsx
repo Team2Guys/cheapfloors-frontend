@@ -9,6 +9,7 @@ import { FaArrowLeftLong } from 'react-icons/fa6';
 import Image from 'next/image';
 import { LuMinus, LuPlus } from 'react-icons/lu';
 import { generateSlug } from 'data/data';
+import { INSTALLATION_ENABLED } from 'data/features';
 import { formatAED } from 'utils/helperFunctions';
 
 const Container = dynamic(() => import('components/common/container/Container'));
@@ -264,7 +265,7 @@ const WishlistPage = () => {
                           </div>
 
                           {/* Desktop Installation */}
-                          <div className="mt-2 xl:mt-4 hidden xl:block">
+                          <div className={`mt-2 xl:mt-4 hidden ${INSTALLATION_ENABLED ? 'xl:block' : ''}`}>
                             <div className={`border ${item.addInstallation ? 'border-[#ffb81c]' : 'border-[#e0e0e0]'} rounded-lg flex items-center justify-between p-2 md:p-3`}>
                               <div className="flex items-center gap-2 md:gap-3">
                                 <input
@@ -288,7 +289,7 @@ const WishlistPage = () => {
                       </div>
 
                       {/* Mobile Installation */}
-                      <div className="mt-4 block xl:hidden w-full">
+                      <div className={`mt-4 w-full ${INSTALLATION_ENABLED ? 'block xl:hidden' : 'hidden'}`}>
                         <div className={`border ${item.addInstallation ? 'border-[#ffb81c]' : 'border-[#e0e0e0]'} rounded-md flex items-center justify-between p-3 w-full`}>
                           <div className="flex items-center gap-3">
                             <input
@@ -415,7 +416,7 @@ const WishlistPage = () => {
                             </div>
                           </div>
 
-                          {item.addInstallation && (
+                          {INSTALLATION_ENABLED && item.addInstallation && (
                             <div className="mt-2 xl:mt-4 hidden xl:block">
                               <div className="border border-[#ffc341] rounded-lg flex items-center justify-between p-2 md:p-3 w-[85%]">
                                 <div className="flex items-center gap-2 md:gap-3">
@@ -432,7 +433,7 @@ const WishlistPage = () => {
                         </div>
                       </div>
 
-                      {item.addInstallation && (
+                      {INSTALLATION_ENABLED && item.addInstallation && (
                         <div className="mt-4 block xl:hidden w-full">
                           <div className="border border-[#ffc341] rounded-md flex items-center justify-between p-3 w-full">
                             <div className="flex items-center gap-3">

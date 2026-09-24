@@ -86,6 +86,7 @@ export interface BoxData {
   icon: string;
   link: string;
   bgImage: string;
+  hideButton?: boolean;
 }
 
 export interface CardData {

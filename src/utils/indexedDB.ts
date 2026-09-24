@@ -1,5 +1,6 @@
 import { ICart, ProductImage } from 'types/prod';
 import { showAlert } from './Alert';
+import { INSTALLATION_ENABLED } from 'data/features';
 let deleteTimer: NodeJS.Timeout | null = null;
 
 export const openDB = (): Promise<IDBDatabase> => {
@@ -226,8 +227,76 @@ export const addToCart = async (product: ICart): Promise<boolean> => {
   }
 };
 
+// While installation is switched off, strip it from items saved before it was
+// hidden so it is never charged: drop the "-installation" key suffix (merging
+// with the plain item if one already exists) and take its cost out of the total.
+const clearSavedInstallation = async (
+  db: IDBDatabase,
+  storeName: 'cart' | 'wishlist'
+): Promise<void> => {
+  if (INSTALLATION_ENABLED) return;
+  await new Promise<void>((resolve, reject) => {
+    const tx = db.transaction(storeName, 'readwrite');
+    const store = tx.objectStore(storeName);
+    const keysRequest = store.getAllKeys();
+    const itemsRequest = store.getAll();
+
+    itemsRequest.onsuccess = () => {
+      const keys = keysRequest.result;
+      const items: ICart[] = itemsRequest.result;
+      const byKey = new Map<IDBValidKey, ICart>(
+        keys.map((key, i) => [key, items[i]])
+      );
+
+      keys.forEach((key, i) => {
+        const item = items[i];
+        if (!item?.addInstallation) return;
+
+        const withoutInstallation: ICart = {
+          ...item,
+          addInstallation: false,
+          installationCost: 0,
+          totalPrice:
+            Number(item.totalPrice || 0) - Number(item.installationCost || 0)
+        };
+        const newKey =
+          typeof key === 'string' && key.endsWith('-installation')
+            ? key.slice(0, -'-installation'.length)
+            : key;
+
+        if (newKey === key) {
+          store.put(withoutInstallation, key);
+          return;
+        }
+
+        const existing = byKey.get(newKey);
+        const merged: ICart = existing
+          ? {
+            ...existing,
+            requiredBoxes:
+              (existing.requiredBoxes || 0) + (item.requiredBoxes || 0),
+            squareMeter: (existing.squareMeter || 0) + (item.squareMeter || 0),
+            totalPrice:
+              Number(existing.totalPrice || 0) +
+              withoutInstallation.totalPrice
+          }
+          : withoutInstallation;
+
+        store.delete(key);
+        store.put(merged, newKey);
+        byKey.set(newKey, merged);
+      });
+    };
+
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+    tx.onabort = () => reject(tx.error);
+  });
+};
+
 export const getCart = async (): Promise<ICart[]> => {
   const db = await openDB();
+  await clearSavedInstallation(db, 'cart');
   return new Promise((resolve, reject) => {
     const tx = db.transaction('cart', 'readonly');
     const store = tx.objectStore('cart');
@@ -378,6 +447,7 @@ export const removeWishlistItem = async (
 export const getWishlist = async (): Promise<ICart[]> => {
   try {
     const db = await openDB();
+    await clearSavedInstallation(db, 'wishlist');
     return new Promise((resolve, reject) => {
       const tx = db.transaction('wishlist', 'readonly');
       const store = tx.objectStore('wishlist');

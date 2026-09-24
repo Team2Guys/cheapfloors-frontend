@@ -35,13 +35,17 @@ const NeedHelp = () => {
             <p className="text-xs sm:text-sm md:text-[15px] lg:text-lg text-center max-w-xl mx-auto">
               {box.description}
             </p>
-            <Link
-              href={box.link}
-              aria-label="Book appointment"
-              className="w-full max-w-xl mx-auto block text-xs sm:text-sm md:text-base bg-primary hover:bg-secondary text-black hover:text-white sm:ont-medium px-4 py-2 rounded-full"
-            >
-              {box.buttonText}
-            </Link>
+            {box.hideButton ? (
+              <div />
+            ) : (
+              <Link
+                href={box.link}
+                aria-label="Book appointment"
+                className="w-full max-w-xl mx-auto block text-xs sm:text-sm md:text-base bg-primary hover:bg-secondary text-black hover:text-white sm:ont-medium px-4 py-2 rounded-full"
+              >
+                {box.buttonText}
+              </Link>
+            )}
           </div>
         </div>
       ))}

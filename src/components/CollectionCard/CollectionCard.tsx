@@ -17,6 +17,20 @@ const CollectionCard = ({ subcategory }: { subcategory: ISUBCATEGORY }) => {
   const width = feature?.width || subcategory.products?.[0]?.plankWidth;
   const height = feature?.height || subcategory.products?.[0]?.sizes?.[0]?.height;
 
+  // Highest discount among the collection's published products.
+  const maxDiscount = Math.max(
+    0,
+    ...(subcategory.products || [])
+      .filter((product) => !product.status || product.status === 'PUBLISHED')
+      .map((product) => {
+        const price = Number(product.price);
+        const discountPrice = Number(product.discountPrice);
+        return price > 0 && discountPrice > 0 && discountPrice < price
+          ? Math.round(((price - discountPrice) / price) * 100)
+          : 0;
+      })
+  );
+
   const formatDim = (val?: string) => {
     if (!val) return '';
     const trimmed = val.trim();
@@ -38,6 +52,11 @@ const CollectionCard = ({ subcategory }: { subcategory: ISUBCATEGORY }) => {
               sizes="(max-width: 768px) 50vw, 33vw"
             />
           </Link>
+          {maxDiscount > 0 && (
+            <div className="bg-primary text-white text-[10px] xsm:text-xs font-semibold absolute px-2 py-1 left-0 top-1 z-10">
+              {maxDiscount}% OFF
+            </div>
+          )}
           <Link
             href={subcategoryUrl}
             className="absolute top-2 right-2 xsm:-right-40 xsm:group-hover:right-2 z-10 size-6 xsm:size-9 bg-white rounded-md flex items-center justify-center border border-[#E5E7EB] shadow-sm hover:text-primary transition"

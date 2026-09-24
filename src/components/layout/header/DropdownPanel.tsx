@@ -13,6 +13,7 @@ import { TbShoppingBag } from 'react-icons/tb';
 import { ICart } from 'types/prod';
 import { showAlert } from 'utils/Alert';
 import { formatAED } from 'utils/helperFunctions';
+import { INSTALLATION_ENABLED } from 'data/features';
 import {
   getCart,
   removeCartItem,
@@ -397,7 +398,7 @@ const DropdownPanel: React.FC<DropdownPanelProps> = ({
                               ''
                             )
                           )}
-                          {item.isfreeSample ? null : item.addInstallation ? (
+                          {item.isfreeSample || !INSTALLATION_ENABLED ? null : item.addInstallation ? (
                             <p className="sm:text-xs mt-1">
                               Installation Cost:{' '}
                               <span className="font-semibold">

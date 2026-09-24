@@ -12,7 +12,7 @@ import { categoryBreakpoint } from 'data/slider';
 import SliderArrow from 'components/common/slider-arrow/slider-arrow';
 import { BsArrowRight } from 'react-icons/bs';
 import Container from '../common/container/Container';
-import { formatDisplayName } from 'utils/helperFunctions';
+import { formatDisplayName, getEffectivePrice } from 'utils/helperFunctions';
 
 const getPrice = (cat: Category) => {
   if (cat.price) return cat.price;
@@ -30,7 +30,29 @@ const getPrice = (cat: Category) => {
   }
 };
 
+// Lowest effective (discounted if set) price of the published products in
+// each subcategory, keyed by "<category RecallUrl>/<subcategory custom_url>"
+// since subcategory urls like "spc-eco" repeat across brands.
+const getSubcategoryStartingPrices = (categories: Category[]) => {
+  const prices = new Map<string, number>();
+  categories?.forEach((category) => {
+    ((category.products as IProduct[]) || []).forEach((product) => {
+      if (product.status && product.status !== 'PUBLISHED') return;
+      const recallUrl = product.category?.RecallUrl || category.RecallUrl;
+      const subUrl = product.subcategory?.custom_url;
+      if (!recallUrl || !subUrl) return;
+      const price = getEffectivePrice(product);
+      if (!Number.isFinite(price) || price <= 0) return;
+      const key = `${recallUrl}/${subUrl}`;
+      const current = prices.get(key);
+      if (current === undefined || price < current) prices.set(key, price);
+    });
+  });
+  return prices;
+};
+
 const CategorySlider = ({ categories }: { categories: Category[] }) => {
+  const startingPrices = getSubcategoryStartingPrices(categories);
   return (
     <div className="flex flex-col w-full gap-3 md:gap-12 my-10">
       <Container className="text-start relative w-full">
@@ -47,6 +69,15 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
             ((reCallFlag
               ? category.recalledSubCats
               : category.subcategories) as ISUBCATEGORY[]) || [];
+          subcategories = subcategories.map((sub) => {
+            const recallUrl = sub.category?.RecallUrl || category.RecallUrl;
+            const startingPrice = startingPrices.get(
+              `${recallUrl}/${sub.custom_url}`
+            );
+            return startingPrice !== undefined
+              ? { ...sub, price: String(startingPrice) }
+              : sub;
+          });
           subcategories = [...subcategories].sort((a, b) => {
             return getSubcategoryOrder(a.name) - getSubcategoryOrder(b.name);
           });
@@ -75,11 +106,9 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
           const seeAllLink = `/${category?.custom_url || category.name.toLowerCase().replace(/\s+/g, '-')}`;
 
           const isYellowBg = category.name.toUpperCase() === 'LVT FLOORING';
-          // Only Floor Smart renders individual products, which can carry a
-          // discountPrice; every other category renders subcategories that have
-          // no discount. So apply the discounted price only for Floor Smart,
-          // mirroring what each Card displays. Other categories keep the base
-          // price.
+          // Floor Smart renders individual products, which can carry a
+          // discountPrice. Other categories render subcategories whose price
+          // was already set above to their cheapest product.
           const itemPrices = sliderItems
             .map((item) => {
               if (isFloorSmart) {
