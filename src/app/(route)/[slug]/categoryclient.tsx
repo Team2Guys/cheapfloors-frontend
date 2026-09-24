@@ -144,15 +144,16 @@ const CategoryClient = ({
                 ? subdescription?.[0]?.name || ''
                 : Data?.Heading || Data?.name}
             </h1>
-            <p
+            {/* div, not p: the description HTML contains its own <p> tags. */}
+            <div
               className="text-sm md:text-base 2xl:text-lg lg:leading-[26px]"
               dangerouslySetInnerHTML={{
                 __html: isSubCategory
                   ? subdescription?.[0]?.description || ''
                   : Data?.description || ''
               }}
-            >
-            </p>
+            />
+
             <div className="flex_between lg:justify-end">
               <div className="block lg:hidden">
                 <button

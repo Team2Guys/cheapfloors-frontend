@@ -52,7 +52,7 @@ const AllCollection = async ({
         title="Premium Flooring Collections in Dubai & Across the UAE"
         useHeadingTag
         isHideTitle
-        image="/assets/images/category/collection-banner.webp"
+        image="/assets/images/category/collection-banner.png"
       />
       <Collections
         sortedSubcategories={sortedSubcategories}
