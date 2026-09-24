@@ -6,15 +6,17 @@ const CustomPriceSlider = ({
   setPriceValue,
   priceValue,
   isArea,
-  isClearance
+  isClearance,
+  bounds
 }: {
   setPriceValue: React.Dispatch<React.SetStateAction<[number, number]>>;
   priceValue: [number, number];
   isArea?: boolean;
   isClearance?: boolean;
+  bounds?: [number, number];
 }) => {
-  const min = isArea ? 0 : isClearance ? 20 : 40;
-  const max = isArea ? 1000 : 149;
+  const min = bounds?.[0] ?? (isArea ? 0 : isClearance ? 20 : 40);
+  const max = bounds?.[1] ?? (isArea ? 1000 : 149);
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const getPercentage = (val: number) => ((val - min) / (max - min)) * 100;

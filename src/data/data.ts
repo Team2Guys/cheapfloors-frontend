@@ -643,7 +643,9 @@ export const boxData: BoxData[] = [
     buttonText: 'Book an Installation',
     icon: '/assets/images/Home/Vectorrg.png',
     link: '/help-with-installations',
-    bgImage: '/assets/images/aboutus/about6.webp'
+    bgImage: '/assets/images/aboutus/about6.webp',
+    // Link hidden for now; the /help-with-installations page still exists.
+    hideButton: true
   }
 ];
 

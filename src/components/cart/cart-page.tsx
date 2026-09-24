@@ -15,6 +15,7 @@ import deliveryImg from '../../../public/assets/icons/delivery-truck 2 (traced).
 // HIDDEN (Self-Collect) - restore together with the Self-Collect block below
 // import locationImg from '../../../public/assets/icons/location 1 (traced).png';
 import { emirates, generateSlug } from 'data/data';
+import { INSTALLATION_ENABLED } from 'data/features';
 import Accordion from 'components/ui/accordion';
 import { showAlert } from 'utils/Alert';
 import { formatAED } from 'utils/helperFunctions';
@@ -1074,7 +1075,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                               </div>
 
                               {/* Installation charges checkbox container (Desktop) */}
-                              {!item.isfreeSample && (
+                              {INSTALLATION_ENABLED && !item.isfreeSample && (
                                 <div className="mt-2 xl:mt-4 hidden xl:block">
                                   <div className={`border ${item.addInstallation ? 'border-[#ffb81c]' : 'border-[#e0e0e0]'} rounded-lg flex items-center justify-between p-2 md:p-3 w-full`}>
                                     <label className="flex items-center gap-2 md:gap-3 cursor-pointer">
@@ -1103,7 +1104,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                           </div>
 
                           {/* Installation charges checkbox container (Mobile) */}
-                          {!item.isfreeSample && (
+                          {INSTALLATION_ENABLED && !item.isfreeSample && (
                             <div className="mt-4 block xl:hidden w-full">
                               <div className={`border ${item.addInstallation ? 'border-[#ffb81c]' : 'border-[#e0e0e0]'} rounded-md flex items-center justify-between p-3 w-full`}>
                                 <label className="flex items-center gap-3 cursor-pointer">
@@ -1231,7 +1232,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                               </div>
                             </div>
 
-                            {item.addInstallation && (
+                            {INSTALLATION_ENABLED && item.addInstallation && (
                               <div className="mt-2 xl:mt-4">
                                 <div className="border border-[#ffc341] rounded-lg flex items-center justify-between p-2 md:p-3 w-full">
                                   <div className="flex items-center gap-2 md:gap-3">
@@ -1433,7 +1434,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                             </div>
 
                             {/* Installation charges (accessory, Desktop) */}
-                            <div className="mt-2 xl:mt-4 hidden xl:block">
+                            <div className={`mt-2 xl:mt-4 hidden ${INSTALLATION_ENABLED ? 'xl:block' : ''}`}>
                               <div className={`border ${item.addInstallation ? 'border-[#ffb81c]' : 'border-[#e0e0e0]'} rounded-lg flex items-center justify-between p-2 md:p-3 w-full`}>
                                 <label className="flex items-center gap-2 md:gap-3 cursor-pointer">
                                   <input
@@ -1460,7 +1461,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                         </div>
 
                         {/* Installation charges (accessory, Mobile) */}
-                        <div className="mt-4 block xl:hidden w-full">
+                        <div className={`mt-4 w-full ${INSTALLATION_ENABLED ? 'block xl:hidden' : 'hidden'}`}>
                           <div className={`border ${item.addInstallation ? 'border-[#ffb81c]' : 'border-[#e0e0e0]'} rounded-md flex items-center justify-between p-2 md:p-3 w-full`}>
                             <label className="flex items-center gap-2 md:gap-3 cursor-pointer">
                               <input

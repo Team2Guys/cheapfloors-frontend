@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { formatAED, getExpectedDeliveryDate } from 'utils/helperFunctions';
 import { ORDERS_PROD, PostPaymentStatusResponse } from 'types/OrdersProd';
+import { INSTALLATION_ENABLED } from 'data/features';
 
 const OrderSummary: React.FC<PostPaymentStatusResponse> = ({
   data,
@@ -104,14 +105,14 @@ const OrderSummary: React.FC<PostPaymentStatusResponse> = ({
                                       {formatAED(item.installationCost)}
                                     </span>
                                   </p>
-                                ) : (
+                                ) : INSTALLATION_ENABLED ? (
                                   <p className="text-xs font-semibold text-black mt-0.5">
                                     Installation:{' '}
                                     <span className="font-semibold">
                                       Not Included
                                     </span>
                                   </p>
-                                ))}
+                                ) : null)}
                               {colorFlag && (
                                 <p className="text-xs font-semibold text-black mt-0.5">
                                   Color :{' '}

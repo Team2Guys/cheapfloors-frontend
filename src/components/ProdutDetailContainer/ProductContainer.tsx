@@ -10,6 +10,7 @@ import { detailprops } from 'types/product-detail';
 import Thumbnail from 'components/product-detail/thumbnail';
 import AreaCalculator from 'components/product-detail/AreaCalculator';
 import Checkbox from 'components/ui/checkbox';
+import { INSTALLATION_ENABLED } from 'data/features';
 import { formatAED } from 'utils/helperFunctions';
 import { RxCross2 } from 'react-icons/rx';
 import { IProduct } from 'types/prod';
@@ -372,7 +373,7 @@ const ProductContainer = ({
                 <LuHeart size={20} />
                 Add to Wishlist
               </button>
-              <div className="flex items-center gap-2 mt-3 relative">
+              <div className={`flex items-center gap-2 mt-3 relative ${INSTALLATION_ENABLED ? '' : '!hidden'}`}>
                 <Checkbox
                   name="installation"
                   checked={addInstallation}
@@ -464,7 +465,7 @@ const ProductContainer = ({
                   <span>{formatAED(totalPrice)}</span>
                 </p>
               </div>
-              <div className="relative pt-2">
+              <div className={`relative pt-2 ${INSTALLATION_ENABLED ? '' : 'hidden'}`}>
                 <Checkbox
                   name="installation"
                   checked={addInstallation}

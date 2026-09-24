@@ -31,6 +31,7 @@ import Accordion from 'components/ui/accordion';
 import { showAlert } from 'utils/Alert';
 import { submitCCAvenueForm } from 'utils/ccavenue';
 import { termsConditionsData } from 'data/terms-condition';
+import { INSTALLATION_ENABLED } from 'data/features';
 import TrustBadges from '@/components/product-detail/trust-badges';
 
 
@@ -783,7 +784,7 @@ const Checkout = ({
                             </p>
                           )}
                           {item.category?.toLowerCase().trim() ===
-                            'accessories' ? (
+                            'accessories' || !INSTALLATION_ENABLED ? (
                             ''
                           ) : item.addInstallation ? (
                             <p className="md:text-sm text-gray-600 text-12">
@@ -1095,6 +1096,7 @@ const Checkout = ({
                       </div>
                       */}
                     </Accordion>
+                    {INSTALLATION_ENABLED && (
                     <Accordion
                       isCheckout
                       label="Installation"
@@ -1127,6 +1129,7 @@ const Checkout = ({
                             just a heads-up—other locations in Emirates may have
                             additional charges.
                           </p>
+                          {/* Hidden for now; the /help-with-installations page still exists.
                           <Link
                             target="_blank"
                             rel="noopener noreferrer"
@@ -1134,10 +1137,11 @@ const Checkout = ({
                             href="/help-with-installations"
                           >
                             Book Installation Appointment
-                          </Link>
+                          </Link> */}
                         </div>
                       </div>
                     </Accordion>
+                    )}
                     <Accordion
                       isCheckout
                       label="Return Policy"

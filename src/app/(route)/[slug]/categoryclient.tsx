@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Container from 'components/common/container/Container';
 import {
   Category as ICategory,
@@ -14,7 +14,7 @@ const SubCategory = dynamic(
 );
 import dynamic from 'next/dynamic';
 import Filter from 'components/svg/filter';
-import { productFilter } from 'utils/helperFunctions';
+import { getEffectivePrice, productFilter } from 'utils/helperFunctions';
 import CategoryFaqs from 'components/Faqs/CategoryFaqs';
 import { categoryFaqsData, subCategoryFaqsData } from 'data/data';
 import Testimonial from '@/components/Testimonial/testimonial';
@@ -46,10 +46,29 @@ const CategoryClient = ({
       plankLength: []
     });
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [priceValue, setPriceValue] = useState<[number, number]>([40, 149]);
+  const Data: ISUBCATEGORY | ICategory = categoryData;
+  // Slider range comes from the prices of the products on this page, so
+  // no product is hidden by the default filter.
+  const priceBounds = useMemo<[number, number]>(() => {
+    const prices = (Data.products || [])
+      .filter(
+        (product) =>
+          product.status === 'PUBLISHED' &&
+          (!subcategory || product.subcategory?.custom_url === subcategory)
+      )
+      .map(getEffectivePrice)
+      .filter((price) => Number.isFinite(price));
+    if (prices.length === 0) return [0, 149];
+    const min = Math.floor(Math.min(...prices));
+    const max = Math.ceil(Math.max(...prices));
+    return [min, max > min ? max : min + 1];
+  }, [Data.products, subcategory]);
+  const [priceValue, setPriceValue] = useState<[number, number]>(priceBounds);
+  useEffect(() => {
+    setPriceValue(priceBounds);
+  }, [priceBounds[0], priceBounds[1]]); // eslint-disable-line react-hooks/exhaustive-deps
   const [isModalOpen, setModalOpen] = useState(false);
   const [sortOption, setSortOption] = useState<string>('Default');
-  const Data: ISUBCATEGORY | ICategory = categoryData;
   const { filtered, appliedFilters } = useMemo(() => {
     const { filtered, appliedFilters } = productFilter({
       products: Data.products,
@@ -114,6 +133,7 @@ const CategoryClient = ({
             selectedTags={selectedTags}
             isSubCategory={isSubCategory}
             subcategory={subcategory}
+            priceBounds={priceBounds}
           />
         </div>
 
@@ -159,6 +179,7 @@ const CategoryClient = ({
                     selectedTags={selectedTags}
                     isSubCategory={isSubCategory}
                     subcategory={subcategory}
+                    priceBounds={priceBounds}
                   />
                 </Drawer>
               </div>

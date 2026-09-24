@@ -11,17 +11,52 @@ import {
 import Link from 'next/link';
 import { FIlterprops } from 'types/types';
 import { usePathname } from 'next/navigation';
-import { IfilterValues } from 'types/type';
 import { getSubcategoryOrder } from 'data/home-category';
 import { desiredCategoryOrder, filterTitles } from 'data/filter';
 import {
   extractUniqueAttributes,
-  filterProductsCountHanlder,
-  getColorCount,
   handleClearFilter,
   handleFilterSelection
 } from 'lib/filterhelper';
 import { formatDisplayName } from 'utils/helperFunctions';
+
+// A filter row: label on the left, checkbox on the right. Clicking anywhere on
+// the row toggles the filter.
+const FilterOption = ({
+  label,
+  checked,
+  onToggle
+}: {
+  label: string;
+  checked: boolean;
+  onToggle: () => void;
+}) => (
+  <button
+    type="button"
+    role="checkbox"
+    aria-checked={checked}
+    className={`cursor-pointer w-full text-left flex justify-between items-center gap-2 ${checked ? 'text-primary' : 'text-[#475156] hover:text-primary'}`}
+    onClick={onToggle}
+  >
+    <span>{label}</span>
+    <span
+      className={`size-5 shrink-0 border-2 rounded-[2px] flex_center transition-colors duration-200 ${checked ? 'bg-primary border-primary' : 'bg-white border-primary'}`}
+    >
+      {checked && (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-3.5 h-3.5 text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={3}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      )}
+    </span>
+  </button>
+);
 
 const Filters = ({
   catgories,
@@ -43,7 +78,8 @@ const Filters = ({
   isSubCategory,
   subcategory,
   isClearance,
-  products
+  products,
+  priceBounds
 }: FIlterprops) => {
   const [uniqueFilters, setUniqueFilters] = useState({
     commercialWarranty: [] as string[],
@@ -289,24 +325,22 @@ const Filters = ({
         <Accordion title="Water Resistant">
           <ul className="filter_accordion">
             <li>
-              <button
-                className={`cursor-pointer w-full text-left ${isWaterProof ? 'text-primary' : 'text-[#475156] hover:text-primary'}`}
-                onClick={() =>
+              <FilterOption
+                label="Yes"
+                checked={isWaterProof === true}
+                onToggle={() =>
                   setIsWaterProof(isWaterProof === true ? null : true)
                 }
-              >
-                Yes
-              </button>
+              />
             </li>
             <li>
-              <button
-                className={`cursor-pointer w-full text-left ${!isWaterProof && isWaterProof !== undefined && isWaterProof !== null ? 'text-primary' : 'text-[#475156] hover:text-primary'}`}
-                onClick={() =>
+              <FilterOption
+                label="No"
+                checked={isWaterProof === false}
+                onToggle={() =>
                   setIsWaterProof(isWaterProof === false ? null : false)
                 }
-              >
-                No
-              </button>
+              />
             </li>
           </ul>
         </Accordion>
@@ -321,52 +355,21 @@ const Filters = ({
             >
               <ul className="filter_accordion">
                 {filterValues.map((item, i) => {
-                  let length;
-                  let remaingCategory;
-                  if (filterKey === 'Colours') {
-                    length = getColorCount(
-                      item,
-                      category,
-                      isColection,
-                      subcategory,
-                      products
-                    );
-                  } else {
-                    remaingCategory = filterProductsCountHanlder(
-                      filterKey as keyof IfilterValues,
-                      item,
-                      category,
-                      sortedSubcategories,
-                      isColection,
-                      subcategory,
-                      products
-                    );
-                  }
-
                   return (
                     <li key={i}>
-                      <button
-                        className={`cursor-pointer w-full text-left flex justify-between items-center ${selectedProductFilters[
+                      <FilterOption
+                        label={item}
+                        checked={selectedProductFilters[
                           filterKey as keyof FilterState
-                        ]?.some((val: string) => val === item)
-                          ? 'text-primary'
-                          : 'text-[#475156] hover:text-primary'
-                          }`}
-                        onClick={() =>
+                        ]?.some((val: string) => val === item)}
+                        onToggle={() =>
                           handleFilterSelection(
                             filterKey as keyof FilterState,
                             item,
                             setSelectedProductFilters
                           )
                         }
-                      >
-                        {item +
-                          (length
-                            ? ` (${length})`
-                            : remaingCategory
-                              ? ` (${remaingCategory})`
-                              : '')}
-                      </button>
+                      />
                     </li>
                   );
                 })}
@@ -396,6 +399,7 @@ const Filters = ({
           priceValue={priceValue}
           setPriceValue={setPriceValue}
           isClearance={isClearance}
+          bounds={priceBounds}
         />
         {(isWaterProof !== null ||
           selectedProductFilters?.Colours?.length > 0 ||
@@ -404,8 +408,10 @@ const Filters = ({
           selectedProductFilters.residentialWarranty.length > 0 ||
           selectedProductFilters.plankWidth.length > 0 ||
           (coverageArea && (coverageArea[0] > 0 || coverageArea[1] < 200)) ||
-          (isClearance ? priceValue[0] > 20 : priceValue[0] > 40) ||
-          priceValue[1] < 149) && (
+          (priceBounds
+            ? priceValue[0] > priceBounds[0] || priceValue[1] < priceBounds[1]
+            : (isClearance ? priceValue[0] > 20 : priceValue[0] > 40) ||
+              priceValue[1] < 149)) && (
             <div className="flex justify-center mt-4">
               <button
                 className="bg-[#F0B323] text-black w-[120px] h-[40px] text-sm font-semibold rounded-full transition hover:bg-[#d9a020]"
@@ -414,7 +420,8 @@ const Filters = ({
                     setPriceValue,
                     setSelectedProductFilters,
                     setIsWaterProof,
-                    setcoverageArea
+                    setcoverageArea,
+                    priceBounds
                   )
                 }
               >
