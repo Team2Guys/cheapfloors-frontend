@@ -92,7 +92,7 @@ export default async function Home() {
           alt: "showroom",
         }}
       />
-      <VideoReelsWrapper />
+      {/* <VideoReelsWrapper /> */}
       <JobsDone />
     </>
   );

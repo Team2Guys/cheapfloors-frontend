@@ -325,14 +325,14 @@ export const pageSchemas: Record<string, PageSchema> = {
           "text": "Standard delivery is free within Dubai and for all other Emirates on orders above AED 2,000. For orders below AED 1,999 outside Dubai, a delivery fee of AED 200 applies, ensuring flexible and cost-effective shipping options."
         }
       },
-      {
-        "@type": "Question",
-        "name": "Can I collect my order myself?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, you can choose to self-collect your order from our warehouse. Collection is available Monday to Saturday between 9am and 6pm at our Al Quoz Industrial Area 4 location in Dubai, offering a convenient alternative to delivery."
-        }
-      },
+      // {
+      //   "@type": "Question",
+      //   "name": "Can I collect my order myself?",
+      //   "acceptedAnswer": {
+      //     "@type": "Answer",
+      //     "text": "Yes, you can choose to self-collect your order from our warehouse. Collection is available Monday to Saturday between 9am and 6pm at our Al Quoz Industrial Area 4 location in Dubai, offering a convenient alternative to delivery."
+      //   }
+      // },
       {
         "@type": "Question",
         "name": "Who can I contact for delivery questions?",

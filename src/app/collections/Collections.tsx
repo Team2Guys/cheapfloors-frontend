@@ -29,7 +29,7 @@ const Collections = ({
       plankWidth: [],
       plankLength: []
     });
-  const [priceValue, setPriceValue] = useState<[number, number]>([55, 149]);
+  const [priceValue, setPriceValue] = useState<[number, number]>([40, 149]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const { filtered, appliedFilters } = collectionFilter({
     products: sortedSubcategories,
