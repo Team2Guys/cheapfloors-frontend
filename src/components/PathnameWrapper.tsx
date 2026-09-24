@@ -63,8 +63,8 @@ const PathnameWrapper = ({ children }: { children: ReactNode }) => {
           ) : null
         ) : (
           <>
-            {!hideNeedHelpPages.includes(pathname) &&
-              !pathname.startsWith('/blogs') && <NeedHelp />}
+            {/* {!hideNeedHelpPages.includes(pathname) &&
+              !pathname.startsWith('/blogs') && <NeedHelp />} */}
             {/* {pathname === '/' && (
             <Link href='/clearance' className='relative block w-full h-[100px] sm:h-[200px] lg:h-[300px] mt-10'>
               <Image src='/assets/images/clearance/Banner_2.webp' alt='sale bannar' fill />

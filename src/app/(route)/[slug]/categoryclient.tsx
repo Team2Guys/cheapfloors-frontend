@@ -46,7 +46,7 @@ const CategoryClient = ({
       plankLength: []
     });
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [priceValue, setPriceValue] = useState<[number, number]>([55, 149]);
+  const [priceValue, setPriceValue] = useState<[number, number]>([40, 149]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [sortOption, setSortOption] = useState<string>('Default');
   const Data: ISUBCATEGORY | ICategory = categoryData;
