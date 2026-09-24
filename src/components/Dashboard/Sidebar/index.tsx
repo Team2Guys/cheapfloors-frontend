@@ -25,6 +25,19 @@ interface SidebarProps {
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const { loggedInUser } = useAppSelector((state) => state.usersSlice);
   const superAdmin = loggedInUser && loggedInUser.role !== 'Admin';
+  // Regular admins only see the pages they were granted; super admins see all.
+  const can = (permission: string) =>
+    superAdmin || Boolean(loggedInUser?.[permission]);
+  const showCategories = can('canVeiwTotalCategories');
+  const showProducts = can('canVeiwTotalproducts');
+  const showAccessories = can('canViewAccessories');
+  const showOrders = can('canViewOrders');
+  const showFreeSamples = can('canViewFreeSampleOrders');
+  const showAbandoned = can('canViewAbandonedOrders');
+  const showMeasurement = can('canViewMeasurementAppointments');
+  const showInstallation = can('canViewInstallationAppointments');
+  const showBlogs = can('canViewBlogs');
+  const showRedirects = can('canViewRedirectUrls');
 
   const pathname = usePathname();
 
@@ -180,6 +193,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 }}
               </SidebarLinkGroup>
 
+              {showCategories && (
+
               <SidebarLinkGroup
                 activeCondition={
                   pathname === '/dashboard/category' ||
@@ -245,6 +260,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   );
                 }}
               </SidebarLinkGroup>
+              )}
+
+              {(showProducts || showAccessories) && (
 
               <SidebarLinkGroup
                 activeCondition={
@@ -286,6 +304,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         }`}
                       >
                         <ul className="gap-2.5 mt-3 flex flex-col pl-6">
+                          {showProducts && (
                           <li>
                             <Link
                               href="/dashboard/products"
@@ -296,6 +315,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               View Products
                             </Link>
                           </li>
+                          )}
+                          {showAccessories && (
                           <li>
                             <Link
                               href="/dashboard/accessories"
@@ -307,12 +328,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               View accessories
                             </Link>
                           </li>
+                          )}
                         </ul>
                       </div>
                     </>
                   );
                 }}
               </SidebarLinkGroup>
+              )}
+
+              {(showOrders || showFreeSamples || showAbandoned) && (
 
               <SidebarLinkGroup
                 activeCondition={
@@ -356,6 +381,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         }`}
                       >
                         <ul className="mt-3 flex flex-col gap-2.5 pl-6">
+                          {showOrders && (
                           <li>
                             <Link
                               href="/dashboard/orders"
@@ -366,6 +392,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               View Orders
                             </Link>
                           </li>
+                          )}
+                          {showFreeSamples && (
                           <li>
                             <Link
                               href="/dashboard/free-sample"
@@ -377,6 +405,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               View Free Sample Orders
                             </Link>
                           </li>
+                          )}
+                          {showAbandoned && (
                           <li>
                             <Link
                               href="/dashboard/abundant"
@@ -387,12 +417,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               View Abandoned Orders
                             </Link>
                           </li>
+                          )}
                         </ul>
                       </div>
                     </>
                   );
                 }}
               </SidebarLinkGroup>
+              )}
+
+              {(showMeasurement || showInstallation) && (
 
               <SidebarLinkGroup
                 activeCondition={
@@ -435,6 +469,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         }`}
                       >
                         <ul className="mb-3 mt-3 flex flex-col gap-2.5 pl-6">
+                          {showMeasurement && (
                           <li>
                             <Link
                               href="/dashboard/measurement-appointment"
@@ -447,6 +482,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               View Measurement Appointment
                             </Link>
                           </li>
+                          )}
+                          {showInstallation && (
                           <li>
                             <Link
                               href="/dashboard/installation-appointments"
@@ -459,12 +496,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               View Installation Appointment
                             </Link>
                           </li>
+                          )}
                         </ul>
                       </div>
                     </>
                   );
                 }}
               </SidebarLinkGroup>
+              )}
+
+              {showBlogs && (
 
               <li>
                 <Link
@@ -478,6 +519,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   Blogs
                 </Link>
               </li>
+
+              )}
+
+              {showRedirects && (
 
               <SidebarLinkGroup
                 activeCondition={GeneralLinks.some(
@@ -537,6 +582,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   );
                 }}
               </SidebarLinkGroup>
+              )}
 
               {superAdmin ? (
                 <li>
