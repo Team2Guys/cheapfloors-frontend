@@ -56,7 +56,7 @@ const ECommerce = ({
     (loggedInUser.role == 'Admin' ? loggedInUser.canCheckProfit : true);
   const CanCheckRevnue =
     loggedInUser &&
-    (loggedInUser.role == 'Admin' ? loggedInUser.CanCheckRevnue : true);
+    (loggedInUser.role == 'Admin' ? loggedInUser.canCheckRevenue : true);
   const canViewUsers =
     loggedInUser &&
     (loggedInUser.role == 'Admin' ? loggedInUser.canViewUsers : true);

@@ -9,47 +9,30 @@ import { BlogStatus } from 'types/general';
 import Checkbox from 'components/ui/checkbox';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { showAlert } from 'utils/Alert';
+import {
+  ADMIN_PERMISSION_GROUPS,
+  ADMIN_PERMISSIONS,
+  AdminPermission
+} from 'data/adminPermissions';
 
 type formDataTypes = {
+  id?: number;
   fullname: string;
   email: string;
   password: string;
   status: BlogStatus;
-  canAddProduct: boolean;
-  canEditProduct: boolean;
-  canDeleteProduct: boolean;
-  canAddCategory: boolean;
-  canDeleteCategory: boolean;
-  canEditCategory: boolean;
-  canCheckProfit: boolean;
-  canCheckRevenue: boolean;
-  canCheckVisitors: boolean;
-  canViewUsers: boolean;
-  canViewSales: boolean;
-  canVeiwAdmins: boolean;
-  canVeiwTotalproducts: boolean;
-  canVeiwTotalCategories: boolean;
-};
+} & Record<AdminPermission, boolean>;
+
+const noPermissions = Object.fromEntries(
+  ADMIN_PERMISSIONS.map((permission) => [permission, false])
+) as Record<AdminPermission, boolean>;
 
 const initialValues: formDataTypes = {
   fullname: '',
   email: '',
   password: '',
   status: 'DRAFT',
-  canAddProduct: false,
-  canEditProduct: false,
-  canDeleteProduct: false,
-  canAddCategory: false,
-  canDeleteCategory: false,
-  canEditCategory: false,
-  canCheckProfit: false,
-  canCheckRevenue: false,
-  canCheckVisitors: false,
-  canViewUsers: false,
-  canViewSales: false,
-  canVeiwAdmins: false,
-  canVeiwTotalproducts: false,
-  canVeiwTotalCategories: false
+  ...noPermissions
 };
 
 const CreateAdmin = ({
@@ -61,7 +44,7 @@ const CreateAdmin = ({
 }: any) => {
   const isUpdate = !!EditAdminValue;
   const [formData, setFormData] = useState<formDataTypes>(
-    isUpdate ? EditAdminValue : initialValues
+    isUpdate ? { ...noPermissions, ...EditAdminValue } : initialValues
   );
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>();
@@ -89,10 +72,30 @@ const CreateAdmin = ({
         });
       }
 
+      const adminId = EditAdminValue?.id ?? EditInitialValues?.id;
+      if (isUpdate && !adminId) {
+        return showAlert({
+          title: 'Could not find the admin to update. Go back and open it again.',
+          icon: 'error'
+        });
+      }
+
       setLoading(true);
-      const input = isUpdate
-        ? { id: EditInitialValues.id, ...formData }
-        : formData;
+      // Send only the mutation's fields (not e.g. __typename or role that
+      // may ride along on an admin record loaded from the API).
+      const fields = {
+        fullname: formData.fullname,
+        email: formData.email,
+        password: formData.password,
+        status: formData.status,
+        ...Object.fromEntries(
+          ADMIN_PERMISSIONS.map((permission) => [
+            permission,
+            Boolean(formData[permission])
+          ])
+        )
+      };
+      const input = isUpdate ? { id: adminId, ...fields } : fields;
       const { data } = isUpdate
         ? await updateAdmin({ variables: { input } })
         : await createAdmin({ variables: { input } });
@@ -139,23 +142,6 @@ const CreateAdmin = ({
     );
     setFormData(allFalse as formDataTypes);
   };
-
-  const checkboxData = [
-    { name: 'canAddProduct', label: 'Can Add Product' },
-    { name: 'canEditProduct', label: 'Can Edit Product' },
-    { name: 'canDeleteProduct', label: 'Can Delete Product' },
-    { name: 'canAddCategory', label: 'Can Add Category' },
-    { name: 'canDeleteCategory', label: 'Can Delete Category' },
-    { name: 'canEditCategory', label: 'Can Edit Category' },
-    { name: 'canCheckProfit', label: 'Can Check Profit' },
-    { name: 'canCheckRevenue', label: 'Can Check Revenue' },
-    { name: 'canCheckVisitors', label: 'Can Check Visitors' },
-    { name: 'canViewUsers', label: 'Can View Users' },
-    { name: 'canViewSales', label: 'Can View Sales' },
-    { name: 'canVeiwAdmins', label: 'Can View Admins' },
-    { name: 'canVeiwTotalCategories', label: 'Can View Categories' },
-    { name: 'canVeiwTotalproducts', label: 'Can View Products' }
-  ];
 
   return (
     <form
@@ -216,7 +202,9 @@ const CreateAdmin = ({
         </div>
       </div>
 
-      <div className="text-2xl font-semibold mb-4">Create New Admin</div>
+      <div className="text-2xl font-semibold mb-4">
+        {isUpdate ? 'Edit Admin' : 'Create New Admin'}
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
@@ -267,18 +255,26 @@ const CreateAdmin = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-4">
-        {checkboxData.map((checkbox) => (
-          <Checkbox
-            key={checkbox.name}
-            name={checkbox.name}
-            checked={
-              formData[checkbox.name as keyof typeof formData] as boolean
-            }
-            onChange={handleCheckboxChange}
-          >
-            {checkbox.label}
-          </Checkbox>
+      {/* Permissions, grouped by the dashboard area they unlock */}
+      <div className="space-y-6 mt-4">
+        {ADMIN_PERMISSION_GROUPS.map((group) => (
+          <div key={group.title}>
+            <p className="font-semibold text-sm uppercase text-gray-600 mb-3">
+              {group.title}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+              {group.options.map((option) => (
+                <Checkbox
+                  key={option.name}
+                  name={option.name}
+                  checked={Boolean(formData[option.name])}
+                  onChange={handleCheckboxChange}
+                >
+                  {option.label}
+                </Checkbox>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
 

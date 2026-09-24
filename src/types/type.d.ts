@@ -272,10 +272,20 @@ interface Color {
 }
 
 export interface Admin {
+  id?: number;
   fullname?: string;
   email?: string;
   password?: string;
   status?: BlogStatus;
+  role?: string;
+  canViewAccessories?: boolean;
+  canViewOrders?: boolean;
+  canViewFreeSampleOrders?: boolean;
+  canViewAbandonedOrders?: boolean;
+  canViewMeasurementAppointments?: boolean;
+  canViewInstallationAppointments?: boolean;
+  canViewBlogs?: boolean;
+  canViewRedirectUrls?: boolean;
   canAddCategory?: boolean;
   canAddProduct?: boolean;
   canCheckProfit?: boolean;

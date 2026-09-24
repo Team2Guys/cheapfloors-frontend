@@ -116,7 +116,23 @@ export const ADMIN_LOGIN = gql`
       canViewSales
       canVeiwAdmins
       canVeiwTotalproducts
-      canVeiwTotalCategories
+      canVeiwTotalCategories
+
+      canViewAccessories
+
+      canViewOrders
+
+      canViewFreeSampleOrders
+
+      canViewAbandonedOrders
+
+      canViewMeasurementAppointments
+
+      canViewInstallationAppointments
+
+      canViewBlogs
+
+      canViewRedirectUrls
       posterImageUrl
       role
       token
@@ -142,7 +158,23 @@ export const super_admin_ADMIN_LOGIN = gql`
       canViewSales
       canVeiwAdmins
       canVeiwTotalproducts
-      canVeiwTotalCategories
+      canVeiwTotalCategories
+
+      canViewAccessories
+
+      canViewOrders
+
+      canViewFreeSampleOrders
+
+      canViewAbandonedOrders
+
+      canViewMeasurementAppointments
+
+      canViewInstallationAppointments
+
+      canViewBlogs
+
+      canViewRedirectUrls
       posterImageUrl
       role
       token
@@ -216,7 +248,23 @@ export const UPDATE_ADMIN = gql`
       canViewSales
       canVeiwAdmins
       canVeiwTotalproducts
-      canVeiwTotalCategories
+      canVeiwTotalCategories
+
+      canViewAccessories
+
+      canViewOrders
+
+      canViewFreeSampleOrders
+
+      canViewAbandonedOrders
+
+      canViewMeasurementAppointments
+
+      canViewInstallationAppointments
+
+      canViewBlogs
+
+      canViewRedirectUrls
       posterImageUrl
     }
   }
@@ -243,7 +291,23 @@ export const CREATE_ADMIN = gql`
       canViewSales
       canVeiwAdmins
       canVeiwTotalproducts
-      canVeiwTotalCategories
+      canVeiwTotalCategories
+
+      canViewAccessories
+
+      canViewOrders
+
+      canViewFreeSampleOrders
+
+      canViewAbandonedOrders
+
+      canViewMeasurementAppointments
+
+      canViewInstallationAppointments
+
+      canViewBlogs
+
+      canViewRedirectUrls
       posterImageUrl
     }
   }

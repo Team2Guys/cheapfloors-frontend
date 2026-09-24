@@ -4,6 +4,7 @@ import DefaultLayout from 'components/Dashboard/DefaultLayout';
 import AllAdmin from 'components/SuperAdmin/AllAdmin/AllAdmin';
 import CreateAdmin from 'components/SuperAdmin/CreateAdmin/CreateAdmin';
 import React, { useState } from 'react';
+import { ADMIN_PERMISSIONS } from 'data/adminPermissions';
 
 import { Admin } from 'types/type';
 
@@ -13,26 +14,23 @@ const Admins = ({ admins }: { admins: Admin[] }) => {
     'AllAdmin'
   );
 
-  const EditInitialValues: Admin = {
-    fullname: editAdmin?.fullname,
-    email: editAdmin?.email,
-    password: editAdmin?.password,
-    canAddCategory: editAdmin?.canAddCategory,
-    canAddProduct: editAdmin?.canAddProduct,
-    canCheckProfit: editAdmin?.canCheckProfit,
-    canCheckRevenue: editAdmin?.canCheckRevenue,
-    canCheckVisitors: editAdmin?.canCheckVisitors,
-    canDeleteCategory: editAdmin?.canDeleteCategory,
-    canDeleteProduct: editAdmin?.canDeleteProduct,
-    canEditCategory: editAdmin?.canEditCategory,
-    canEditProduct: editAdmin?.canEditProduct,
-    canVeiwAdmins: editAdmin?.canVeiwAdmins,
-    canViewSales: editAdmin?.canViewSales,
-    canVeiwTotalCategories: editAdmin?.canVeiwTotalproducts,
-    canVeiwTotalproducts: editAdmin?.canVeiwTotalproducts,
-    canViewUsers: editAdmin?.canViewUsers,
-    status: editAdmin?.status || 'DRAFT'
-  };
+  // Only set while editing an existing admin; undefined means "create new".
+  // Carries the id so the update mutation knows which admin to change.
+  const editValues: Admin | undefined = editAdmin
+    ? {
+        id: editAdmin.id,
+        fullname: editAdmin.fullname,
+        email: editAdmin.email,
+        password: editAdmin.password,
+        status: editAdmin.status || 'DRAFT',
+        ...Object.fromEntries(
+          ADMIN_PERMISSIONS.map((permission) => [
+            permission,
+            Boolean(editAdmin[permission])
+          ])
+        )
+      }
+    : undefined;
 
   return (
     <DefaultLayout>
@@ -49,14 +47,7 @@ const Admins = ({ admins }: { admins: Admin[] }) => {
             setselecteMenu={setselecteMenu}
             EditInitialValues={editAdmin}
             setEditProduct={setEditAdmin}
-            EditAdminValue={
-              (EditInitialValues &&
-                (EditInitialValues.fullname !== undefined ||
-                  EditInitialValues.email !== undefined)) ||
-              EditInitialValues.status !== undefined
-                ? EditInitialValues
-                : undefined
-            }
+            EditAdminValue={editValues}
           />
         )}
       </div>

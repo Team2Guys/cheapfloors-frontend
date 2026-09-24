@@ -416,7 +416,23 @@ export const GET_ALL_ADMINS = gql`
       canViewSales
       canVeiwAdmins
       canVeiwTotalproducts
-      canVeiwTotalCategories
+      canVeiwTotalCategories
+
+      canViewAccessories
+
+      canViewOrders
+
+      canViewFreeSampleOrders
+
+      canViewAbandonedOrders
+
+      canViewMeasurementAppointments
+
+      canViewInstallationAppointments
+
+      canViewBlogs
+
+      canViewRedirectUrls
       posterImageUrl
       role
     }
