@@ -15,6 +15,7 @@ import Leftright from 'components/svg/leftright';
 import TwoArrow from 'components/svg/twoarrow';
 import { handleNavigate } from 'utils/helperFunctions';
 import { showAlert } from 'utils/Alert';
+import { DiscountBadge, PricePill } from './CardParts';
 const ProductContainer = dynamic(
   () => import('components/ProdutDetailContainer/ProductContainer')
 );
@@ -206,12 +207,16 @@ const Card: React.FC<productCardProps> = ({
           </div>
         )}
         {hasDiscount && discountPercentage > 0 && (
-          <div className="bg-primary text-white text-[10px] xsm:text-xs font-semibold absolute px-2 py-1 left-0 top-1 z-10">
-            {discountPercentage}% OFF
-          </div>
+          sldier ? (
+            <div className="bg-primary text-white text-[10px] xsm:text-xs font-semibold absolute px-2 py-1 left-0 top-1 z-10">
+              {discountPercentage}% OFF
+            </div>
+          ) : (
+            <DiscountBadge percentage={discountPercentage} />
+          )
         )}
         {!sldier && (
-          <div className="absolute top-2 right-2 xsm:-right-40 xsm:group-hover:right-2 z-10 flex flex-col gap-2 items-end">
+          <div className="absolute top-2 left-2 xsm:-left-40 xsm:group-hover:left-2 z-10 flex flex-col gap-2 items-start transition-all duration-300">
             <div className="relative">
               <button
                 className="bg-white p-1 xsm:p-2 shadow-sm rounded-sm hover:text-primary transition"
@@ -223,7 +228,7 @@ const Card: React.FC<productCardProps> = ({
                 <FiEye className="text-black text-base xsm:text-lg" />
               </button>
               <span
-                className={`absolute right-10 top-1 bg-gray-800 text-white text-[10px] px-2 py-1 rounded transition whitespace-nowrap z-10 pointer-events-none ${showCaption === 'Quick View' ? 'opacity-100' : 'opacity-0'}`}
+                className={`absolute left-10 top-1 bg-gray-800 text-white text-[10px] px-2 py-1 rounded transition whitespace-nowrap z-10 pointer-events-none ${showCaption === 'Quick View' ? 'opacity-100' : 'opacity-0'}`}
               >
                 Quick View
               </span>
@@ -353,7 +358,7 @@ const Card: React.FC<productCardProps> = ({
       </div>
 
       <div
-        className={`mt-auto flex items-center sm:gap-4 gap-1 pt-2 ${sldier ? 'justify-start' : 'justify-between'}`}
+        className={`mt-auto flex items-center pt-2 ${sldier ? 'sm:gap-4 gap-1 justify-start' : 'gap-1 sm:gap-2'}`}
       >
         {isOutOfStock ? (
           <button
@@ -410,6 +415,13 @@ const Card: React.FC<productCardProps> = ({
             >
               Add to cart
             </button>
+          ) : !sldier ? (
+            <PricePill
+              href={handleNavigate(product as IProduct, categoryData)}
+              label={`View product ${product.name}`}
+              price={product?.price}
+              discountPrice={hasDiscount ? discountedPrice : undefined}
+            />
           ) : (
             <Link
               href={handleNavigate(product as IProduct, categoryData)}
@@ -455,7 +467,7 @@ const Card: React.FC<productCardProps> = ({
 
         {!sldier && !isAccessories && (
           <button
-            className="w-[42px] h-[42px] md:w-[46px] md:h-[46px] flex-shrink-0 flex items-center justify-center rounded-xl text-primary hover:bg-primary hover:text-white transition bg-white"
+            className="w-8 h-8 xsm:w-10 xsm:h-10 md:w-[46px] md:h-[46px] flex-shrink-0 flex items-center justify-center rounded-xl text-primary hover:bg-primary hover:text-white transition bg-white"
             aria-label="Add free sample"
             onClick={handleAddSample}
           >
@@ -468,7 +480,7 @@ const Card: React.FC<productCardProps> = ({
 
         {!sldier && (
           <button
-            className="w-[42px] h-[42px] md:w-[46px] md:h-[46px] flex-shrink-0 flex items-center justify-center rounded-xl text-primary hover:bg-primary hover:text-white transition bg-white"
+            className="w-8 h-8 xsm:w-10 xsm:h-10 md:w-[46px] md:h-[46px] flex-shrink-0 flex items-center justify-center rounded-xl text-primary hover:bg-primary hover:text-white transition bg-white"
             aria-label="Add to wishlist"
             onClick={(e) => {
               e.preventDefault();
@@ -494,7 +506,7 @@ const Card: React.FC<productCardProps> = ({
               );
             }}
           >
-            <FiHeart size={24} />
+            <FiHeart className="size-4 xsm:size-5 md:size-6" />
           </button>
         )}
       </div>

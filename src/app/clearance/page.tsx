@@ -48,7 +48,7 @@ const Page = async () => {
   return (
     <>
       <Breadcrumb
-        image="/assets/images/clearance/banner-hero.webp"
+        image="/assets/images/clearance/mbanner2.png"
         altText="Clearance Banner"
         slug="clearance"
       />
