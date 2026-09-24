@@ -7,6 +7,7 @@ import { LiaEdit } from 'react-icons/lia';
 import Swal from 'sweetalert2';
 import { Category } from 'types/cat';
 import { useMutation } from '@apollo/client';
+import { useAdminPermissions } from 'hooks/useAdminPermissions';
 import { REMOVE_CATEGORY } from 'graphql/mutations';
 import Table from 'components/ui/table';
 import revalidateTag from 'components/ServerActons/ServerAction';
@@ -53,9 +54,10 @@ const DashboardCat = ({
         })) ||
     [];
 
-  const canDeleteCategory = true;
-  const canAddCategory = true;
-  const canEditCategory = true;
+  const { can } = useAdminPermissions();
+  const canDeleteCategory = can('canDeleteCategory');
+  const canAddCategory = can('canAddCategory');
+  const canEditCategory = can('canEditCategory');
 
   const confirmDelete = (key: string | number) => {
     Swal.fire({

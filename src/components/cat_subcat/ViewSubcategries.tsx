@@ -10,6 +10,7 @@ import Cookies from 'js-cookie';
 import { DASHBOARD_VIEW_SUBCATEGORIES_PROPS } from 'types/PagesProps';
 import { ISUBCATEGORY } from 'types/cat';
 import { useMutation } from '@apollo/client';
+import { useAdminPermissions } from 'hooks/useAdminPermissions';
 import { REMOVE_SUBCATEGORY } from 'graphql/mutations';
 import { FETCH_ALL_SUB_CATEGORIES } from 'graphql/queries';
 import Table from 'components/ui/table';
@@ -42,13 +43,11 @@ const ViewSubcategries = ({
 
   // const { loggedInUser }: any = useAppSelector((state) => state.usersSlice);
   const [removeCategory] = useMutation(REMOVE_SUBCATEGORY);
-  const canDeleteCategory = true;
-  const canAddCategory = true;
-
-  const canEditCategory = true;
-  // const canEditCategory =
-  //   loggedInUser &&
-  //   (loggedInUser.role == 'Admin' ? loggedInUser.canEditCategory : true);
+  // Sub categories share the category permissions.
+  const { can } = useAdminPermissions();
+  const canDeleteCategory = can('canDeleteCategory');
+  const canAddCategory = can('canAddCategory');
+  const canEditCategory = can('canEditCategory');
 
   const confirmDelete = (key: number) => {
     Swal.fire({
@@ -174,7 +173,7 @@ const ViewSubcategries = ({
         <LiaEdit
           className={`cursor-pointer ${canEditCategory && 'text-black dark:text-white'} ${!canEditCategory && 'cursor-not-allowed text-slate-300'}`}
           size={20}
-          onClick={() => handleEdit(record)}
+          onClick={() => canEditCategory && handleEdit(record)}
         />
       )
     },

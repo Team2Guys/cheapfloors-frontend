@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { IAccessories, IProduct } from 'types/prod';
 import { DASHBOARD_MAIN_PRODUCT_PROPS } from 'types/PagesProps';
 import { useMutation } from '@apollo/client';
+import { useAdminPermissions } from 'hooks/useAdminPermissions';
 import { REMOVE_ACCESSORY, REMOVE_PRODUCT } from 'graphql/mutations';
 import { FETCH_ALL_PRODUCTS } from 'graphql/queries';
 import { FETCH_ALL_ACCESSORIES } from 'graphql/accessorie';
@@ -30,9 +31,11 @@ const ViewProduct: React.FC<DASHBOARD_MAIN_PRODUCT_PROPS> = ({
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
-  const canAddProduct = true;
-  const canDeleteProduct = true;
-  const canEditproduct = true;
+  // Accessories are managed with the product permissions.
+  const { can } = useAdminPermissions();
+  const canAddProduct = can('canAddProduct');
+  const canDeleteProduct = can('canDeleteProduct');
+  const canEditproduct = can('canEditProduct');
   const filteredProducts: IProduct[] =
     products
       ?.filter((product: IProduct) => {
@@ -242,7 +245,7 @@ const ViewProduct: React.FC<DASHBOARD_MAIN_PRODUCT_PROPS> = ({
           }`}
           size={20}
           onClick={() => {
-            confirmDelete(record.id);
+            if (canDeleteProduct) confirmDelete(record.id);
           }}
         />
       )
