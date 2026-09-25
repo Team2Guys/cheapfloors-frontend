@@ -17,8 +17,10 @@ export const DiscountBadge = ({ percentage }: { percentage: number }) => (
 );
 
 // Yellow price pill that fills the row up to the icons: "Was" (struck
-// through) and "Now" in red on one line, wrapping to two lines only when the
-// card is too narrow (phones). Shows just the price when there is no discount.
+// through) and "Now" in red. Below xl it wraps to two lines when the card is
+// too narrow (phones/tablets); from xl up it stays on one line and the text
+// scales with the pill's own width (cqi units) so it always fits.
+// Shows just the price when there is no discount.
 export const PricePill = ({
   href,
   label,
@@ -37,15 +39,15 @@ export const PricePill = ({
     <Link
       href={href}
       aria-label={label}
-      className={`flex-1 min-w-0 bg-primary hover:bg-primary/90 transition rounded-full px-2 md:px-2.5 2xl:px-3 py-1.5 xsm:py-2 md:py-2.5 flex flex-wrap items-center justify-center gap-x-1 md:gap-x-1.5 leading-tight ${className}`}
+      className={`flex-1 min-w-0 bg-primary hover:bg-primary/90 transition rounded-full px-2 md:px-2.5 xl:px-1.5 2xl:px-3 py-1.5 xsm:py-2 md:py-2.5 flex flex-wrap xl:flex-nowrap xl:[container-type:inline-size] items-center justify-center gap-x-1 md:gap-x-1.5 xl:gap-x-1 leading-tight ${className}`}
     >
       {hasDiscount ? (
         <>
-          <span className="text-[9px] xsm:text-[11px] 2xl:text-sm text-black whitespace-nowrap">
+          <span className="text-[9px] xsm:text-[11px] xl:text-[clamp(9px,6cqi,14px)] text-black whitespace-nowrap">
             Was: <Currency />
             <span className="line-through">{price}/m²</span>
           </span>
-          <span className="text-[10px] xsm:text-[13px] 2xl:text-base font-semibold text-red-600 whitespace-nowrap">
+          <span className="text-[10px] xsm:text-[13px] xl:text-[clamp(10px,7cqi,16px)] font-semibold text-red-600 whitespace-nowrap">
             Now: <Currency />
             {discountPrice}/m²
           </span>
