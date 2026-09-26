@@ -1,7 +1,8 @@
 'use client';
 import { footerData, staticMenuItems } from 'data/data';
 import Image from 'next/image';
-import { FaMapMarkerAlt, FaRegEnvelope, FaWhatsapp } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaRegEnvelope } from 'react-icons/fa';
+import WhatsAppChat from './WhatsAppChat';
 import Container from 'components/common/container/Container';
 import Link from 'next/link';
 import { IoCall } from 'react-icons/io5';
@@ -241,14 +242,7 @@ const Footer = () => {
             <IoCall size={35} />
           </Link>
 
-          <Link
-            href={`https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER?.replace('+', '').replace(/\s+/g, '')}`}
-            aria-label="WhatsApp +971505974385"
-            target="_blank"
-            className="bg-[#25D366] text-white rounded-full shadow-lg flex_center w-12 h-12"
-          >
-            <FaWhatsapp size={35} />
-          </Link>
+          <WhatsAppChat />
         </div>
       </Container>
       <div className="xs:border-t xs:border-gray-300 mt-6 py-4 bg-primary">

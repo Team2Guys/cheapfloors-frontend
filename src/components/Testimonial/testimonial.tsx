@@ -180,7 +180,7 @@ const Testimonial: React.FC<TestimonialProps> = ({ backgroundImage }) => {
 
                 <div className="relative z-10 py-8 px-2 md:px-0">
                     <div className="flex justify-start items-center mb-6 md:mb-8 px-2 md:px-0">
-                        <h2 className="text-[22px] sm:text-3xl md:text-4xl lg:text-[40px] font-bold text-white md:text-[#333] tracking-tight font-inter">
+                        <h2 className="text-[22px] sm:text-3xl md:text-4xl font-bold text-white md:text-[#333] tracking-tight font-inter">
                             What Our Clients Say
                         </h2>
                     </div>

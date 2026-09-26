@@ -129,7 +129,7 @@ export const pageMetadataData = {
   how_to_measure_your_room: {
     title: 'Flooring Calculator Guide | How to Measure at Cheap Floors UAE',
     description:
-      'Measure your room the right way! Use our step-by-step guide to calculate flooring quantity accurately and avoid waste. Expert help is available across the UAE.',
+      'Measure your room the right way! Use our step-by-step guide to calculate flooring quantity accurately and avoid waste. Supply only, delivered fast across the UAE.',
     url: `${BASE_URL}/how-to-measure-your-room`,
     image: {
       src: `${BASE_URL}${logo.src}`,

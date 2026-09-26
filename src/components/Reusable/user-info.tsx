@@ -9,7 +9,7 @@ const UserInfo = () => {
       <div className="my-10 lg:my-16 flex flex-col md:flex-row items-center gap-8 max-md:flex-col-reverse font-inter">
         <div className="flex-1 flex justify-center w-full">
           <div className="flex flex-col items-center space-y-6 max-w-[95%] md:max-w-[85%] 2xl:max-w-[75%] mx-auto">
-            <h2 className="text-3xl md:text-4xl 2xl:text-[45px] font-bold uppercase leading-tight text-center">
+            <h2 className="text-3xl md:text-4xl 2xl:text-[56px] font-bold uppercase leading-tight text-center">
               <span className="text-primary block mb-2">SMART SAVINGS</span>
               <span className="text-black flex items-center justify-center gap-3">
                 <svg width="35" height="10" viewBox="0 0 40 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -18,7 +18,7 @@ const UserInfo = () => {
                 ON FLOORING
               </span>
             </h2>
-            <p className="text-sm lg:text-base 2xl:text-[18px] font-normal text-justify text-black leading-relaxed">
+            <p className="text-base lg:text-xl font-normal text-justify text-black leading-relaxed">
               Save smart on flooring in the UAE with durable, low-maintenance options like SPC and vinyl, perfect for heat, humidity, and high traffic. Enjoy water-resistant, long-lasting floors with easy installation and great value. Premium quality, made affordable with CheapFloors.
             </p>
             <Link href="/collections">
@@ -53,9 +53,9 @@ const UserInfo = () => {
           />
         </div>
         <div className="flex-1 flex justify-center w-full">
-          <div className="flex flex-col items-center space-y-8 max-w-[95%] md:max-w-[85%] 2xl:max-w-[75%] mx-auto">
+          <div className="flex flex-col items-center space-y-8">
             <div className="flex flex-col items-center">
-              <h2 className="text-3xl md:text-4xl 2xl:text-[45px] font-bold uppercase leading-tight text-center">
+              <h2 className="text-3xl md:text-4xl 2xl:text-[56px] font-bold uppercase leading-tight text-center">
                 <span className="text-primary block mb-2">EFFORTLESS</span>
                 <span className="text-black flex items-center justify-center gap-3">
                   <svg width="35" height="10" viewBox="0 0 40 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,7 +76,7 @@ const UserInfo = () => {
               </div>
             </div>
 
-            <ul className="space-y-4 w-full max-w-[420px]">
+            <ul className="space-y-4 w-full max-w-[520px]">
               {[
                 "Click-lock system for fast, easy installation",
                 "No glue or mess—clean, simple setup process",
@@ -88,7 +88,7 @@ const UserInfo = () => {
                       <path d="M2 5L4.5 7.5L10 2" stroke="#FEB907" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <span className="text-sm lg:text-base 2xl:text-[18px] text-black font-normal leading-tight">{text}</span>
+                  <span className="text-base lg:text-xl 2xl:text-[22px] text-black font-normal leading-tight">{text}</span>
                 </li>
               ))}
             </ul>
