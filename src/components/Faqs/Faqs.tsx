@@ -18,7 +18,7 @@ const Faqs: React.FC<FaqsProps> = ({ data, className }) => {
 
   return (
     <Container className={`bg-white py-10 md:mt-10 ${className || ''}`}>
-      <h2 className="text-3xl md:text-[40px] font-bold font-inter text-black text-center md:mb-12 mb-8 uppercase">
+      <h2 className="text-3xl md:text-4xl font-bold font-inter text-black text-center md:mb-12 mb-8 uppercase">
         FAQ'S
       </h2>
 
@@ -42,7 +42,7 @@ const Faqs: React.FC<FaqsProps> = ({ data, className }) => {
             </button>
             {openIndex === index && (
               <div
-                className="p-4 md:px-6 md:py-5 bg-[#F0F0F0] text-gray-800 font-normal text-sm md:text-[15px] leading-relaxed"
+                className="p-4 md:px-6 md:py-5 bg-[#F0F0F0] text-gray-800 font-normal text-sm md:text-base leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: faq.answer }}
               />
             )}
