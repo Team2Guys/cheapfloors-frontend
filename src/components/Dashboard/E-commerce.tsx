@@ -21,6 +21,7 @@ import { BsBoxes } from 'react-icons/bs';
 import { SiReactrouter } from 'react-icons/si';
 import { FaInstalod } from 'react-icons/fa';
 import { useAdminAuthInit } from 'hooks/useAuthInitializer';
+import { hasAdminPermission } from 'data/adminPermissions';
 
 const ECommerce = ({
   records,
@@ -51,27 +52,19 @@ const ECommerce = ({
   const { loggedInUser } = useAppSelector((state) => state.usersSlice);
   useAdminAuthInit();
 
-  const canCheckProfit =
-    loggedInUser &&
-    (loggedInUser.role == 'Admin' ? loggedInUser.canCheckProfit : true);
-  const CanCheckRevnue =
-    loggedInUser &&
-    (loggedInUser.role == 'Admin' ? loggedInUser.canCheckRevenue : true);
-  const canViewUsers =
-    loggedInUser &&
-    (loggedInUser.role == 'Admin' ? loggedInUser.canViewUsers : true);
-  const canViewSales =
-    loggedInUser &&
-    (loggedInUser.role == 'Admin' ? loggedInUser.canViewSales : true);
-  const canVeiwAdmins =
-    loggedInUser &&
-    (loggedInUser.role == 'Admin' ? loggedInUser.canVeiwAdmins : true);
-  const canVeiwTotalproducts =
-    loggedInUser &&
-    (loggedInUser.role == 'Admin' ? loggedInUser.canVeiwTotalproducts : true);
-  const canVeiwTotalCategories =
-    loggedInUser &&
-    (loggedInUser.role == 'Admin' ? loggedInUser.canVeiwTotalCategories : true);
+  const canCheckProfit = hasAdminPermission(loggedInUser, 'canCheckProfit');
+  const CanCheckRevnue = hasAdminPermission(loggedInUser, 'canCheckRevenue');
+  const canViewUsers = hasAdminPermission(loggedInUser, 'canViewUsers');
+  const canViewSales = hasAdminPermission(loggedInUser, 'canViewSales');
+  const canVeiwAdmins = hasAdminPermission(loggedInUser, 'canVeiwAdmins');
+  const canVeiwTotalproducts = hasAdminPermission(
+    loggedInUser,
+    'canVeiwTotalproducts'
+  );
+  const canVeiwTotalCategories = hasAdminPermission(
+    loggedInUser,
+    'canVeiwTotalCategories'
+  );
 
   return (
     <>

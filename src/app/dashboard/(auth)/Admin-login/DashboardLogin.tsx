@@ -61,11 +61,9 @@ const DashboardLogin = () => {
           expires: 1
         }
       );
-      Cookies.set(
-        'admin_data',
-        JSON.stringify({ ...response.data[Admin_type], role: adminType }),
-        { expires: 1 }
-      );
+      // No admin_data cookie: after a refresh useAdminAuthInit asks the backend
+      // for the profile, since a browser-written cookie can be edited to claim
+      // any role or grant.
       setFormData(intialvalue);
       showAlert({
         title: 'You have sucessfully login',

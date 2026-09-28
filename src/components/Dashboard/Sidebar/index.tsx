@@ -12,6 +12,11 @@ import {
 import { BiCategoryAlt } from 'react-icons/bi';
 import { GrCodeSandbox, GrUserAdmin } from 'react-icons/gr';
 import { useAppSelector } from 'components/Others/HelperRedux';
+import {
+  AdminPermission,
+  hasAdminPermission,
+  isSuperAdmin
+} from 'data/adminPermissions';
 import { TfiShoppingCartFull } from 'react-icons/tfi';
 import { TbGardenCartOff } from 'react-icons/tb';
 import { SiGotomeeting } from 'react-icons/si';
@@ -24,10 +29,10 @@ interface SidebarProps {
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const { loggedInUser } = useAppSelector((state) => state.usersSlice);
-  const superAdmin = loggedInUser && loggedInUser.role !== 'Admin';
+  const superAdmin = isSuperAdmin(loggedInUser);
   // Regular admins only see the pages they were granted; super admins see all.
-  const can = (permission: string) =>
-    superAdmin || Boolean(loggedInUser?.[permission]);
+  const can = (permission: AdminPermission) =>
+    hasAdminPermission(loggedInUser, permission);
   const showCategories = can('canVeiwTotalCategories');
   const showProducts = can('canVeiwTotalproducts');
   const showAccessories = can('canViewAccessories');

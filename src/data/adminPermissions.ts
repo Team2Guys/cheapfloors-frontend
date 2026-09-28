@@ -125,3 +125,43 @@ export const getRequiredPermission = (
   );
   return match ? DASHBOARD_PAGE_PERMISSIONS[match] : undefined;
 };
+
+// Pages no granted permission can open.
+const SUPER_ADMIN_PAGES = ['/dashboard/super-admin'];
+
+/** The role the backend issues to the super admin (superAdminLogin / admin query). */
+export const SUPER_ADMIN_ROLE = 'super_admin';
+
+type AdminProfile = { role?: string | null } & Partial<
+  Record<AdminPermission, boolean | null>
+>;
+
+/**
+ * An exact match: a profile with a missing or unexpected role is treated as
+ * an ordinary admin, checked grant by grant, rather than as all-powerful.
+ */
+export const isSuperAdmin = (user?: AdminProfile | null): boolean =>
+  !!user && user.role === SUPER_ADMIN_ROLE;
+
+export const hasAdminPermission = (
+  user: AdminProfile | null | undefined,
+  permission: AdminPermission
+): boolean => isSuperAdmin(user) || user?.[permission] === true;
+
+/** Whether this admin may open the dashboard page at `pathname`. */
+export const canOpenDashboardPage = (
+  user: AdminProfile | null | undefined,
+  pathname: string
+): boolean => {
+  const path = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname;
+  if (isSuperAdmin(user)) return true;
+  if (
+    SUPER_ADMIN_PAGES.some(
+      (page) => path === page || path.startsWith(`${page}/`)
+    )
+  ) {
+    return false;
+  }
+  const required = getRequiredPermission(path);
+  return !required || hasAdminPermission(user, required);
+};

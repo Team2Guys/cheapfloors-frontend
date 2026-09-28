@@ -395,6 +395,56 @@ export const GET_ORDER_HISTORY = gql`
   }
 `;
 
+// The signed-in admin, resolved by the backend from the verified token — the
+// trustworthy source for role and grants (unlike anything stored in a cookie).
+export const GET_CURRENT_ADMIN = gql`
+  query CurrentAdmin {
+    admin {
+      id
+      fullname
+      email
+      canAddProduct
+      canEditProduct
+      canDeleteProduct
+      canAddCategory
+      canDeleteCategory
+      canEditCategory
+      canCheckProfit
+      canCheckRevenue
+      canCheckVisitors
+      canViewUsers
+      canViewSales
+      canVeiwAdmins
+      canVeiwTotalproducts
+      canVeiwTotalCategories
+      canViewAccessories
+      canViewOrders
+      canViewFreeSampleOrders
+      canViewAbandonedOrders
+      canViewMeasurementAppointments
+      canViewInstallationAppointments
+      canViewBlogs
+      canViewRedirectUrls
+      posterImageUrl
+      role
+    }
+  }
+`;
+
+// Fallback for the super admin: the backend's super-admin profile omits the
+// newer grant fields, which the non-null Admin type then rejects. Its role
+// alone grants everything, so this is all the proxy needs for that account.
+export const GET_CURRENT_ADMIN_IDENTITY = gql`
+  query CurrentAdminIdentity {
+    admin {
+      id
+      fullname
+      email
+      role
+    }
+  }
+`;
+
 export const GET_ALL_ADMINS = gql`
   query Admins {
     admins {

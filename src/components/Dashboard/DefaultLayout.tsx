@@ -7,7 +7,7 @@ import Header from 'components/Dashboard/Header';
 import { useSessionExpiry } from 'hooks/useSessionExpiry';
 import { useAdminAuthInit } from 'hooks/useAuthInitializer';
 import { useAppSelector } from 'components/Others/HelperRedux';
-import { getRequiredPermission } from 'data/adminPermissions';
+import { canOpenDashboardPage } from 'data/adminPermissions';
 
 export default function DefaultLayout({
   children
@@ -21,15 +21,12 @@ export default function DefaultLayout({
   const pathname = usePathname();
   const { loggedInUser } = useAppSelector((state) => state.usersSlice);
 
-  // Regular admins may only open the pages they were granted; super admins
-  // (any other role) see everything. Nothing is blocked until the session has
-  // loaded, so the page doesn't flash a denial while restoring the login.
-  const requiredPermission = getRequiredPermission(pathname);
+  // Regular admins may only open the pages they were granted; the super admin
+  // sees everything. The proxy already enforces this on the server; this keeps
+  // client-side navigation consistent. Nothing is blocked until the session
+  // has loaded, so the page doesn't flash a denial while restoring the login.
   const accessDenied =
-    !!loggedInUser &&
-    loggedInUser.role === 'Admin' &&
-    !!requiredPermission &&
-    !loggedInUser[requiredPermission];
+    !!loggedInUser && !canOpenDashboardPage(loggedInUser, pathname);
 
   return (
     <div className="flex h-screen overflow-hidden relative bg-white dark:bg-black">

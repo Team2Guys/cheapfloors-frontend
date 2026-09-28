@@ -1,9 +1,16 @@
-import { fetchCategories, get_allAdmins } from 'config/fetch';
+import { fetchCategories, fetchCurrentAdmin } from 'config/fetch';
 import { findOneRedirectUrl } from 'config/general';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { Category } from './types/cat';
 import { validStaticPaths } from './data/paths';
+import { canOpenDashboardPage } from './data/adminPermissions';
+
+const LOGIN_PAGE = '/dashboard/Admin-login';
+
+const isDashboardPage = (pathname: string) =>
+  pathname.startsWith('/dashboard') &&
+  pathname.replace(/\/+$/, '') !== LOGIN_PAGE;
 
 // Old domain -> new domain, path-to-path. Exact host match only, so
 // cheapfloors.ae (and previews) can never re-enter this branch — no loop.
@@ -31,9 +38,11 @@ export async function proxy(req: NextRequest) {
     const pathname = req.nextUrl.pathname;
     const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
 
+    // A failed lookup means "no redirect". Letting it throw landed in the outer
+    // catch, which used to skip the dashboard checks below entirely.
     const redirectUrls = await findOneRedirectUrl(
       pathname.replace(/^\/+|\/+$/g, '')
-    );
+    ).catch(() => null);
     if (redirectUrls && redirectUrls.status === 'PUBLISHED') {
       return NextResponse.redirect(
         new URL(`/${redirectUrls?.redirectedUrl}`, req.url),
@@ -59,33 +68,39 @@ export async function proxy(req: NextRequest) {
       }
     }
 
-    const isAuthRoute = pathname === '/dashboard/Admin-login';
-    const isProtectedRoute = pathname.startsWith('/dashboard') && !isAuthRoute;
+    const isAuthRoute = pathname.replace(/\/+$/, '') === LOGIN_PAGE;
+    const isProtectedRoute = isDashboardPage(pathname);
 
 
-    let validToken = false;
-    if (token) {
-      try {
-        const adminList = await get_allAdmins(token);
-        if (adminList && adminList.length > 0) {
-          validToken = true;
-        }
-      } catch {
-        validToken = false;
-      }
-    }
+    // The backend resolves the admin from the verified token, so this both
+    // proves the session and yields the real role and grants — the admin_data
+    // cookie is written by the browser and can say anything. (This used to
+    // fetch every admin, passwords included, on each dashboard request.)
+    const admin = token ? await fetchCurrentAdmin(token) : null;
+    const validToken = !!admin;
 
     if (validToken && isAuthRoute) {
       return NextResponse.redirect(new URL('/dashboard', req.url));
     }
 
     if (!validToken && isProtectedRoute) {
-      return NextResponse.redirect(new URL('/dashboard/Admin-login', req.url));
+      return NextResponse.redirect(new URL(LOGIN_PAGE, req.url));
+    }
+
+    // Pages load their data on the server, so this has to be decided before
+    // they render — the sidebar hiding a link does not stop a typed URL.
+    if (isProtectedRoute && !canOpenDashboardPage(admin, pathname)) {
+      return NextResponse.redirect(new URL('/dashboard', req.url));
     }
 
     return NextResponse.next();
   } catch (error) {
     console.error('Proxy error:', error);
+    // Fail closed: an unexpected error must not wave a request into the
+    // dashboard without its session and permission checks.
+    if (isDashboardPage(req.nextUrl.pathname)) {
+      return NextResponse.redirect(new URL(LOGIN_PAGE, req.url));
+    }
     return NextResponse.next();
   }
 }

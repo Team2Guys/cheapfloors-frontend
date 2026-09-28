@@ -9,6 +9,8 @@ import {
   FIND_ONE_PRODUCT,
   FIND_ONE_SUB_CATEGORY,
   GET_ALL_ADMINS,
+  GET_CURRENT_ADMIN,
+  GET_CURRENT_ADMIN_IDENTITY,
   GET_ALL_RECORDS,
   GET_ORDER_HISTORY
 } from 'graphql/queries';
@@ -169,6 +171,32 @@ export const get_all_records = async (token: string) => {
     return [];
     throw error;
   }
+};
+
+/**
+ * The admin the token belongs to, or null when the token is missing or
+ * rejected. Falls back to identity fields only when the full profile fails
+ * (the super admin's case): a regular admin then simply has no grants.
+ */
+export const fetchCurrentAdmin = async (token: string | undefined) => {
+  if (!token) return null;
+
+  const context = { headers: { Authorization: `Bearer ${token}` } };
+
+  for (const query of [GET_CURRENT_ADMIN, GET_CURRENT_ADMIN_IDENTITY]) {
+    try {
+      const { data } = await client.query({
+        query,
+        fetchPolicy: 'no-cache',
+        context
+      });
+      if (data?.admin) return data.admin;
+    } catch {
+      // try the next, narrower query
+    }
+  }
+
+  return null;
 };
 
 export const get_allAdmins = async (token: string | undefined) => {
