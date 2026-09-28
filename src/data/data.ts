@@ -558,7 +558,7 @@ export const policySections = [
     title: 'What Should I Do If I Receive A Defective Item?',
     content: [
       'If we send you a faulty set, please adhere to the above instructions. You need to enter in the subject line of the email “Defective – Order Number”. We shall respond to your request promptly and offer a substitute for the order.',
-      'We understand that if there is an issue with the installation of an item, it will remain unused. For this, you can write to us at <a href="mailto:cs@cheapfloors.ae" class="font-normal text-primary" target="_blank">cs@cheapfloors.ae</a> and we will arrange for one of our skilled representatives to visit the site.'
+      'If you notice a problem with an item, please do not fit it. Email <a href="mailto:cs@cheapfloors.ae" class="font-normal text-primary" target="_blank">cs@cheapfloors.ae</a> with your order number and clear photos or a short video of the issue, and our team will review it and arrange a replacement or refund in line with this policy.'
     ]
   },
   {
@@ -604,7 +604,7 @@ export const faqs: FAQItem[] = [
   {
     id: 3,
     question: 'Do you provide flooring installation services in Dubai?',
-    answer: 'We are a supply only service but if you require installation services, we’d be happy to help arrange that for you as well.'
+    answer: "No. We only supply the flooring and do not offer installation or site visits. If you need installation or a site visit, please contact us on +971 50 597 4385, and we can recommend a suitable company that provides these services. Our click-lock SPC and LVT planks are also easy for a confident DIYer to fit. Use our How to Measure guide to work out your quantity, and we'll deliver your order anywhere in the UAE."
   },
   {
     id: 4,
@@ -831,9 +831,9 @@ export const faqspage: FAQ[] = [
 
   {
     question:
-      ' Do you offer a professional measuring service?',
+      'Do you offer a professional measuring service?',
     answer:
-      'Yes, we offer a professional measuring service for a refundable fee of AED 150. This amount is deducted when you place an order with us, ensuring accurate measurements and helping you choose the right flooring quantity for your space.',
+      "We only supply the flooring, so we don't offer measuring appointments or site visits. Measuring is simple: follow our How to Measure guide and add 5–10% for cutting and waste. If you need a site visit, please contact us on +971 50 597 4385, and we can recommend a suitable company that provides this service.",
     category: 'Measuring'
   },
 
@@ -867,13 +867,13 @@ export const faqspage: FAQ[] = [
   {
     question: 'Can you put SPC flooring on concrete?',
     answer:
-      "We often receive this question from our customers. The answer is definitely yes. Stone polymer composite (SPC) looks great on concrete subfloors. Creating a solid foundation, it reduces the possibility of warping or buckling over time. So we have to use a completely flat surface for installation.",
+      "We often receive this question from our customers. The answer is definitely yes. Stone polymer composite (SPC) looks great on concrete subfloors. Creating a solid foundation, it reduces the possibility of warping or buckling over time. Just make sure the concrete is completely flat, clean and dry before the flooring is fitted.",
     category: 'Service'
   },
   {
     question: 'Can I install SPC flooring myself?',
     answer:
-      "Yes. SPC flooring is an excellent option for do-it-yourself installation because of its simple 4-side click-lock mechanism. Before beginning, just make sure your subfloor is dry, clean, and level. With basic equipment like a rubber mallet, tape measure, and utility knife, the planks may be easily snapped together without the need for glue or nails. However, if you have any concerns or want a flawless finish, it's always a good idea to contact an expert.",
+      "Yes. SPC flooring is an excellent option for do-it-yourself installation because of its simple 4-side click-lock mechanism. Before beginning, just make sure your subfloor is dry, clean, and level. With basic equipment like a rubber mallet, tape measure, and utility knife, the planks may be easily snapped together without the need for glue or nails. Cheap Floors supplies the flooring only — you can fit it yourself or use any experienced flooring installer of your choice.",
     category: 'Service'
   },
   {
@@ -980,8 +980,7 @@ export const measurementData: MeasurementSection[] = [
   },
   {
     title: 'General Guidelines for Measuring Your Room',
-    description: `When calculating the width and length of a rectangular or square area, add 5-10% for waste and cutting errors. If you are planning to construct staircases, mantels, or closets in your room, allocate over 10% of your budget to them. 
-      If you would like professional assistance, we can arrange a measuring service for you with a refundable charge of <span class='font-currency font-normal text-18 text-black'></span> 150 (refunded if you place an order with us). If you wish to measure the area yourself, you will only need a measuring tape, a pencil, and paper. Make sure you measure in metres if you will be buying flooring materials that are usually marketed in metres.`,
+    description: `When calculating the width and length of a rectangular or square area, add 5-10% for waste and cutting errors. If you are planning to construct staircases, mantels, or closets in your room, allocate over 10% of your budget to them. If you wish to measure the area yourself, you will only need a measuring tape, a pencil, and paper. Make sure you measure in metres if you will be buying flooring materials that are usually marketed in metres.`,
     steps: [],
     image: ''
   },

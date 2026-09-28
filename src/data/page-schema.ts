@@ -234,7 +234,7 @@ export const pageSchemas: Record<string, PageSchema> = {
         "name": "Do you offer a professional measuring service?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, we offer a professional measuring service for a refundable fee of AED 150. This amount is deducted when you place an order with us, ensuring accurate measurements and helping you choose the right flooring quantity for your space."
+          "text": "We only supply the flooring, so we don't offer measuring appointments or site visits. Measuring is simple: follow our How to Measure guide and add 5–10% for cutting and waste. If you need a site visit, please contact us on +971 50 597 4385, and we can recommend a suitable company that provides this service."
         }
       },
       {
@@ -274,7 +274,7 @@ export const pageSchemas: Record<string, PageSchema> = {
         "name": "Can you put SPC flooring on concrete?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We often receive this question from our customers. The answer is definitely yes. Stone polymer composite (SPC) looks great on concrete subfloors. Creating a solid foundation, it reduces the possibility of warping or buckling over time. So we have to use a completely flat surface for installation."
+          "text": "We often receive this question from our customers. The answer is definitely yes. Stone polymer composite (SPC) looks great on concrete subfloors. Creating a solid foundation, it reduces the possibility of warping or buckling over time. Just make sure the concrete is completely flat, clean and dry before the flooring is fitted."
         }
       },
       {
@@ -282,7 +282,7 @@ export const pageSchemas: Record<string, PageSchema> = {
         "name": "Can I install SPC flooring myself?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. SPC flooring is an excellent option for do-it-yourself installation because of its simple 4-side click-lock mechanism. Before beginning, just make sure your subfloor is dry, clean, and level. With basic equipment like a rubber mallet, tape measure, and utility knife, the planks may be easily snapped together without the need for glue or nails. However, if you have any concerns or want a flawless finish, it's always a good idea to contact an expert."
+          "text": "Yes. SPC flooring is an excellent option for do-it-yourself installation because of its simple 4-side click-lock mechanism. Before beginning, just make sure your subfloor is dry, clean, and level. With basic equipment like a rubber mallet, tape measure, and utility knife, the planks may be easily snapped together without the need for glue or nails. Cheap Floors supplies the flooring only — you can fit it yourself or use any experienced flooring installer of your choice."
         }
       },
       {

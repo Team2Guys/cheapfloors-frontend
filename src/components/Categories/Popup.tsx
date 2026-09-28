@@ -38,13 +38,14 @@ function Popup() {
   return (
     <>
       <h2
-        className="relative text-center md:text-5xl text-2xl md:max-w-3xl w-full h-[70px] md:h-[140px] font-bold text-primary py-7 mx-auto bg-cover bg-center md:mb-4 lg:mb-6"
+        className="relative text-center md:text-5xl text-2xl md:max-w-3xl w-full h-[70px] md:h-[140px] font-bold text-primary py-7 mx-auto bg-cover bg-center md:mb-4 lg:mb-6 cursor-pointer"
         style={{
           backgroundImage: `url(${categoryData.backgroundImage})`,
           backgroundSize: '100%',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center'
         }}
+        onClick={handleOpenModal}
       >
         {/* <div className="flex_center gap-3">
           {categoryData.title}{' '}

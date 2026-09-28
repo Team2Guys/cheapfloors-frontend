@@ -70,11 +70,11 @@ const JobsDone = () => {
             <Container>
                 {/* Header Section */}
                 <div className="flex flex-col items-center justify-center mb-6 md:mb-8">
-                    <h2 className="text-3xl md:text-[40px] font-bold text-black mb-4 font-inter text-center">
+                    <h2 className="text-3xl md:text-4xl font-bold text-black mb-4 font-inter text-center">
                         Jobs Done
                     </h2>
                     <p className="text-sm md:text-base text-black text-center font-brandon leading-relaxed px-2">
-                        Cheap Floors has completed flooring projects across Dubai and the UAE, including Dubai Marina, Downtown, Palm Jumeirah, JVC, Abu Dhabi, and Sharjah. We deliver premium flooring solutions with expert installation for homes, offices, and commercial spaces.
+                        Cheap Floors has supplied flooring for homes, offices and commercial projects across Dubai and the UAE, including Dubai Marina, Downtown, Palm Jumeirah, JVC, Abu Dhabi and Sharjah — delivered direct from our warehouse, ready for you or your chosen installer to fit.
                     </p>
                 </div>
 
