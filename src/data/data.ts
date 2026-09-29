@@ -271,6 +271,8 @@ export const heroItems: HeroItem[] = [
   }
 ];
 
+export const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER?.replace('+', '').replace(/\s+/g, '')}`;
+
 export const featureItems = [
   {
     title: 'Free Samples',
@@ -301,6 +303,15 @@ export const featureItems = [
     description:
       'No middlemen, just high-quality flooring at factory-direct prices. Cheap Floors is among the most trusted flooring companies in the UAE, offering the best value without compromise.',
     icon: '/assets/images/Home/factory-icon.png'
+  },
+  {
+    title: 'Supply Only',
+    description:
+      'We only supply the flooring, with no installation or site visits. Need either?',
+    icon: '/assets/images/Home/box-icon.png',
+    buttonText: 'Learn more',
+    buttonLink: whatsappLink,
+    showContact: true
   }
 ];
 
