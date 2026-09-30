@@ -9,10 +9,10 @@ const PHONE = (process.env.NEXT_PUBLIC_PHONE_NUMBER ?? '').replace(/[^\d]/g, '')
 // Quick questions shown in the chat popup. Clicking one opens WhatsApp with
 // the text already typed in, so the customer only has to press send.
 const QUICK_QUESTIONS = [
-  'Hi, I need help choosing the right flooring for my space.',
-  'Hi, can I get a price quote for my room?',
-  'Hi, how can I order free samples?',
-  'Hi, do you offer installation and delivery in my area?'
+  'I need help with pricing',
+  'I need help checking stock',
+  'I need help with delivery times',
+  "I don't know how to measure and fit. I need help"
 ];
 
 const whatsappLink = (text?: string) =>
@@ -84,8 +84,11 @@ const WhatsAppChat = () => {
         {/* Body */}
         <div className="bg-[#ECE5DD] px-3 py-4 max-h-[60vh] overflow-y-auto">
           <div className="max-w-[85%] bg-white rounded-lg rounded-tl-none px-3 py-2 shadow-sm text-sm text-gray-800">
-            <p>Hi there 👋</p>
-            <p className="mt-1">How can we help you? Pick a question below.</p>
+            <p>Hi there 👋. Thank you for your message.</p>
+            <p className="mt-1">
+              In order to connect you to the right person, please select the nature of your
+              enquiry from the options below:
+            </p>
           </div>
 
           <div className="mt-4 flex flex-col items-end gap-2">

@@ -7,7 +7,7 @@ import Link from 'next/link';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Container from 'components/common/container/Container';
-import { featureItems } from 'data/data';
+import { featureItems, whatsappLink } from 'data/data';
 
 const Features = () => {
   const swiperRef = useRef<import('swiper/react').SwiperRef>(null);
@@ -34,7 +34,7 @@ const Features = () => {
           el: '.features-pagination',
         }}
         breakpoints={{
-          1280: { slidesPerView: 4, spaceBetween: 24 },
+          1280: { slidesPerView: 5, spaceBetween: 16 },
           1024: { slidesPerView: 3, spaceBetween: 24 },
           768: { slidesPerView: 2.5, spaceBetween: 20 },
           640: { slidesPerView: 2, spaceBetween: 16 },
@@ -43,7 +43,10 @@ const Features = () => {
         className="w-full features-swiper"
       >
         {featureItems.map((item, index) => {
-          const iconWrapperClass = `mb-4 flex justify-center items-center size-16 rounded-full ${index % 2 !== 0 ? 'bg-white' : 'bg-primary'}`;
+          const linkTarget = item.buttonLink?.startsWith('http')
+            ? { target: '_blank', rel: 'noopener noreferrer' }
+            : {};
+          const iconWrapperClass =`mb-4 flex justify-center items-center size-16 rounded-full ${index % 2 !== 0 ? 'bg-white' : 'bg-primary'}`;
           const iconImage = (
             <Image
               src={item.icon}
@@ -57,13 +60,13 @@ const Features = () => {
           return (
             <SwiperSlide key={index} className="!h-auto !flex pb-2">
               <div
-                className={`flex flex-col items-center text-center p-4 sm:px-8 py-4 h-full rounded-xl w-full drop-shadow-md ${index % 2 !== 0
+                className={`flex flex-col items-center text-center px-3 sm:px-4 xl:px-3 2xl:px-4 py-4 h-full rounded-xl w-full drop-shadow-md ${index % 2 !== 0
                   ? 'bg-primary'
                   : 'bg-[#FBFBFB] border border-gray-100'
                   }`}
               >
                 {item.buttonLink ? (
-                  <Link href={item.buttonLink} className={iconWrapperClass} aria-label={item.title}>
+                  <Link href={item.buttonLink} className={iconWrapperClass} aria-label={item.title} {...linkTarget}>
                     {iconImage}
                   </Link>
                 ) : (
@@ -74,10 +77,31 @@ const Features = () => {
                 </h3>
                 <p className="text-sm lg:text-base font-normal text-black leading-snug">
                   {item.description}{' '}
-                  {index < 3 && item.buttonLink && item.buttonText && (
+                  {item.showContact && (
+                    <>
+                      <Link
+                        className="font-semibold text-black hover:underline"
+                        href={whatsappLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        WhatsApp us
+                      </Link>{' '}
+                      or call us on{' '}
+                      <Link
+                        className="font-semibold text-black hover:underline whitespace-nowrap"
+                        href="tel:+971505974385"
+                      >
+                        +971 50 597 4385
+                      </Link>
+                      , and{' '}
+                    </>
+                  )}
+                  {item.buttonLink && item.buttonText && (
                     <Link
                       className="font-semibold text-black hover:underline whitespace-nowrap"
                       href={item.buttonLink}
+                      {...linkTarget}
                     >
                       {item.buttonText}...
                     </Link>

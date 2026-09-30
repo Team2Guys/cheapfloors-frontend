@@ -44,6 +44,7 @@ export interface FeatureItem {
   icon: string;
   buttonLink?: string;
   buttonText?: string;
+  showContact?: boolean;
 }
 
 export interface FeaturesProps {
