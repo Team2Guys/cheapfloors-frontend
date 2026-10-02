@@ -197,7 +197,7 @@ export default function Appointment({
               </div>
 
               <div className="pb-2">
-                <label className="text-13 font-medium">
+                <label className="text-14 font-medium">
                   How shall we contact you?
                 </label>
                 <div className="flex gap-4 items-center pt-2">
@@ -220,7 +220,7 @@ export default function Appointment({
               </div>
 
               <div className="space-y-2">
-                <label className="text-13 font-medium">
+                <label className="text-14 font-medium">
                   What is your query regarding?
                 </label>
                 <Field

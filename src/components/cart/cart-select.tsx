@@ -57,7 +57,7 @@ const CartSelect = ({
         {/* Added relative positioning here */}
         <div className="w-full font-inter" ref={dropdownRef}>
           <div
-            className="border bg-white 2xl:px-5 2xl:py-3 px-2 py-2 cursor-pointer flex_between text-12 xl:text-15 h-9 w-52"
+            className="border bg-white 2xl:px-5 2xl:py-3 px-2 py-2 cursor-pointer flex_between text-14 xl:text-15 h-9 w-52"
             onClick={() => setIsOpen(!isOpen)}
           >
             {selectedState}
@@ -69,7 +69,7 @@ const CartSelect = ({
               {select.map((state, index) => (
                 <div
                   key={index}
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-12 xl:text-15"
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-14 xl:text-15"
                   onClick={() => handleSelect(state.value)}
                 >
                   {state.value}

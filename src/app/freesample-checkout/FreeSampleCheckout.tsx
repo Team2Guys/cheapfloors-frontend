@@ -273,7 +273,7 @@ const FreeSampleCheckout = () => {
 
   return (
     <Container className="font-inter pb-16 pt-4 sm:pt-6">
-      <h1 className="text-[28px] sm:text-[32px] font-bold text-black mb-5 sm:mb-6">
+      <h1 className="text-2xl sm:text-[32px] font-bold text-black mb-5 sm:mb-6">
         Free Samples
       </h1>
 
@@ -291,7 +291,7 @@ const FreeSampleCheckout = () => {
           </div>
 
 
-          <p className="text-center text-[13px] sm:text-[14px] text-black mt-6 leading-relaxed px-2">
+          <p className="text-center text-sm text-black mt-6 leading-relaxed px-2">
             All sample orders placed before 1:00 PM (Mon–Fri) will be delivered the next day. Orders placed after 1:00 PM will be delivered on the following business day.{' '}
             <span className="text-primary font-semibold">Delivery charges apply at AED 15.</span>
           </p>
@@ -300,7 +300,7 @@ const FreeSampleCheckout = () => {
         {/* Right: shipping form */}
         <div className="w-full lg:w-[45%] xl:w-[30%]">
           <div className="bg-[#FAFAFA] rounded-lg p-4 sm:p-6 free-sample-checkout">
-            <h2 className="text-center text-primary font-bold text-[18px] sm:text-[20px] mb-5">
+            <h2 className="text-center text-primary font-bold text-[20px] mb-5">
               Shipping address
             </h2>
 

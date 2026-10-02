@@ -129,7 +129,7 @@ const WishlistPage = () => {
                       <div className="flex justify-end xl:hidden mb-2 gap-2">
                         <button
                           onClick={() => handleAddToCart(item, setItems)}
-                          className="bg-[#ffc341] text-black font-semibold rounded-full text-xs flex items-center px-3 py-1.5 hover:opacity-80 transition"
+                          className="bg-[#ffc341] text-black font-semibold rounded-full text-sm flex items-center px-3 py-1.5 hover:opacity-80 transition"
                         >
                           Add to Cart
                         </button>
@@ -166,7 +166,7 @@ const WishlistPage = () => {
                             <div className="col-span-12 xl:col-span-5">
                               <Link
                                 href={`/${generateSlug(item.category ?? '')}/${generateSlug(item.subcategories ?? '')}/${item.custom_url}`}
-                                className="text-[15px] md:text-[16px] font-medium text-black hover:text-primary transition line-clamp-2"
+                                className="text-base font-medium text-black hover:text-primary transition line-clamp-2"
                               >
                                 {item.name}
                               </Link>
@@ -340,7 +340,7 @@ const WishlistPage = () => {
                       <div className="flex justify-end xl:hidden mb-2 gap-2">
                         <button
                           onClick={() => handleAddToCart(item, setItems)}
-                          className="bg-[#ffc341] text-black font-semibold rounded-full text-xs flex items-center px-3 py-1.5 hover:opacity-80 transition"
+                          className="bg-[#ffc341] text-black font-semibold rounded-full text-sm flex items-center px-3 py-1.5 hover:opacity-80 transition"
                         >
                           Add to Cart
                         </button>
@@ -370,7 +370,7 @@ const WishlistPage = () => {
                             <div className="col-span-12 xl:col-span-5">
                               <Link
                                 href={`/${generateSlug(item.category ?? '')}/${generateSlug(item.subcategories ?? '')}/${item.custom_url}`}
-                                className="text-[15px] md:text-[16px] font-medium text-black hover:text-primary transition line-clamp-2"
+                                className="text-base font-medium text-black hover:text-primary transition line-clamp-2"
                               >
                                 {item.name}
                               </Link>
@@ -478,7 +478,7 @@ const WishlistPage = () => {
                       <div className="flex justify-end xl:hidden mb-2 gap-2">
                         <button
                           onClick={() => handleAddToCart(item, setItems)}
-                          className="bg-[#ffc341] text-black font-semibold rounded-full text-xs flex items-center px-3 py-1.5 hover:opacity-80 transition"
+                          className="bg-[#ffc341] text-black font-semibold rounded-full text-sm flex items-center px-3 py-1.5 hover:opacity-80 transition"
                         >
                           Add to Cart
                         </button>
@@ -509,7 +509,7 @@ const WishlistPage = () => {
                             <div className="col-span-12 xl:col-span-5">
                               <Link
                                 href={`/accessories/${item.custom_url}`}
-                                className="text-[15px] md:text-[16px] font-medium text-black hover:text-primary transition line-clamp-2"
+                                className="text-base font-medium text-black hover:text-primary transition line-clamp-2"
                               >
                                 {item.name}
                               </Link>

@@ -31,7 +31,7 @@ export const Banner = () => {
                 </h1>
 
                 {/* Subtitle */}
-                <p className="mt-4 max-w-xl text-15 leading-relaxed text-white/80 md:text-18">
+                <p className="mt-4 max-w-xl text-base leading-relaxed text-white/80 md:text-18">
                     Your flooring quotation request has been successfully received.
                 </p>
             </div>

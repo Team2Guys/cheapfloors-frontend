@@ -23,7 +23,7 @@ const OrderHistoryTable = ({ OrderHistory }: { OrderHistory: Order[] }) => {
   };
   return (
     <Container className="w-full mx-auto py-10">
-      <h1 className="text-2xl lg:text-3xl font-medium mb-4">Order History</h1>
+      <h1 className="text-2xl lg:text-3xl font-semibold md:font-medium mb-4">Order History</h1>
       <div className="overflow-x-auto bg-white shadow-md ">
         <table className="min-w-full border-collapse border border-gray-200">
           <thead>

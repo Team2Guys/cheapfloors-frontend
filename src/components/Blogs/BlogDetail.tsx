@@ -55,19 +55,19 @@ const BlogDetail = ({ blog, blogs }: BlogDetailProps) => {
           <Container className="text-lg flex items-center gap-2 sm:gap-4">
             <Link
               href="/"
-              className="hover:underline text-[9px] xs:text-11 sm:text-12 md:text-sm text-[#9F9F9F] capitalize font-medium"
+              className="hover:underline text-xs md:text-sm text-[#9F9F9F] capitalize font-medium"
             >
               Home
             </Link>
             <BreadcrumbChevron />
             <Link
               href="/blogs"
-              className="hover:underline text-[9px] xs:text-11 sm:text-12 md:text-sm text-[#9F9F9F] capitalize font-medium"
+              className="hover:underline text-xs md:text-sm text-[#9F9F9F] capitalize font-medium"
             >
               Blogs
             </Link>
             <BreadcrumbChevron />
-            <span className="text-black text-[9px] xs:text-11 sm:text-12 md:text-sm font-bold line-clamp-1">
+            <span className="text-black text-xs md:text-sm font-bold line-clamp-1">
               {blog.title}
             </span>
           </Container>

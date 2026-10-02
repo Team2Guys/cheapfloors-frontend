@@ -7,7 +7,7 @@ const RoomMeasurement: React.FC = () => {
 
   const renderHTML = (text: string) => (
     <p
-      className="text-sm md:text-base mb-4 leading-relaxed text-gray-700"
+      className="text-base mb-4 leading-relaxed text-gray-700"
       dangerouslySetInnerHTML={{
         __html: text.replace(emailRegex, (match) => {
           return `<a href="mailto:${match}" class="text-primary underline font-semibold" target="_blank" rel="noopener noreferrer">${match}</a>`;
@@ -27,7 +27,7 @@ const RoomMeasurement: React.FC = () => {
       <div className="mb-10">
         {measurementData.slice(0, 2).map((section, idx) => (
           <div key={idx} className="mb-6">
-            <h2 className="text-lg md:text-xl font-bold mb-2">{section.title}</h2>
+            <h2 className="text-xl font-bold mb-2">{section.title}</h2>
             {renderHTML(section.description || '')}
           </div>
         ))}
@@ -47,13 +47,13 @@ const RoomMeasurement: React.FC = () => {
 
             {/* Intro Description for the specific room type */}
             {section.description && (
-               <p className="text-sm md:text-base text-gray-700 mb-4">{section.description}</p>
+               <p className="text-base text-gray-700 mb-4">{section.description}</p>
             )}
 
             {/* Steps with yellow bold labels */}
             <div className="space-y-4 mb-10">
               {section.steps.map((step, sIdx) => (
-                <div key={sIdx} className="text-sm md:text-base leading-relaxed">
+                <div key={sIdx} className="text-base leading-relaxed">
                   <span className="text-primary font-bold">{step.title}</span>{' '}
                   <span className="text-gray-800">{step.content}</span>
                 </div>
@@ -80,7 +80,7 @@ const RoomMeasurement: React.FC = () => {
       <div className="mt-16 space-y-10">
         {measurementData.slice(4).map((section, idx) => (
           <div key={idx}>
-            <h2 className="text-lg md:text-xl font-bold mb-2">{section.title}</h2>
+            <h2 className="text-xl font-bold mb-2">{section.title}</h2>
             {renderHTML(section.description || '')}
           </div>
         ))}

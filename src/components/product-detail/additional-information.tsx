@@ -15,10 +15,10 @@ const AdditionalInfo = ({
       value: 'description',
       content: (
         <div>
-          <h2 className="text-lg sm:text-2xl font-bold mb-4">{name}</h2>
+          <h2 className="text-2xl font-bold mb-4">{name}</h2>
 
           <p
-            className="text-sm sm:text-base leading-relaxed prose prose-sm max-w-none [&_p]:mb-3 [&_strong]:font-bold"
+            className="text-base leading-relaxed prose prose-sm max-w-none [&_p]:mb-3 [&_strong]:font-bold"
             dangerouslySetInnerHTML={{ __html: description }}
           />
 

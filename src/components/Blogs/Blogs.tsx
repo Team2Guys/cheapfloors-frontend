@@ -71,10 +71,10 @@ const Blogs = ({
       <Container className="py-8 md:py-12">
         {/* Heading */}
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-black">
+          <h2 className="text-2xl md:text-3xl font-bold text-black">
             {heading}
           </h2>
-          <p className="mt-3 text-sm md:text-base text-gray-600">
+          <p className="mt-3 text-base text-gray-600">
             {description}
           </p>
         </div>
@@ -88,7 +88,7 @@ const Blogs = ({
                 key={category.value}
                 type="button"
                 onClick={() => handleTabChange(category.value)}
-                className={`shrink-0 whitespace-nowrap rounded-full border px-4 py-1.5 text-xs sm:text-sm font-medium transition-colors ${
+                className={`shrink-0 whitespace-nowrap rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
                   isActive
                     ? 'border-primary bg-primary text-black'
                     : 'border-gray-300 bg-white text-black hover:border-primary'

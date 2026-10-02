@@ -52,7 +52,7 @@ export const FlooringFeatures = () => {
 
       {/* Retail notice bar */}
       <div className="px-4 md:px-0">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-lg bg-primary px-5 py-3 text-center text-13 font-medium text-secondary md:max-w-none md:rounded-none md:text-14">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-lg bg-primary px-5 py-3 text-center text-14 font-medium text-secondary md:max-w-none md:rounded-none md:text-14">
           <FaExclamationTriangle className="text-14" />
           <span>
             <span className="font-semibold">Note for Retail Customers:</span> This page is for{' '}

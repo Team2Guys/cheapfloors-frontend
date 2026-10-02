@@ -11,7 +11,7 @@ const Shipping = () => {
       <h1 className="text-center text-24 sm:text-36 font-semibold mb-4">
         Shipping Policy
       </h1>
-      <p className="text-sm sm:text-20 sm:leading-[26px] text-justify">
+      <p className="text-base leading-relaxed sm:text-20 sm:leading-[26px] text-justify">
         Our goal is to guarantee that your order is delivered to all mainland
         locations in the UAE within 2 to 3 working days, which ensures a smooth
         and hassle-free buying experience. You can contact us any time at{' '}
@@ -26,30 +26,30 @@ const Shipping = () => {
         process. Your satisfaction is our priority.
       </p>
 
-      <h2 className="text-sm sm:text-20 sm:leading-[26px] font-semibold">
+      <h2 className="text-base sm:text-20 sm:leading-[26px] font-semibold">
         Shipping Fee:
       </h2>
-      <h2 className=" text-20 sm:text-24 font-semibold">
+      <h2 className=" text-24 font-semibold">
         Express Service (Dubai Only)
       </h2>
-      <ul className="list-disc px-6 text-sm sm:text-20 sm:leading-[26px]">
+      <ul className="list-disc px-6 text-base sm:text-20 sm:leading-[26px]">
         <li>Delivery: Next working day (cut-off time 1pm)</li>
         <li>
           Delivery Cost:{' '}
           <span className="font-currency font-normal sm:text-25"></span> 150
         </li>
       </ul>
-      <h2 className=" text-20 sm:text-24 font-semibold">
+      <h2 className=" text-24 font-semibold">
         Standard Service (Dubai)
       </h2>
-      <ul className="list-disc px-6 text-sm sm:text-20 sm:leading-[26px]">
+      <ul className="list-disc px-6 text-base sm:text-20 sm:leading-[26px]">
         <li>Delivery: 2 working days</li>
         <li>Delivery Cost: Free</li>
       </ul>
-      <h2 className=" text-20 sm:text-24 font-semibold">
+      <h2 className=" text-24 font-semibold">
         Standard Service (All Other Emirates)
       </h2>
-      <ul className="list-disc px-6 text-sm sm:text-20 sm:leading-[26px]">
+      <ul className="list-disc px-6 text-base sm:text-20 sm:leading-[26px]">
         <li>Delivery: 2-3 working days</li>
         <li>
           Delivery Cost: Free for orders above{' '}
@@ -60,8 +60,8 @@ const Shipping = () => {
         </li>
       </ul>
 
-      {/* <h2 className=" text-20 sm:text-24 font-semibold">Self-Collect</h2> */}
-      {/* <ul className="list-disc px-6 text-sm sm:text-20 sm:leading-[26px]">
+      {/* <h2 className=" text-24 font-semibold">Self-Collect</h2> */}
+      {/* <ul className="list-disc px-6 text-base sm:text-20 sm:leading-[26px]">
         <li>Monday to Saturday, 9am – 6pm</li>
         <li>
           Location:{' '}

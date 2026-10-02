@@ -169,7 +169,7 @@ const ProductContainer = ({
       >
         <div className='w-full lg:w-[50%]'>
           {productData?.name && (
-            <h1 className="text-xl sm:text-2xl lg:text-[28px] 2xl:text-[32px] font-bold ps-0 lg:ps-[17%] text-primary mb-4">
+            <h1 className="text-2xl lg:text-[28px] 2xl:text-[32px] font-bold ps-0 lg:ps-[17%] text-primary mb-4">
               {productData.name}
             </h1>
           )}
@@ -193,7 +193,7 @@ const ProductContainer = ({
               <div>
                 {'bundleDisPrice' in productData &&
                   productData.bundleDisPrice && (
-                    <p className="text-12 w-full md:text-sm md:text-left md:w-full xl:text-xl text-black">
+                    <p className="text-sm w-full md:text-sm md:text-left md:w-full xl:text-xl text-black">
                       Was:{' '}
                       <span className="font-currency md:text-18 xl:text-24 font-normal">
                         
@@ -204,7 +204,7 @@ const ProductContainer = ({
                     </p>
                   )}
                 {'bundlePrice' in productData && productData.bundlePrice && (
-                  <p className="text-12 w-full font-semibold md:text-sm md:text-left md:w-full xl:text-xl text-black">
+                  <p className="text-sm w-full font-semibold md:text-sm md:text-left md:w-full xl:text-xl text-black">
                     Now:{' '}
                     <span className="font-currency md:text-18 xl:text-24 font-normal">
                       
@@ -215,7 +215,7 @@ const ProductContainer = ({
                   </p>
                 )}
               </div>
-              <div className="text-xs md:text-sm xl:text-16">
+              <div className="text-sm xl:text-16">
                 <p>
                   Total Bundle:{' '}
                   {(
@@ -320,7 +320,7 @@ const ProductContainer = ({
                     </span>
                   </p>
                 )}
-                <p className="text-red-500 text-xs md:text-sm xl:text-base">
+                <p className="text-red-500 text-sm xl:text-base">
                   (Save{' '}
                   <span className="font-currency text-sm md:text-base xl:text-18  font-normal">
                     
@@ -339,7 +339,7 @@ const ProductContainer = ({
               </div>
               <button
                 id="AddToWishlist"
-                className="flex justify-end items-center w-full text-11 xs:text-xs text-gray-700 gap-2"
+                className="flex justify-end items-center w-full text-xs text-gray-700 gap-2"
                 onClick={() =>
                   handleAddToStorage(
                     productData,
@@ -426,7 +426,7 @@ const ProductContainer = ({
                     addInstallation
                   )
                 }
-                className="flex_center bg-black text-11 xs:text-xs text-white w-full 2xl:text-22 gap-2 max-sm:h-[40px] px-2 py-2 sm:py-3 sm:text-base"
+                className="flex_center bg-black text-sm text-white w-full 2xl:text-22 gap-2 max-sm:h-[40px] px-2 py-2 sm:py-3 sm:text-base"
               >
                 <Image
                   src="/assets/images/icon/cart.png"

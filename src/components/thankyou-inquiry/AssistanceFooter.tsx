@@ -23,10 +23,10 @@ export const AssistanceFooter = () => {
             <div className="mx-auto max-w-2xl">
                 {/* Need Immediate Assistance */}
                 <div className="bg-black px-6 py-10 text-center">
-                    <h2 className="text-20 font-bold text-white md:text-22">
+                    <h2 className="text-22 font-bold text-white md:text-22">
                         Need Immediate Assistance?
                     </h2>
-                    <p className="mx-auto mt-2 max-w-md text-14 leading-relaxed text-white/70 md:text-15">
+                    <p className="mx-auto mt-2 max-w-md text-15 leading-relaxed text-white/70 md:text-15">
                         Our consultants are available for site visits or technical consultations.
                     </p>
 

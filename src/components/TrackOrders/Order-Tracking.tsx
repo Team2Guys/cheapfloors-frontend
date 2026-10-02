@@ -22,14 +22,14 @@ export default function OrderTracking({ data }: { data: PostPaymentStatus }) {
   return (
     <Container className="w-full py-5 md:py-10 space-y-6 lg:space-y-10">
       <div className="text-center">
-        <h1 className="md:text-[30px] 2xl:text-[40px] font-semibold leading-10 text-[#344054]">
+        <h1 className="text-2xl md:text-[30px] 2xl:text-[40px] font-semibold leading-10 text-[#344054]">
           Order ID: <span>#{data.orderId}</span>
         </h1>
       </div>
 
       <div className="grid grid-cols-2 justify-center items-center gap-3 xsm:gap-5">
         <div className="border-r-2 pr-3 xsm:pr-5 text-end">
-          <p className="text-10 sm:text-sm md:text-base 2xl:text-[20px] font-semibold text-[#959BA7]">
+          <p className="text-xs sm:text-sm md:text-base 2xl:text-[20px] font-semibold text-[#959BA7]">
             Order date: <span className="text-black">{formatedDate}</span>
           </p>
         </div>
@@ -37,7 +37,7 @@ export default function OrderTracking({ data }: { data: PostPaymentStatus }) {
           <span className="inline-block">
             <BsTruck className="w-4 h-4 sm:w-7 sm:h-7 2xl:w-[42px] 2xl:h-[42px] text-primary" />
           </span>
-          <p className="text-10 sm:text-sm md:text-base 2xl:text-[20px] font-semibold text-primary text-wrap">
+          <p className="text-xs sm:text-sm md:text-base 2xl:text-[20px] font-semibold text-primary text-wrap">
             Estimated delivery:{' '}
             <span className="text-black">{TrackingOrder}</span>
           </p>

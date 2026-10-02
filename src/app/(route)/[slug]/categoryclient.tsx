@@ -146,7 +146,7 @@ const CategoryClient = ({
             </h1>
             {/* div, not p: the description HTML contains its own <p> tags. */}
             <div
-              className="text-sm md:text-base 2xl:text-lg lg:leading-[26px]"
+              className="text-base 2xl:text-lg lg:leading-[26px]"
               dangerouslySetInnerHTML={{
                 __html: isSubCategory
                   ? subdescription?.[0]?.description || ''

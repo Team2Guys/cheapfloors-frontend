@@ -53,7 +53,7 @@ const ForgotPassword = () => {
             Back to home
           </Link>
 
-          <h2 className="text-4xl font-bold text-primary text-center mt-20">
+          <h2 className="text-2xl sm:text-4xl font-bold text-primary text-center mt-20">
             Reset Password
           </h2>
           <h3 className="text-lg text-gray-500 text-center mt-4">

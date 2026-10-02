@@ -47,7 +47,7 @@ const CategoryFaqs: React.FC<CategoryFaqsProps> = ({ faqs = DUMMY_FAQS, classNam
 
   return (
     <div className={`mb-10 font-inter max-w-[1100px] mx-auto px-2 xs:px-4 mt-10 ${className}`}>
-      <h2 className="text-xl md:text-2xl font-bold text-center mb-8">
+      <h2 className="text-2xl font-bold text-center mb-8">
         FAQ'S
       </h2>
 
@@ -77,7 +77,7 @@ const CategoryFaqs: React.FC<CategoryFaqsProps> = ({ faqs = DUMMY_FAQS, classNam
 
               {isOpen && (
                 <div className="px-4 md:px-6 pb-5">
-                  <p className="text-xs md:text-sm text-gray-700 leading-relaxed">
+                  <p className="text-sm text-gray-700 leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>

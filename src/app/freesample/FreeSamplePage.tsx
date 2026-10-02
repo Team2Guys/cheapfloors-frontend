@@ -198,7 +198,7 @@ const FreeSamplePage = () => {
             </div>
             <div className="w-full lg:w-[45%] xl:w-[30%] 2xl:w-[35%] bg-background p-3 sm:p-5 space-y-5 h-fit">
               <div className="flex gap-2 md:gap-5 items-center max-sm:justify-between">
-                <h2 className=" text-18 md:text-20 2xl:text-28">
+                <h2 className=" text-20 2xl:text-28">
                   Order Summary
                 </h2>
                 <p className="text-sm text-[#FF0004]">
@@ -243,11 +243,11 @@ const FreeSamplePage = () => {
                     alt="icon"
                     className="size-12 xs:size-16"
                   />
-                  <div className="text-11 xs:text-base">
+                  <div className="text-sm xs:text-base">
                     <strong className="text-15 xs:text-20">
                       Standard Service
                     </strong>
-                    <p className="text-11 xs:text-base">
+                    <p className="text-sm xs:text-base">
                       Delivery:{' '}
                       <strong>Next working day (cut-off time 1pm)</strong>
                     </p>
@@ -277,11 +277,11 @@ const FreeSamplePage = () => {
                   />
                   <div>
                     <strong className="text-15 xs:text-20">Self-Collect</strong>
-                    <p className="text-11 xs:text-base">
+                    <p className="text-sm xs:text-base">
                       Collection: Monday to Saturday{' '}
                       <strong>(8:30am - 10pm)</strong>
                     </p>
-                    {/* <p className="text-11 xs:text-base">
+                    {/* <p className="text-sm xs:text-base">
                       <span>Location:</span>{' '}
                       <strong>
                         <Link

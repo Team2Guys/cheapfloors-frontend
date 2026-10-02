@@ -35,7 +35,7 @@ export const InquirySummary = ({ quote }: { quote?: IB2BQuote | null }) => {
     if (!quote) {
         return (
             <section className="max-w-6xl mx-auto px-2 py-12 md:py-16 font-inter">
-                <p className="mx-auto max-w-xl text-center text-15 leading-relaxed text-gray-600 md:text-16">
+                <p className="mx-auto max-w-xl text-center text-base leading-relaxed text-gray-600 md:text-16">
                     We couldn&apos;t find your inquiry details. Our B2B flooring
                     specialists will still be in touch within 24 business hours.
                 </p>
@@ -74,7 +74,7 @@ export const InquirySummary = ({ quote }: { quote?: IB2BQuote | null }) => {
     return (
         <section className="max-w-6xl mx-auto px-2 py-12 md:py-16 font-inter">
             {/* Intro */}
-            <p className="mx-auto max-w-xl text-center text-15 leading-relaxed text-gray-600 md:text-16">
+            <p className="mx-auto max-w-xl text-center text-base leading-relaxed text-gray-600 md:text-16">
                 Our B2B flooring specialists are reviewing your requirements and will
                 contact you within 24 business hours.
             </p>

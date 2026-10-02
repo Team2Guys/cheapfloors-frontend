@@ -46,7 +46,7 @@ export const NextSteps = () => {
         <section className="max-w-6xl mx-auto px-2 font-inter">
             {/* What Happens Next */}
             <div className="mx-auto max-w-2xl py-12 md:py-16">
-                <h2 className="text-center text-18 font-bold uppercase tracking-[0.12em] text-secondary md:text-20">
+                <h2 className="text-center text-20 font-bold uppercase tracking-[0.12em] text-secondary md:text-20">
                     What Happens Next?
                 </h2>
 
@@ -71,7 +71,7 @@ export const NextSteps = () => {
 
             {/* Why B2B Partners Choose Us */}
             <div className="mx-auto max-w-2xl pb-12 md:pb-16">
-                <h2 className="text-center text-18 font-bold text-secondary md:text-22">
+                <h2 className="text-center text-22 font-bold text-secondary md:text-22">
                     Why B2B Partners Choose Us
                 </h2>
 

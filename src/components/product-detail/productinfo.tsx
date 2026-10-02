@@ -126,7 +126,7 @@ const SkirtingProductDetail = ({
   };
   return (
     <div className="p-1 lg:px-4 font-inter">
-      <h1 className="text-xl sm:text-2xl lg:text-[28px] 2xl:text-[32px] font-bold text-primary mb-4">
+      <h1 className="text-2xl lg:text-[28px] 2xl:text-[32px] font-bold text-primary mb-4">
         {productData.name}
       </h1>
       <div className="space-y-4 mt-5 lg:mt-0">
@@ -331,7 +331,7 @@ const SkirtingProductDetail = ({
               addInstallation
             )
           }
-          className="flex_center bg-black text-11 xs:text-12 text-white w-6/12 2xl:text-22 gap-2 h-[64px] px-2 py-2 sm:py-3 sm:text-base"
+          className="flex_center bg-black text-sm text-white w-6/12 2xl:text-22 gap-2 h-[64px] px-2 py-2 sm:py-3 sm:text-base"
           id="AddToCart"
         >
           <Image
@@ -345,7 +345,7 @@ const SkirtingProductDetail = ({
         </button>
         <button
           id="AddToWishlist"
-          className="flex_center bg-primary text-11 xs:text-12 text-white w-6/12 2xl:text-22 gap-2 h-[64px] px-2 py-2 sm:py-3 sm:text-base"
+          className="flex_center bg-primary text-sm text-white w-6/12 2xl:text-22 gap-2 h-[64px] px-2 py-2 sm:py-3 sm:text-base"
           onClick={() =>
             handleAddToStorage(
               productData,

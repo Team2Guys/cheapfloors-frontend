@@ -25,7 +25,7 @@ const AccessoriesContainer = ({ productData }: { productData: IProduct }) => {
 
       <div className="w-full lg:w-[55%]">
         {/* {productData?.name && (
-          <h1 className="text-xl sm:text-2xl lg:text-[28px] 2xl:text-[32px] font-bold ps-0 lg:ps-[17%] text-primary mb-4">
+          <h1 className="text-2xl lg:text-[28px] 2xl:text-[32px] font-bold ps-0 lg:ps-[17%] text-primary mb-4">
             {productData.name}
           </h1>
         )} */}

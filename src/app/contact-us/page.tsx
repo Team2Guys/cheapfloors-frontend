@@ -15,10 +15,10 @@ const Contact = () => {
       />
       <Container className="md:mt-16 mt-10 mb-20 bg-white">
         <div className="text-center font-inter md:space-y-4 bg-white">
-          <h2 className="md:text-[36px] text-xl font-semibold leading-10">
+          <h2 className="md:text-[36px] text-2xl font-semibold leading-10">
             Get In Touch With Us
           </h2>
-          <p className="md:text-base text-sm">
+          <p className="md:text-base text-base">
             For more information about our products, please feel free to drop us
             a WhatsApp message or an email. Our staff are dedicated to help you
             find the best solution for your home/office.

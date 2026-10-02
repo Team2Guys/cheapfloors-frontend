@@ -22,7 +22,7 @@ const BlogSearch = () => {
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search"
         aria-label="Search blogs"
-        className="w-full border-b border-[#0000001F] bg-[#FEB90714] py-2 pl-9 pr-3 text-sm text-black placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-primary"
+        className="w-full border-b border-[#0000001F] bg-[#FEB90714] py-2 pl-9 pr-3 text-base md:text-sm text-black placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-primary"
       />
     </form>
   );

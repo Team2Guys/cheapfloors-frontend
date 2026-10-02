@@ -13,26 +13,26 @@ const EasyPayment = () => {
         Easy Payment
       </h1>
       <ul className="list-disc px-4 space-y-3">
-        <li className="text-sm sm:text-20 sm:leading-[26px]">
+        <li className="text-base sm:text-20 sm:leading-[26px]">
           Shop anytime, stress-free – buy now and pay later with{' '}
           <b>Easy Payment</b> options.
         </li>
-        <li className="text-sm sm:text-20 sm:leading-[26px]">
+        <li className="text-base sm:text-20 sm:leading-[26px]">
           Enjoy <b>zero interest and no extra fees</b> when you split your
           payment.
         </li>
-        <li className="text-sm sm:text-20 sm:leading-[26px]">
+        <li className="text-base sm:text-20 sm:leading-[26px]">
           Use our trusted partner <b>Tamara </b>to divide your purchase into{' '}
           <b>4 equal payments</b>.
         </li>
-        <li className="text-sm sm:text-20 sm:leading-[26px]">
+        <li className="text-base sm:text-20 sm:leading-[26px]">
           Pay the first installment today, then the rest over the next{' '}
           <b>three months</b>.{' '}
         </li>
-        <li className="text-sm sm:text-20 sm:leading-[26px]">
+        <li className="text-base sm:text-20 sm:leading-[26px]">
           It’s <b>simple, safe, and transparent</b>.
         </li>
-        <li className="text-sm sm:text-20 sm:leading-[26px]">
+        <li className="text-base sm:text-20 sm:leading-[26px]">
           To activate, just select <b>Tamara</b> at checkout.
         </li>
       </ul>
@@ -49,12 +49,12 @@ const EasyPayment = () => {
         ))}
       </div>
       <ul className="list-disc px-4 space-y-3">
-        <li className="text-sm sm:text-20 sm:leading-[26px]">
+        <li className="text-base sm:text-20 sm:leading-[26px]">
           Prefer to pay in full? We accept{' '}
           <b>Visa, Mastercard, Apple Pay, and Google Pay</b> for added
           security.{' '}
         </li>
-        <li className="text-sm sm:text-20 sm:leading-[26px]">
+        <li className="text-base sm:text-20 sm:leading-[26px]">
           Our flexible payment options make shopping more accessible, so you can
           focus on getting what you need without upfront pressure.
         </li>

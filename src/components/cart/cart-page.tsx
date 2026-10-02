@@ -884,7 +884,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
 
   return (
     <Container className="font-inter mt-10 mb-4 sm:mb-10 relative max-sm:max-w-[100%]">
-      <h1 className="text-[28px] md:text-[36px] xl:text-[48px] font-bold text-black mb-6">Your Shopping Basket</h1>
+      <h1 className="text-2xl md:text-[36px] xl:text-[48px] font-bold text-black mb-6">Your Shopping Basket</h1>
       {cartItems.length === 0 ? (
         <div className="text-center">
           <p className="text-center text-[24px] pt-10">Cart is empty</p>
@@ -958,7 +958,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                                 <div className="col-span-12 xl:col-span-6">
                                   <Link
                                     href={`/${generateSlug(item.category ?? '')}/${generateSlug(item.subcategories ?? '')}/${item.custom_url}`}
-                                    className="text-[15px] md:text-[16px] font-medium text-black hover:text-primary transition line-clamp-2"
+                                    className="text-base font-medium text-black hover:text-primary transition line-clamp-2"
                                   >
                                     {item.name}
                                   </Link>
@@ -1181,7 +1181,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                               <div className="col-span-12 xl:col-span-6 pr-8 xl:pr-0">
                                 <Link
                                   href={`/${generateSlug(item.category ?? '')}/${generateSlug(item.subcategories ?? '')}/${item.custom_url}`}
-                                  className="text-[14px] md:text-[16px] font-semibold text-black hover:text-primary transition line-clamp-2"
+                                  className="text-base font-semibold text-black hover:text-primary transition line-clamp-2"
                                 >
                                   {item.name}
                                 </Link>
@@ -1242,9 +1242,9 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                                       onChange={() => handleRemoveInstallation(item)}
                                       className="w-4 h-4 md:w-5 md:h-5 accent-[#ffc341] cursor-pointer"
                                     />
-                                    <span className="font-semibold text-xs md:text-sm xl:text-16">Installation Charges</span>
+                                    <span className="font-semibold text-sm xl:text-16">Installation Charges</span>
                                   </div>
-                                  <div className="bg-[#ffc341] text-black font-bold rounded-full px-3 py-1 text-xs md:text-sm shadow-sm flex items-center gap-1 transition">
+                                  <div className="bg-[#ffc341] text-black font-bold rounded-full px-3 py-1 text-sm shadow-sm flex items-center gap-1 transition">
                                     <span className="font-currency font-normal"></span>
                                     <span>{formatAED(item.installationCost)}</span>
                                   </div>
@@ -1318,7 +1318,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                               <div className="col-span-12 xl:col-span-6">
                                 <Link
                                   href={`/accessories/${item.custom_url}`}
-                                  className="text-[15px] md:text-[16px] font-medium text-black hover:text-primary transition line-clamp-2"
+                                  className="text-base font-medium text-black hover:text-primary transition line-clamp-2"
                                 >
                                   {item.name}
                                 </Link>
@@ -1499,7 +1499,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
             </div>
             <div className="w-full md:w-[45%] xl:w-[30%] 2xl:w-[35%] bg-[#FAFAFA] p-3 sm:p-5 space-y-5 h-fit">
               <div className="flex gap-2 md:gap-5 items-center justify-between">
-                <h2 className=" text-18 md:text-20 2xl:text-28">
+                <h2 className=" text-20 md:text-20 2xl:text-28 font-bold md:font-normal">
                   Order Summary
                 </h2>
                 <p className="text-sm text-[#FF0004]">
@@ -1546,11 +1546,11 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                           alt="icon"
                           className="size-12 xs:size-16"
                         />
-                        <div className="text-11 xs:text-base">
+                        <div className="text-sm xs:text-base">
                           <strong className="text-15 xs:text-20">
                             Express Service (Dubai Only)
                           </strong>
-                          <p className="text-11 xs:text-base">
+                          <p className="text-sm xs:text-base">
                             Delivery:{' '}
                             <strong>Next working day (cut-off time 1pm)</strong>
                           </p>
@@ -1585,13 +1585,13 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                           ? '(Dubai)'
                           : '(All Other Emirates)'}{' '}
                       </strong>
-                      <p className="text-11 xs:text-base">
+                      <p className="text-sm xs:text-base">
                         Delivery:{' '}
                         <strong>
                           2{selectedCity === 'Dubai' ? '' : '-3'} working days
                         </strong>
                       </p>
-                      <p className="text-11 xs:text-base">
+                      <p className="text-sm xs:text-base">
                         <span>Delivery Cost: </span>
                         {selectedCity === 'Dubai' ? (
                           <strong>Free</strong>
@@ -1640,11 +1640,11 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
                       <strong className="text-15 xs:text-20">
                         Self-Collect:
                       </strong>
-                      <p className="text-11 xs:text-base">
+                      <p className="text-sm xs:text-base">
                         Collection: Monday to Saturday{' '}
                         <strong>(9am-6pm)</strong>
                       </p>
-                      <p className="text-11 xs:text-base">
+                      <p className="text-sm xs:text-base">
                         <span>Location:</span>{' '}
                         <strong>
                           <Link
