@@ -60,14 +60,14 @@ const TermsAndConditions = () => {
         {termsConditionsData.map((item, index) => (
           <li key={index} className={item.title}>
             {item.title && (
-              <h2 className="text-lg sm:text-2xl font-bold mb-2">
+              <h2 className="text-2xl font-bold mb-2">
                 {item.title}
               </h2>
             )}
             {item.heading?.map((title, hIndex) => (
               <h3
                 key={`h-${hIndex}`}
-                className="text-12 sm:text-lg font-semibold mt-3"
+                className="text-lg font-semibold mt-3"
               >
                 {renderLinkableText(title)}
               </h3>
@@ -75,7 +75,7 @@ const TermsAndConditions = () => {
             {item.content?.map((paragraph, pIndex) => (
               <p
                 key={`p-${pIndex}`}
-                className="text-12 sm:text-lg font-normal mt-2"
+                className="text-base leading-relaxed sm:text-lg font-normal mt-2"
               >
                 {renderLinkableText(paragraph)}
               </p>
@@ -84,7 +84,7 @@ const TermsAndConditions = () => {
             {item.Links?.map((link, lIndex) => (
               <p
                 key={`l-${lIndex}`}
-                className="text-12 sm:text-lg font-normal mt-2"
+                className="text-base leading-relaxed sm:text-lg font-normal mt-2"
               >
                 {renderLinkableText(link)}
               </p>
@@ -94,7 +94,7 @@ const TermsAndConditions = () => {
                 {item.subItems.map((subItem, sIndex) => (
                   <li
                     key={`s-${sIndex}`}
-                    className="text-12 sm:text-lg font-normal"
+                    className="text-base leading-relaxed sm:text-lg font-normal"
                   >
                     {renderLinkableText(subItem)}
                   </li>
@@ -105,7 +105,7 @@ const TermsAndConditions = () => {
             {item.contentend?.map((paragraph, eIndex) => (
               <p
                 key={`e-${eIndex}`}
-                className="text-12 sm:text-lg font-normal mt-2"
+                className="text-base leading-relaxed sm:text-lg font-normal mt-2"
               >
                 {renderLinkableText(paragraph)}
               </p>

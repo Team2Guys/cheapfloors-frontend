@@ -18,7 +18,7 @@ export default function NotFound() {
         <h2 className="text-2xl xsm:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black -mt-5">
           There&apos;s <span className="uppercase">Nothing</span> here ...
         </h2>
-        <p className="text-center px-2 xsm:px-0 text-10 xsm:text-12 sm:text-base md:text-lg lg:text-xl">
+        <p className="text-center px-2 xsm:px-0 text-base md:text-lg lg:text-xl">
           ...maybe the page you are looking for is not found or never existed.
         </p>
         <div className="flex_center gap-4 ">

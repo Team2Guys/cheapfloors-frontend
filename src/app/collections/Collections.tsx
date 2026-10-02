@@ -86,10 +86,10 @@ const Collections = ({
         >
           {appliedFilters.length > 0 && (
             <div className="flex items-center md:gap-3">
-              <span className="text-[#191C1F] text-12 md:text-13 text-nowrap">
+              <span className="text-[#191C1F] text-13 text-nowrap">
                 Active Filters:
               </span>
-              <div className="flex items-center flex-wrap gap-x-1 gap-y-1 px-3 py-1  text-[#191C1F] text-10 md:text-sm">
+              <div className="flex items-center flex-wrap gap-x-1 gap-y-1 px-3 py-1  text-[#191C1F] text-sm">
                 {appliedFilters.map((item, index) => (
                   <div
                     key={index}
@@ -112,7 +112,7 @@ const Collections = ({
             </div>
           )}
 
-          <p className="text-[#191C1F] text-12 md:text-sm">
+          <p className="text-[#191C1F] text-sm">
             {filtered.length}{' '}
             <span className="text-[#5F6C72]">
               {filtered.length === 1 ? 'Result' : 'Results'} found

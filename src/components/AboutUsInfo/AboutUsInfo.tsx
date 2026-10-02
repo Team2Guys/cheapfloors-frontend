@@ -25,15 +25,15 @@ const AboutUsInfo: React.FC<TAboutUsProps> = ({ sections, isAboutUs }) => {
           </div>
           <div className="w-full md:w-1/2 text-center md:text-left space-y-4">
             {(isAboutUs && index === 0) ? (
-              <h1 className="md:text-3xl text-xl font-bold text-primary">
+              <h1 className="md:text-3xl text-2xl font-bold text-primary">
                 {section.heading}
               </h1>
             ) : (
-              <h2 className="md:text-3xl text-xl font-bold text-primary">
+              <h2 className="md:text-3xl text-2xl font-bold text-primary">
                 {section.heading}
               </h2>
             )}
-            <p className="text-sm md:text-base font-normal text-left">
+            <p className="text-base md:text-base font-normal text-left">
               {section.paragraph}
             </p>
           </div>

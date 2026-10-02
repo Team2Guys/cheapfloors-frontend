@@ -24,7 +24,7 @@ const RelatedSlider = ({
 
   return (
     <Container className="mt-5 sm:mt-10 font-inter w-full mb-10">
-      <h2 className="text-18 sm:text-24 font-semibold lg:text-30 2xl:text-[40px] text-center">
+      <h2 className="text-24 font-semibold lg:text-30 2xl:text-[40px] text-center">
         Frequently Bought Together
       </h2>
 

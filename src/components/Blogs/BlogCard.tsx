@@ -42,18 +42,18 @@ const BlogCard = ({
         </div>
 
         <div className="flex flex-1 flex-col p-3 md:p-4">
-          <p className="text-[11px] md:text-xs text-gray-500">
+          <p className="text-xs text-gray-500">
             {formatDate(blog.createdAt)}
           </p>
-          <h3 className="mt-1 text-sm md:text-base font-bold text-black line-clamp-1">
+          <h3 className="mt-1 text-base font-bold text-black line-clamp-1">
             {blog.title}
           </h3>
           {showExcerpt && (
-            <p className="mt-2 text-xs md:text-[13px] leading-relaxed text-gray-600 line-clamp-4">
+            <p className="mt-2 text-[13px] leading-relaxed text-gray-600 line-clamp-4">
               {stripHtml(blog.content)}
             </p>
           )}
-          <span className="mt-3 inline-block text-xs md:text-sm font-semibold text-primary group-hover:underline">
+          <span className="mt-3 inline-block text-sm font-semibold text-primary group-hover:underline">
             Read Article
           </span>
         </div>

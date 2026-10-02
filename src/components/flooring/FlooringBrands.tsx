@@ -14,7 +14,7 @@ export const FlooringBrands = () => {
         <h2 className="text-center text-26 font-bold text-secondary md:text-32">
           Brands We Supply
         </h2>
-        <p className="mx-auto mt-3 max-w-xl text-center text-13 leading-relaxed text-[#6B6B6B] md:text-15">
+        <p className="mx-auto mt-3 max-w-xl text-center text-15 leading-relaxed text-[#6B6B6B] md:text-15">
           Partnering with global leaders in architectural flooring.
         </p>
 

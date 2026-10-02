@@ -45,7 +45,7 @@ export const BannerFlooring = () => {
                 </h1>
 
                 {/* Subtitle */}
-                <p className="mt-5 max-w-xl text-15 leading-relaxed text-white/80 md:text-18">
+                <p className="mt-5 max-w-xl text-base leading-relaxed text-white/80 md:text-18">
                     Supplying corporate clients, government projects, and regional resellers with architectural-grade SPC and LVT flooring. Reliable stock, competitive pricing, and UAE-wide logistics.
                 </p>
 

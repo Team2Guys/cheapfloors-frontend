@@ -23,7 +23,7 @@ const Breadcrumb = ({
           {/* Home Link */}
           <Link
             href="/"
-            className="hover:underline text-[9px] xs:text-11 sm:text-12 md:text-sm text-[#9F9F9F] capitalize font-medium"
+            className="hover:underline text-xs md:text-sm text-[#9F9F9F] capitalize font-medium"
           >
             Home
           </Link>
@@ -40,7 +40,7 @@ const Breadcrumb = ({
             <>
               <Link
                 href="/clearance"
-                className="hover:underline text-[9px] xs:text-11 sm:text-12 md:text-sm text-[#9F9F9F] capitalize font-medium"
+                className="hover:underline text-xs md:text-sm text-[#9F9F9F] capitalize font-medium"
               >
                 Clearance
               </Link>
@@ -60,12 +60,12 @@ const Breadcrumb = ({
               {subcategory ? (
                 <Link
                   href={`/${slug === 'richmond' ? 'richmond-flooring' : slug === 'polar' ? 'polar-flooring' : slug === 'floor-smart' ? 'floor-smart' : slug?.toUpperCase()}`}
-                  className="hover:underline text-[9px] xs:text-11 sm:text-12 md:text-sm text-[#9F9F9F] capitalize font-medium"
+                  className="hover:underline text-xs md:text-sm text-[#9F9F9F] capitalize font-medium"
                 >
                   {slug.replace(/-/g, ' ')}
                 </Link>
               ) : (
-                <span className="text-black text-[9px] xs:text-11 sm:text-12 md:text-sm font-bold capitalize">
+                <span className="text-black text-xs md:text-sm font-bold capitalize">
                   {slug.replace(/-/g, ' ')}
                 </span>
               )}
@@ -92,7 +92,7 @@ const Breadcrumb = ({
                         ? '/accessories'
                         : `/${slug}/${subcategory}`
                     }
-                    className="hover:underline text-[9px] xs:text-11 sm:text-12 md:text-sm text-[#9F9F9F] capitalize"
+                    className="hover:underline text-xs md:text-sm text-[#9F9F9F] capitalize"
                   >
                     {subcategory}
                   </Link>
@@ -105,13 +105,13 @@ const Breadcrumb = ({
                   </svg>
                 </>
               ) : (
-                <span className="text-black text-[9px] xs:text-11 sm:text-12 md:text-sm font-bold capitalize">
+                <span className="text-black text-xs md:text-sm font-bold capitalize">
                   {subcategory.replace(/-/g, ' ')}
                 </span>
               )}
             </>
           )}
-          <span className="text-[9px] xs:text-11 sm:text-12 md:text-sm font-bold capitalize">
+          <span className="text-xs md:text-sm font-bold capitalize">
             {title.replace(/-/g, ' ')}
           </span>
         </Container>

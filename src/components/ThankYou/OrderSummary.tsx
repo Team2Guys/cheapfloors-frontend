@@ -45,7 +45,7 @@ const OrderSummary: React.FC<PostPaymentStatusResponse> = ({
   return (
     <div className="bg-[#FAFAFA] p-2 xs:p-6 xsm:p-10">
       <div className="py-4 border-b border-[#E0E0E0]">
-        <h2 className="text-[18px] sm:text-[20px] font-medium text-black">
+        <h2 className="text-[20px] font-bold md:font-medium text-black">
           Order Summary{' '}
           <span className="text-red-500 ml-1">
             (*Total {productlength} {productlength > 1 ? 'Items' : 'Item'})
@@ -76,7 +76,7 @@ const OrderSummary: React.FC<PostPaymentStatusResponse> = ({
                       className="w-16 h-16 sm:w-20 sm:h-20 object-cover border border-[#E0E0E0] shrink-0"
                     />
                     <div className="min-w-0">
-                      <p className="text-sm xsm:text-base font-semibold text-black leading-snug">
+                      <p className="text-base font-semibold text-black leading-snug">
                         {item?.name}
                       </p>
 
@@ -180,7 +180,7 @@ const OrderSummary: React.FC<PostPaymentStatusResponse> = ({
           </div>
 
           {!trackingOrer && (
-            <p className="text-[13px] sm:text-[14px] text-black pt-2 leading-relaxed">
+            <p className="text-[14px] text-black pt-2 leading-relaxed">
               {ExpectedDeliveryDAte}
             </p>
           )}

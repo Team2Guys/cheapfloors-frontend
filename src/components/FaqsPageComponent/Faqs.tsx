@@ -71,7 +71,7 @@ const FAQsList: React.FC<FAQsListProps> = ({ faqspage }) => {
                         onClick={() => toggleFAQ(uniqueId)}
                         className="flex justify-between items-center w-full text-left p-4 md:p-5 focus:outline-none"
                       >
-                        <span className="font-bold text-sm md:text-lg text-black pr-4">
+                        <span className="font-bold text-base md:text-lg text-black pr-4">
                           {faq.question}
                         </span>
                         <span className="text-gray-600 flex-shrink-0">
@@ -89,7 +89,7 @@ const FAQsList: React.FC<FAQsListProps> = ({ faqspage }) => {
                         }`}
                       >
                         <div className="p-4 md:p-5 pt-0 border-t border-gray-100">
-                          <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                          <p className="text-gray-600 text-base leading-relaxed">
                             {faq.answer}
                           </p>
                         </div>

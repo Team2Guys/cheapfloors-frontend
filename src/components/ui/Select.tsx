@@ -65,7 +65,7 @@ const Select = ({
           {options.map((option, index) => (
             <li
               key={index}
-              className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-white transition text-12 lg:text-sm"
+              className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-white transition text-sm"
               onClick={() => {
                 setSelected(option);
                 onChange(option);

@@ -300,7 +300,7 @@ const Thumbnail = ({
                           className="object-cover"
                         />
                       </div>
-                      <p className="mt-1 text-[10px] sm:text-[11px] font-medium text-black text-center leading-snug">
+                      <p className="mt-1 text-xs font-medium text-black text-center leading-snug">
                         {getStaticTitle(index)}
                       </p>
                     </div>

@@ -27,7 +27,7 @@ export const FlooringTrust = () => {
                 <span className="min-w-[90px] text-32 font-extrabold text-secondary md:text-40">
                   {stat.value}
                 </span>
-                <span className="max-w-[150px] text-11 font-semibold uppercase leading-tight tracking-wide text-[#9a9a9a] md:text-12">
+                <span className="max-w-[150px] text-12 font-semibold uppercase leading-tight tracking-wide text-[#9a9a9a] md:text-12">
                   {stat.label}
                 </span>
               </div>

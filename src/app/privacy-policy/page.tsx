@@ -67,28 +67,28 @@ const PrivacyPolicy = () => {
       <ol className="pl-4 sm:pl-6 space-y-6">
         {privacyPolicyData.map((item, index) => (
           <li key={index} className="list-decimal">
-            <h2 className="text-lg sm:text-2xl font-bold mb-2">{item.title}</h2>
+            <h2 className="text-2xl font-bold mb-2">{item.title}</h2>
 
             {item.content?.map((paragraph, index) => (
-              <p key={index} className="text-12 sm:text-lg font-normal mt-2">
+              <p key={index} className="text-base leading-relaxed sm:text-lg font-normal mt-2">
                 {renderLinkableText(paragraph)}
               </p>
             ))}
 
             {item.heading?.map((title, index) => (
-              <h3 key={index} className="sm:text-xl font-semibold mt-3">
+              <h3 key={index} className="text-lg sm:text-xl font-semibold mt-3">
                 {renderLinkableText(title)}
               </h3>
             ))}
             {item.Links?.map((link, index) => (
-              <p key={index} className="text-12 sm:text-lg font-normal mt-2">
+              <p key={index} className="text-base leading-relaxed sm:text-lg font-normal mt-2">
                 {renderLinkableText(link)}
               </p>
             ))}
             {item.subItems && (
               <ul className="pl-4 sm:pl-6 list-disc space-y-1 mt-2">
                 {item.subItems.map((subItem, index) => (
-                  <li key={index} className="text-12 sm:text-lg font-normal">
+                  <li key={index} className="text-base leading-relaxed sm:text-lg font-normal">
                     {renderLinkableText(subItem)}
                   </li>
                 ))}
@@ -96,7 +96,7 @@ const PrivacyPolicy = () => {
             )}
 
             {item.contentend?.map((paragraph, index) => (
-              <p key={index} className="text-12 sm:text-lg font-normal mt-2">
+              <p key={index} className="text-base leading-relaxed sm:text-lg font-normal mt-2">
                 {renderLinkableText(paragraph)}
               </p>
             ))}

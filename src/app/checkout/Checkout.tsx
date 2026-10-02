@@ -712,7 +712,7 @@ const Checkout = ({
             <div className="bg-[#FAFAFA] w-full lg:w-[50%] xl:w-[45%]">
               <div className="p-2 xs:p-4 sm:p-8">
                 <div className="flex justify-between gap-4 pb-4 border-b">
-                  <h2 className="text-2xl font-medium">Order Summary</h2>
+                  <h2 className="text-2xl font-bold md:font-medium">Order Summary</h2>
                   <span>
                     (
                     <span className="text-red-500 pt-1">
@@ -743,13 +743,13 @@ const Checkout = ({
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="font-semibold text-13 xs:text-base ">
+                          <p className="font-semibold text-sm xs:text-base ">
                             {item.name}
                           </p>
                           {item.isfreeSample ? (
                             ''
                           ) : (
-                            <p className="text-sm text-gray-600 text-12 xs:text-sm">
+                            <p className="text-sm text-gray-600">
                               {item.category?.toLowerCase().trim() ===
                                 'accessories' ? (
                                 <>
@@ -767,11 +767,11 @@ const Checkout = ({
                             </p>
                           )}
                           {item.isfreeSample ? (
-                            <p className="md:text-sm text-gray-600 text-12">
+                            <p className="text-sm text-gray-600">
                               Free Sample
                             </p>
                           ) : (
-                            <p className="md:text-sm text-gray-600 text-12">
+                            <p className="text-sm text-gray-600">
                               {item.category?.toLowerCase().trim() ===
                                 'accessories'
                                 ? 'Piece Price'
@@ -787,7 +787,7 @@ const Checkout = ({
                             'accessories' || !INSTALLATION_ENABLED ? (
                             ''
                           ) : item.addInstallation ? (
-                            <p className="md:text-sm text-gray-600 text-12">
+                            <p className="text-sm text-gray-600">
                               Installation Cost:{' '}
                               <span className="font-semibold">
                                 <span className="font-currency text-15 font-normal">
@@ -797,7 +797,7 @@ const Checkout = ({
                               </span>
                             </p>
                           ) : (
-                            <p className="md:text-sm text-gray-600 text-12">
+                            <p className="text-sm text-gray-600">
                               Installation:{' '}
                               <span className="font-semibold">
                                 Not Included
@@ -805,7 +805,7 @@ const Checkout = ({
                             </p>
                           )}
                           {item?.selectedColor?.colorName && (
-                            <p className="text-sm text-gray-600 text-12 xs:text-sm">
+                            <p className="text-sm text-gray-600">
                               Color:
                               <span>
                                 {' '}
@@ -814,7 +814,7 @@ const Checkout = ({
                             </p>
                           )}
                         </div>
-                        <p className="ml-auto font-medium text-nowrap text-13 xs:text-base">
+                        <p className="ml-auto font-medium text-nowrap text-sm xs:text-base">
                           <span className="font-currency font-normal text-20">
                             
                           </span>{' '}
@@ -900,7 +900,7 @@ const Checkout = ({
                       onClick={
                         allItemsAreFreeSamples ? () => { } : handlePurchaseClick
                       }
-                      className={`w-full bg-primary hover:bg-secondary text-white rounded-md  ${allItemsAreFreeSamples ? 'p-3' : 'p-2'} `}
+                      className={`w-full bg-primary hover:bg-secondary text-white font-semibold md:font-normal rounded-md  ${allItemsAreFreeSamples ? 'p-3' : 'p-2'} `}
                       disabled={isSubmitting || isLoading || totalProducts === 0}
                     >
                       {isSubmitting || isLoading
@@ -931,11 +931,11 @@ const Checkout = ({
                             alt="icon"
                             className="size-12 xs:size-16"
                           />
-                          <div className="text-11 xs:text-base">
+                          <div className="text-sm xs:text-base">
                             <strong className="text-15 xs:text-20">
                               Standard Service
                             </strong>
-                            <p className="text-11 xs:text-base">
+                            <p className="text-sm xs:text-base">
                               Delivery:{' '}
                               <strong>
                                 Next working day (cut-off time 1pm)

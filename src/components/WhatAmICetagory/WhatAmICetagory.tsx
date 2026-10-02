@@ -5,18 +5,18 @@ import { ISUBCATEGORY } from 'types/cat';
 const WhatAmICetagory: React.FC<{ subcat: ISUBCATEGORY }> = ({ subcat }) => {
   return (
     <section className="container mx-auto px-4 py-12 font-inter">
-      <h1 className="text-xl md:text-3xl font-bold text-center md:mb-8 mb-4">
+      <h1 className="text-2xl md:text-3xl font-bold text-center md:mb-8 mb-4">
         {subcat.whatAmiTopHeading}
       </h1>
       <div className="space-y-6 mt-10">
         {subcat.whatamIdetails.map((section, index) => (
           <div key={index}>
             {section.name && (
-              <h2 className="text-lg md:text-2xl font-semibold mb-2">
+              <h2 className="text-2xl md:text-2xl font-semibold mb-2">
                 {section.name}
               </h2>
             )}
-            <p className="max-sm:text-sm">{section.detail}</p>
+            <p className="max-sm:text-base max-sm:leading-relaxed">{section.detail}</p>
           </div>
         ))}
       </div>

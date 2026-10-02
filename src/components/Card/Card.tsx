@@ -184,7 +184,7 @@ const Card: React.FC<productCardProps> = ({
     >
       <div className="relative">
         <Link
-          className={`outline-none block relative ${sldier ? 'h-[130px] sm:h-52' : 'h-[107px] md:h-[275px]'}`}
+          className={`outline-none block relative ${sldier ? 'h-[200px] sm:h-52' : 'h-[150px] md:h-[275px]'}`}
           href={
             isAccessories
               ? `/accessories/${product.custom_url?.toLowerCase() ?? ''}`

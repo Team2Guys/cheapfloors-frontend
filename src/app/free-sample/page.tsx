@@ -35,7 +35,7 @@ const FreeSampleDetail = async () => {
       <h1 className="text-center text-24 sm:text-36 font-semibold mb-4 font-inter">
         Free Samples
       </h1>
-      <p className="text-sm sm:text-20 sm:leading-[26px] text-justify">
+      <p className="text-base sm:text-20 sm:leading-[26px] text-justify">
         At www.cheapfloors.ae , we understand that judging the quality and colour
         of our flooring on your screen isn’t the easiest task in the world. So
         we’d like to help give you the confidence by sending out free samples.
@@ -50,13 +50,13 @@ const FreeSampleDetail = async () => {
           </div>
         ))}
       </div> */}
-      <p className="text-sm sm:text-20 sm:leading-[26px] text-justify">
+      <p className="text-base sm:text-20 sm:leading-[26px] text-justify">
         We meticulously pack and ship your choices to guarantee they reach you
         in flawless condition. Additionally, there’s no pressure to buy
         afterwards — our focus is solely on helping you discover what you truly
         adore.
       </p>
-      <p className="text-sm sm:text-20 sm:leading-[26px] text-justify">
+      <p className="text-base sm:text-20 sm:leading-[26px] text-justify">
         Find the essence of quality, texture, and colour firsthand, because the
         journey to the perfect choice begins with a premium experience.
       </p>

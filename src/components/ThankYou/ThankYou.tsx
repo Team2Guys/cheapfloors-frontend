@@ -110,7 +110,7 @@ const ThankYouComp: React.FC<{ extractedParams: PaymentQueryParams }> = ({
             height={50}
             width={50}
           />
-          <h2 className="text-4xl font-bold mt-2 mb-3">Payment Unsuccessful</h2>
+          <h2 className="text-2xl md:text-4xl font-bold mt-2 mb-3">Payment Unsuccessful</h2>
           <p className="text-lg text-gray-700 font-medium">
             Your payment was not completed. Please try again or contact our
             support team for assistance.
@@ -121,10 +121,10 @@ const ThankYouComp: React.FC<{ extractedParams: PaymentQueryParams }> = ({
   ) : (
     data && (
       <div className="max-w-3xl mx-auto px-4 py-6 sm:py-8 font-inter">
-        <h1 className="text-[32px] sm:text-[40px] font-bold text-center text-black tracking-wide">
+        <h1 className="text-2xl sm:text-[40px] font-bold text-center text-black tracking-wide">
           THANK YOU!
         </h1>
-        <p className="text-center mt-3 text-[14px] sm:text-[15px] text-black max-w-2xl mx-auto leading-relaxed">
+        <p className="text-center mt-3 text-[15px] text-black max-w-2xl mx-auto leading-relaxed">
           Say thanks, confirm the payment, provide the order ID and mention that
           the order confirmation email has been sent.
         </p>

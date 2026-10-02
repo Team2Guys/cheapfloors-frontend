@@ -200,7 +200,7 @@ export const FlooringQuoteForm = () => {
             <h2 className="mt-2 text-30 font-bold text-secondary md:text-36">
               Who We <span className="text-primary">Serve</span>
             </h2>
-            <p className="mt-4 text-15 leading-relaxed text-[#6B6B6B] md:text-16">
+            <p className="mt-4 text-base leading-relaxed text-[#6B6B6B] md:text-16">
               Cheap Floors supplies high-performance SPC, LVT, and engineered wood to contractors, fit-out companies, developers, and government projects across the UAE and GCC.
             </p>
 
@@ -211,7 +211,7 @@ export const FlooringQuoteForm = () => {
                 {benefits.map((b) => (
                   <li key={b.title} className="flex gap-3">
                     <FaRegCircleCheck className="mt-0.5 shrink-0 text-18 text-primary" />
-                    <p className="text-14 leading-relaxed text-[#4A4A4A] md:text-15">
+                    <p className="text-15 leading-relaxed text-[#4A4A4A] md:text-15">
                       <span className="font-bold text-secondary">{b.title}:</span> {b.desc}
                     </p>
                   </li>
@@ -222,7 +222,7 @@ export const FlooringQuoteForm = () => {
             {/* Need Quick Assistance card */}
             <div className="mt-6 rounded-2xl bg-black p-6 text-white md:p-7 bg-[url('/assets/images/flooring/icon.png')] bg-no-repeat bg-right-bottom">
               <h3 className="text-20 font-bold md:text-22">Need Quick Assistance?</h3>
-              <p className="mt-3 text-14 leading-relaxed text-white/65 md:text-15">
+              <p className="mt-3 text-15 leading-relaxed text-white/65 md:text-15">
                 Our B2B team is available Sunday to Friday for technical consultations.
               </p>
               <div className="mt-5 flex flex-col gap-5 sm:flex-row">
@@ -254,7 +254,7 @@ export const FlooringQuoteForm = () => {
                 B2B INQUIRY FORM
               </span>
               <h2 className="mt-4 text-26 font-bold md:text-30">Request a Flooring Quote</h2>
-              <p className="mt-3 text-13 leading-relaxed text-white/65 md:text-14">
+              <p className="mt-3 text-14 leading-relaxed text-white/65 md:text-14">
                 Please complete the form below to receive a custom B2B quote within 4 business hours. Once approved, you&apos;ll benefit from preferential trade rates and be assigned a dedicated relationship manager to assist with quotations, technical specs, and delivery lead times. A Trade License and a TRN Certificate are required to confirm B2B eligibility.
               </p>
             </div>

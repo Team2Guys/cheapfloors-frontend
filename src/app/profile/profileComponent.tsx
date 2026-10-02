@@ -214,7 +214,7 @@ function ProfileComponent({
           <div className="col-span-5 xl:col-span-3     dark:bg-black dark:text-white  dark:border-white border">
             <div className="rounded-sm border  bg-white   ">
               <div className="border-b  px-7 py-4 ">
-                <h3 className="font-medium  dark:text-white">
+                <h3 className="font-semibold md:font-medium  dark:text-white">
                   Personal Information
                 </h3>
               </div>
@@ -286,8 +286,8 @@ function ProfileComponent({
                   </div>
 
                   <div className="flex justify-end gap-4">
-                    <button className="w-32 shadow">Cancel</button>
-                    <button type="submit" className="w-32 font-light shadow">
+                    <button className="w-32 shadow font-semibold md:font-normal">Cancel</button>
+                    <button type="submit" className="w-32 font-semibold md:font-light shadow">
                       Save
                     </button>
                   </div>

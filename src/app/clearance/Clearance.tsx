@@ -82,9 +82,9 @@ const Clearance = ({
 
       <div className="lg:w-[80%] font-inter">
         <div className="space-y-4">
-          <h1 className="text-34 font-bold">{name}</h1>
+          <h1 className="text-24 sm:text-34 font-bold">{name}</h1>
           <p
-            className="text-sm md:text-base 2xl:text-lg lg:leading-[26px]"
+            className="text-base 2xl:text-lg lg:leading-[26px]"
             dangerouslySetInnerHTML={{ __html: description || '' }}
           >
           </p>
