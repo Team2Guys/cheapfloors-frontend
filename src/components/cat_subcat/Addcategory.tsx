@@ -32,6 +32,7 @@ import TinyMCEEditor from 'components/Dashboard/tinyMc/MyEditor';
 import CropModal from 'components/common/CropModal';
 import useImageCropper from 'hooks/useImageCropper';
 import Input from 'components/ui/Input';
+import SchemaJsonInput from 'components/ui/SchemaJsonInput';
 import { showAlert } from 'utils/Alert';
 
 interface editCategoryProps {
@@ -58,7 +59,8 @@ const FormLayout = ({
           topHeading: editCategory.topHeading || '',
           RecallUrl: editCategory.RecallUrl || '',
           price: editCategory.price || '',
-          status: editCategory?.status || 'DRAFT'
+          status: editCategory?.status || 'DRAFT',
+          Schema_Json: editCategory.Schema_Json || ''
         }
       : null;
   const token = Cookies.get('admin_access_token');
@@ -468,6 +470,7 @@ const FormLayout = ({
                   name="Meta_Description"
                   placeholder="Meta Description"
                 />
+                <SchemaJsonInput />
               </div>
             </div>
             <Field name="status">

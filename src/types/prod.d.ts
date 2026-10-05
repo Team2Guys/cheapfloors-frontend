@@ -69,6 +69,7 @@ export interface IProduct {
   lengthPrice?: string;
   status?: BlogStatus;
   sku?: string;
+  Schema_Json?: string | null;
   stockUpdateDate?: Date;
   bundle?: number;
   bundlePrice?: number;

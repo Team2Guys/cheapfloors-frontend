@@ -19,6 +19,7 @@ import { AdditionalInformation } from 'types/prod';
 import { EDIT_CATEGORY, ISUBCATEGORY_EDIT } from 'types/cat';
 import { EDIT_BLOG } from 'types/blog';
 import { MeasurementSection } from '../types/types';
+import { getSchemaJsonError } from 'utils/schemaJson';
 
 export const generateSlug = (text: string) => {
   if (!text) return '';
@@ -89,13 +90,22 @@ export const categoryInitialValues: EDIT_CATEGORY = {
   custom_url: '',
   topHeading: '',
   recalledSubCats: [],
-  price: ''
+  price: '',
+  Schema_Json: ''
 };
+
+const schemaJsonValidation = Yup.string()
+  .nullable()
+  .test('valid-schema-json', function (value) {
+    const error = getSchemaJsonError(value);
+    return error ? this.createError({ message: error }) : true;
+  });
 
 export const subcategoryValidationSchema = Yup.object({
   name: Yup.string().required('Add Sub Category Name'),
   category: Yup.string().required('Select Category'),
-  custom_url: Yup.string().required('Custom URL is required')
+  custom_url: Yup.string().required('Custom URL is required'),
+  Schema_Json: schemaJsonValidation
 });
 
 export const categoryValidationSchema = Yup.object({
@@ -103,7 +113,8 @@ export const categoryValidationSchema = Yup.object({
   custom_url: Yup.string().required('Custom URL is required'),
   RecallUrl: Yup.string().required(
     'Custom URL is required for categories and products'
-  )
+  ),
+  Schema_Json: schemaJsonValidation
 });
 
 export const subcategoryInitialValues: ISUBCATEGORY_EDIT = {
@@ -120,7 +131,8 @@ export const subcategoryInitialValues: ISUBCATEGORY_EDIT = {
   Heading: '',
   recalledByCategories: [],
   recalledSubCats: [],
-  whatIamEndpoint: ''
+  whatIamEndpoint: '',
+  Schema_Json: ''
 };
 export interface IProductValues {
   id?: number;
@@ -146,6 +158,7 @@ export interface IProductValues {
   colors?: AdditionalInformation[];
   sizes?: { width: string; height: string; thickness: string }[];
   lengthPrice?: string;
+  Schema_Json?: string;
 }
 
 export const AddproductsinitialValues: IProductValues = {
@@ -171,7 +184,8 @@ export const AddproductsinitialValues: IProductValues = {
   colorCode: '',
   colors: [],
   sizes: [],
-  lengthPrice: ''
+  lengthPrice: '',
+  Schema_Json: ''
 };
 
 export const excludedKeys = [
@@ -194,7 +208,8 @@ export const AddProductvalidationSchema = Yup.object().shape({
   price: Yup.number()
     .min(1, 'Minimum sales price must be at least 1')
     .required('Required'),
-  discountPrice: Yup.number().nullable()
+  discountPrice: Yup.number().nullable(),
+  Schema_Json: schemaJsonValidation
 });
 
 export const Appointmentlocation = [

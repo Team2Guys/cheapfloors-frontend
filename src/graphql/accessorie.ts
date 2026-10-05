@@ -27,6 +27,7 @@ export const FETCH_ALL_ACCESSORIES = gql`
       lengthPrice
       status
       sku
+      Schema_Json
       category {
         id
         name
