@@ -4,7 +4,7 @@ import { PageSchema } from 'data/page-schema';
 // the page body - Google reads JSON-LD from <body> as well as <head>.
 // Renders nothing when no schema is defined for the page, so callers can pass
 // a lookup straight in without guarding first.
-const JsonLd = ({ schema }: { schema?: PageSchema }) => {
+const JsonLd = ({ schema }: { schema?: PageSchema | PageSchema[] }) => {
   if (!schema) return null;
 
   // Escape "<" so a value containing "</script>" can never break out of the tag.

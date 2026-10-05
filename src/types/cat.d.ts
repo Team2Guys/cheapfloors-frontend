@@ -40,6 +40,7 @@ export interface Category {
   price?: string | number;
   stock?: number;
   boxCoverage?: string;
+  Schema_Json?: string | null;
   __typename?: string;
 }
 

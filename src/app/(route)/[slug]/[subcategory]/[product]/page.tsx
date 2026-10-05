@@ -5,6 +5,8 @@ import { IProduct } from 'types/prod';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { headers } from 'next/headers';
+import JsonLd from 'components/Seo/JsonLd';
+import { parseSchemaJson } from 'utils/schemaJson';
 
 interface IParams {
   slug: string;
@@ -79,13 +81,16 @@ const Product = async ({ params }: { params: Promise<IParams> }) => {
     (acc: IProduct) => acc.status === 'PUBLISHED'
   );
   return (
-    <ProductDetail
-      MainCategory={slug}
-      subCategory={subcategory}
-      ProductName={paramsprod}
-      productData={ProductInfo}
-      AccessoriesProducts={PublishAccessory}
-    />
+    <>
+      <JsonLd schema={parseSchemaJson(ProductInfo.Schema_Json)} />
+      <ProductDetail
+        MainCategory={slug}
+        subCategory={subcategory}
+        ProductName={paramsprod}
+        productData={ProductInfo}
+        AccessoriesProducts={PublishAccessory}
+      />
+    </>
   );
 };
 

@@ -31,6 +31,7 @@ export const FETCH_ALL_PRODUCTS = gql`
       sizes
       FAQS
       sku
+      Schema_Json
       stockUpdateDate
       boxCoverage
       featureImages
@@ -127,6 +128,7 @@ export const FETCH_ALL_CATEGORIES = gql`
       RecallUrl
       status
       price
+      Schema_Json
       recalledSubCats {
         id
         name
@@ -147,6 +149,7 @@ export const FETCH_ALL_CATEGORIES = gql`
         BannerImage
         price
         status
+        Schema_Json
       }
       products {
         id
@@ -221,6 +224,7 @@ export const FETCH_ALL_SUB_CATEGORIES = gql`
       whatAmiMeta_Title
       whatAmiCanonical_Tag
       whatAmiMeta_Description
+      Schema_Json
       products {
         id
         name
@@ -552,6 +556,7 @@ export const FIND_ONE_Accessory = gql`
       Canonical_Tag
       whatAmiImageBanner
       status
+      Schema_Json
       accessories {
         id
         name
@@ -611,6 +616,7 @@ export const FIND_ONE_PRODUCT = gql`
       Meta_Title
       Meta_Description
       Canonical_Tag
+      Schema_Json
       AdditionalInformation
       colors
       thickness

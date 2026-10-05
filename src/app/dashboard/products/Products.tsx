@@ -55,7 +55,8 @@ const Product = ({
     products: (editProduct && editProduct?.products?.map((value) => value.id)) || [],
     lengthPrice: editProduct && editProduct?.lengthPrice,
     status: editProduct && editProduct?.status,
-    sku: editProduct && editProduct?.sku
+    sku: editProduct && editProduct?.sku,
+    Schema_Json: editProduct?.Schema_Json || ''
   };
 
   useEffect(() => {

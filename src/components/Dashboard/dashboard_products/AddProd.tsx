@@ -42,6 +42,7 @@ import { useRouter } from 'next/navigation';
 import CropModal from 'components/common/CropModal';
 import useImageCropper from 'hooks/useImageCropper';
 import Input from 'components/ui/Input';
+import SchemaJsonInput from 'components/ui/SchemaJsonInput';
 import { showAlert } from 'utils/Alert';
 import { UPDATE_ACCESSORY_MUTATION } from 'graphql/accessorie';
 
@@ -586,6 +587,7 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
                       placeholder="Meta Description"
                       textarea
                     />
+                    <SchemaJsonInput />
 
                     <div className="flex gap-4 flex-col">
                       <div className="w-full">

@@ -12,6 +12,8 @@ import { staticMenuItems } from 'data/data';
 import Category from '../Cetagory';
 import AccessoriesDetail from 'app/(route)/[slug]/[subcategory]/AccessoriesDetail';
 import { IProduct } from 'types/prod';
+import JsonLd from 'components/Seo/JsonLd';
+import { parseSchemaJson } from 'utils/schemaJson';
 
 export async function generateMetadata({
   params
@@ -82,11 +84,14 @@ const SubCategoryPage = async ({
     );
     if (!productData) return notFound();
     return (
-      <AccessoriesDetail
-        ProductName={subcategory}
-        ProductInfo={PublishAccessory}
-        productData={productData}
-      />
+      <>
+        <JsonLd schema={parseSchemaJson(productData.Schema_Json)} />
+        <AccessoriesDetail
+          ProductName={subcategory}
+          ProductInfo={PublishAccessory}
+          productData={productData}
+        />
+      </>
     );
   } else {
     const categories = await fetchCategories();
@@ -132,14 +137,17 @@ const SubCategoryPage = async ({
 
     if (matchingSubCategory.length === 0) return notFound();
     return (
-      <Category
-        catgories={filteredCategories}
-        categoryData={findCategory}
-        slug={slug}
-        subcategory={subcategory}
-        subdescription={matchingSubCategory}
-        isSubCategory
-      />
+      <>
+        <JsonLd schema={parseSchemaJson(matchingSubCategory[0].Schema_Json)} />
+        <Category
+          catgories={filteredCategories}
+          categoryData={findCategory}
+          slug={slug}
+          subcategory={subcategory}
+          subdescription={matchingSubCategory}
+          isSubCategory
+        />
+      </>
     );
   }
 };

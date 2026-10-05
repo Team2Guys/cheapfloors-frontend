@@ -11,6 +11,7 @@ import { FIND_ONE_Accessory } from 'graphql/queries';
 import Breadcrumb from 'components/Reusable/breadcrumb';
 import JsonLd from 'components/Seo/JsonLd';
 import { pageSchemas } from 'data/page-schema';
+import { parseSchemaJson } from 'utils/schemaJson';
 import AccessoriesComp from 'components/Accessories/Accessories';
 import CategoryFaqs from '@/components/Faqs/CategoryFaqs';
 import Testimonial from '@/components/Testimonial/testimonial';
@@ -89,7 +90,9 @@ const CategoryPage = async ({
 
     return (
       <>
-        <JsonLd schema={pageSchemas[slug]} />
+        <JsonLd
+          schema={parseSchemaJson(category.Schema_Json) ?? pageSchemas[slug]}
+        />
         <Breadcrumb
           image={category.whatAmiImageBanner?.imageUrl}
           altText={category.whatAmiImageBanner?.altText || 'Accessories'}
@@ -175,7 +178,11 @@ const CategoryPage = async ({
 
     return (
       <>
-        <JsonLd schema={pageSchemas[slug]} />
+        <JsonLd
+          schema={
+            parseSchemaJson(findCategory.Schema_Json) ?? pageSchemas[slug]
+          }
+        />
         <Category
           catgories={filteredCategories}
           categoryData={findCategory}

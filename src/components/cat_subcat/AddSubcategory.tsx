@@ -37,6 +37,7 @@ import TinyMCEEditor from 'components/Dashboard/tinyMc/MyEditor';
 import useImageCropper from 'hooks/useImageCropper';
 import CropModal from 'components/common/CropModal';
 import Input from 'components/ui/Input';
+import SchemaJsonInput from 'components/ui/SchemaJsonInput';
 import { showAlert } from 'utils/Alert';
 
 const FormLayout = ({
@@ -69,7 +70,8 @@ const FormLayout = ({
           whatAmiCanonical_Tag: editCategory.whatAmiCanonical_Tag || '',
           whatAmiMeta_Description: editCategory.whatAmiMeta_Description || '',
           whatAmiMeta_Title: editCategory.whatAmiMeta_Title || '',
-          status: editCategory?.status || 'DRAFT'
+          status: editCategory?.status || 'DRAFT',
+          Schema_Json: editCategory.Schema_Json || ''
         } as ISUBCATEGORY_EDIT)
       : undefined;
 
@@ -833,6 +835,7 @@ const FormLayout = ({
                     placeholder="Meta Description"
                     textarea
                   />
+                  <SchemaJsonInput />
 
                   <div className="grid grid-cols-2 gap-4 mt-4">
                     <Input
