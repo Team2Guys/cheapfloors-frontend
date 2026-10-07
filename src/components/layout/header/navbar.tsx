@@ -91,7 +91,7 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
     <nav
       className={`bg-white w-full z-50 max-sm:py-2 max-lg:py-2 font-inter  ${isScrolled ? 'bg-white text-black' : 'bg-white text-black'}`}
     >
-      <Container className="flex_between max-sm:gap-4 py-2">
+      <Container className="flex_between max-sm:gap-4 lg:gap-2 xl:gap-3 2xl:gap-6 py-2">
         <div className="shrink-0">
           <Link href="/" className="inline-block">
             <svg
@@ -120,8 +120,11 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
 
           </Link>
         </div>
-        <div className="w-8/12 lg:w-[60%] 2xl:w-[60%] max-lg:flex max-lg:justify-center">
-          <div className="hidden lg:flex items-end gap-0 xl:gap-1 min-[1700px]:gap-2 w-fit h-16 justify-between capitalize font-light whitespace-nowrap relative overflow-hidden">
+        {/* Desktop: the menu takes the free space between the logo and the
+            icons, so it never gets clipped; the search sits in the icon group
+            as a compact bar that widens on click. */}
+        <div className="w-8/12 lg:w-auto lg:flex-1 lg:min-w-0 max-lg:flex max-lg:justify-center">
+          <div className="hidden lg:flex items-end gap-0 min-[1700px]:gap-2 w-fit h-16 justify-between capitalize font-light whitespace-nowrap relative overflow-hidden">
             {menuItems.map((item, index) => (
               <Megamenu
                 key={index}
@@ -171,7 +174,7 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
             isLoading={isLoading}
           />
         </div>
-        <div className="w-2/12 lg:w-[34%] 2xl:w-[30%] text-end flex_between gap-2 max-lg:justify-end">
+        <div className="w-2/12 lg:w-auto lg:shrink-0 text-end flex_between gap-2 xl:gap-3 max-lg:justify-end">
           {/* Hidden for now; the /measurement-appointment page still exists.
           <Link
             href="/measurement-appointment"
