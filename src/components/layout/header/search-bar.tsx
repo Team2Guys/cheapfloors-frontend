@@ -214,11 +214,12 @@ const SearchBar = ({
           setSearchText(e.target.value);
           setIsProductListOpen(true);
         }}
-        className={`w-full pl-10 h-8 text-base lg:text-[10px] xl:text-sm sm:h-6 2xl:h-[31px] border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 bg-gray-100 ${expandable && isExpanded ? 'pr-10 !text-sm' : 'pr-4'
-          }`}
+        aria-label="Search products"
+        className={`w-full h-8 text-base lg:text-sm sm:h-6 lg:h-8 2xl:h-[31px] border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 bg-gray-100 ${expandable && isExpanded ? 'pl-10 pr-10' : 'pl-10 pr-4 lg:pl-8 lg:pr-0 xl:pl-10 xl:pr-4'
+          } ${expandable && !isExpanded ? 'cursor-pointer' : ''}`}
       />
-      <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-        <HiOutlineSearch className="h-5 w-5 lg:h-3 lg:w-4 xl:h-5 xl:w-5" />
+      <div className="absolute left-3 lg:left-2.5 xl:left-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+        <HiOutlineSearch className="h-5 w-5 lg:h-4 lg:w-4 xl:h-5 xl:w-5" />
       </div>
       {expandable && isExpanded && (
         <button
@@ -234,12 +235,13 @@ const SearchBar = ({
     </>
   );
 
-  // Desktop: keep the bar visible; on click it grows wider from the left,
-  // overlaying the "Book Your Appointment" button. Close shrinks + clears it.
+  // Desktop: a compact bar (just the icon at 1024–1279px) so the menu has
+  // room; on click it grows wider to the left over the menu. Close shrinks +
+  // clears it.
   if (expandable) {
     return (
       <div
-        className={`relative w-full max-w-[15rem] xl:max-w-[17rem] ${className}`}
+        className={`relative h-8 2xl:h-[31px] w-9 xl:w-36 2xl:w-52 min-[1700px]:w-60 ${className}`}
       >
         <form
           onSubmit={(e) => e.preventDefault()}

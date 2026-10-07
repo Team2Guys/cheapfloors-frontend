@@ -40,7 +40,7 @@ const Megamenu: React.FC<
       onClick={handleMouseLeave}
     >
       <Link
-        className={`text-12 lg:text-10 xl:text-14 2xl:text-14 min-[1700px]:text-15 3xl:text-base capitalize ${pathname === `/${href}` ? 'bg-gray-light p-[6px] xl:p-2 rounded-xl' : 'hover:bg-gray-light p-[6px]  xl:p-2 rounded-xl '}`}
+        className={`text-12 lg:text-14 min-[1700px]:text-15 3xl:text-base capitalize rounded-xl p-1 xl:p-2 ${pathname === `/${href}` ? 'bg-gray-light' : 'hover:bg-gray-light'}`}
         href={`/${href}`}
       >
         {label}
