@@ -152,7 +152,7 @@ const SearchBar = ({
                                 <span className="font-currency text-18 font-normal"></span>{' '}
                                 <span>{product.discountPrice}</span>
                               </p>
-                              <p className="text-[12px] text-primary-foreground font-bold line-through">
+                              <p className="text-base text-primary-foreground font-bold line-through">
                                 <span className="font-currency text-18 font-normal"></span>{' '}
                                 <span>{product.price}</span>
                               </p>

@@ -64,7 +64,7 @@ function ReviewDescription({ ReviewsDescription }: Props) {
                 {isLongText && (
                     <button
                         onClick={() => setIsExpanded((prev) => !prev)}
-                        className="text-black text-[10px] xsm:text-[12px] md:text-[14px] cursor-pointer font-bold mt-1 hover:underline block"
+                        className="text-black text-[10px] xsm:text-sm  cursor-pointer font-bold mt-1 hover:underline block"
                     >
                         {isExpanded ? "View Less" : "View More"}
                     </button>

@@ -338,7 +338,7 @@ const FreeSampleCheckout = () => {
                       <ErrorMessage
                         name="firstName"
                         component="p"
-                        className="text-red-500 text-[12px] mt-0.5"
+                        className="text-red-500 text-sm mt-0.5"
                       />
                     </div>
                     <div>
@@ -357,7 +357,7 @@ const FreeSampleCheckout = () => {
                       <ErrorMessage
                         name="lastName"
                         component="p"
-                        className="text-red-500 text-[12px] mt-0.5"
+                        className="text-red-500 text-sm mt-0.5"
                       />
                     </div>
                   </div>
@@ -378,7 +378,7 @@ const FreeSampleCheckout = () => {
                     <ErrorMessage
                       name="email"
                       component="p"
-                      className="text-red-500 text-[12px] mt-0.5"
+                      className="text-red-500 text-sm mt-0.5"
                     />
                   </div>
 
@@ -398,7 +398,7 @@ const FreeSampleCheckout = () => {
                     <ErrorMessage
                       name="phone"
                       component="p"
-                      className="text-red-500 text-[12px] mt-0.5"
+                      className="text-red-500 text-sm mt-0.5"
                     />
                   </div>
 
@@ -436,7 +436,7 @@ const FreeSampleCheckout = () => {
                       <ErrorMessage
                         name="emirate"
                         component="p"
-                        className="text-red-500 text-[12px] mt-0.5"
+                        className="text-red-500 text-sm mt-0.5"
                       />
                     </div>
                     <div>
@@ -458,7 +458,7 @@ const FreeSampleCheckout = () => {
                       <ErrorMessage
                         name="city"
                         component="p"
-                        className="text-red-500 text-[12px] mt-0.5"
+                        className="text-red-500 text-sm mt-0.5"
                       />
                     </div>
                   </div>
@@ -498,7 +498,7 @@ const FreeSampleCheckout = () => {
                     <ErrorMessage
                       name="address"
                       component="p"
-                      className="text-red-500 text-[12px] mt-0.5"
+                      className="text-red-500 text-sm mt-0.5"
                     />
                   </div>
 
