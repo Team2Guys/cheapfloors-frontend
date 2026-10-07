@@ -19,7 +19,7 @@ const Accordion = ({
         <h3
           onClick={onToggle}
           className={` flex items-center w-full text-left gap-2 cursor-pointer select-none
-          ${showPlusMinus ? 'border-b pb-2' : ''} ${isCheckout ? 'font-semibold text-base' : 'text-sm lg:text-base font-semibold'}`}
+          ${showPlusMinus ? 'border-b pb-2' : ''} ${isCheckout ? 'font-semibold text-base' : 'text-base font-semibold'}`}
         >
           {!isCheckout &&
             (isOpen ? (

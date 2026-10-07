@@ -29,7 +29,7 @@ export default function OrderTracking({ data }: { data: PostPaymentStatus }) {
 
       <div className="grid grid-cols-2 justify-center items-center gap-3 xsm:gap-5">
         <div className="border-r-2 pr-3 xsm:pr-5 text-end">
-          <p className="text-xs sm:text-sm md:text-base 2xl:text-[20px] font-semibold text-[#959BA7]">
+          <p className="text-xs text-base 2xl:text-[20px] font-semibold text-[#959BA7]">
             Order date: <span className="text-black">{formatedDate}</span>
           </p>
         </div>
@@ -37,7 +37,7 @@ export default function OrderTracking({ data }: { data: PostPaymentStatus }) {
           <span className="inline-block">
             <BsTruck className="w-4 h-4 sm:w-7 sm:h-7 2xl:w-[42px] 2xl:h-[42px] text-primary" />
           </span>
-          <p className="text-xs sm:text-sm md:text-base 2xl:text-[20px] font-semibold text-primary text-wrap">
+          <p className="text-xs text-base 2xl:text-[20px] font-semibold text-primary text-wrap">
             Estimated delivery:{' '}
             <span className="text-black">{TrackingOrder}</span>
           </p>
@@ -73,7 +73,7 @@ export default function OrderTracking({ data }: { data: PostPaymentStatus }) {
                 <span className="pb-1">{index}</span>
               </div>
               <p
-                className={`text-12 sm:text-sm md:text-20 2xl:text-[24px] py-1 text-primary font-semibold xsm:mt-2 transform ${
+                className={`text-12 text-20 2xl:text-[24px] py-1 text-primary font-semibold xsm:mt-2 transform ${
                   index === 0
                     ? '-translate-x-5 md:-translate-x-9'
                     : index === 1
@@ -83,7 +83,7 @@ export default function OrderTracking({ data }: { data: PostPaymentStatus }) {
               >
                 {stage}
               </p>
-              {/* <p className="text-10 sm:text-sm md:text-18 2xl:text-[24px] font-semibold text-[#95989C] h-[30px]">
+              {/* <p className="text-10 text-18 2xl:text-[24px] font-semibold text-[#95989C] h-[30px]">
                 {index === 2 ? `Expected by, ${TrackingOrder} ` : formatedDate}
               </p> */}
             </div>

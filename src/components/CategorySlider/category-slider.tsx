@@ -167,7 +167,7 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
                     </p>
                     <Link
                       href={seeAllLink}
-                      className="px-6 py-2.5 bg-primary text-black group-hover:bg-white rounded-full font-semibold transition flex items-center justify-center gap-2 text-sm md:text-base"
+                      className="px-6 py-2.5 bg-primary text-black group-hover:bg-white rounded-full font-semibold transition flex items-center justify-center gap-2 text-base"
                     >
                       See All <BsArrowRight className="w-4 h-4" />
                     </Link>

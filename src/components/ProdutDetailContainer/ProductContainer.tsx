@@ -322,7 +322,7 @@ const ProductContainer = ({
                 )}
                 <p className="text-red-500 text-sm xl:text-base">
                   (Save{' '}
-                  <span className="font-currency text-sm md:text-base xl:text-18  font-normal">
+                  <span className="font-currency text-base xl:text-18  font-normal">
                     
                   </span>{' '}
                   {formatAED(

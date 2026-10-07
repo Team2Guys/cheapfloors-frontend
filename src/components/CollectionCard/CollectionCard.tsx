@@ -145,7 +145,7 @@ const CollectionCard = ({ subcategory }: { subcategory: ISUBCATEGORY }) => {
       ) : (
         <Link
           href={subcategoryUrl}
-          className="w-full py-2 rounded-full border border-[#FEB907] text-[#191C1F] font-semibold text-center hover:bg-[#FEB907] hover:text-white transition duration-300 block text-sm md:text-base font-inter"
+          className="w-full py-2 rounded-full border border-[#FEB907] text-[#191C1F] font-semibold text-center hover:bg-[#FEB907] hover:text-white transition duration-300 block text-base font-inter"
         >
           View All
         </Link>

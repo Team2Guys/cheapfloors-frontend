@@ -278,7 +278,7 @@ const Testimonial: React.FC<TestimonialProps> = ({ backgroundImage }) => {
             <Container className="py-4 md:py-8 flex justify-center md:justify-start">
                 <Link
                     href="https://www.google.com/maps/place/EasyFloors+-+Affordable+Flooring/@25.1177844,55.2357386,993m/data=!3m1!1e3!4m8!3m7!1s0x3e5f69fca32528d3:0x63e4dd6474477d84!8m2!3d25.1177844!4d55.2357386!9m1!1b1!16s%2Fg%2F11yfzpsct1?entry=ttu&g_ep=EgoyMDI2MDYwMi4wIKXMDSoASAFQAw%3D%3D" target="_blank"
-                    className="inline-block bg-[#FEB907] text-black font-semibold text-sm md:text-base px-8 py-3 rounded-full hover:bg-black hover:text-white transition-colors duration-300 font-inter shadow-md"
+                    className="inline-block bg-[#FEB907] text-black font-semibold text-base px-8 py-3 rounded-full hover:bg-black hover:text-white transition-colors duration-300 font-inter shadow-md"
                 >
                     See All Reviews
                 </Link>

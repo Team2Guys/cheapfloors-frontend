@@ -175,7 +175,7 @@ const ProductTable: React.FC<ProductTableProps> = ({
                             >
                               <FiMinus className="text-black" />
                             </button>
-                            <span className="text-black px-4 text-sm min-w-[30px] text-center">
+                            <span className="text-black px-4  min-w-[30px] text-center">
                               {product.category?.toLowerCase().trim() ===
                                 'accessories'
                                 ? product.requiredBoxes

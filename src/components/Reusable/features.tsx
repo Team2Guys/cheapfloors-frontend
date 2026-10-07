@@ -75,7 +75,7 @@ const Features = () => {
                 <h3 className="text-lg lg:text-xl font-bold mb-3 text-black">
                   {item.title}
                 </h3>
-                <p className="text-sm lg:text-base font-normal text-black leading-snug">
+                <p className="text-base font-normal text-black leading-snug">
                   {item.description}{' '}
                   {item.showContact && (
                     <>

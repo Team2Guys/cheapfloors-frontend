@@ -92,13 +92,13 @@
 
 @layer components {
   .primary-label {
-    @apply mb-3 block text-sm font-medium mt-3;
+    @apply mb-3 block text-base font-medium mt-3;
   }
 }
 
 @layer components {
   .filter_accordion {
-    @apply px-2 text-sm text-black flex flex-col;
+    @apply px-2 text-base text-black flex flex-col;
   }
 
   .filter_accordion li {
@@ -114,7 +114,7 @@
 
 @layer components {
   .footer_li {
-    @apply text-sm text-[#00000099] hover:text-gray-900 cursor-pointer font-normal;
+    @apply text-base text-[#00000099] hover:text-gray-900 cursor-pointer font-normal;
   }
 }
 

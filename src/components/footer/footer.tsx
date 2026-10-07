@@ -88,7 +88,7 @@ const Footer = () => {
             height={50}
             className="mb-4"
           />
-          <p className="mt-2 text-sm w-full sm:max-w-[150px] xl:max-w-[160px] 2xl:max-w-[172px] text-[#00000099]">
+          <p className="mt-2 w-full sm:max-w-[150px] xl:max-w-[160px] 2xl:max-w-[172px] text-[#00000099]">
             {footerData.company.description}
           </p>
         </div>

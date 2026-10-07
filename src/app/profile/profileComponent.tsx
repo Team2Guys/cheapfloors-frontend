@@ -195,16 +195,16 @@ function ProfileComponent({
                     />
                   </svg>
                 </span>
-                <p className="text-black dark:text-white text-sm">
-                  <span className="text-red-500 font-semibold dark:text-white text-sm">
+                <p className="text-black dark:text-white ">
+                  <span className="text-red-500 font-semibold dark:text-white ">
                     Click to upload
                   </span>{' '}
                   or drag and drop
                 </p>
-                <p className="mt-1.5 text-black dark:text-white text-sm">
+                <p className="mt-1.5 text-black dark:text-white ">
                   SVG, PNG, JPG or GIF
                 </p>
-                <p className="text-black dark:text-white text-sm">
+                <p className="text-black dark:text-white ">
                   (max, 800 X 800px)
                 </p>
               </div>
@@ -223,7 +223,7 @@ function ProfileComponent({
                   <div className="mb-5 flex flex-col gap-5 sm:flex-row">
                     <div className="mb-5 w-full">
                       <label
-                        className="mb-3 block text-sm font-medium  dark:text-white"
+                        className="mb-3 block  font-medium  dark:text-white"
                         htmlFor="name"
                       >
                         Full Name
@@ -241,7 +241,7 @@ function ProfileComponent({
 
                     <div className="mb-5 w-full">
                       <label
-                        className="mb-3 block text-sm font-medium  dark:text-white"
+                        className="mb-3 block  font-medium  dark:text-white"
                         htmlFor="email"
                       >
                         Email Address

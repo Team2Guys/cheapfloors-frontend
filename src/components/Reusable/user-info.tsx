@@ -22,7 +22,7 @@ const UserInfo = () => {
               Save smart on flooring in the UAE with durable, low-maintenance options like SPC and vinyl, perfect for heat, humidity, and high traffic. Enjoy water-resistant, long-lasting floors with easy installation and great value. Premium quality, made affordable with CheapFloors.
             </p>
             <Link href="/collections">
-              <button className="mt-2 bg-primary text-black text-sm md:text-base font-semibold py-3 px-8 rounded-full hover:bg-black hover:text-white transition-colors duration-300">
+              <button className="mt-2 bg-primary text-black text-base font-semibold py-3 px-8 rounded-full hover:bg-black hover:text-white transition-colors duration-300">
                 Shop Now
               </button>
             </Link>
@@ -94,7 +94,7 @@ const UserInfo = () => {
             </ul>
 
             <Link href="/collections">
-              <button className="mt-2 bg-primary text-black text-sm md:text-base font-semibold py-3 px-8 rounded-full hover:bg-black hover:text-white transition-colors duration-300">
+              <button className="mt-2 bg-primary text-black text-base font-semibold py-3 px-8 rounded-full hover:bg-black hover:text-white transition-colors duration-300">
                 Shop Now
               </button>
             </Link>
