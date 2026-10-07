@@ -124,7 +124,7 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
             icons, so it never gets clipped; the search sits in the icon group
             as a compact bar that widens on click. */}
         <div className="w-8/12 lg:w-auto lg:flex-1 lg:min-w-0 max-lg:flex max-lg:justify-center">
-          <div className="hidden lg:flex items-end gap-0 min-[1700px]:gap-2 w-fit h-16 justify-between capitalize font-light whitespace-nowrap relative overflow-hidden">
+          <div className="hidden lg:flex items-end gap-0 min-[1700px]:gap-2 w-fit h-16 justify-between capitalize font-medium whitespace-nowrap relative overflow-hidden">
             {menuItems.map((item, index) => (
               <Megamenu
                 key={index}

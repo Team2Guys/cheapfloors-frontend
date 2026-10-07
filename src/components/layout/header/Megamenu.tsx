@@ -34,13 +34,13 @@ const Megamenu: React.FC<
 
   return (
     <div
-      className="relative font-inter capitalize font-light pb-5"
+      className="relative font-inter capitalize font-medium pb-5"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleMouseLeave}
     >
       <Link
-        className={`text-12 lg:text-14 min-[1700px]:text-15 3xl:text-base capitalize rounded-xl p-1 xl:p-2 ${pathname === `/${href}` ? 'bg-gray-light' : 'hover:bg-gray-light'}`}
+        className={`text-12 lg:text-14 min-[1700px]:text-15 3xl:text-base capitalize rounded-xl px-1 py-1 lg:px-0.5 xl:px-2 xl:py-2 ${pathname === `/${href}` ? 'bg-gray-light' : 'hover:bg-gray-light'}`}
         href={`/${href}`}
       >
         {label}
