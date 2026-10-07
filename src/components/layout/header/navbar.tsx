@@ -325,6 +325,7 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
                   <Link
                     href="/about-us"
                     className={`text-sm font-semibold w-fit whitespace-nowrap ${pathname === '/about-us' ? 'bg-gray-light' : ''}`}
+                    onClick={() => setIsOpen(false)}
                   >
                     About Us
                   </Link>
@@ -336,6 +337,7 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
                   <Link
                     href="/contact-us"
                     className={`text-sm font-semibold w-fit whitespace-nowrap ${pathname === '/contact-us' ? 'bg-gray-light' : ''}`}
+                    onClick={() => setIsOpen(false)}
                   >
                     Contact Us
                   </Link>

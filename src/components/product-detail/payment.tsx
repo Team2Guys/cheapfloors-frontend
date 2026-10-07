@@ -110,7 +110,7 @@ const PaymentModals = ({
       <h2 className="text-2xl font-bold text-center">
         Pay easier with Tamara
       </h2>
-      <div className="py-8 px-5 xs:px-10 md:px-20 me-4 xs:me-7">
+      <div className="py-8 md:px-20">
         <div className="text-center">
           <Image
             height={130}

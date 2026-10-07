@@ -32,27 +32,40 @@ const Modal: React.FC<ModalProps> = ({
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
+  // Lock the page behind the modal so only the modal content scrolls.
+  useEffect(() => {
+    if (!isOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
     <div
-      className={`fixed inset-0 flex_center bg-black bg-opacity-50 z-50 ${className || ''}`}
+      className={`fixed inset-0 flex_center p-4 bg-black bg-opacity-50 z-50 ${className || ''}`}
       onClick={onClose}
     >
+      {/* Never taller than the screen: the content scrolls inside while the
+          close button stays pinned in the corner. */}
       <div
-        className={`bg-white p-4 shadow-lg max-lg:max-h-[700px] max-lg:overflow-x-scroll ${width} relative`}
+        className={`bg-white shadow-lg max-h-[90vh] max-h-[90dvh] flex flex-col ${width} relative`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl"
+          aria-label="Close"
+          className="absolute top-3 right-3 z-10 text-gray-500 hover:text-gray-700 text-xl"
         >
           ✕
         </button>
-        <div className="mt-2">{children}</div>
+        <div className="mt-2 p-4 overflow-y-auto overscroll-contain">{children}</div>
         {onOk && (
-          <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-gray-200">
+          <div className="flex justify-end gap-3 px-4 pb-4 pt-4 border-t border-gray-200">
             <div
               onClick={onCancel || onClose}
               className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition cursor-pointer"

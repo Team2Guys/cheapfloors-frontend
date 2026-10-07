@@ -77,7 +77,7 @@ const CategoryFaqs: React.FC<CategoryFaqsProps> = ({ faqs = DUMMY_FAQS, classNam
 
               {isOpen && (
                 <div className="px-4 md:px-6 pb-5">
-                  <p className="text-sm text-gray-700 leading-relaxed">
+                  <p className="text-base text-gray-700 leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>
