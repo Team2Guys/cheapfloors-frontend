@@ -201,7 +201,7 @@ const FreeSamplePage = () => {
                 <h2 className=" text-20 2xl:text-28">
                   Order Summary
                 </h2>
-                <p className="text-sm text-[#FF0004]">
+                <p className=" text-[#FF0004]">
                   (*Total {items.length}{' '}
                   {items.length === 1 ? 'Item' : ' Items'})
                 </p>
@@ -243,11 +243,11 @@ const FreeSamplePage = () => {
                     alt="icon"
                     className="size-12 xs:size-16"
                   />
-                  <div className="text-sm xs:text-base">
+                  <div className=" xs:text-base">
                     <strong className="text-15 xs:text-20">
                       Standard Service
                     </strong>
-                    <p className="text-sm xs:text-base">
+                    <p className=" xs:text-base">
                       Delivery:{' '}
                       <strong>Next working day (cut-off time 1pm)</strong>
                     </p>
@@ -277,11 +277,11 @@ const FreeSamplePage = () => {
                   />
                   <div>
                     <strong className="text-15 xs:text-20">Self-Collect</strong>
-                    <p className="text-sm xs:text-base">
+                    <p className=" xs:text-base">
                       Collection: Monday to Saturday{' '}
                       <strong>(8:30am - 10pm)</strong>
                     </p>
-                    {/* <p className="text-sm xs:text-base">
+                    {/* <p className=" xs:text-base">
                       <span>Location:</span>{' '}
                       <strong>
                         <Link
@@ -311,7 +311,7 @@ const FreeSamplePage = () => {
               </div>
               <Link
                 href="freesample-checkout"
-                className="bg-primary text-white px-4 py-3 w-full text-sm md:text-20 block text-center "
+                className="bg-primary text-white px-4 py-3 w-full  md:text-20 block text-center "
               >
                 Proceed to Checkout
               </Link>

@@ -63,7 +63,7 @@ const CategoryFaqs: React.FC<CategoryFaqsProps> = ({ faqs = DUMMY_FAQS, classNam
                 onClick={() => toggleFAQ(index)}
                 className="w-full flex items-center justify-between p-4 md:px-6 md:py-5 text-left focus:outline-none"
               >
-                <span className={`font-semibold text-sm md:text-base ${isOpen ? 'text-black' : 'text-gray-800'}`}>
+                <span className={`font-semibold text-base ${isOpen ? 'text-black' : 'text-gray-800'}`}>
                   {isOpen ? `Q. ${faq.question}` : faq.question}
                 </span>
                 <span className="ml-4 flex-shrink-0">

@@ -20,7 +20,7 @@ const TrackOrder = async ({ params }: { params: Promise<IParams> }) => {
           </p>
           <Link
             href="/"
-            className="block w-fit mx-auto text-sm md:text-base bg-primary text-white sm:ont-medium px-4 py-2 mt-6"
+            className="block w-fit mx-auto text-base bg-primary text-white sm:ont-medium px-4 py-2 mt-6"
           >
             Back To Home
           </Link>

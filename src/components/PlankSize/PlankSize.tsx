@@ -17,7 +17,7 @@ const PlankSize = () => {
           <h2 className="text-xl sm:text-2xl md:text-4xl font-extrabold uppercase tracking-wide text-black">
             Plank Size Guide
           </h2>
-          <p className="mt-1 text-xs sm:text-sm md:text-base text-black/80">
+          <p className="mt-1 text-sm md:text-base text-black/80">
             Clear comparison with average human height
           </p>
         </div>

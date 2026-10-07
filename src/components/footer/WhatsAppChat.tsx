@@ -66,7 +66,7 @@ const WhatsAppChat = () => {
             <span className="absolute bottom-0 right-0 w-3 h-3 rounded-full bg-[#25D366] border-2 border-[#075E54]" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="font-semibold text-sm sm:text-base leading-tight">
+            <p className="font-semibold text-base leading-tight">
               CheapFloors Support
             </p>
             <p className="text-xs text-white/80">Typically replies within minutes</p>

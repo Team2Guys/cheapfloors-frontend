@@ -320,7 +320,7 @@ const Card: React.FC<productCardProps> = ({
               ? `/accessories/${product.custom_url?.toLowerCase() ?? ''}`
               : handleNavigate(product as IProduct, categoryData)
           }
-          className="block font-semibold text-black text-sm md:text-base leading-snug hover:text-primary transition line-clamp-2 min-h-[2.5rem]"
+          className="block font-semibold text-black text-base leading-snug hover:text-primary transition line-clamp-2 min-h-[2.5rem]"
         >
           <h2 className="line-clamp-2">
             {isAccessories ? `${product.name}` : product.name}
@@ -339,7 +339,7 @@ const Card: React.FC<productCardProps> = ({
                 
               </span>
               {hasDiscount ? discountedPrice : product?.price}
-              <span className="text-sm md:text-base font-normal ml-1">{isAccessories ? 'Per Piece' : '/m²'}</span>
+              <span className="text-base font-normal ml-1">{isAccessories ? 'Per Piece' : '/m²'}</span>
             </p>
             {hasDiscount && (
               <p className="order-first text-sm font-normal text-gray-500 flex items-center">
@@ -363,7 +363,7 @@ const Card: React.FC<productCardProps> = ({
         {isOutOfStock ? (
           <button
             disabled
-            className={`${sldier ? 'px-8 w-fit' : 'flex-1'} py-2 md:py-2.5 rounded-full border border-gray-400 bg-gray-100 text-gray-500 font-semibold text-xs xs:text-sm md:text-base cursor-not-allowed text-center`}
+            className={`${sldier ? 'px-8 w-fit' : 'flex-1'} py-2 md:py-2.5 rounded-full border border-gray-400 bg-gray-100 text-gray-500 font-semibold text-xs xs:text-base cursor-not-allowed text-center`}
           >
             {isSoldOut ? 'Sold Out' : 'Out of Stock'}
           </button>
@@ -377,13 +377,13 @@ const Card: React.FC<productCardProps> = ({
                 ? `/accessories/${product.custom_url?.toLowerCase() ?? ''}`
                 : handleNavigate(product as IProduct, categoryData)
             }
-            className="px-8 block text-center py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-sm md:text-base hover:bg-primary hover:text-white transition w-full xsm:w-fit"
+            className="px-8 block text-center py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-base hover:bg-primary hover:text-white transition w-full xsm:w-fit"
           >
             Shop Now
           </Link>
         ) : !isAccessories ? (
           // <button
-          //   className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-xs xs:text-sm md:text-base hover:bg-primary transition text-center"
+          //   className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-xs xs:text-base hover:bg-primary transition text-center"
           //   onClick={(e) => {
           //     e.preventDefault();
           //     handleAddToStorage(
@@ -410,7 +410,7 @@ const Card: React.FC<productCardProps> = ({
           // </button>
           isFreeSample ? (
             <button
-              className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-xs xs:text-sm md:text-base hover:bg-primary hover:text-white transition text-center"
+              className="flex-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-xs xs:text-base hover:bg-primary hover:text-white transition text-center"
               onClick={handleAddToCart}
             >
               Add to cart
@@ -426,7 +426,7 @@ const Card: React.FC<productCardProps> = ({
             <Link
               href={handleNavigate(product as IProduct, categoryData)}
               aria-label={`View product ${product.name}`}
-              className="flex-1 px-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary bg-primary font-bold text-xs xs:text-sm md:text-base hover:bg-primary/90 transition text-center flex flex-wrap items-center justify-center gap-x-2"
+              className="flex-1 px-1 py-1.5 xsm:py-2 md:py-2.5 rounded-[30px] border border-primary bg-primary font-bold text-xs xs:text-base hover:bg-primary/90 transition text-center flex flex-wrap items-center justify-center gap-x-2"
             >
               {hasDiscount && (
                 <span className="flex items-center gap-1 font-normal text-black whitespace-nowrap">
@@ -434,18 +434,18 @@ const Card: React.FC<productCardProps> = ({
                   <span className="line-through flex items-center">
                     <span className="font-currency text-sm xs:text-base mr-0.5"></span>
                     {product?.price}
-                    <span className="text-xs xs:text-sm md:text-base font-medium ml-0.5 xs:ml-1">
+                    <span className="text-xs xs:text-base font-medium ml-0.5 xs:ml-1">
                       /m²
                     </span>
                   </span>
                 </span>
               )}
-              <span className="flex items-center gap-1 font-semibold text-xs xs:text-sm md:text-base xl:text-lg text-red-500 whitespace-nowrap">
+              <span className="flex items-center gap-1 font-semibold text-xs xs:text-base xl:text-lg text-red-500 whitespace-nowrap">
                 {hasDiscount ? `Now:` : null}
                 <span className="flex items-center">
                   <span className="font-currency text-sm xs:text-lg mr-0.5 xs:mr-1 mb-0.5"></span>
                   {hasDiscount ? discountedPrice : product?.price}
-                  <span className="text-xs xs:text-sm md:text-base font-medium ml-0.5 xs:ml-1">
+                  <span className="text-xs xs:text-base font-medium ml-0.5 xs:ml-1">
                     /m²
                   </span>
                 </span>
@@ -459,7 +459,7 @@ const Card: React.FC<productCardProps> = ({
                 ? `/accessories/${product.custom_url?.toLowerCase() ?? ''}`
                 : handleNavigate(product as IProduct, categoryData)
             }
-            className="flex-1 block px-1 text-center py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-sm md:text-base hover:bg-primary hover:text-white transition"
+            className="flex-1 block px-1 text-center py-2 md:py-2.5 rounded-[30px] border border-primary text-black bg-transparent font-medium text-base hover:bg-primary hover:text-white transition"
           >
             Shop Now
           </Link>

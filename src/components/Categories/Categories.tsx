@@ -49,7 +49,7 @@ const Categories: React.FC<Props> = ({ card, index }) => {
               <ul className="list-disc pl-5 text-left max-w-[220px]">
                 {featureObj.features.map((feature, i) => (
                   <li
-                    className="text-xs md:text-sm lg:text-11 xl:text-sm text-wrap break-words"
+                    className="text-sm lg:text-11 xl:text-sm text-wrap break-words"
                     key={i}
                   >
                     {feature}

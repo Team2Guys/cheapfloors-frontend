@@ -23,13 +23,13 @@ export default function NotFound() {
         </p>
         <div className="flex_center gap-4 ">
           <Link
-            className="w-35 sm:w-40 h-10 sm:h-12 text-sm sm:text-base flex_center rounded-full bg-primary text-white hover:bg-white border border-primary hover:text-primary transition"
+            className="w-35 sm:w-40 h-10 sm:h-12 text-base flex_center rounded-full bg-primary text-white hover:bg-white border border-primary hover:text-primary transition"
             href="/"
           >
             Back to Home
           </Link>
           <Link
-            className="w-35 sm:w-40 h-10 sm:h-12 text-sm flex_center rounded-full bg-transparent text-primary hover:bg-primary border border-primary hover:border-primary hover:text-white transition"
+            className="w-35 sm:w-40 h-10 sm:h-12 flex_center rounded-full bg-transparent text-primary hover:bg-primary border border-primary hover:border-primary hover:text-white transition"
             href="/contact"
           >
             Contact Us

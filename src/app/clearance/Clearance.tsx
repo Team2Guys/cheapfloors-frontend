@@ -117,7 +117,7 @@ const Clearance = ({
               </Drawer>
             </div>
             <div className="flex items-center justify-end gap-2 lg:pt-4">
-              <span className="text-[#191C1F] text-sm hidden lg:block">
+              <span className="text-[#191C1F] hidden lg:block">
                 Sort by:
               </span>
               <Select
