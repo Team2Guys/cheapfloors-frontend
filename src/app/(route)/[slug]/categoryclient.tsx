@@ -47,6 +47,18 @@ const CategoryClient = ({
     });
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const Data: ISUBCATEGORY | ICategory = categoryData;
+  // FAQs come from the dashboard; the old hard-coded lists are only a
+  // fallback for pages that have none saved yet.
+  const dbFaqs = isSubCategory
+    ? (subdescription as unknown as ISUBCATEGORY[] | undefined)?.[0]?.FAQS
+    : categoryData?.FAQS;
+  const pageFaqs = dbFaqs?.length
+    ? dbFaqs
+    : ((isSubCategory
+        ? subCategoryFaqsData[
+            `${slug?.trim().toLowerCase()}-${subcategory?.trim().toLowerCase()}`
+          ]
+        : categoryFaqsData[slug?.trim().toLowerCase()]) ?? []);
   // Slider range comes from the prices of the products on this page, so
   // no product is hidden by the default filter.
   const priceBounds = useMemo<[number, number]>(() => {
@@ -213,13 +225,7 @@ const CategoryClient = ({
           />
         </div>
       </Container>
-      <CategoryFaqs
-        faqs={
-          isSubCategory
-            ? (subCategoryFaqsData[`${slug?.trim().toLowerCase()}-${subcategory?.trim().toLowerCase()}`] ?? [])
-            : (categoryFaqsData[slug?.trim().toLowerCase()] ?? [])
-        }
-      />
+      <CategoryFaqs faqs={pageFaqs} />
       <Testimonial
         backgroundImage={{
           src: "/assets/showroom.webp",

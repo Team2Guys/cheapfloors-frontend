@@ -4,7 +4,7 @@ import { FiPlus, FiMinus } from 'react-icons/fi';
 
 
 interface FAQItem {
-  id: string | number;
+  id?: string | number;
   question: string;
   answer: string;
 }
@@ -56,7 +56,7 @@ const CategoryFaqs: React.FC<CategoryFaqsProps> = ({ faqs = DUMMY_FAQS, classNam
           const isOpen = openIndex === index;
           return (
             <div
-              key={faq.id}
+              key={faq.id ?? index}
               className="bg-[#FAFAFA] rounded-sm"
             >
               <button

@@ -129,6 +129,7 @@ export const FETCH_ALL_CATEGORIES = gql`
       status
       price
       Schema_Json
+      FAQS
       recalledSubCats {
         id
         name
@@ -150,6 +151,7 @@ export const FETCH_ALL_CATEGORIES = gql`
         price
         status
         Schema_Json
+        FAQS
       }
       products {
         id
@@ -225,6 +227,7 @@ export const FETCH_ALL_SUB_CATEGORIES = gql`
       whatAmiCanonical_Tag
       whatAmiMeta_Description
       Schema_Json
+      FAQS
       products {
         id
         name
@@ -557,6 +560,7 @@ export const FIND_ONE_Accessory = gql`
       whatAmiImageBanner
       status
       Schema_Json
+      FAQS
       accessories {
         id
         name

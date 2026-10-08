@@ -33,6 +33,7 @@ import CropModal from 'components/common/CropModal';
 import useImageCropper from 'hooks/useImageCropper';
 import Input from 'components/ui/Input';
 import SchemaJsonInput from 'components/ui/SchemaJsonInput';
+import FaqsInput, { cleanFaqs } from 'components/ui/FaqsInput';
 import { showAlert } from 'utils/Alert';
 
 interface editCategoryProps {
@@ -60,7 +61,8 @@ const FormLayout = ({
           RecallUrl: editCategory.RecallUrl || '',
           price: editCategory.price || '',
           status: editCategory?.status || 'DRAFT',
-          Schema_Json: editCategory.Schema_Json || ''
+          Schema_Json: editCategory.Schema_Json || '',
+          FAQS: editCategory.FAQS || []
         }
       : null;
   const token = Cookies.get('admin_access_token');
@@ -115,7 +117,8 @@ const FormLayout = ({
       const newValue = {
         ...values,
         posterImageUrl,
-        whatAmiImageBanner: Banner
+        whatAmiImageBanner: Banner,
+        FAQS: cleanFaqs(values.FAQS)
       };
       //eslint-disable-next-line
       const { recalledSubCats, ...rest } = newValue;
@@ -471,6 +474,9 @@ const FormLayout = ({
                   placeholder="Meta Description"
                 />
                 <SchemaJsonInput />
+              </div>
+              <div className="col-span-2">
+                <FaqsInput />
               </div>
             </div>
             <Field name="status">

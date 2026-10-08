@@ -38,6 +38,7 @@ import useImageCropper from 'hooks/useImageCropper';
 import CropModal from 'components/common/CropModal';
 import Input from 'components/ui/Input';
 import SchemaJsonInput from 'components/ui/SchemaJsonInput';
+import FaqsInput, { cleanFaqs } from 'components/ui/FaqsInput';
 import { showAlert } from 'utils/Alert';
 
 const FormLayout = ({
@@ -71,7 +72,8 @@ const FormLayout = ({
           whatAmiMeta_Description: editCategory.whatAmiMeta_Description || '',
           whatAmiMeta_Title: editCategory.whatAmiMeta_Title || '',
           status: editCategory?.status || 'DRAFT',
-          Schema_Json: editCategory.Schema_Json || ''
+          Schema_Json: editCategory.Schema_Json || '',
+          FAQS: editCategory.FAQS || []
         } as ISUBCATEGORY_EDIT)
       : undefined;
 
@@ -159,7 +161,8 @@ const FormLayout = ({
         BannerImage: NewbannerImage,
         whatAmiImageBanner: Banner,
         whatAmiImage: whatIamIImage,
-        homePageImage
+        homePageImage,
+        FAQS: cleanFaqs(values.FAQS)
       };
       //eslint-disable-next-line
       const { recalledSubCats, ...newValue } = updateValues;
@@ -199,6 +202,8 @@ const FormLayout = ({
         });
       }
       revalidateTag('subcategories');
+      // Subcategory pages (and their FAQs) are rendered from the categories query.
+      revalidateTag('categories');
 
       setloading(false);
       seteditCategory?.(undefined);
@@ -836,6 +841,7 @@ const FormLayout = ({
                     textarea
                   />
                   <SchemaJsonInput />
+                  <FaqsInput />
 
                   <div className="grid grid-cols-2 gap-4 mt-4">
                     <Input

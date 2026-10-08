@@ -91,7 +91,8 @@ export const categoryInitialValues: EDIT_CATEGORY = {
   topHeading: '',
   recalledSubCats: [],
   price: '',
-  Schema_Json: ''
+  Schema_Json: '',
+  FAQS: []
 };
 
 const schemaJsonValidation = Yup.string()
@@ -132,7 +133,8 @@ export const subcategoryInitialValues: ISUBCATEGORY_EDIT = {
   recalledByCategories: [],
   recalledSubCats: [],
   whatIamEndpoint: '',
-  Schema_Json: ''
+  Schema_Json: '',
+  FAQS: []
 };
 export interface IProductValues {
   id?: number;
@@ -1793,6 +1795,6 @@ export const subCategoryFaqsData: Record<string, FAQItem[]> = {
   'richmond-lvt-luxury': richmondLvtLuxuryFaqs,
   'woodvail-chevron-spc-eco': chevronspcecoFaqs,
   'woodvail-chevron-spc-comfort': chevronspccomfortFaqs,
-  'woodvail-versailles': VersaillesFaqs
+  'woodvail-versailles-spc-eco': VersaillesFaqs
 
 };

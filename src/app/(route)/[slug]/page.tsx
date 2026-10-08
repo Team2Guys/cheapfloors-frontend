@@ -104,7 +104,10 @@ const CategoryPage = async ({
           category={category}
         />
         <CategoryFaqs
-          faqs={(categoryFaqsData[slug?.trim().toLowerCase()] ?? [])
+          faqs={
+            category.FAQS?.length
+              ? category.FAQS
+              : (categoryFaqsData[slug?.trim().toLowerCase()] ?? [])
           }
         />
         <Testimonial
