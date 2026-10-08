@@ -2,6 +2,13 @@ import { BlogStatus } from './general';
 import { AdditionalInformation, IProduct, ProductImage, Sizes } from './prod';
 import { Product } from './type';
 
+// Category / subcategory page FAQ (edited in the dashboard).
+export interface CategoryFAQ {
+  id?: number | string;
+  question: string;
+  answer: string;
+}
+
 export interface Category {
   id: number | string;
   name: string;
@@ -32,6 +39,7 @@ export interface Category {
     custom_url: string;
     createdAt: Date;
     updatedAt: Date;
+    FAQS?: CategoryFAQ[];
   }[];
 
   whatAmiImageBanner?: ProductImage;
@@ -41,6 +49,7 @@ export interface Category {
   stock?: number;
   boxCoverage?: string;
   Schema_Json?: string | null;
+  FAQS?: CategoryFAQ[];
   __typename?: string;
 }
 
