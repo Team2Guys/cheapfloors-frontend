@@ -19,6 +19,21 @@ const getTokenExpiry = (token: string): number | null => {
   }
 };
 
+// On localhost the backend (same host, different port) sets an httpOnly cookie
+// with the same name, which hides ours from JS - so fall back to the token
+// saved in admin_data at login rather than treating the session as missing.
+const getSessionToken = (): string | undefined => {
+  const cookieToken =
+    Cookies.get('admin_access_token') ||
+    Cookies.get('super_admin_access_token');
+  if (cookieToken) return cookieToken;
+  try {
+    return JSON.parse(Cookies.get('admin_data') ?? '{}').token;
+  } catch {
+    return undefined;
+  }
+};
+
 // Logs the admin out the moment the JWT expires, even if they are sitting
 // idle on a dashboard page (the proxy only re-checks on navigation).
 export const useSessionExpiry = () => {
@@ -34,9 +49,7 @@ export const useSessionExpiry = () => {
       router.replace('/dashboard/Admin-login');
     };
 
-    const token =
-      Cookies.get('admin_access_token') ||
-      Cookies.get('super_admin_access_token');
+    const token = getSessionToken();
     if (!token) {
       logout();
       return;
