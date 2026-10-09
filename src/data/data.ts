@@ -619,38 +619,68 @@ export const policySections = [
 export const faqs: FAQItem[] = [
   {
     id: 1,
+    question: "How much does flooring cost in Dubai?",
+    answer:
+      "At Cheap Floors, flooring in Dubai starts from AED 51/m² for SPC flooring and AED 61/m² for LVT flooring. A 4m x 5m room costs around AED 1,100 inc. VAT in entry-level SPC. Split the cost into 4 easy payments with Tamara."
+  },
+  {
+    id: 2,
+    question: "What is the most affordable type of flooring in Dubai?",
+    answer:
+      "SPC vinyl offers the best value flooring in Dubai, combining low prices with long life. Polar flooring starts from AED 51/m² with free underlay, and Floor Smart SPC from AED 57/m², all at factory-direct prices with no middlemen."
+  },
+  {
+    id: 3,
+    question: "Do you supply flooring across the UAE, including for contractors and projects?",
+    answer:
+      "Yes. As a trusted flooring supplier in the UAE, we deliver to every Emirate from our 60,000 m² Jebel Ali warehouse, serving homeowners, contractors, interior designers and fit-out projects. See our shipping policy or contact us."
+  },
+  {
+    id: 4,
+    question: "Is affordable flooring still good quality?",
+    answer:
+      "Yes. Our affordable flooring in Dubai is factory-direct, so you pay less because there are no middlemen, not because quality is lower. Every plank is water- and scratch-resistant with a warranty. Order up to 5 free samples to check."
+  },
+  {
+    id: 5,
+    question: "What is the best flooring for homes in Dubai's climate?",
+    answer:
+      "SPC and LVT vinyl are the best flooring for homes in Dubai's heat and humidity. They are water-resistant, UV-protected and stable, so they won't warp or expand like wood. Compare SPC and LVT, or read our UAE flooring guide."
+  },
+  {
+    id: 6,
     question: 'What types of flooring does Cheap Floors offer?',
     answer:
       "Cheap Floors offers a wide range of modern flooring solutions, including SPC, LVT, and stylish herringbone designs. These durable options are perfect for homes and businesses looking for high-quality flooring solutions in Dubai."
   },
   {
-    id: 2,
+    id: 7,
     question: "Can I order flooring samples before making a purchase?",
     answer:
       "Yes, Cheap Floors allows customers to order up to five free flooring samples delivered anywhere in the UAE. This helps you evaluate colour, texture, and quality before choosing the perfect flooring."
   },
   {
-    id: 3,
+    id: 8,
     question: 'Do you provide flooring installation services in Dubai?',
     answer: "No. We only supply the flooring and do not offer installation or site visits. If you need installation or a site visit, please contact us on +971 50 597 4385, and we can recommend a suitable company that provides these services. Our click-lock SPC and LVT planks are also easy for a confident DIYer to fit. Use our How to Measure guide to work out your quantity, and we'll deliver your order anywhere in the UAE."
   },
   {
-    id: 4,
+    id: 9,
     question: 'How long does delivery take across the UAE?',
     answer: 'Cheap Floors provides fast delivery across the UAE. Standard delivery typically takes two to three working days, while next-day express delivery is available in Dubai for urgent flooring orders.'
   },
   {
-    id: 5,
+    id: 10,
     question: 'Are Cheap Floors products suitable for homes and commercial spaces?',
     answer: 'Yes, our flooring products are designed for both residential and commercial environments. Many businesses choose Cheap Floors when searching for reliable flooring companies in UAE offering durable and stylish flooring.'
   },
   {
-    id: 6,
+    id: 11,
     question: 'Do Cheap Floors products come with a warranty?',
     answer: 'Yes, Cheap Floors flooring collections come with reliable warranties, including up to 15 years for residential use and around 5 years for commercial applications, ensuring long-term performance and peace of mind.'
   },
   {
-    id: 7,
+    id: 12,
     question: 'How can I get help choosing the right flooring?',
     answer: 'Our team is always ready to assist you through phone, email, or WhatsApp. As one of the trusted flooring companies in Dubai, we help customers choose the best flooring style for their space and budget.'
   }
