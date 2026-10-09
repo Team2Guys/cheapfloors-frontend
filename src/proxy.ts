@@ -75,7 +75,11 @@ export async function proxy(req: NextRequest) {
       }
     }
 
-    if (validToken && isAuthRoute) {
+    // admin_data is the dashboard's record of who is logged in. Without it the
+    // dashboard renders with no user (and no menu), so show the login page
+    // instead of bouncing back - this also lets logout work on localhost,
+    // where the backend's httpOnly token cookie can't be removed from JS.
+    if (validToken && isAuthRoute && req.cookies.has('admin_data')) {
       return NextResponse.redirect(new URL('/dashboard', req.url));
     }
 
