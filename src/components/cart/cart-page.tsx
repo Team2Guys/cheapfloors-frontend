@@ -306,12 +306,8 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
         newSQMRequired = (item.squareMeter || 0) + change; // quantity = sqm requested
       }
 
-      // 📦 Total available SQM from stock
-      const totalAvailableSQM =
-        product.stock *
-        (product.category?.toLowerCase().trim() === 'accessories'
-          ? 1
-          : Number(product.boxCoverage) || 1);
+      // 📦 Stock is already in the unit we sell: SQM for flooring, pieces for accessories
+      const totalAvailableSQM = Number(product.stock) || 0;
 
       // 📉 Remaining SQM
       const remainingSQM = totalAvailableSQM - sqmAlreadyInCart;
@@ -360,7 +356,11 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
         });
         return;
       }
-      if (newRequiredBoxes > item.stock) {
+      if (
+        (product.category?.toLowerCase().trim() === 'accessories'
+          ? newRequiredBoxes
+          : newSquareMeter) > item.stock
+      ) {
         showAlert({
           title: `Cannot add more than ${product.category?.toLowerCase().trim() === 'accessories' ? `${remainingSQM} Peices` : `${remainingSQM.toFixed(2)} SQM`}.`,
           icon: 'error'
@@ -482,12 +482,8 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
       // 🔢 SQM requested for the NEW addition
       const newSQMRequired = quantity;
 
-      // 📦 Total available SQM from stock
-      const totalAvailableSQM =
-        product.stock *
-        (product.category?.toLowerCase().trim() === 'accessories'
-          ? 1
-          : Number(product.boxCoverage) || 1);
+      // 📦 Stock is already in the unit we sell: SQM for flooring, pieces for accessories
+      const totalAvailableSQM = Number(product.stock) || 0;
 
       // 📉 Remaining SQM
       const remainingSQM = totalAvailableSQM - sqmAlreadyInCart;
@@ -519,14 +515,7 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
         });
         return;
       }
-      if (newRequiredBoxes > product.stock) {
-        // const remainingSQM = product.stock * Number(product.boxCoverage);
-        showAlert({
-          title: `Cannot add more than ${product.category?.toLowerCase().trim() === 'accessories' ? `${totalAvailableSQM} Peices` : `${totalAvailableSQM.toFixed(2)} SQM`}.`,
-          icon: 'error'
-        });
-        return;
-      }
+
       let newInstallationCost = 0;
       if (product.addInstallation) {
         newInstallationCost = isAccessoryCartItem(product)
@@ -754,7 +743,8 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
       const totalSQM = targetItem.squareMeter + existingItem.squareMeter;
       const totalBoxes = totalSQM / Number(existingItem.boxCoverage);
 
-      if (totalBoxes > existingItem.stock) {
+      // Stock is in SQM for flooring (pieces for accessories, where squareMeter == pieces)
+      if (totalSQM > existingItem.stock) {
         console.error('Not enough stock');
       }
 
@@ -844,7 +834,8 @@ const CartPage = ({ products, accessories = [] }: CartPageProps) => {
       const totalSQM = targetItem.squareMeter + existingItem.squareMeter;
       const totalBoxes = totalSQM / Number(existingItem.boxCoverage);
 
-      if (totalBoxes > existingItem.stock) {
+      // Stock is in SQM for flooring (pieces for accessories, where squareMeter == pieces)
+      if (totalSQM > existingItem.stock) {
         console.error('Not enough stock');
       }
 

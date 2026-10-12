@@ -149,21 +149,19 @@ const ViewProduct: React.FC<DASHBOARD_MAIN_PRODUCT_PROPS> = ({
       key: 'status'
     },
     {
-      title: `${!accessoryFlag ? 'Stock (Boxes)' : 'Stock (Pieces)'}`,
+      title: `${!accessoryFlag ? 'Stock (SQM)' : 'Stock (Pieces)'}`,
       key: 'stock',
       render: (record: IProduct) => {
-        return <p>{record.stock}</p>;
-      }
-    },
-    ...(!accessoryFlag ? [{
-      title: 'Stock (SQM)',
-      key: 'stock',
-      render: (record: IProduct) => {
+        // Flooring stock is stored in SQM (fractional); accessories in whole pieces
         return (
-          <p> {Number(((record?.stock || 0) * Number(record.boxCoverage || 0)).toFixed(2))}</p>
+          <p>
+            {!accessoryFlag
+              ? Number(Number(record?.stock || 0).toFixed(2))
+              : record.stock}
+          </p>
         );
       }
-    }] : []),
+    },
     {
       title: 'SKU',
       key: 'Sku',

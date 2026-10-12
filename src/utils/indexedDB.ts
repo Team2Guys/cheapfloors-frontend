@@ -75,7 +75,7 @@ export const addToCart = async (product: ICart): Promise<boolean> => {
     // 1️⃣ Validate quantity
     if (!product.squareMeter || product.squareMeter <= 0) {
       showAlert({
-        title: 'Please enter a valid box quantity (at least 1).',
+        title: 'Please enter a valid quantity (at least 1).',
         icon: 'error'
       });
       return false;
@@ -150,9 +150,8 @@ export const addToCart = async (product: ICart): Promise<boolean> => {
       newSQMRequired = product.squareMeter; // quantity = sqm requested
     }
 
-    // 📦 Total available SQM from stock
-    const totalAvailableSQM =
-      product.stock * (product.category?.toLowerCase().trim() === "accessories" ? 1 : Number(product.boxCoverage) || 1);
+    // 📦 Stock is already in the unit we sell: SQM for flooring, pieces for accessories
+    const totalAvailableSQM = Number(product.stock) || 0;
 
     // 📉 Remaining SQM
     const remainingSQM = Number((totalAvailableSQM - sqmAlreadyInCart).toFixed(2));

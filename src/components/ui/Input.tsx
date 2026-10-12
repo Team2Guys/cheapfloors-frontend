@@ -9,6 +9,8 @@ interface InputProps {
   type?: string;
   textarea?: boolean;
   className?: string;
+  /** For number inputs: pass "any" to allow decimals (default step is 1). */
+  step?: string;
 }
 
 const Input = ({
@@ -17,7 +19,8 @@ const Input = ({
   placeholder,
   type = 'text',
   textarea = false,
-  className
+  className,
+  step
 }: InputProps) => {
   return (
     <div className={`${className} w-full`}>
@@ -38,6 +41,7 @@ const Input = ({
     <input
       {...field}
       type={type}
+      step={step}
       placeholder={placeholder}
       className="dashboard_input"
       onChange={(e) => {

@@ -540,33 +540,20 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
                         name="discountPrice"
                         placeholder="Discount Price"
                       />
+                      {/* Flooring stock is entered directly in SQM (decimals allowed);
+                          accessories are still counted in whole pieces. */}
                       <Input
-                        label={`${!accessoryFlag ? 'Stock (Boxes)' : 'Stock (Pieces)'}`}
+                        label={`${!accessoryFlag ? 'Stock (SQM)' : 'Stock (Pieces)'}`}
                         name="stock"
                         type="number"
-                        placeholder="Stock"
+                        step={!accessoryFlag ? 'any' : undefined}
+                        placeholder={!accessoryFlag ? 'Stock in SQM' : 'Stock'}
                       />
-                      {!accessoryFlag && (
-                        <div>
-                          <label className="block mb-3 text-sm font-medium text-black dark:text-white">
-                            Stock (SQM)
-                          </label>
-                          <div className="dashboard_input pointer-events-none bg-gray-100 focus:border-[#e5e7eb] active:border-[#e5e7eb]">
-                            {Number(
-                              (
-                                formik.values?.stock *
-                                Number(formik.values?.boxCoverage || 0)
-                              ).toFixed(2)
-                            )}
-                          </div>
-                        </div>
-                      )}
                       <Input
                         label="Sku"
                         name="sku"
                         type="string"
                         placeholder="SKU"
-                        className={`${!accessoryFlag ? 'col-span-2' : 'col-span-1'}`}
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
@@ -960,11 +947,9 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
                       name="thickness"
                       placeholder="Add Thickness"
                     />
-                    <Input
-                      label="SQM Per Carton"
-                      name="boxCoverage"
-                      placeholder="SQM Per Carton"
-                    />
+                    {/* "SQM Per Carton" (boxCoverage) is intentionally not shown:
+                        stock is tracked in SQM now. The stored value is preserved
+                        on edit and the storefront still uses it for carton counts. */}
                     {accessoryFlag && (
                       <Input
                         label="length Per Meter Price"
