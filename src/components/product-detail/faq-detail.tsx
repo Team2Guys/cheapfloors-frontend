@@ -47,9 +47,12 @@ const Faqs: React.FC<CategoryFaqsProps> = ({ faqs = [], className = '' }) => {
 
               {isOpen && (
                 <div className="px-4 md:px-6 pb-5">
-                  <p className="text-gray-700 leading-relaxed">
-                    {faq.detail}
-                  </p>
+                  {/* Answers come from the dashboard and may contain links
+                      (<a href=...>), so render them as HTML. */}
+                  <div
+                    className="text-gray-700 leading-relaxed [&_a]:text-primary [&_a]:underline [&_a:hover]:text-black [&_p]:mb-2 last:[&_p]:mb-0"
+                    dangerouslySetInnerHTML={{ __html: faq.detail }}
+                  />
                 </div>
               )}
             </div>
