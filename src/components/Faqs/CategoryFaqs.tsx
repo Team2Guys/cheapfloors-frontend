@@ -77,9 +77,12 @@ const CategoryFaqs: React.FC<CategoryFaqsProps> = ({ faqs = DUMMY_FAQS, classNam
 
               {isOpen && (
                 <div className="px-4 md:px-6 pb-5">
-                  <p className="text-base text-gray-700 leading-relaxed">
-                    {faq.answer}
-                  </p>
+                  {/* Answers come from the dashboard and may contain links
+                      (<a href=...>), so render them as HTML. */}
+                  <div
+                    className="text-base text-gray-700 leading-relaxed [&_a]:text-primary [&_a]:underline [&_a:hover]:text-black [&_p]:mb-2 last:[&_p]:mb-0"
+                    dangerouslySetInnerHTML={{ __html: faq.answer }}
+                  />
                 </div>
               )}
             </div>
