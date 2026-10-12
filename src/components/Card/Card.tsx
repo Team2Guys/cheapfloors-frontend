@@ -117,8 +117,11 @@ const Card: React.FC<productCardProps> = ({
         100
       )
       : 0;
+  // Flooring stock is in SQM and may be fractional, so treat anything at or
+  // below zero as out of stock rather than only an exact 0.
+  const stockSqm = (product as IProduct).stock;
   const isOutOfStock =
-    isSoldOut || ((product as IProduct).stock === 0 && !isAccessories);
+    isSoldOut || (stockSqm != null && stockSqm <= 0 && !isAccessories);
   // The yellow CTA renders the Was/Now price itself; hide the price block
   // above it in that case so the price isn't shown twice on the card.
   const showsPriceOnButton =

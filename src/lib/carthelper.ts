@@ -50,10 +50,15 @@ export const handleAddToStorage = async (
       return;
     }
 
-    if (requiredBoxes > Number(productData?.stock)) {
-      const totalSQM = Number(productData?.stock) * Number(productData.boxCoverage);
+    // Stock is kept in the unit we sell: SQM for flooring, pieces for accessories
+    const isAccessory = MainCategory.toLowerCase().trim() === 'accessories';
+    const requestedQty = isAccessory ? requiredBoxes : squareMeter;
+    const availableStock = Number(productData?.stock);
+    if (requestedQty > availableStock) {
       showAlert({
-        title: `Requested SQM quantity exceeds available stock! Only ${totalSQM} available.`,
+        title: isAccessory
+          ? `Requested quantity exceeds available stock! Only ${availableStock} pieces available.`
+          : `Requested SQM quantity exceeds available stock! Only ${Number(availableStock.toFixed(2))} SQM available.`,
         icon: 'error'
       });
       return;
