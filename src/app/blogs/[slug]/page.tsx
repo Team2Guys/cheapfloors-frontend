@@ -3,6 +3,8 @@ import { Metadata } from 'next';
 import BlogDetail from 'components/Blogs/BlogDetail';
 import { fetchBlogs, fetchSingleBlog } from 'config/fetch';
 import { Blog } from 'types/blog';
+import JsonLd from 'components/Seo/JsonLd';
+import { buildBlogSchemas } from 'utils/blogSchema';
 
 const BASE_URL = 'https://cheapfloors.ae';
 
@@ -62,7 +64,14 @@ const BlogDetailPage = async ({
     (item: Blog) => item.status === 'PUBLISHED'
   );
 
-  return <BlogDetail blog={blog} blogs={publishedBlogs} />;
+  return (
+    <>
+      {/* BlogPosting + BreadcrumbList (+ FAQPage when the post has a Q&A
+          section), generated from the post — see utils/blogSchema.ts. */}
+      <JsonLd schema={buildBlogSchemas(blog)} />
+      <BlogDetail blog={blog} blogs={publishedBlogs} />
+    </>
+  );
 };
 
 export default BlogDetailPage;
