@@ -1,12 +1,13 @@
 import { fetchCategories, fetchProducts } from 'config/fetch';
 import { staticMenuItems } from 'data/data';
 import React from 'react';
-import { ICategory } from 'types/type';
+import { Category as ICategory } from 'types/cat';
 import Clearance from './Clearance';
 import Breadcrumb from 'components/Reusable/breadcrumb';
 import { IProduct } from 'types/prod';
 import { createMetadata } from 'utils/metadataHelper';
 import { pageMetadataData } from 'data/meta-data';
+import { toFilterCategory, toListProduct } from 'utils/listProjection';
 
 export const metadata = createMetadata(pageMetadataData.clearance);
 
@@ -15,13 +16,16 @@ const Page = async () => {
     fetchCategories(),
     fetchProducts()
   ]);
-  // Clearance now lists discounted products only (no bundles).
-  const filteredProducts = products.filter(
-    (product: IProduct) =>
-      product.status === 'PUBLISHED' &&
-      !!product.discountPrice &&
-      Number(product.discountPrice) > 0
-  );
+  // Clearance now lists discounted products only (no bundles). The list is
+  // serialised into the page for the client filters, so keep card fields only.
+  const filteredProducts = products
+    .filter(
+      (product: IProduct) =>
+        product.status === 'PUBLISHED' &&
+        !!product.discountPrice &&
+        Number(product.discountPrice) > 0
+    )
+    .map(toListProduct);
 
   const filteredCategories =
     categories
@@ -39,9 +43,9 @@ const Page = async () => {
         );
       }) || [];
 
-  const publishedCategories = filteredCategories.filter(
-    (cat: ICategory) => cat.status === 'PUBLISHED'
-  );
+  const publishedCategories = filteredCategories
+    .filter((cat: ICategory) => cat.status === 'PUBLISHED')
+    .map(toFilterCategory);
   const description =
     'Save on the discounted products listed below. Prices shown already reflect the discount and include delivery to all mainland UAE addresses. Check the delivery page for more info on timings.';
 

@@ -14,6 +14,11 @@ import AccessoriesDetail from 'app/(route)/[slug]/[subcategory]/AccessoriesDetai
 import { IProduct } from 'types/prod';
 import JsonLd from 'components/Seo/JsonLd';
 import { parseSchemaJson } from 'utils/schemaJson';
+import {
+  toCategoryPageData,
+  toFilterCategory,
+  toSubcategoryPageData
+} from 'utils/listProjection';
 
 export async function generateMetadata({
   params
@@ -139,12 +144,14 @@ const SubCategoryPage = async ({
     return (
       <>
         <JsonLd schema={parseSchemaJson(matchingSubCategory[0].Schema_Json)} />
+        {/* These props reach a client component, so trim them to what the
+            cards and filters read before they are serialised into the page. */}
         <Category
-          catgories={filteredCategories}
-          categoryData={findCategory}
+          catgories={filteredCategories.map(toFilterCategory)}
+          categoryData={toCategoryPageData(findCategory)}
           slug={slug}
           subcategory={subcategory}
-          subdescription={matchingSubCategory}
+          subdescription={matchingSubCategory.map(toSubcategoryPageData)}
           isSubCategory
         />
       </>

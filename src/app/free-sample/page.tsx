@@ -2,7 +2,9 @@ import Container from 'components/common/container/Container';
 import { createMetadata } from 'utils/metadataHelper';
 import { pageMetadataData } from 'data/meta-data';
 import { fetchAccessories, fetchCategories, fetchProducts } from 'config/fetch';
-import { ICategory } from 'types/type';
+import { Category } from 'types/cat';
+import { IProduct } from 'types/prod';
+import { toFilterCategory, toListProduct } from 'utils/listProjection';
 import FreeSampleProducts from './FreeSampleProducts';
 export const metadata = createMetadata(pageMetadataData.free_sample);
 const FreeSampleDetail = async () => {
@@ -11,24 +13,27 @@ const FreeSampleDetail = async () => {
     fetchAccessories(),
     fetchCategories()
   ]);
-  const publishedProducts = products.filter(
-    (product: ICategory) => product.status === 'PUBLISHED'
-  );
-  const publishedAccessories = accessories.filter(
-    (item: ICategory) => item.status === 'PUBLISHED'
-  );
+  // Everything below is handed to a client component, so it is serialised
+  // into the page: keep only the fields the cards and filters read.
+  const publishedProducts = products
+    .filter((product: IProduct) => product.status === 'PUBLISHED')
+    .map(toListProduct);
+  const publishedAccessories = accessories
+    .filter((item: IProduct) => item.status === 'PUBLISHED')
+    .map(toListProduct);
   const publishedCategories = categories
-    .filter((cat: ICategory) => cat.status === 'PUBLISHED')
-    .map((cat: ICategory) => ({
-      ...cat,
-      subcategories:
-        cat.subcategories?.filter(
-          (sub: ICategory) => sub.status === 'PUBLISHED'
-        ) || [],
-      recalledSubCats:
-        cat.recalledSubCats?.filter((recall) => recall?.status === 'PUBLISHED') ||
-        []
-    }));
+    .filter((cat: Category) => cat.status === 'PUBLISHED')
+    .map((cat: Category) =>
+      toFilterCategory({
+        ...cat,
+        subcategories:
+          cat.subcategories?.filter((sub) => sub.status === 'PUBLISHED') || [],
+        recalledSubCats:
+          cat.recalledSubCats?.filter(
+            (recall) => recall?.status === 'PUBLISHED'
+          ) || []
+      })
+    );
   return (
     <>
     <Container className="space-y-2 sm:space-y-4 my-10 font-inter">

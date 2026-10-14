@@ -15,6 +15,7 @@ import { parseSchemaJson } from 'utils/schemaJson';
 import AccessoriesComp from 'components/Accessories/Accessories';
 import CategoryFaqs from '@/components/Faqs/CategoryFaqs';
 import Testimonial from '@/components/Testimonial/testimonial';
+import { toCategoryPageData, toFilterCategory } from 'utils/listProjection';
 
 export async function generateMetadata({
   params
@@ -186,9 +187,11 @@ const CategoryPage = async ({
             parseSchemaJson(findCategory.Schema_Json) ?? pageSchemas[slug]
           }
         />
+        {/* Both props reach a client component, so trim them to what the
+            cards and filters read before they are serialised into the page. */}
         <Category
-          catgories={filteredCategories}
-          categoryData={findCategory}
+          catgories={filteredCategories.map(toFilterCategory)}
+          categoryData={toCategoryPageData(findCategory)}
           isSubCategory={false}
           slug={slug}
         />
