@@ -500,8 +500,10 @@
   color: var(--light-black);
 }
 
-/* Links */
-.blog-content a {
+/* Links. `.content-links` gives other CMS text (category intros) the same
+   in-text link style without the rest of .blog-content. */
+.blog-content a,
+.content-links a {
   color: var(--secondary);
   font-weight: 500;
   text-decoration: underline;
@@ -513,7 +515,8 @@
     opacity 0.15s ease;
 }
 
-.blog-content a:hover {
+.blog-content a:hover,
+.content-links a:hover {
   opacity: 0.75;
 }
 
@@ -586,6 +589,9 @@
   vertical-align: top;
   text-align: left;
   line-height: 1.6;
+  /* Words stay whole so a narrow table scrolls in its wrapper instead of
+     splitting words mid-letter (.blog-content sets overflow-wrap: anywhere). */
+  overflow-wrap: break-word;
 }
 
 .blog-content table.blog-data-table td p,
@@ -609,6 +615,59 @@
 /* Zebra striping for readability */
 .blog-content table.blog-data-table tr:nth-child(even):not(:first-child) td {
   background-color: #fafafa;
+}
+
+/* Phones: inside .stack-tables each data-table row becomes a card. The first
+   cell is the card title and the rest are labelled from the header row
+   (data-label, added by labelTableCells in utils/cmsHtml.ts). */
+@media (max-width: 639px) {
+  .stack-tables .blog-table-wrap {
+    border: none;
+    overflow: visible;
+  }
+
+  .stack-tables table.blog-data-table,
+  .stack-tables table.blog-data-table tbody,
+  .stack-tables table.blog-data-table tr,
+  .stack-tables table.blog-data-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .stack-tables table.blog-data-table tr[data-head-row] {
+    display: none;
+  }
+
+  .stack-tables table.blog-data-table tr {
+    margin-bottom: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .stack-tables table.blog-data-table td {
+    border: none !important;
+    border-top: 1px solid #f0f0f0 !important;
+    padding: 10px 14px !important;
+    background-color: #ffffff !important;
+  }
+
+  .stack-tables table.blog-data-table td:first-child {
+    border-top: none !important;
+    background-color: #f5f5f6 !important;
+    font-weight: 600;
+  }
+
+  .stack-tables table.blog-data-table td[data-label]:not(:first-child)::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 2px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
 }
 
 /* Callout / info boxes — single-cell tables ("Field Insight", tips) */

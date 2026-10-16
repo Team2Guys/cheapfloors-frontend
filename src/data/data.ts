@@ -451,6 +451,8 @@ export const FloorItemsData = [
   }
 ];
 
+// The homepage What Am I cards pick these by position, so entry N belongs to
+// card N in whatAmISorting (data/home-category.ts); the names do not match.
 export const categoriesFeatures: CategoryFeatures[] = [
   {
     name: 'Richmond SPC Eco',
@@ -539,6 +541,16 @@ export const categoriesFeatures: CategoryFeatures[] = [
       'Anti-slip surface for safety',
       ' Click system for easy fitting',
       " 1220 x 183 × 5mm"
+    ]
+  },
+  {
+    name: 'Richmond SPC Chevron',
+    features: [
+      'Classic chevron pattern',
+      '100% water resistant',
+      'IXPE underlay attached',
+      '10 year residential warranty',
+      '525 x 125 x 6mm'
     ]
   }
 ];

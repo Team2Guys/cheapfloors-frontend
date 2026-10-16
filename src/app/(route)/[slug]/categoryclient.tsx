@@ -16,7 +16,9 @@ import dynamic from 'next/dynamic';
 import Filter from 'components/svg/filter';
 import { getEffectivePrice, productFilter } from 'utils/helperFunctions';
 import CategoryFaqs from 'components/Faqs/CategoryFaqs';
+import ReadMoreContent from 'components/sub-category/read-more-content';
 import { categoryFaqsData, subCategoryFaqsData } from 'data/data';
+import { labelTableCells, splitReadMore, wrapTables } from 'utils/cmsHtml';
 import Testimonial from '@/components/Testimonial/testimonial';
 const Filters = dynamic(() => import('components/sub-category/filters'), {
   ssr: false,
@@ -127,6 +129,17 @@ const CategoryClient = ({
     );
   }, [catgories]);
 
+  // A page break in the description splits it: the intro always shows and
+  // the rest stays hidden behind a Read More button under it.
+  const rawDescription =
+    (isSubCategory
+      ? subdescription?.[0]?.description
+      : Data?.description) || '';
+  const description = useMemo(() => {
+    const { intro, more } = splitReadMore(rawDescription);
+    return { intro, more: more && labelTableCells(wrapTables(more)) };
+  }, [rawDescription]);
+
   return (
     <>
       <Container className="flex flex-wrap lg:flex-nowrap lg:gap-4 xl:gap-8 mt-4 lg:mt-10">
@@ -158,13 +171,10 @@ const CategoryClient = ({
             </h1>
             {/* div, not p: the description HTML contains its own <p> tags. */}
             <div
-              className="text-base 2xl:text-lg lg:leading-[26px]"
-              dangerouslySetInnerHTML={{
-                __html: isSubCategory
-                  ? subdescription?.[0]?.description || ''
-                  : Data?.description || ''
-              }}
+              className="content-links text-base 2xl:text-lg lg:leading-[26px]"
+              dangerouslySetInnerHTML={{ __html: description.intro }}
             />
+            {description.more && <ReadMoreContent html={description.more} />}
 
             <div className="flex_between lg:justify-end">
               <div className="block lg:hidden">

@@ -28,4 +28,5 @@ export const whatAmISorting = [
   'Richmond LVT Comfort',
   'Richmond LVT Luxury',
   'Floor Smart SPC Eco',
+  'Richmond SPC Chevron',
 ];

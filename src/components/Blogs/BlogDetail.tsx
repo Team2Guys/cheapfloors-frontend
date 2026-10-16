@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Container from 'components/common/container/Container';
 import { Blog } from 'types/blog';
 import RelatedPosts from './RelatedPosts';
+import { wrapTables } from 'utils/cmsHtml';
 
 const BreadcrumbChevron = () => (
   <svg
@@ -24,19 +25,6 @@ const formatDate = (value?: string) => {
     year: 'numeric'
   });
 };
-
-// The CMS emits raw <table> markup with cramped inline styles. Wrap each table
-// so globals.css (.blog-content) can restyle it: multi-cell tables become
-// scrollable data grids, single-cell tables become callout boxes.
-const wrapTables = (html: string) =>
-  html.replace(/<table\b([^>]*)>([\s\S]*?)<\/table>/gi, (_m, attrs, inner) => {
-    const cellCount = (inner.match(/<t[dh]\b/gi) || []).length;
-    const isCallout = cellCount <= 1;
-    const wrapClass = isCallout ? 'blog-callout-wrap' : 'blog-table-wrap';
-    const tableClass = isCallout ? 'blog-callout' : 'blog-data-table';
-    const cleanAttrs = attrs.replace(/\sclass=("[^"]*"|'[^']*')/i, '');
-    return `<div class="${wrapClass}"><table class="${tableClass}"${cleanAttrs}>${inner}</table></div>`;
-  });
 
 interface BlogDetailProps {
   blog: Blog;
