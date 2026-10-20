@@ -169,6 +169,17 @@ export const staticCategories = [
                 updatedAt: new Date()
             },
             {
+                id: 'richmond-spc-chevron',
+                name: 'Richmond SPC Chevron',
+                custom_url: 'spc-chevron',
+                category: { RecallUrl: 'richmond' },
+                status: 'PUBLISHED',
+                price: '999.00',
+                posterImageUrl: { imageUrl: 'https://res.cloudinary.com/dmmeqgdhv/image/upload/v1792150189/uploads/vau8gz3jy5e13apn69bu.webp', altText: 'Richmond SPC Chevron', public_id: '' },
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
                 id: 'floor-smart-spc-eco',
                 name: 'Floor Smart SPC Eco',
                 custom_url: 'spc-eco',
@@ -266,6 +277,17 @@ export const staticCategories = [
                 status: 'PUBLISHED',
                 price: '130.00',
                 posterImageUrl: { imageUrl: '/assets/images/headerpics/richmondspcharingbone.webp', altText: 'Richmond SPC Herringbone', public_id: '' },
+                createdAt: new Date(),
+                updatedAt: new Date()
+            },
+            {
+                id: 'richmond-spc-chevron',
+                name: 'Richmond SPC Chevron',
+                custom_url: 'spc-chevron',
+                category: { RecallUrl: 'richmond' },
+                status: 'PUBLISHED',
+                price: '999.00',
+                posterImageUrl: { imageUrl: 'https://res.cloudinary.com/dmmeqgdhv/image/upload/v1792150189/uploads/vau8gz3jy5e13apn69bu.webp', altText: 'Richmond SPC Chevron', public_id: '' },
                 createdAt: new Date(),
                 updatedAt: new Date()
             },
