@@ -43,6 +43,13 @@ const nextConfig: NextConfig = {
         source: '/woodvail/:path+',
         destination: '/collections',
         permanent: true
+      },
+      // Installation is switched off (INSTALLATION_ENABLED in data/features.ts).
+      // Temporary (307) so browsers don't cache it if installation comes back.
+      {
+        source: '/help-with-installations',
+        destination: '/',
+        permanent: false
       }
     ];
   },

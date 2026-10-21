@@ -18,7 +18,8 @@ const excludePages = [
   "/freesample",
   "/thank-you",
   "/thank-you",
-  "/freesample-checkout"
+  "/freesample-checkout",
+  "/help-with-installations"
 ]
 // A published route is one whose own status AND every ancestor's status is
 // 'PUBLISHED' — mirrors the notFound() logic in the app's route pages, so the
