@@ -18,7 +18,11 @@ import { Category } from 'types/cat';
 import { IProduct } from 'types/prod';
 import { IB2BQuote } from 'types/b2bQuote';
 import { ORDER_QUERY } from 'graphql/mutations';
-import { FETCH_ALL_ACCESSORIES, FETCH_META_TITLE } from 'graphql/accessorie';
+import {
+  FETCH_ALL_ACCESSORIES,
+  FETCH_ALL_ACCESSORIES_LEGACY,
+  FETCH_META_TITLE
+} from 'graphql/accessorie';
 import { FETCH_ALL_BLOGS, FIND_ONE_BLOG } from 'graphql/blog';
 import { Blog } from 'types/blog';
 
@@ -187,27 +191,35 @@ export const get_allAdmins = async (token: string | undefined) => {
   }
 };
 
+const queryAccessories = async (query: DocumentNode) => {
+  const { data } = await client.query({
+    query,
+    fetchPolicy: 'no-cache',
+    context: {
+      fetchOptions: {
+        credentials: 'include',
+        next: { tags: ['accessories'] }
+      }
+    }
+  });
+  return data?.accessories || [];
+};
+
 export const fetchAccessories = async (
   CUSTOMISE_ACCESSORIES?: DocumentNode
 ) => {
   try {
-    const { data } = await client.query({
-      query: CUSTOMISE_ACCESSORIES
-        ? CUSTOMISE_ACCESSORIES
-        : FETCH_ALL_ACCESSORIES,
-      fetchPolicy: 'no-cache',
-      context: {
-        fetchOptions: {
-          credentials: 'include',
-          next: { tags: ['accessories'] }
-        }
-      }
-    });
-
-    return data?.accessories || [];
+    return await queryAccessories(
+      CUSTOMISE_ACCESSORIES ?? FETCH_ALL_ACCESSORIES
+    );
   } catch (error) {
-    return [];
-    throw error;
+    if (CUSTOMISE_ACCESSORIES) return [];
+    // Backend may not expose matchingProducts yet; retry without it.
+    try {
+      return await queryAccessories(FETCH_ALL_ACCESSORIES_LEGACY);
+    } catch {
+      return [];
+    }
   }
 };
 
