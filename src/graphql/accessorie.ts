@@ -1,8 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const FETCH_ALL_ACCESSORIES = gql`
-  query Accessories {
-    accessories {
+const ACCESSORY_FIELDS = `
       id
       name
       price
@@ -41,6 +39,26 @@ export const FETCH_ALL_ACCESSORIES = gql`
         name
         colors
       }
+`;
+
+export const FETCH_ALL_ACCESSORIES = gql`
+  query Accessories {
+    accessories {
+      ${ACCESSORY_FIELDS}
+      matchingProducts {
+        id
+        name
+        colors
+      }
+    }
+  }
+`;
+
+// Same query without matchingProducts, for backends that predate that field.
+export const FETCH_ALL_ACCESSORIES_LEGACY = gql`
+  query AccessoriesLegacy {
+    accessories {
+      ${ACCESSORY_FIELDS}
     }
   }
 `;

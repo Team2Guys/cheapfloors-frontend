@@ -114,7 +114,7 @@ const SkirtingProductDetail = ({
   useEffect(() => {
     if (selectedColor?.color) {
       const filterColor =
-        productData?.products?.filter((item: IProduct) =>
+        (productData?.matchingProducts ?? productData?.products)?.filter((item: IProduct) =>
           item.colors?.some((col) => col.detail === selectedColor.color)
         ) || [];
       setMatchingColor(filterColor || []);

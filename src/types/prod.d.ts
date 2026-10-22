@@ -84,6 +84,7 @@ export interface Sizes {
 
 export interface IProductAccessories extends IProduct {
   products?: IProduct[];
+  matchingProducts?: IProduct[];
 }
 export interface IProductFilter extends IProduct {
   [key: string]: string;
