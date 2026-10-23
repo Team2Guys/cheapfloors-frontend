@@ -69,7 +69,7 @@ export const authOptions = {
           const { data } = await client.query({
             query: FIND_ONE_USER,
             variables: { email: token.email },
-            fetchPolicy: 'network-only' // Ensure fresh data
+            fetchPolicy: 'network-only'
           });
           if (data?.find_one) {
             session.user = {
