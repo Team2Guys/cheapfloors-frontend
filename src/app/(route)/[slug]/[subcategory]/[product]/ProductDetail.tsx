@@ -30,6 +30,7 @@ const ProductDetail = ({
         ProductName={ProductName}
         productData={productData}
         isClearance={isClearance}
+        AccessoriesProducts={AccessoriesProducts}
       />
       <Container>
         <AdditionalInfo
