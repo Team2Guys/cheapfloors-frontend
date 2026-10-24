@@ -95,13 +95,6 @@ module.exports = {
         fetchBlogsForSitemap(),
       ]);
 
-    const staticPages = [
-      {
-        loc: '/thank-you',
-        lastmod: buildTime,
-      },
-    ];
-
     // Category landing page: /{custom_url}
     const categoryPaths = categories
       .filter((category) => isLive(category.status) && category.custom_url)
@@ -165,7 +158,6 @@ module.exports = {
       }));
 
     return [
-      ...staticPages,
       ...categoryPaths,
       ...subcategoryPaths,
       ...productPaths,

@@ -354,11 +354,11 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const staticMenuItems = [
-  { label: 'SPC Flooring', href: 'spc-flooring', submenu: [] },
   { label: 'LVT Flooring', href: 'lvt-flooring', submenu: [] },
   { label: 'Richmond Flooring', href: 'richmond-flooring', submenu: [] },
   { label: 'Polar Flooring', href: 'polar-flooring', submenu: [] },
   { label: 'Floor Smart', href: 'floor-smart', submenu: [] },
+  { label: 'SPC Flooring', href: 'spc-flooring', submenu: [] },
   { label: 'How to measure', href: 'how-to-measure-your-room' },
   { label: 'Accessories', href: 'accessories', submenu: [] },
   // { label: 'About Us', href: 'about-us' },
