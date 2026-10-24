@@ -14,6 +14,12 @@ import { HeaderAccessoriesProps, INavbar } from 'types/types';
 import { usePathname } from 'next/navigation';
 import { IProduct } from 'types/prod';
 import { defaultOrder } from 'data/accessory';
+import {
+  countStockBySubcategory,
+  isMostlyOutOfStock,
+  subcategoryKey,
+  sumStockCounts
+} from 'utils/stock';
 
 // Display-only: drop the leading "Floor" from "Floor Smart" labels
 // (e.g. "Floor Smart" -> "Smart", "Floor Smart SPC Eco" -> "Smart SPC Eco").
@@ -46,13 +52,15 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
   useLayoutEffect(() => {
     if (!categories || categories.length === 0) return;
 
+    const stockBySubcategory = countStockBySubcategory(products);
+
     const buildMenu = () => {
       const updatedMenu = staticMenuItems.map((staticItem) => {
         const matchedCategory = categories.find(
           (cat) => cat.custom_url === staticItem.href
         );
 
-        if (!matchedCategory) return staticItem;
+        if (!matchedCategory) return { ...staticItem, outOfStock: false };
 
         const reCallFlag =
           matchedCategory.recalledSubCats &&
@@ -63,18 +71,38 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
             ? matchedCategory.recalledSubCats
             : matchedCategory.subcategories) || [];
 
+        const subCounts = subcategories.map((sub) =>
+          stockBySubcategory.get(
+            subcategoryKey(
+              sub?.category?.RecallUrl || matchedCategory.RecallUrl,
+              sub.custom_url
+            )
+          )
+        );
+
         return {
           ...staticItem,
-          submenu: subcategories.map((sub) => ({
+          submenu: subcategories.map((sub, i) => ({
             label: formatMenuLabel(sub.name),
             href: `/${sub?.category?.RecallUrl || matchedCategory.RecallUrl}/${sub.custom_url}`,
             image: sub.posterImageUrl?.imageUrl || '/assets/default-image.png',
-            price: sub.price
-          }))
+            price: sub.price,
+            outOfStock: isMostlyOutOfStock(subCounts[i])
+          })),
+          outOfStock: isMostlyOutOfStock(sumStockCounts(subCounts))
         };
       });
 
-      return updatedMenu;
+      // Mostly out-of-stock flooring categories move after the last in-stock
+      // flooring category; non-flooring links (How To Measure, Accessories)
+      // stay at the end.
+      const isFlooring = (item: (typeof updatedMenu)[number]) =>
+        (item.submenu?.length ?? 0) > 0;
+      return [
+        ...updatedMenu.filter((item) => isFlooring(item) && !item.outOfStock),
+        ...updatedMenu.filter((item) => isFlooring(item) && item.outOfStock),
+        ...updatedMenu.filter((item) => !isFlooring(item))
+      ];
     };
 
     const handleResize = () => {
@@ -85,7 +113,7 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
-  }, [categories]);
+  }, [categories, products]);
 
   return (
     <nav
@@ -273,6 +301,8 @@ const Navbar = ({ categories, products, isLoading, isScrolled }: INavbar) => {
                       <div className="grid grid-cols-2 gap-5 pt-2">
                         {[...item.submenu]
                           .sort((a, b) => {
+                            if (!!a.outOfStock !== !!b.outOfStock)
+                              return a.outOfStock ? 1 : -1;
                             const getGroup = (item: {
                               label: string;
                               price?: string;

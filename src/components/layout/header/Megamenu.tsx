@@ -8,7 +8,13 @@ import { usePathname } from 'next/navigation';
 
 const Megamenu: React.FC<
   MenuItemProps & {
-    submenu?: { label: string; href: string; image?: string; price?: string }[];
+    submenu?: {
+      label: string;
+      href: string;
+      image?: string;
+      price?: string;
+      outOfStock?: boolean;
+    }[];
   }
 > = ({ label, href, submenu, products }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -97,6 +103,9 @@ const Megamenu: React.FC<
                 <Container className="flex gap-4 my-2 capitalize 3xl:px-4">
                   {[...submenu]
                     .sort((a, b) => {
+                      // Mostly out-of-stock subcategories go last.
+                      if (!!a.outOfStock !== !!b.outOfStock)
+                        return a.outOfStock ? 1 : -1;
                       const getGroup = (item: {
                         label: string;
                         price?: string;

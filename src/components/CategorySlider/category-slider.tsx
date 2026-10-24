@@ -13,6 +13,12 @@ import SliderArrow from 'components/common/slider-arrow/slider-arrow';
 import { BsArrowRight } from 'react-icons/bs';
 import Container from '../common/container/Container';
 import { formatDisplayName, getEffectivePrice } from 'utils/helperFunctions';
+import {
+  countStockBySubcategory,
+  isMostlyOutOfStock,
+  isOutOfStock,
+  subcategoryKey
+} from 'utils/stock';
 
 const getPrice = (cat: Category) => {
   if (cat.price) return cat.price;
@@ -51,8 +57,36 @@ const getSubcategoryStartingPrices = (categories: Category[]) => {
   return prices;
 };
 
+// Stable: mostly out-of-stock categories move after the in-stock ones.
+const sortByStock = (categories: Category[]) => {
+  const outOfStock = (category: Category) => {
+    const products = ((category.products as IProduct[]) || []).filter(
+      (p) => !p.status || p.status === 'PUBLISHED'
+    );
+    return isMostlyOutOfStock({
+      total: products.length,
+      outOfStock: products.filter(isOutOfStock).length
+    });
+  };
+  return [
+    ...categories.filter((category) => !outOfStock(category)),
+    ...categories.filter(outOfStock)
+  ];
+};
+
 const CategorySlider = ({ categories }: { categories: Category[] }) => {
   const startingPrices = getSubcategoryStartingPrices(categories);
+  // Built from every category's products: grouping categories such as
+  // "SPC Flooring" recall subcategories but carry no products of their own.
+  // A product can appear under several categories, so dedupe by id.
+  const stockBySubcategory = countStockBySubcategory([
+    ...new Map(
+      (categories ?? [])
+        .flatMap((category) => (category.products as IProduct[]) || [])
+        .filter((p) => !p.status || p.status === 'PUBLISHED')
+        .map((p) => [p.id, p])
+    ).values()
+  ]);
   return (
     <div className="flex flex-col w-full gap-3 md:gap-12 my-10">
       <Container className="text-start relative w-full">
@@ -60,9 +94,9 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
           Affordable Flooring Solutions Across the UAE
         </h1>
       </Container>
-      {categories
-        ?.filter((category) => category.name !== 'ACCESSORIES')
-        .map((category: Category, index: number) => {
+      {sortByStock(
+        categories?.filter((category) => category.name !== 'ACCESSORIES') ?? []
+      ).map((category: Category, index: number) => {
           const reCallFlag =
             category.recalledSubCats && category.recalledSubCats.length > 0;
           let subcategories: ISUBCATEGORY[] =
@@ -78,10 +112,19 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
               ? { ...sub, price: String(startingPrice) }
               : sub;
           });
+          const subOutOfStock = (sub: ISUBCATEGORY) =>
+            isMostlyOutOfStock(
+              stockBySubcategory.get(
+                subcategoryKey(
+                  sub.category?.RecallUrl || category.RecallUrl,
+                  sub.custom_url
+                )
+              )
+            );
           subcategories = [...subcategories].sort((a, b) => {
-            return getSubcategoryOrder(a.name) - getSubcategoryOrder(b.name);
-          });
-          subcategories = [...subcategories].sort((a, b) => {
+            // Mostly out-of-stock subcategories go last.
+            const stockA = subOutOfStock(a);
+            if (stockA !== subOutOfStock(b)) return stockA ? 1 : -1;
             const orderA = getSubcategoryOrder(a.name);
             const orderB = getSubcategoryOrder(b.name);
             if (orderA !== orderB) {
@@ -96,7 +139,11 @@ const CategorySlider = ({ categories }: { categories: Category[] }) => {
             category.name?.trim().toLowerCase() === 'floor smart';
           const floorSmartProducts = ((category.products as IProduct[]) || [])
             .filter((p) => (p.status ? p.status === 'PUBLISHED' : true))
-            .sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
+            .sort((a, b) => {
+              if (isOutOfStock(a) !== isOutOfStock(b))
+                return isOutOfStock(a) ? 1 : -1;
+              return (Number(a.price) || 0) - (Number(b.price) || 0);
+            });
 
           const sliderItems: (ISUBCATEGORY | IProduct)[] = isFloorSmart
             ? floorSmartProducts
