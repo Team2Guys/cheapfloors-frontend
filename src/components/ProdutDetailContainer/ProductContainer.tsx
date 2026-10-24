@@ -23,7 +23,8 @@ const ProductContainer = ({
   productData,
   className,
   isQuickView,
-  isClearance
+  isClearance,
+  AccessoriesProducts
 }: detailprops) => {
   const [unit, setUnit] = useState('sqm');
   const [area, setArea] = useState('');
@@ -65,7 +66,24 @@ const ProductContainer = ({
   );
   const accessoryColorMap = FLOOR_SMART_ACCESSORY_COLOR[floorShade];
 
-  const filteredProducts: IProduct[] = (productData?.acessories ?? []).map(
+  // Linked accessories plus any accessory with a swatch in this floor's
+  // colour code, so new products get accessories without manual linking.
+  const linkedIds = new Set(
+    (productData?.acessories ?? []).map((acc) => String(acc.id))
+  );
+  const colorMatchedAccessories =
+    !isFloorSmart && targetColorCode
+      ? (AccessoriesProducts ?? []).filter(
+          (acc) =>
+            !linkedIds.has(String(acc.id)) &&
+            acc.featureImages?.some((img) => img.color === targetColorCode)
+        )
+      : [];
+
+  const filteredProducts: IProduct[] = [
+    ...(productData?.acessories ?? []),
+    ...colorMatchedAccessories
+  ].map(
     (product) => {
       const accessoryName = product.name?.trim().toLowerCase() ?? '';
       // Mapped accessory shade for this floor + accessory; falls back to the
