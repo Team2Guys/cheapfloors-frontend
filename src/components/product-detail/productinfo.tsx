@@ -371,7 +371,7 @@ const SkirtingProductDetail = ({
       {/* <p className="text-lg xl:text-22 font-semibold text-center">
         Buy Now, Pay Later
       </p> */}
-      <PaymentMethod installments={totalPrice / 4} />
+      <PaymentMethod installments={totalPrice / 4} headingTag="h2" />
       <div className="mt-2 space-y-2 text-center">
         {/* <p className="text-center mt-4 font-medium text-lg lg:text-[20.6px]">
           Guaranteed Safe Checkout

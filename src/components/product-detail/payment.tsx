@@ -8,7 +8,11 @@ import { PaymentMethodProps } from 'types/product-detail';
 import { formatAED } from 'utils/helperFunctions';
 import { IoInformationCircleOutline } from 'react-icons/io5';
 
-const PaymentMethod = ({ installments, compact }: PaymentMethodProps) => {
+const PaymentMethod = ({
+  installments,
+  compact,
+  headingTag: Heading = 'h3'
+}: PaymentMethodProps) => {
   const [tamaraOpen, setTamaraOpen] = useState(false);
   const paymentLabels = ['Today', 'In 1 month', 'In 2 month', 'In 3 month'];
 
@@ -44,7 +48,9 @@ const PaymentMethod = ({ installments, compact }: PaymentMethodProps) => {
 
   return (
     <div className="border border-[#0000003D] rounded-xl p-2 font-inter">
-      <h3 className="text-lg font-medium text-black">Buy Now, Pay Later</h3>
+      <Heading className="text-lg font-medium text-black">
+        Buy Now, Pay Later
+      </Heading>
 
       <div className="relative mt-6 rounded-lg border border-[#0000003D] px-2 pt-4 pb-4">
         <div className="absolute -top-3 left-2 flex items-center gap-2">

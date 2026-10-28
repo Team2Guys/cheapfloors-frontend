@@ -39,6 +39,7 @@ export interface PaymentMethodProps {
   installments: number;
   isClearance?: boolean;
   compact?: boolean;
+  headingTag?: 'h2' | 'h3';
 }
 
 export interface detailprops {

@@ -465,6 +465,7 @@ const ProductContainer = ({
                   0
                 }
                 isClearance={isClearance}
+                headingTag="h2"
               />
             </>
           ) : (
@@ -601,7 +602,10 @@ const ProductContainer = ({
                 Add to Wishlist
               </button>
               <div className="space-y-2.5">
-                <PaymentMethod installments={installments ?? 0} />
+                <PaymentMethod
+                  installments={installments ?? 0}
+                  headingTag="h2"
+                />
                 <TrustBadges />
               </div>
             </>

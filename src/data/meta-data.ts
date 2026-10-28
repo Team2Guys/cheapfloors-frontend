@@ -16,9 +16,9 @@ export const pageMetadataData = {
   },
 
   aboutUs: {
-    title: 'About Cheap Floors UAE | Trusted Online Flooring Store in Dubai',
+    title: 'About Us | Affordable SPC & LVT Flooring UAE | Cheap Floors',
     description:
-      'Learn more about Cheap Floors—UAE’s leading online store for SPC and LVT flooring. Discover our Richmond & Polar collections, fast delivery, and free samples.',
+      'Cheap Floors supplies quality SPC, LVT & herringbone flooring at factory-direct prices across the UAE, with free samples and delivery in 2–3 days.',
     url: `${BASE_URL}/about-us`,
     image: {
       src: `${BASE_URL}${logo.src}`,
@@ -61,9 +61,9 @@ export const pageMetadataData = {
     canonical: `${BASE_URL}/collections`
   },
   contact_us: {
-    title: 'Contact Cheap Floors | We’re Here to Help with Flooring Advice',
+    title: 'Contact Us | SPC & LVT Flooring Supplier UAE | Cheap Floors',
     description:
-      'Have a question about flooring? Contact Cheap Floors for expert support, product guidance, or order help. Fast response, friendly service.',
+      'Call +971 50 597 4385 or email cs@cheapfloors.ae for SPC & LVT flooring orders, prices, free samples, and delivery anywhere in the UAE.',
     url: `${BASE_URL}/contact-us`,
     image: {
       src: `${BASE_URL}${logo.src}`,
