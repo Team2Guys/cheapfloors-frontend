@@ -34,9 +34,18 @@ export async function proxy(req: NextRequest) {
     const redirectUrls = await findOneRedirectUrl(
       pathname.replace(/^\/+|\/+$/g, '')
     );
-    if (redirectUrls && redirectUrls.status === 'PUBLISHED') {
+    // Strip leading slashes: '/about-us' would otherwise become '//about-us',
+    // which the URL parser treats as a host (https://about-us/).
+    const redirectTarget = (redirectUrls?.redirectedUrl ?? '')
+      .trim()
+      .replace(/^\/+|\/+$/g, '');
+    if (
+      redirectUrls &&
+      redirectUrls.status === 'PUBLISHED' &&
+      redirectTarget !== cleanPath
+    ) {
       return NextResponse.redirect(
-        new URL(`/${redirectUrls?.redirectedUrl}`, req.url),
+        new URL(`/${redirectTarget}`, req.url),
         301
       );
     }
