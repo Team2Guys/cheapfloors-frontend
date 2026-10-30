@@ -32,6 +32,7 @@ export const FETCH_ALL_PRODUCTS = gql`
       FAQS
       sku
       Schema_Json
+      Description_Heading
       stockUpdateDate
       boxCoverage
       featureImages
@@ -621,6 +622,7 @@ export const FIND_ONE_PRODUCT = gql`
       Meta_Description
       Canonical_Tag
       Schema_Json
+      Description_Heading
       AdditionalInformation
       colors
       thickness

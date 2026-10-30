@@ -521,6 +521,11 @@ const AddProd: React.FC<DASHBOARD_ADD_SUBCATEGORIES_PROPS_PRODUCTFORMPROPS> = ({
                       placeholder="Custom Url"
                     />
                     <Input
+                      label="Description Heading (H2)"
+                      name="Description_Heading"
+                      placeholder="Heading above the description — leave empty to use the product title"
+                    />
+                    <Input
                       label="Description"
                       name="description"
                       placeholder="Description"

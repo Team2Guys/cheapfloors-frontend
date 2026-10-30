@@ -26,6 +26,7 @@ const ACCESSORY_FIELDS = `
       status
       sku
       Schema_Json
+      Description_Heading
       category {
         id
         name
