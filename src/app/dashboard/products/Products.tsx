@@ -56,7 +56,8 @@ const Product = ({
     lengthPrice: editProduct && editProduct?.lengthPrice,
     status: editProduct && editProduct?.status,
     sku: editProduct && editProduct?.sku,
-    Schema_Json: editProduct?.Schema_Json || ''
+    Schema_Json: editProduct?.Schema_Json || '',
+    Description_Heading: editProduct?.Description_Heading || ''
   };
 
   useEffect(() => {

@@ -61,7 +61,11 @@ const AdditionalInfo = ({
       value: 'description',
       content: (
         <div>
-          <h2 className="text-2xl font-bold mb-4">{name}</h2>
+          {/* Editable in the dashboard ("Description Heading (H2)"); falls
+              back to the product name, which is also the page H1. */}
+          <h2 className="text-2xl font-bold mb-4">
+            {productData?.Description_Heading?.trim() || name}
+          </h2>
 
           <CollapsibleDescription html={description} />
 

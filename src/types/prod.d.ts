@@ -70,6 +70,7 @@ export interface IProduct {
   status?: BlogStatus;
   sku?: string;
   Schema_Json?: string | null;
+  Description_Heading?: string | null;
   stockUpdateDate?: Date;
   bundle?: number;
   bundlePrice?: number;

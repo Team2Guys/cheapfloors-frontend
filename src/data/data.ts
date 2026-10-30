@@ -161,6 +161,7 @@ export interface IProductValues {
   sizes?: { width: string; height: string; thickness: string }[];
   lengthPrice?: string;
   Schema_Json?: string;
+  Description_Heading?: string;
 }
 
 export const AddproductsinitialValues: IProductValues = {
@@ -187,7 +188,8 @@ export const AddproductsinitialValues: IProductValues = {
   colors: [],
   sizes: [],
   lengthPrice: '',
-  Schema_Json: ''
+  Schema_Json: '',
+  Description_Heading: ''
 };
 
 export const excludedKeys = [
