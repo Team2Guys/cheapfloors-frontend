@@ -18,6 +18,7 @@ import * as Yup from 'yup';
 import { AdditionalInformation } from 'types/prod';
 import { EDIT_CATEGORY, ISUBCATEGORY_EDIT } from 'types/cat';
 import { EDIT_BLOG } from 'types/blog';
+import { waHref } from 'lib/cf-whatsapp';
 import { MeasurementSection } from '../types/types';
 import { getSchemaJsonError } from 'utils/schemaJson';
 
@@ -290,7 +291,8 @@ export const heroItems: HeroItem[] = [
   }
 ];
 
-export const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER?.replace('+', '').replace(/\s+/g, '')}`;
+// Plain link for data; buttons add the source ref through components/common/WhatsAppLink.
+export const whatsappLink = waHref();
 
 export const featureItems = [
   {

@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaWhatsapp, FaPhoneAlt } from 'react-icons/fa';
+import WhatsAppLink from 'components/common/WhatsAppLink';
 
 const phoneNumber = process.env.NEXT_PUBLIC_PHONE_NUMBER || '+971 50 597 4385';
-const whatsappLink = `https://wa.me/${phoneNumber.replace('+', '').replace(/\s+/g, '')}`;
 
 const stats = [
     { value: '500+', label: 'Projects Done' },
@@ -31,10 +31,7 @@ export const AssistanceFooter = () => {
                     </p>
 
                     <div className="mx-auto mt-6 flex max-w-xs flex-col gap-3">
-                        <Link
-                            href={whatsappLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <WhatsAppLink
                             className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#25D366] px-6 py-3 text-15 font-semibold text-white transition-colors duration-300 hover:bg-[#20bd5a]"
                         >
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,7 +39,7 @@ export const AssistanceFooter = () => {
                             </svg>
 
                             WhatsApp Us
-                        </Link>
+                        </WhatsAppLink>
                         <Link
                             href={`tel:${phoneNumber.replace(/\s+/g, '')}`}
                             className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-15 font-semibold text-secondary transition-colors duration-300 hover:bg-primary/90"

@@ -18,8 +18,8 @@ import { useMutation } from '@apollo/client';
 import { CREATE_B2B_QUOTE } from 'graphql/mutations';
 import { uploadPhotosToBackend } from 'utils/helperFunctions';
 import { showAlert } from 'utils/Alert';
+import WhatsAppLink from 'components/common/WhatsAppLink';
 
-const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER?.replace('+', '').replace(/\s+/g, '')}`;
 
 const benefits = [
   { title: 'Volume Discounts', desc: 'Tiered pricing scaled to your project size.' },
@@ -226,15 +226,10 @@ export const FlooringQuoteForm = () => {
                 Our B2B team is available Sunday to Friday for technical consultations.
               </p>
               <div className="mt-5 flex flex-col gap-5 sm:flex-row">
-                <Link
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-lg bg-[#25D366] px-5 py-3 text-15 font-semibold text-white transition hover:bg-[#1ebe5b]"
-                >
+                <WhatsAppLink className="flex items-center justify-center gap-2 rounded-lg bg-[#25D366] px-5 py-3 text-15 font-semibold text-white transition hover:bg-[#1ebe5b]">
                   <FaWhatsapp className="text-18" />
                   WhatsApp
-                </Link>
+                </WhatsAppLink>
                 <Link
                   href="tel:+971505974385"
                   className="flex items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/5 px-5 py-3 text-15 font-semibold text-white transition hover:bg-white/10"

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import WhatsAppLink from 'components/common/WhatsAppLink';
 import { FaRegBuilding, FaLandmark, FaGlobe, FaBoxOpen, FaWhatsapp } from 'react-icons/fa';
 
 const bannerImage = '/assets/images/flooring/flooring-banner.webp';
@@ -11,7 +12,6 @@ const tags = [
     { icon: FaBoxOpen, label: 'Bulk Orders' },
 ];
 
-const whatsappLink = `https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER?.replace('+', '').replace(/\s+/g, '')}`;
 
 export const BannerFlooring = () => {
     return (
@@ -70,15 +70,12 @@ export const BannerFlooring = () => {
                     >
                         Request Quote
                     </Link>
-                    <Link
-                        href={whatsappLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <WhatsAppLink
                         className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/40 px-8 py-3.5 text-16 font-bold text-white transition-colors duration-300 hover:bg-white/10 xsm:w-auto"
                     >
                         <FaWhatsapp className="text-18" />
                         WhatsApp Us
-                    </Link>
+                    </WhatsAppLink>
                 </div>
             </div>
         </section>
