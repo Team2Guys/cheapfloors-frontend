@@ -24,7 +24,7 @@ const OrdersPage = async () => {
     );
 
   return (
-    <Order title="Order" ordersData={abandonedOrder} orders={ordersData} />
+    <Order title="Orders" ordersData={abandonedOrder} />
   );
 };
 

@@ -695,3 +695,139 @@
   margin: 0 0 6px;
   font-weight: 700;
 }
+
+/* ---------------------------------------------------------------------------
+   Admin dashboard theme.
+
+   Scoped to .dash-root (DefaultLayout), so the storefront palette never
+   changes. data-dash-theme picks the accent, html.dark swaps the neutrals.
+   Each accent pairs with an ink colour that keeps its text readable: dark
+   text on yellow, white on blue, green and violet.
+   --------------------------------------------------------------------------- */
+.dash-root {
+  --dash-canvas: #f5f6f8;
+  --dash-surface: #ffffff;
+  --dash-sunken: #f1f2f5;
+  --dash-line: #e4e6eb;
+  --dash-ink: #111318;
+  --dash-muted: #5b6170;
+  --dash-faint: #9aa0ac;
+  --dash-positive: #15803d;
+  --dash-positive-soft: #dcfce7;
+  --dash-negative: #b91c1c;
+  --dash-negative-soft: #fee2e2;
+
+  /* Sunflower, the default: the storefront's brand yellow. */
+  --dash-accent: #feb907;
+  --dash-accent-ink: #1f1a0e;
+  --dash-accent-soft: rgba(254, 185, 7, 0.16);
+  --dash-accent-text: #8a5a00;
+
+  /* The existing dashboard classes (bg-primary, text-primary…) follow it. */
+  --primary: var(--dash-accent);
+
+  background-color: var(--dash-canvas);
+  color: var(--dash-ink);
+}
+
+.dash-root[data-dash-theme='ocean'] {
+  --dash-accent: #2563eb;
+  --dash-accent-ink: #ffffff;
+  --dash-accent-soft: rgba(37, 99, 235, 0.12);
+  --dash-accent-text: #1d4ed8;
+}
+
+.dash-root[data-dash-theme='emerald'] {
+  --dash-accent: #047857;
+  --dash-accent-ink: #ffffff;
+  --dash-accent-soft: rgba(4, 120, 87, 0.12);
+  --dash-accent-text: #047857;
+}
+
+.dash-root[data-dash-theme='plum'] {
+  --dash-accent: #7c3aed;
+  --dash-accent-ink: #ffffff;
+  --dash-accent-soft: rgba(124, 58, 237, 0.12);
+  --dash-accent-text: #6d28d9;
+}
+
+.dark .dash-root {
+  --dash-canvas: #0c0d10;
+  --dash-surface: #15171c;
+  --dash-sunken: #1d2027;
+  --dash-line: #2a2e37;
+  --dash-ink: #eceef2;
+  --dash-muted: #a2a8b5;
+  --dash-faint: #6b7280;
+  --dash-positive: #4ade80;
+  --dash-positive-soft: rgba(74, 222, 128, 0.12);
+  --dash-negative: #f87171;
+  --dash-negative-soft: rgba(248, 113, 113, 0.12);
+  --dash-accent: #feb907;
+  --dash-accent-ink: #1f1a0e;
+  --dash-accent-soft: rgba(254, 185, 7, 0.14);
+  --dash-accent-text: #fec53d;
+}
+
+.dark .dash-root[data-dash-theme='ocean'] {
+  --dash-accent: #60a5fa;
+  --dash-accent-ink: #0b1220;
+  --dash-accent-soft: rgba(96, 165, 250, 0.14);
+  --dash-accent-text: #93c5fd;
+}
+
+.dark .dash-root[data-dash-theme='emerald'] {
+  --dash-accent: #34d399;
+  --dash-accent-ink: #052e1f;
+  --dash-accent-soft: rgba(52, 211, 153, 0.14);
+  --dash-accent-text: #6ee7b7;
+}
+
+.dark .dash-root[data-dash-theme='plum'] {
+  --dash-accent: #a78bfa;
+  --dash-accent-ink: #1e1033;
+  --dash-accent-soft: rgba(167, 139, 250, 0.16);
+  --dash-accent-text: #c4b5fd;
+}
+
+/* Sidebar links: quiet by default, the accent wash marks the current page. */
+.dash-root .Sidebar-Link {
+  @apply rounded-lg border-0 px-3 py-2 text-[14px] font-medium text-dash-muted transition-colors;
+}
+
+.dash-root .Sidebar-Link:hover {
+  @apply bg-dash-sunken text-dash-ink;
+}
+
+.dash-root .Sidebar-Link.active,
+.dash-root .Sidebar-Link.Sidebar-Link-current {
+  @apply bg-dash-accent-soft font-semibold text-dash-accent-text;
+}
+
+/* Primary buttons take the accent and its readable ink. */
+.dash-root .dashboard_primary_button {
+  @apply rounded-lg bg-dash-accent font-medium text-dash-accent-ink shadow-none hover:opacity-90;
+}
+
+.dash-root .dashboard_input {
+  @apply border-dash-line bg-dash-surface text-dash-ink focus:border-dash-accent;
+}
+
+/* Thin, quiet scrollbars inside the dashboard (the shop's are black). */
+.dash-root ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dash-root ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dash-root ::-webkit-scrollbar-thumb {
+  background: var(--dash-line);
+  border-radius: 999px;
+}
+
+.dash-root ::-webkit-scrollbar-thumb:hover {
+  background: var(--dash-faint);
+}

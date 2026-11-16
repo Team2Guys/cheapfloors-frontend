@@ -8,8 +8,8 @@ const DarkModeSwitcher = () => {
   return (
     <li>
       <label
-        className={`relative m-0 block h-5 xs:h-7 w-9 xs:w-14 rounded-full border ${
-          colorMode === 'dark' ? 'bg-primary' : 'bg-stroke'
+        className={`relative m-0 block h-5 xs:h-7 w-9 xs:w-14 rounded-full border border-dash-line ${
+          colorMode === 'dark' ? 'bg-dash-accent' : 'bg-dash-sunken'
         }`}
       >
         <input

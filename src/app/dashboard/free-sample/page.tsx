@@ -22,7 +22,6 @@ const OrdersPage = async () => {
       title="Free Sample Orders"
       ordersData={filteredOrder}
       isfreesample
-      orders={ordersData}
     />
   );
 };

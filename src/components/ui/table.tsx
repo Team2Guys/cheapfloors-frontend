@@ -53,31 +53,31 @@ const Table = <T,>({
 
   return (
     <div>
-      <div className="overflow-auto border rounded-md !max-h-[550px]">
-        <table className="min-w-full divide-y divide-gray-200 dark:divide-neutral-700 bg-white dark:bg-transparent">
-          <thead className="bg-gray-50 dark:bg-black">
+      <div className="overflow-auto rounded-xl border border-dash-line bg-dash-surface !max-h-[600px]">
+        <table className="min-w-full divide-y divide-dash-line">
+          <thead className="sticky top-0 z-10 bg-dash-sunken">
             <tr>
               {columns.map((col, index) => (
                 <th
                   key={index}
-                  className="p-2 md:p-4 text-left text-sm font-semibold dark:text-neutral-300 capitalize whitespace-nowrap"
+                  className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-dash-muted whitespace-nowrap"
                 >
                   {col.title}
                 </th>
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-200 dark:divide-neutral-700">
+          <tbody className="divide-y divide-dash-line">
             {paginatedData.length > 0 ? (
               paginatedData.map((item, index) => (
                 <tr
                   key={String(item[rowKey] ?? index)}
-                  className="hover:bg-gray-100 dark:hover:bg-black"
+                  className="transition-colors hover:bg-dash-sunken"
                 >
                   {columns.map((col) => (
                     <td
                       key={col.key}
-                      className="px-4 py-3 text-sm dark:text-neutral-200 whitespace-nowrap"
+                      className="px-4 py-3 text-sm text-dash-ink whitespace-nowrap"
                     >
                       {col.render
                         ? col.render(item)
@@ -90,7 +90,7 @@ const Table = <T,>({
               <tr>
                 <td
                   colSpan={columns.length}
-                  className="text-center px-4 py-6 dark:text-neutral-300"
+                  className="text-center px-4 py-10 text-dash-muted"
                 >
                   {emptyMessage}
                 </td>
@@ -105,24 +105,24 @@ const Table = <T,>({
           <button
             onClick={() => goToPage(currentPage - 1)}
             disabled={currentPage === 1}
-            className="px-3 py-1 border rounded disabled:opacity-50 dark:text-white"
+            className="rounded-lg border border-dash-line bg-dash-surface px-3 py-1.5 text-sm text-dash-ink hover:bg-dash-sunken disabled:opacity-50"
           >
             Prev
           </button>
 
           {getPaginationNumbers().map((page, i) =>
             page === '...' ? (
-              <span key={i} className="px-3 py-1 dark:text-white">
+              <span key={i} className="px-2 py-1 text-dash-muted">
                 ...
               </span>
             ) : (
               <button
                 key={i}
                 onClick={() => goToPage(Number(page))}
-                className={`px-3 py-1 border rounded ${
+                className={`rounded-lg border px-3 py-1.5 text-sm ${
                   currentPage === page
-                    ? 'bg-gray-200 dark:text-black'
-                    : 'dark:text-white'
+                    ? 'border-dash-accent bg-dash-accent text-dash-accent-ink'
+                    : 'border-dash-line bg-dash-surface text-dash-ink hover:bg-dash-sunken'
                 }`}
               >
                 {page}
@@ -133,7 +133,7 @@ const Table = <T,>({
           <button
             onClick={() => goToPage(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="px-3 py-1 border rounded disabled:opacity-50 dark:text-white"
+            className="rounded-lg border border-dash-line bg-dash-surface px-3 py-1.5 text-sm text-dash-ink hover:bg-dash-sunken disabled:opacity-50"
           >
             Next
           </button>
