@@ -30,6 +30,7 @@ import { formatAED, getShippingData } from 'utils/helperFunctions';
 import Accordion from 'components/ui/accordion';
 import { showAlert } from 'utils/Alert';
 import { submitCCAvenueForm } from 'utils/ccavenue';
+import { readOrderSource } from 'lib/cf-attribution';
 import { termsConditionsData } from 'data/terms-condition';
 import { INSTALLATION_ENABLED } from 'data/features';
 import TrustBadges from '@/components/product-detail/trust-badges';
@@ -236,7 +237,9 @@ const Checkout = ({
       setIsLoading(true);
       if (allItemsAreFreeSamples && selectedFee === 0) {
         const { data } = await initiateFreesample({
-          variables: { createFreesample: orderData }
+          variables: {
+            createFreesample: { ...orderData, source: readOrderSource() }
+          }
         });
         const orderid = data.freeSample.paymentKey;
         router.push(`/thank-you?isFreeSample=true&order=${orderid}`);
@@ -247,7 +250,9 @@ const Checkout = ({
       }
 
       const { data } = await initiatePayment({
-        variables: { createSalesProductInput: orderData }
+        variables: {
+          createSalesProductInput: { ...orderData, source: readOrderSource() }
+        }
       });
       const paymentKey = data.createSalesProduct.paymentKey;
       if (!paymentKey?.encRequest || !paymentKey?.actionUrl)

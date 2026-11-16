@@ -18,24 +18,29 @@ import { showAlert } from 'utils/Alert';
 import { formatAED } from 'utils/helperFunctions';
 import * as XLSX from 'xlsx';
 
+/** An abandoned-checkout row also says how many attempts it stands for. */
+type OrderRow = prodOrder & { attempts?: number; attemptOrderIds?: string[] };
+
 const Order = ({
   title,
   ordersData,
   isfreesample,
-  orders
+  description,
+  noun = 'orders'
 }: {
   title: string;
-  orders: prodOrder[];
-  ordersData: prodOrder[];
+  ordersData: OrderRow[];
   isfreesample?: boolean;
+  description?: string;
+  noun?: string;
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [orderIdStatus, setOrdeIdStatus] = useState<string>('');
-  const [selectedOrder, setSelectedOrder] = useState<prodOrder | null>(null);
-  const [data, setData] = useState<prodOrder[]>(ordersData);
+  const [selectedOrder, setSelectedOrder] = useState<OrderRow | null>(null);
+  const [data, setData] = useState<OrderRow[]>(ordersData);
   const [postOrderStatus] = useMutation(ORDER_STATUS_UPDATE);
   const [updateOrderDeliveryDate] = useMutation(UPDATE_ORDER_DELIVERY_DATE);
-  const showModal = (record: prodOrder) => {
+  const showModal = (record: OrderRow) => {
     setSelectedOrder(record);
     setIsModalOpen(true);
   };
@@ -154,7 +159,17 @@ const Order = ({
   const columns = [
     {
       title: 'Order Id',
-      key: 'orderId'
+      key: 'orderId',
+      render: (record: OrderRow) => (
+        <div>
+          <p className="font-mono text-[13px]">{record.orderId}</p>
+          {(record.attempts ?? 1) > 1 && (
+            <span className="mt-1 inline-flex rounded-full bg-dash-accent-soft px-2 py-0.5 text-xs font-medium text-dash-accent-text">
+              {record.attempts} attempts
+            </span>
+          )}
+        </div>
+      )
     },
     {
       title: 'Name',
@@ -366,10 +381,17 @@ const Order = ({
   ].filter(Boolean);
 
   const handleExport = () => {
-    // Flatten the data (convert nested product into single row or join important values)
-    const filtered_orders = orders?.map((order) => {
+    // Exports the rows on this page (not every order), one line per order with
+    // its products joined.
+    const filtered_orders = data.map((order) => {
       return {
         OrderID: order.orderId,
+        ...(order.attempts
+          ? {
+              CheckoutAttempts: order.attempts,
+              AttemptOrderIDs: (order.attemptOrderIds ?? []).join(', ')
+            }
+          : {}),
         Email: order.email,
         Name: `${order.firstName} ${order.lastName}`,
         Address: order.address,
@@ -413,30 +435,45 @@ const Order = ({
 
     const worksheet = XLSX.utils.json_to_sheet(filtered_orders);
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Orders-IF');
-    XLSX.writeFile(workbook, 'Orders-CF.xlsx');
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Orders');
+    XLSX.writeFile(workbook, `${title.split(' ').join('-')}-CF.xlsx`);
   };
 
   return (
     <DefaultLayout>
-      <Breadcrumb pageName={title} />
-      <button
-        className="flex items-center gap-2 dark:text-white mb-4"
-        onClick={handleExport}
-      >
-        {' '}
-        Export Orders <FiDownloadCloud className="text-primary" />
-      </button>
+      <Breadcrumb pageName={title} description={description} />
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <p className="text-sm text-dash-muted">
+          <span className="font-semibold text-dash-ink">
+            {data.length.toLocaleString('en-AE')}
+          </span>{' '}
+          {noun}
+        </p>
+        <button
+          className="inline-flex items-center gap-2 rounded-lg border border-dash-line bg-dash-surface px-3 py-2 text-sm font-medium text-dash-ink transition-colors hover:bg-dash-sunken disabled:opacity-50"
+          onClick={handleExport}
+          disabled={data.length === 0}
+        >
+          <FiDownloadCloud className="text-dash-accent-text" /> Export to Excel
+        </button>
+      </div>
 
       {data && data.length > 0 ? (
         <>
-          <Table<prodOrder> data={data} columns={columns} rowKey="orderId" />
+          <Table<OrderRow> data={data} columns={columns} rowKey="orderId" />
           <Modal isOpen={isModalOpen} onClose={handleCancel}>
             {data && (
               <div className="space-y-3 max-h-[80vh] overflow-y-auto">
                 <p>
                   <strong>OrderId:</strong> {selectedOrder?.orderId}
                 </p>
+                {(selectedOrder?.attempts ?? 1) > 1 && (
+                  <p>
+                    <strong>Checkout attempts:</strong>{' '}
+                    {selectedOrder?.attempts} (this is the latest; earlier:{' '}
+                    {selectedOrder?.attemptOrderIds?.slice(1).join(', ')})
+                  </p>
+                )}
                 <p>
                   <strong>Name:</strong> {selectedOrder?.firstName}{' '}
                   {selectedOrder?.lastName}
@@ -602,7 +639,9 @@ const Order = ({
           </Modal>
         </>
       ) : (
-        <p className="text-primary dark:text-white">No Orders found</p>
+        <p className="rounded-xl border border-dash-line bg-dash-surface px-4 py-10 text-center text-dash-muted">
+          No orders found
+        </p>
       )}
     </DefaultLayout>
   );

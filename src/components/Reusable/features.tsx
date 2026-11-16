@@ -8,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import Container from 'components/common/container/Container';
 import { featureItems, whatsappLink } from 'data/data';
+import WhatsAppLink from 'components/common/WhatsAppLink';
 
 const Features = () => {
   const swiperRef = useRef<import('swiper/react').SwiperRef>(null);
@@ -66,9 +67,15 @@ const Features = () => {
                   }`}
               >
                 {item.buttonLink ? (
-                  <Link href={item.buttonLink} className={iconWrapperClass} aria-label={item.title} {...linkTarget}>
-                    {iconImage}
-                  </Link>
+                  item.buttonLink === whatsappLink ? (
+                    <WhatsAppLink className={iconWrapperClass} aria-label={item.title}>
+                      {iconImage}
+                    </WhatsAppLink>
+                  ) : (
+                    <Link href={item.buttonLink} className={iconWrapperClass} aria-label={item.title} {...linkTarget}>
+                      {iconImage}
+                    </Link>
+                  )
                 ) : (
                   <div className={iconWrapperClass}>{iconImage}</div>
                 )}
@@ -79,14 +86,9 @@ const Features = () => {
                   {item.description}{' '}
                   {item.showContact && (
                     <>
-                      <Link
-                        className="font-semibold text-black hover:underline"
-                        href={whatsappLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <WhatsAppLink className="font-semibold text-black hover:underline">
                         WhatsApp us
-                      </Link>{' '}
+                      </WhatsAppLink>{' '}
                       or call us on{' '}
                       <Link
                         className="font-semibold text-black hover:underline whitespace-nowrap"

@@ -24,6 +24,7 @@ import { getShippingData } from '@/utils/helperFunctions';
 import { removeFreeSample } from '@/utils/indexedDB';
 import revalidateTag from '@/components/ServerActons/ServerAction';
 import { submitCCAvenueForm } from 'utils/ccavenue';
+import { readOrderSource } from 'lib/cf-attribution';
 
 // const SAMPLE_SLOTS = 5;
 
@@ -147,6 +148,8 @@ const FreeSampleCheckout = () => {
         totalPrice: selectedShipping === 'self-collect' ? 0 : 15,
         products: items,
         shippingMethod: shipping,
+        // Where the customer came from (lib/cf-attribution.ts).
+        source: readOrderSource(),
         note: marketingOptOut
           ? `${values.note || ''} [Marketing opt-out]`.trim()
           : values.note

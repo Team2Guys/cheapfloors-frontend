@@ -3,8 +3,7 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
-
-const PHONE = (process.env.NEXT_PUBLIC_PHONE_NUMBER ?? '').replace(/[^\d]/g, '');
+import WhatsAppLink from 'components/common/WhatsAppLink';
 
 // Quick questions shown in the chat popup. Clicking one opens WhatsApp with
 // the text already typed in, so the customer only has to press send.
@@ -14,9 +13,6 @@ const QUICK_QUESTIONS = [
   'I need help with delivery times',
   "I don't know how to measure and fit. I need help"
 ];
-
-const whatsappLink = (text?: string) =>
-  `https://wa.me/${PHONE}${text ? `?text=${encodeURIComponent(text)}` : ''}`;
 
 // Floating WhatsApp button with a "Need help?" label. Opens a small
 // chat-style popup listing quick questions.
@@ -93,33 +89,28 @@ const WhatsAppChat = () => {
 
           <div className="mt-4 flex flex-col items-end gap-2">
             {QUICK_QUESTIONS.map((question) => (
-              <a
+              <WhatsAppLink
                 key={question}
-                href={whatsappLink(question)}
-                target="_blank"
-                rel="noopener noreferrer"
+                message={question}
                 onClick={() => setOpen(false)}
                 tabIndex={open ? 0 : -1}
                 className="max-w-[90%] text-left text-sm bg-[#DCF8C6] hover:bg-[#c9f0ad] text-gray-800 rounded-lg rounded-tr-none px-3 py-2 shadow-sm transition"
               >
                 {question}
-              </a>
+              </WhatsAppLink>
             ))}
           </div>
         </div>
 
         {/* Footer */}
-        <a
-          href={whatsappLink()}
-          target="_blank"
-          rel="noopener noreferrer"
+        <WhatsAppLink
           onClick={() => setOpen(false)}
           tabIndex={open ? 0 : -1}
           className="flex_center gap-2 bg-[#25D366] hover:bg-[#1ebe5a] text-white text-sm font-semibold py-3 transition"
         >
           <FaWhatsapp size={18} />
           Start a new chat
-        </a>
+        </WhatsAppLink>
       </div>
 
       {/* "Need help?" label: above the button on sm+, to its left on phones

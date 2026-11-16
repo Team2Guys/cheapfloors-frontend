@@ -8,6 +8,7 @@ import { useSessionExpiry } from 'hooks/useSessionExpiry';
 import { useAdminAuthInit } from 'hooks/useAuthInitializer';
 import { useAppSelector } from 'components/Others/HelperRedux';
 import { getRequiredPermission } from 'data/adminPermissions';
+import { useDashTheme } from 'components/Dashboard/theme/dashTheme';
 
 export default function DefaultLayout({
   children
@@ -15,6 +16,7 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const theme = useDashTheme();
   useAdminAuthInit();
   useSessionExpiry();
 
@@ -32,27 +34,28 @@ export default function DefaultLayout({
     !loggedInUser[requiredPermission];
 
   return (
-    <div className="flex h-screen overflow-hidden relative bg-white dark:bg-black">
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute w-[600px] h-[600px] bg-primary opacity-30 rounded-full blur-3xl top-1/3 left-[10%] mix-blend-overlay" />
-        <div className="absolute w-[500px] h-[500px] bg-primary opacity-20 rounded-full blur-2xl -top-20 right-[5%] mix-blend-overlay" />
-        <div className="absolute w-[400px] h-[400px] bg-blue-500 opacity-20 rounded-full blur-2xl bottom-0 right-0 mix-blend-overlay" />
-      </div>
-
-      {/* Sidebar and Content */}
+    // .dash-root scopes the dashboard palette (globals.css); the theme picker
+    // in the header sets data-dash-theme.
+    <div
+      className="dash-root relative flex h-screen overflow-hidden bg-dash-canvas text-dash-ink"
+      data-dash-theme={theme}
+    >
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden ">
+      <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        <main className="border-white border">
+        <main>
           <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
             {accessDenied ? (
-              <div className="bg-white rounded-md shadow-xl p-8 text-center max-w-xl mx-auto mt-10">
-                <h1 className="text-2xl font-semibold mb-2">Access denied</h1>
-                <p className="text-gray-600 mb-6">
+              <div className="mx-auto mt-10 max-w-xl rounded-xl border border-dash-line bg-dash-surface p-8 text-center">
+                <h1 className="mb-2 text-2xl font-semibold">Access denied</h1>
+                <p className="mb-6 text-dash-muted">
                   Your admin account doesn&apos;t have permission to view this
                   page. Ask a super admin to grant it.
                 </p>
-                <Link href="/dashboard" className="dashboard_primary_button">
+                <Link
+                  href="/dashboard"
+                  className="dashboard_primary_button inline-flex"
+                >
                   Back to dashboard
                 </Link>
               </div>

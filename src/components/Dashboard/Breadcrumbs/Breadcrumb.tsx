@@ -1,25 +1,30 @@
 'use client';
 import Link from 'next/link';
+import { ReactNode } from 'react';
 interface BreadcrumbProps {
   pageName: string;
+  /** A line under the title, e.g. how the list below was put together. */
+  description?: ReactNode;
 }
-const Breadcrumb = ({ pageName }: BreadcrumbProps) => {
+const Breadcrumb = ({ pageName, description }: BreadcrumbProps) => {
   return (
-    <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <h2 className="text-title-md2 font-semibold dark:text-white ">
-        {pageName}
-      </h2>
+    <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+      <div className="min-w-0">
+        <h2 className="text-2xl font-semibold text-dash-ink">{pageName}</h2>
+        {description && (
+          <p className="mt-1 max-w-3xl text-sm text-dash-muted">{description}</p>
+        )}
+      </div>
 
-      <nav>
-        <ol className="flex items-center gap-2 dark:text-white text-base ">
+      <nav aria-label="Breadcrumb">
+        <ol className="flex items-center gap-1.5 text-sm text-dash-muted">
           <li>
-            <Link className="font-medium" href="/dashboard">
-              Dashboard /
+            <Link className="hover:text-dash-ink" href="/dashboard">
+              Dashboard
             </Link>
           </li>
-          <li className="font-medium text-primary dark:text-white">
-            {pageName}
-          </li>
+          <li aria-hidden>/</li>
+          <li className="font-medium text-dash-ink">{pageName}</li>
         </ol>
       </nav>
     </div>

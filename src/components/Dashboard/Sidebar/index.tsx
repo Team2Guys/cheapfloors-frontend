@@ -91,11 +91,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   return (
     <aside
       ref={sidebar}
-      className={`absolute left-0 top-0 z-50 flex h-screen w-72 flex-col overflow-y-hidden bg-primary text-white duration-300 ease-linear dark:bg-black lg:static lg:translate-x-0 ${
+      className={`absolute left-0 top-0 z-50 flex h-screen w-72 flex-col overflow-y-hidden border-r border-dash-line bg-dash-surface text-dash-ink duration-300 ease-linear lg:static lg:translate-x-0 ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full'
       }`}
     >
-      <div className="flex_between gap-2 px-6 py-2">
+      <div className="flex_between h-16 gap-2 border-b border-dash-line px-5">
         <Link href="/">
           <Image
             width={176}
@@ -103,6 +103,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             src="/assets/images/logo/logo1.png"
             alt="Logo"
             priority
+            className="h-auto w-[140px] rounded-md dark:bg-white dark:px-2 dark:py-1"
           />
         </Link>
 
@@ -133,10 +134,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
         {/* <!-- Sidebar Menu --> */}
-        <nav className="mt-5 px-4 py-4 lg:mt-9 lg:px-6">
+        <nav className="px-3 py-5">
           {/* <!-- Menu Group --> */}
           <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold ">MENU</h3>
+            <h3 className="mb-3 ml-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-dash-faint">Menu</h3>
 
             <ul className="mb-6 flex flex-col gap-1.5">
               {/* <!-- Menu Item Dashboard --> */}
@@ -148,7 +149,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         href="/dashboard"
                         className={`Sidebar-Link group ${
                           pathname === '/dashboard' &&
-                          'bg-black dark:bg-primary'
+                          'Sidebar-Link-current'
                         }`}
                         onClick={(e) => {
                           e.preventDefault();
@@ -159,11 +160,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           }
                         }}
                       >
-                        <MdOutlineDashboard size={20} className="text-white" />
+                        <MdOutlineDashboard size={20} className="shrink-0" />
                         Dashboard
                         <MdOutlineKeyboardArrowDown
                           size={30}
-                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-white ${
+                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-dash-faint ${
                             open && 'rotate-180'
                           }`}
                         />
@@ -206,7 +207,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <>
                       <Link
                         href="#"
-                        className={`Sidebar-Link group ${(pathname === '/dashboard/category' || pathname === '/dashboard/subcategory') && 'bg-black dark:bg-primary'}`}
+                        className={`Sidebar-Link group ${(pathname === '/dashboard/category' || pathname === '/dashboard/subcategory') && 'Sidebar-Link-current'}`}
                         onClick={(e) => {
                           e.preventDefault();
                           if (sidebarExpanded) {
@@ -216,11 +217,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           }
                         }}
                       >
-                        <BiCategoryAlt size={20} className="text-white" />
+                        <BiCategoryAlt size={20} className="shrink-0" />
                         Category
                         <MdOutlineKeyboardArrowDown
                           size={30}
-                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-white ${
+                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-dash-faint ${
                             open && 'rotate-180'
                           }`}
                         />
@@ -278,7 +279,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                         className={`Sidebar-Link group ${
                           (pathname === '/dashboard/products' ||
                             pathname === '/dashboard/accessories') &&
-                          'bg-black dark:bg-primary'
+                          'Sidebar-Link-current'
                         }`}
                         onClick={(e) => {
                           e.preventDefault();
@@ -289,11 +290,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           }
                         }}
                       >
-                        <GrCodeSandbox size={20} className="text-white" />
+                        <GrCodeSandbox size={20} className="shrink-0" />
                         Products
                         <MdOutlineKeyboardArrowDown
                           size={30}
-                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-white ${
+                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-dash-faint ${
                             open && 'rotate-180'
                           }`}
                         />
@@ -355,7 +356,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           (pathname === '/dashboard/orders' ||
                             pathname === '/dashboard/free-sample' ||
                             pathname === '/dashboard/abundant') &&
-                          'bg-black dark:bg-primary'
+                          'Sidebar-Link-current'
                         }`}
                         onClick={(e) => {
                           e.preventDefault();
@@ -366,11 +367,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           }
                         }}
                       >
-                        <TfiShoppingCartFull size={20} className="text-white" />
+                        <TfiShoppingCartFull size={20} className="shrink-0" />
                         Orders
                         <MdOutlineKeyboardArrowDown
                           size={30}
-                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-white ${
+                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-dash-faint ${
                             open && 'rotate-180'
                           }`}
                         />
@@ -443,7 +444,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           (pathname === '/dashboard/measurement-appointment' ||
                             pathname ===
                               '/dashboard/installation-appointments') &&
-                          'bg-black dark:bg-primary'
+                          'Sidebar-Link-current'
                         }`}
                         onClick={(e) => {
                           e.preventDefault(); // Prevent default link behavior
@@ -454,11 +455,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           }
                         }}
                       >
-                        <SiGotomeeting size={20} className="text-white" />
+                        <SiGotomeeting size={20} className="shrink-0" />
                         Appointments
                         <MdOutlineKeyboardArrowDown
                           size={30}
-                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-white ${
+                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-dash-faint ${
                             open && 'rotate-180'
                           }`}
                         />
@@ -512,10 +513,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   href="/dashboard/blogs"
                   className={`Sidebar-Link group ${
                     pathname === '/dashboard/blogs' &&
-                    'bg-black dark:bg-primary'
+                    'Sidebar-Link-current'
                   }`}
                 >
-                  <MdOutlineArticle size={20} className="text-white" />
+                  <MdOutlineArticle size={20} className="shrink-0" />
                   Blogs
                 </Link>
               </li>
@@ -548,11 +549,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                           }
                         }}
                       >
-                        <TbGardenCartOff size={20} className="text-white" />
+                        <TbGardenCartOff size={20} className="shrink-0" />
                         Generals
                         <MdOutlineKeyboardArrowDown
                           size={30}
-                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-white ${
+                          className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current text-dash-faint ${
                             open && 'rotate-180'
                           }`}
                         />
@@ -590,10 +591,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     href="/dashboard/super-admin"
                     className={`Sidebar-Link group ${
                       pathname.includes('super-admin') &&
-                      'bg-black dark:bg-primary'
+                      'Sidebar-Link-current'
                     }`}
                   >
-                    <GrUserAdmin size={20} />
+                    <GrUserAdmin size={20} className="shrink-0" />
                     Admin
                   </Link>
                 </li>

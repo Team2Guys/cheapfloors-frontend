@@ -29,7 +29,23 @@ export default {
         "card-text": "var(--card-text)",
         green: "var(--green)",
         "gray-light": "var(--gray-light)",
-        
+        // Admin dashboard palette, set on .dash-root in globals.css.
+        "dash-canvas": "var(--dash-canvas)",
+        "dash-surface": "var(--dash-surface)",
+        "dash-sunken": "var(--dash-sunken)",
+        "dash-line": "var(--dash-line)",
+        "dash-ink": "var(--dash-ink)",
+        "dash-muted": "var(--dash-muted)",
+        "dash-faint": "var(--dash-faint)",
+        "dash-accent": "var(--dash-accent)",
+        "dash-accent-ink": "var(--dash-accent-ink)",
+        "dash-accent-soft": "var(--dash-accent-soft)",
+        "dash-accent-text": "var(--dash-accent-text)",
+        "dash-positive": "var(--dash-positive)",
+        "dash-positive-soft": "var(--dash-positive-soft)",
+        "dash-negative": "var(--dash-negative)",
+        "dash-negative-soft": "var(--dash-negative-soft)",
+
       },
       fontSize: {
         "10" : "10px",
