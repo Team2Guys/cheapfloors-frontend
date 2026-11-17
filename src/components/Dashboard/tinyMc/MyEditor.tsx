@@ -58,6 +58,10 @@ const TinyMCEEditor = ({ name, placeholder }: TinyMCEEditorProps) => {
   const config = useMemo(
     () => ({
       height: 400,
+      // Keep link URLs exactly as entered. TinyMCE otherwise rewrites same-site
+      // links into "../../" paths relative to the dashboard page, which break
+      // (or turn into /blogs/blogs/...) on the live site.
+      convert_urls: false,
       menubar: true,
       placeholder: placeholder || 'Start typing...',
       file_picker_types: 'file image media',
