@@ -433,9 +433,9 @@ const FormLayout = ({
                   placeholder="RecallUrl(products & Categories)"
                 />
                 <Input
-                  label="Category Top Heading"
+                  label="Page Heading (H1)"
                   name="topHeading"
-                  placeholder="Category Top Heading"
+                  placeholder="H1 on the category page — leave empty to use the category title"
                 />
                 <Input
                   label="Short Description"
