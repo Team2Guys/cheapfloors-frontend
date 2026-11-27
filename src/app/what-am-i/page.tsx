@@ -1,6 +1,6 @@
 import Breadcrumb from 'components/Reusable/breadcrumb';
 import WhatAmICetagory from 'components/WhatAmICetagory/WhatAmICetagory';
-import { fetchSubCategories } from 'config/fetch';
+import { fetchSubCategoriesOrThrow } from 'config/fetch';
 import {
   FETCH_ALL_WHAT_AM_I,
   FETCH_ALL_WHAT_AM_I_META_TAGS
@@ -20,7 +20,7 @@ export async function generateMetadata({
 }: SlugPageProps): Promise<Metadata> {
   const { flooring } = await searchParams;
   if (!flooring) return notFound();
-  const subCategories = await fetchSubCategories(FETCH_ALL_WHAT_AM_I_META_TAGS);
+  const subCategories = await fetchSubCategoriesOrThrow(FETCH_ALL_WHAT_AM_I_META_TAGS);
   const subCategory = subCategories.find(
     (value: ISUBCATEGORY) =>
       TrimerHandler(value?.whatIamEndpoint || value.custom_url) ==
@@ -68,7 +68,7 @@ export async function generateMetadata({
 
 const Whatami = async ({ searchParams }: SlugPageProps) => {
   const { flooring } = await searchParams;
-  const subCategories = await fetchSubCategories(FETCH_ALL_WHAT_AM_I);
+  const subCategories = await fetchSubCategoriesOrThrow(FETCH_ALL_WHAT_AM_I);
   if (!flooring) {
     return notFound();
   }

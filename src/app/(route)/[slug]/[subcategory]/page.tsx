@@ -1,6 +1,6 @@
 import {
-  fetchAccessories,
-  fetchCategories,
+  fetchAccessoriesOrThrow,
+  fetchCategoriesOrThrow,
   fetchSingeSubCategory,
   getMetaTitleData
 } from 'config/fetch';
@@ -76,8 +76,10 @@ const SubCategoryPage = async ({
   params: Promise<{ slug: string; subcategory: string }>;
 }) => {
   const { slug, subcategory } = await params;
+  // OrThrow fetches: a failed fetch must error (5xx), not look like "no such
+  // page" and send a 404 for a live accessory or subcategory.
   if (slug === 'accessories') {
-    const ProductInfo = await fetchAccessories();
+    const ProductInfo = await fetchAccessoriesOrThrow();
     const PublishAccessory = ProductInfo.filter(
       (acc: IProduct) =>
         acc.status === 'PUBLISHED' && acc.category?.status === 'PUBLISHED'
@@ -99,7 +101,7 @@ const SubCategoryPage = async ({
       </>
     );
   } else {
-    const categories = await fetchCategories();
+    const categories = await fetchCategoriesOrThrow();
     const findCategory = categories.find(
       (cat: ICategory) =>
         cat?.RecallUrl === slug.trim() && cat.status === 'PUBLISHED'
