@@ -1,4 +1,4 @@
-import { fetchCategories, fetchSingleCategory } from 'config/fetch';
+import { fetchCategoriesOrThrow, fetchSingleCategory } from 'config/fetch';
 import { Category as ICategory, ISUBCATEGORY } from 'types/cat';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
@@ -120,7 +120,8 @@ const CategoryPage = async ({
       </>
     );
   } else {
-    const categories = await fetchCategories();
+    // OrThrow: a failed fetch must error (5xx), not look like "no such page".
+    const categories = await fetchCategoriesOrThrow();
     const findCategory = categories.find(
       (cat: ICategory) =>
         (cat.custom_url?.trim() ?? '') === slug.trim() &&

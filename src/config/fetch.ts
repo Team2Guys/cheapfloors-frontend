@@ -13,7 +13,7 @@ import {
   GET_ORDER_HISTORY
 } from 'graphql/queries';
 import client from './apolloClient';
-import { DocumentNode } from '@apollo/client';
+import { ApolloError, DocumentNode } from '@apollo/client';
 import { Category } from 'types/cat';
 import { IProduct } from 'types/prod';
 import { IB2BQuote } from 'types/b2bQuote';
@@ -25,6 +25,19 @@ import {
 } from 'graphql/accessorie';
 import { FETCH_ALL_BLOGS, FIND_ONE_BLOG } from 'graphql/blog';
 import { Blog } from 'types/blog';
+
+// The backend answers a lookup for a slug that doesn't exist with a GraphQL
+// error ("Cannot return null for non-nullable field Query.category"), not with
+// null data. Only that answer means "no such page". A timeout, a 5xx or a
+// database error inside a resolver means the backend couldn't answer, and
+// turning those into a 404/410 tells search engines that live pages are gone.
+const MISSING_RECORD = /^Cannot return null for non-nullable field Query\./;
+
+export const isMissingRecordError = (error: unknown) =>
+  error instanceof ApolloError &&
+  !error.networkError &&
+  error.graphQLErrors.length > 0 &&
+  error.graphQLErrors.every((e) => MISSING_RECORD.test(e.message));
 
 export const fetchProducts = async (CUSTOMIZE_QUERY?: DocumentNode) => {
   try {
@@ -46,43 +59,60 @@ export const fetchProducts = async (CUSTOMIZE_QUERY?: DocumentNode) => {
   }
 };
 
+const queryCategories = async (query: DocumentNode) => {
+  const { data } = await client.query({
+    query,
+    fetchPolicy: 'no-cache',
+    context: {
+      fetchOptions: { next: { tags: ['categories'] } }
+    }
+  });
+  return data?.categories || [];
+};
+
+/** All categories, or [] when the backend can't answer (menus, listings). */
 export const fetchCategories = async (
   FETCH_HEADER_CATEGORIES?: DocumentNode
 ) => {
   try {
-    const { data } = await client.query({
-      query: FETCH_HEADER_CATEGORIES
-        ? FETCH_HEADER_CATEGORIES
-        : FETCH_ALL_CATEGORIES,
-      fetchPolicy: 'no-cache',
-      context: {
-        fetchOptions: { next: { tags: ['categories'] } }
-      }
-    });
-
-    return data?.categories || [];
-  } catch (error) {
+    return await queryCategories(
+      FETCH_HEADER_CATEGORIES ?? FETCH_ALL_CATEGORIES
+    );
+  } catch {
     return [];
-    throw error;
   }
 };
 
+/**
+ * All categories, throwing when the backend can't answer. Use it wherever an
+ * empty list would decide that a page doesn't exist (404/410).
+ */
+export const fetchCategoriesOrThrow = (query?: DocumentNode) =>
+  queryCategories(query ?? FETCH_ALL_CATEGORIES);
+
+const querySubCategories = async (query: DocumentNode) => {
+  const { data } = await client.query({
+    query,
+    fetchPolicy: 'no-cache',
+    context: {
+      fetchOptions: { next: { tags: ['subcategories'] } }
+    }
+  });
+  return data?.subCategories || [];
+};
+
+/** All subcategories, or [] when the backend can't answer. */
 export const fetchSubCategories = async (FETCHSUBCAT?: DocumentNode) => {
   try {
-    const { data } = await client.query({
-      query: FETCHSUBCAT ? FETCHSUBCAT : FETCH_ALL_SUB_CATEGORIES,
-      fetchPolicy: 'no-cache',
-      context: {
-        fetchOptions: { next: { tags: ['subcategories'] } }
-      }
-    });
-
-    return data?.subCategories || [];
-  } catch (error) {
+    return await querySubCategories(FETCHSUBCAT ?? FETCH_ALL_SUB_CATEGORIES);
+  } catch {
     return [];
-    throw error;
   }
 };
+
+/** All subcategories, throwing when the backend can't answer (see fetchCategoriesOrThrow). */
+export const fetchSubCategoriesOrThrow = (query?: DocumentNode) =>
+  querySubCategories(query ?? FETCH_ALL_SUB_CATEGORIES);
 
 export const fetchAppointments = async (token: string | undefined) => {
   try {
@@ -205,23 +235,31 @@ const queryAccessories = async (query: DocumentNode) => {
   return data?.accessories || [];
 };
 
-export const fetchAccessories = async (
-  CUSTOMISE_ACCESSORIES?: DocumentNode
-) => {
+const loadAccessories = async (CUSTOMISE_ACCESSORIES?: DocumentNode) => {
   try {
     return await queryAccessories(
       CUSTOMISE_ACCESSORIES ?? FETCH_ALL_ACCESSORIES
     );
   } catch (error) {
-    if (CUSTOMISE_ACCESSORIES) return [];
+    if (CUSTOMISE_ACCESSORIES) throw error;
     // Backend may not expose matchingProducts yet; retry without it.
-    try {
-      return await queryAccessories(FETCH_ALL_ACCESSORIES_LEGACY);
-    } catch {
-      return [];
-    }
+    return queryAccessories(FETCH_ALL_ACCESSORIES_LEGACY);
   }
 };
+
+/** All accessories, or [] when the backend can't answer. */
+export const fetchAccessories = async (
+  CUSTOMISE_ACCESSORIES?: DocumentNode
+) => {
+  try {
+    return await loadAccessories(CUSTOMISE_ACCESSORIES);
+  } catch {
+    return [];
+  }
+};
+
+/** All accessories, throwing when the backend can't answer (see fetchCategoriesOrThrow). */
+export const fetchAccessoriesOrThrow = () => loadAccessories();
 
 export const fetchSingleCategory = async (
   customUrl: string,
@@ -239,7 +277,7 @@ export const fetchSingleCategory = async (
     });
     return data?.category;
   } catch (error) {
-    return null;
+    if (isMissingRecordError(error)) return null;
     throw error;
   }
 };
@@ -259,7 +297,7 @@ export const fetchSingeSubCategory = async (
     });
     return data?.subCategory;
   } catch (error) {
-    return null;
+    if (isMissingRecordError(error)) return null;
     throw error;
   }
 };
@@ -284,7 +322,7 @@ export const fetchSingeProduct = async (
     });
     return data?.product;
   } catch (error) {
-    return null;
+    if (isMissingRecordError(error)) return null;
     throw error;
   }
 };
@@ -359,7 +397,10 @@ export const getMetaTitleData = async (
       console.error('Unknown Apollo error:', error.message);
     }
 
-    return null;
+    // A missing record comes back as null data, so an error here means the
+    // backend couldn't answer; don't let the page turn it into a 404.
+    if (isMissingRecordError(error)) return null;
+    throw error;
   }
 };
 
@@ -394,7 +435,8 @@ export const fetchSingleBlog = async (
     });
     return data?.blog || null;
   } catch (error) {
-    return null;
+    // A missing blog comes back as { blog: null }, so an error is a failure.
+    if (isMissingRecordError(error)) return null;
     throw error;
   }
 };

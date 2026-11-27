@@ -164,10 +164,12 @@ const CategoryClient = ({
 
         <div className="lg:w-[80%] font-inter">
           <div className="space-y-4">
+            {/* A category's H1 is its dashboard "Page Heading (H1)" (topHeading)
+                when set, so it can differ from the name used in menus. */}
             <h1 className="text-24 sm:text-34 font-bold">
               {isSubCategory
                 ? subdescription?.[0]?.name || ''
-                : Data?.Heading || Data?.name}
+                : Data?.topHeading?.trim() || Data?.Heading || Data?.name}
             </h1>
             {/* div, not p: the description HTML contains its own <p> tags. */}
             <div

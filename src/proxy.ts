@@ -1,4 +1,4 @@
-import { fetchCategories, get_allAdmins } from 'config/fetch';
+import { fetchCategoriesOrThrow, get_allAdmins } from 'config/fetch';
 import { findOneRedirectUrl } from 'config/general';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
@@ -87,9 +87,17 @@ async function route(req: NextRequest): Promise<NextResponse> {
     const pathname = req.nextUrl.pathname;
     const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
 
-    const redirectUrls = await findOneRedirectUrl(
-      pathname.replace(/^\/+|\/+$/g, '')
-    );
+    // A failed lookup only means this request can't be redirected; it must
+    // not skip the dashboard check below (the outer catch lets everything
+    // through). It does skip the 410: without the redirect table we can't
+    // tell a moved URL from one that is gone.
+    let redirectUrls = null;
+    let redirectLookupFailed = false;
+    try {
+      redirectUrls = await findOneRedirectUrl(cleanPath);
+    } catch {
+      redirectLookupFailed = true;
+    }
     // Strip leading slashes: '/about-us' would otherwise become '//about-us',
     // which the URL parser treats as a host (https://about-us/).
     const redirectTarget = (redirectUrls?.redirectedUrl ?? '')
@@ -108,17 +116,20 @@ async function route(req: NextRequest): Promise<NextResponse> {
 
     const segments = cleanPath.split('/').filter(Boolean);
     // ✅ Only apply 410
-    if (segments.length === 1) {
+    if (segments.length === 1 && !redirectLookupFailed) {
       const slug = segments[0];
       if (!validStaticPaths.includes(`/${segments[0]}`)) {
-        const categories = await fetchCategories();
-        const findCategory = categories.find(
+        // Only a category list we actually got back may say "gone". If the
+        // fetch fails, let the page answer (an error, never a 410).
+        const categories: Category[] | null =
+          await fetchCategoriesOrThrow().catch(() => null);
+        const findCategory = categories?.find(
           (cat: Category) =>
             (cat.custom_url?.trim() ?? '') === slug &&
             cat.status === 'PUBLISHED'
         );
 
-        if (!findCategory) {
+        if (categories && !findCategory) {
           return new NextResponse(null, { status: 410 });
         }
       }

@@ -1,5 +1,5 @@
 import Breadcrumb from 'components/Reusable/breadcrumb';
-import { fetchCategories, fetchSubCategories } from 'config/fetch';
+import { fetchCategories, fetchSubCategoriesOrThrow } from 'config/fetch';
 import { FETCHSUBCAT } from 'graphql/queries';
 import Collections from './Collections';
 import { createMetadata } from 'utils/metadataHelper';
@@ -16,7 +16,8 @@ const AllCollection = async ({
 }) => {
   const { slug } = await params;
   const [subcategories, categories] = await Promise.all([
-    fetchSubCategories(FETCHSUBCAT),
+    // OrThrow: an empty list here would 404 the page, so a failed fetch must error.
+    fetchSubCategoriesOrThrow(FETCHSUBCAT),
     fetchCategories()
   ]);
   const categoriesData = categories
