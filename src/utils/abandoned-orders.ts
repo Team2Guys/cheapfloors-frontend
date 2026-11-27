@@ -42,11 +42,21 @@ export const toTime = (value: string | Date | null | undefined): number => {
 export const isFreeSample = (order: CheckoutLike): boolean =>
   order.isfreesample === true || order.isfreesample === 'true';
 
+/**
+ * Free samples from the old no-payment flow (plain numeric order id) were
+ * placed without a checkout payment, so they can never be "abandoned".
+ * Current free samples pay AED 15 shipping through CCAvenue like any order.
+ */
+export const isLegacyFreeSample = (order: CheckoutLike): boolean =>
+  isFreeSample(order) && /^\d+$/.test(String(order.orderId));
+
 export const isPaidPurchase = (order: CheckoutLike): boolean =>
-  order.paymentStatus === true && !isFreeSample(order);
+  order.paymentStatus === true;
 
 export const isAbandonedCheckout = (order: CheckoutLike): boolean =>
-  order.paymentStatus !== true && order.checkout === true && !isFreeSample(order);
+  order.paymentStatus !== true &&
+  order.checkout === true &&
+  !isLegacyFreeSample(order);
 
 /** When a paid order was paid; older rows may only have the checkout date. */
 export const paidAt = (order: CheckoutLike): number =>
