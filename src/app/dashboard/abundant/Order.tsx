@@ -461,179 +461,229 @@ const Order = ({
       {data && data.length > 0 ? (
         <>
           <Table<OrderRow> data={data} columns={columns} rowKey="orderId" />
-          <Modal isOpen={isModalOpen} onClose={handleCancel}>
-            {data && (
-              <div className="space-y-3 max-h-[80vh] overflow-y-auto">
-                <p>
-                  <strong>OrderId:</strong> {selectedOrder?.orderId}
-                </p>
-                {(selectedOrder?.attempts ?? 1) > 1 && (
-                  <p>
-                    <strong>Checkout attempts:</strong>{' '}
-                    {selectedOrder?.attempts} (this is the latest; earlier:{' '}
-                    {selectedOrder?.attemptOrderIds?.slice(1).join(', ')})
+          <Modal
+            isOpen={isModalOpen}
+            onClose={handleCancel}
+            width="w-full max-w-xl rounded-2xl"
+          >
+            {selectedOrder && (
+              <div className="space-y-4">
+                {/* Header: order id, payment + status chips, dates */}
+                <div className="pr-8">
+                  <p className="text-11 font-semibold uppercase tracking-[0.14em] text-dash-muted">
+                    {selectedOrder.isfreesample ? 'Free sample order' : 'Order'}
                   </p>
-                )}
-                <p>
-                  <strong>Name:</strong> {selectedOrder?.firstName}{' '}
-                  {selectedOrder?.lastName}
-                </p>
-                <p>
-                  <strong>Email:</strong> {selectedOrder?.email}
-                </p>
-                <p>
-                  <strong>Phone Number:</strong> {selectedOrder?.phone}
-                </p>
-                <p>
-                  <strong>Shipping Method:</strong>{' '}
-                  {selectedOrder?.shippingMethod?.name}
-                </p>
-                <p>
-                  <strong>Country:</strong> {selectedOrder?.country}
-                </p>
-                <p>
-                  <strong>Emirate:</strong> {selectedOrder?.emirate}
-                </p>
-                <p>
-                  <strong>City:</strong> {selectedOrder?.city}
-                </p>
-                <p>
-                  <strong>Address:</strong> {selectedOrder?.address}
-                </p>
-                <p>
-                  <strong>Other Notes:</strong> {selectedOrder?.note}
-                </p>
-                <p>
-                  <strong>Shippment Fee:</strong>{' '}
-                  {selectedOrder?.shipmentFee === 0 ? (
-                    'Free'
-                  ) : (
-                    <span className="font-currency text-18 font-normal">
-                       {selectedOrder?.shipmentFee}
-                    </span>
-                  )}
-                </p>
-                <p>
-                  <strong>Total Amount:</strong>{' '}
-                  <span className="font-currency text-18 font-normal"></span>{' '}
-                  {selectedOrder?.totalPrice}
-                </p>
-                <p>
-                  <strong>Payment Status:</strong>{' '}
-                  {selectedOrder?.totalPrice === 0 ? (
-                    <span className="text-primary">Free</span>
-                  ) : selectedOrder?.transactionDate ? (
-                    <span className="text-green">Paid</span>
-                  ) : (
-                    <span className="text-red-500">UnPaid</span>
-                  )}
-                </p>
-                {selectedOrder?.orderStatus && (
-                  <p>
-                    <strong>Order Status:</strong> {selectedOrder?.orderStatus}
-                  </p>
-                )}
-                {selectedOrder?.deliveryDate && (
-                  <p>
-                    <strong>delivery Date:</strong>{' '}
-                    {new Date(selectedOrder?.deliveryDate).toLocaleString(
-                      'en-US',
-                      { day: 'numeric', month: 'long', year: 'numeric' }
+                  <div className="mt-1 flex flex-wrap items-center gap-2">
+                    <h2 className="font-mono text-20 font-bold leading-tight text-dash-ink">
+                      {selectedOrder.orderId}
+                    </h2>
+                    {selectedOrder.totalPrice === 0 ? (
+                      <span className="rounded-full bg-dash-accent-soft px-2.5 py-0.5 text-12 font-semibold text-dash-accent-text">
+                        Free
+                      </span>
+                    ) : selectedOrder.transactionDate ? (
+                      <span className="rounded-full bg-dash-positive-soft px-2.5 py-0.5 text-12 font-semibold text-dash-positive">
+                        Paid
+                      </span>
+                    ) : (
+                      <span className="rounded-full bg-dash-negative-soft px-2.5 py-0.5 text-12 font-semibold text-dash-negative">
+                        Unpaid
+                      </span>
+                    )}
+                    {selectedOrder.orderStatus && (
+                      <span className="rounded-full border border-dash-line bg-dash-sunken px-2.5 py-0.5 text-12 font-medium capitalize text-dash-ink">
+                        {selectedOrder.orderStatus}
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-1.5 text-13 text-dash-muted">
+                    {selectedOrder.transactionDate
+                      ? `Paid on ${new Date(selectedOrder.transactionDate).toLocaleString()}`
+                      : `Checkout on ${new Date(selectedOrder.checkoutDate || '').toLocaleString()}`}
+                    {selectedOrder.deliveryDate && (
+                      <>
+                        {' '}
+                        &middot; Delivery{' '}
+                        {new Date(selectedOrder.deliveryDate).toLocaleString(
+                          'en-US',
+                          { day: 'numeric', month: 'long', year: 'numeric' }
+                        )}
+                      </>
                     )}
                   </p>
+                  {(selectedOrder.attempts ?? 1) > 1 && (
+                    <p className="mt-2 rounded-lg bg-dash-accent-soft px-3 py-2 text-12 leading-relaxed text-dash-accent-text">
+                      {selectedOrder.attempts} checkout attempts — this is the
+                      latest; earlier:{' '}
+                      {selectedOrder.attemptOrderIds?.slice(1).join(', ')}
+                    </p>
+                  )}
+                </div>
+
+                {/* Customer + delivery */}
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <section className="rounded-xl border border-dash-line bg-dash-surface p-4">
+                    <h3 className="mb-2 text-11 font-semibold uppercase tracking-[0.14em] text-dash-muted">
+                      Customer
+                    </h3>
+                    <p className="text-sm font-semibold text-dash-ink">
+                      {selectedOrder.firstName} {selectedOrder.lastName}
+                    </p>
+                    <a
+                      href={`mailto:${selectedOrder.email}`}
+                      className="mt-1 block break-all text-13 text-dash-accent-text hover:underline"
+                    >
+                      {selectedOrder.email}
+                    </a>
+                    <a
+                      href={`tel:${selectedOrder.phone}`}
+                      className="mt-0.5 block text-13 text-dash-ink"
+                    >
+                      {selectedOrder.phone}
+                    </a>
+                  </section>
+                  <section className="rounded-xl border border-dash-line bg-dash-surface p-4">
+                    <h3 className="mb-2 text-11 font-semibold uppercase tracking-[0.14em] text-dash-muted">
+                      Delivery
+                    </h3>
+                    <p className="text-sm font-semibold text-dash-ink">
+                      {selectedOrder.shippingMethod?.name || '—'}
+                    </p>
+                    <p className="mt-1 text-13 leading-relaxed text-dash-muted">
+                      {[
+                        selectedOrder.address,
+                        selectedOrder.city,
+                        selectedOrder.emirate,
+                        selectedOrder.country
+                      ]
+                        .filter(Boolean)
+                        .join(', ')}
+                    </p>
+                  </section>
+                </div>
+
+                {selectedOrder.note && (
+                  <section className="rounded-xl border border-dash-line bg-dash-sunken p-4">
+                    <h3 className="mb-1 text-11 font-semibold uppercase tracking-[0.14em] text-dash-muted">
+                      Notes
+                    </h3>
+                    <p className="text-13 leading-relaxed text-dash-ink">
+                      {selectedOrder.note}
+                    </p>
+                  </section>
                 )}
-                <p>
-                  <strong>
-                    {selectedOrder?.transactionDate
-                      ? 'Transaction Date'
-                      : 'Checkout Date'}
-                    :
-                  </strong>{' '}
-                  {selectedOrder?.transactionDate
-                    ? new Date(
-                        selectedOrder?.transactionDate || ''
-                      ).toLocaleString()
-                    : new Date(
-                        selectedOrder?.checkoutDate || ''
-                      ).toLocaleString()}
-                </p>
-                {selectedOrder?.products.map((prod, index) => (
-                  <div key={index} className="flex_between gap-2 pe-3">
-                    <div className="flex gap-2">
-                      <Image
-                        src={`${prod.image}`}
-                        alt={prod.name}
-                        width={50}
-                        height={50}
-                        className='max-h-[70px]'
-                      />
-                      <div>
-                        <h3 className="font-medium">{prod.name}</h3>
-                        {selectedOrder.isfreesample ? (
-                          <p className="font-medium">Sample piece</p>
-                        ) : prod.category?.toLowerCase().trim() ===
-                          'accessories' ? (
-                          <>
-                            <p className="font-medium">
-                              Price per Piece:{' '}
-                              <span className="font-normal">
-                                {prod.pricePerBox.toFixed(2)}
-                              </span>
+
+                {/* Items + totals */}
+                <section className="overflow-hidden rounded-xl border border-dash-line">
+                  <h3 className="border-b border-dash-line bg-dash-sunken px-4 py-2.5 text-11 font-semibold uppercase tracking-[0.14em] text-dash-muted">
+                    Items ({selectedOrder.products.length})
+                  </h3>
+                  <ul className="divide-y divide-dash-line bg-dash-surface">
+                    {selectedOrder.products.map((prod, index) => (
+                      <li key={index} className="flex items-start gap-3 px-4 py-3">
+                        <Image
+                          src={`${prod.image}`}
+                          alt={prod.name}
+                          width={56}
+                          height={56}
+                          className="h-14 w-14 shrink-0 rounded-lg border border-dash-line object-cover"
+                        />
+                        <div className="min-w-0 flex-1">
+                          <h4 className="text-sm font-semibold leading-snug text-dash-ink">
+                            {prod.name}
+                          </h4>
+                          {selectedOrder.isfreesample ? (
+                            <p className="mt-0.5 text-12 text-dash-muted">
+                              Sample piece
                             </p>
-                            <p className="font-medium">
-                              No. of Pieces:{' '}
-                              <span className="font-normal">
-                                {prod.requiredBoxes}
-                              </span>
-                            </p>
-                            {prod.selectedColor && (
-                              <p className="font-medium">
-                                Color:{' '}
-                                <span className="font-normal">
-                                  {prod.selectedColor.colorName} (
-                                  {prod.selectedColor.color})
-                                </span>
+                          ) : prod.category?.toLowerCase().trim() ===
+                            'accessories' ? (
+                            <>
+                              <p className="mt-0.5 text-12 text-dash-muted">
+                                <span className="font-currency font-normal">
+                                  
+                                </span>{' '}
+                                {prod.pricePerBox?.toFixed(2)} per piece &middot;{' '}
+                                {prod.requiredBoxes}{' '}
+                                {prod.requiredBoxes === 1 ? 'piece' : 'pieces'}
                               </p>
-                            )}
-                          </>
+                              {prod.selectedColor && (
+                                <p className="text-12 text-dash-muted">
+                                  Color: {prod.selectedColor.colorName} (
+                                  {prod.selectedColor.color})
+                                </p>
+                              )}
+                            </>
+                          ) : (
+                            <>
+                              <p className="mt-0.5 text-12 text-dash-muted">
+                                <span className="font-currency font-normal">
+                                  
+                                </span>{' '}
+                                {prod.price.toFixed(2)} &middot;{' '}
+                                {prod.isClearance ? 'Bundle' : 'Area'}{' '}
+                                {Number(prod.squareMeter).toFixed(2)} SQM
+                              </p>
+                              <p className="text-12 text-dash-muted">
+                                {prod.addInstallation ? (
+                                  <>
+                                    Installation:{' '}
+                                    <span className="font-currency font-normal">
+                                      
+                                    </span>{' '}
+                                    {prod.installationCost?.toFixed(2)}
+                                  </>
+                                ) : (
+                                  'Installation not included'
+                                )}
+                              </p>
+                            </>
+                          )}
+                        </div>
+                        <p className="shrink-0 text-sm font-semibold text-dash-ink">
+                          {prod.totalPrice === 0 ? (
+                            'Free'
+                          ) : (
+                            <>
+                              <span className="font-currency font-normal">
+                                
+                              </span>{' '}
+                              {formatAED(prod.totalPrice)}
+                            </>
+                          )}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="space-y-1.5 border-t border-dash-line bg-dash-sunken px-4 py-3">
+                    <div className="flex items-center justify-between text-13 text-dash-muted">
+                      <span>Shipment fee</span>
+                      <span>
+                        {selectedOrder.shipmentFee === 0 ? (
+                          'Free'
                         ) : (
                           <>
-                            <p className="font-medium">
-                              Price:{' '}
-                              <span className="font-normal">
-                                {prod.price.toFixed(2)}
-                              </span>
-                            </p>
-                            <p className="font-medium">
-                              {prod.isClearance ? 'Bundle' : 'Area'}{' '}
-                              {Number(prod.squareMeter).toFixed(2)} SQM
-                            </p>
-                            {prod.addInstallation ? (
-                              <p className="font-medium">
-                                Installation Cost:{' '}
-                                <span className="font-normal">
-                                  {prod.installationCost?.toFixed(2)}
-                                </span>
-                              </p>
-                            ) : (
-                              <p className="font-medium">
-                                Installation:{' '}
-                                <span className="font-normal">
-                                  Not Included
-                                </span>
-                              </p>
-                            )}
+                            <span className="font-currency font-normal"></span>{' '}
+                            {formatAED(selectedOrder.shipmentFee)}
                           </>
                         )}
-                      </div>
+                      </span>
                     </div>
-                    <p className="font-medium">
-                      {prod.totalPrice === 0
-                        ? 'Free'
-                        : formatAED(prod.totalPrice)}
-                    </p>
+                    <div className="flex items-center justify-between text-15 font-bold text-dash-ink">
+                      <span>Total</span>
+                      <span>
+                        {selectedOrder.totalPrice === 0 ? (
+                          'Free'
+                        ) : (
+                          <>
+                            <span className="font-currency font-normal"></span>{' '}
+                            {formatAED(selectedOrder.totalPrice)}
+                          </>
+                        )}
+                      </span>
+                    </div>
                   </div>
-                ))}
+                </section>
               </div>
             )}
           </Modal>
